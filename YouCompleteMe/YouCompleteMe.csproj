@@ -80,5 +80,8 @@
     <Folder Include="Controller\" />
     <Folder Include="Model\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="README.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
