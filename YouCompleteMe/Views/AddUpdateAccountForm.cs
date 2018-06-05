@@ -10,17 +10,16 @@ using System.Windows.Forms;
 
 namespace YouCompleteMe.Views
 {
-    public partial class homepageForm : Form
+    public partial class AddUpdateAccountForm : Form
     {
-        public homepageForm()
+        public AddUpdateAccountForm()
         {
             InitializeComponent();
         }
 
-        private void monthCalendar1_DateSelected(object sender, DateRangeEventArgs e)
+        private void btnExit_Click(object sender, EventArgs e)
         {
-            dateForm dateForm = new dateForm();
-            dateForm.Show();
+            this.Close();
         }
     }
 }
