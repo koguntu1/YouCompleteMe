@@ -46,11 +46,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL\DBConnection.cs" />
-    <Compile Include="Views\Home.cs">
+    <Compile Include="Views\homepageForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Home.Designer.cs">
-      <DependentUpon>Home.cs</DependentUpon>
+    <Compile Include="Views\homepageForm.Designer.cs">
+      <DependentUpon>homepageForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
