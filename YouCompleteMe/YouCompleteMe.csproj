@@ -46,10 +46,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL\DBConnection.cs" />
-    <Compile Include="View\Home.cs">
+    <Compile Include="Views\Home.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Home.Designer.cs">
+    <Compile Include="Views\Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -78,7 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controller\" />
-    <Folder Include="Model\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="README.txt" />
