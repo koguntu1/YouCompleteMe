@@ -7,19 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using YouCompleteMe.Models;
 
 namespace YouCompleteMe.Views
 {
     public partial class mainForm : Form
     {
+        private User theUser;
+
         homepageForm homepage = new homepageForm();
         AddUpdateAccountForm addUpdateAccount = new AddUpdateAccountForm();
         tasksForm task = new tasksForm();
         childTasksForm childTask = new childTasksForm();
         changePasswordForm changePasswordForm = new changePasswordForm();
 
-        public mainForm()
+        public mainForm(User aUser)
         {
+            theUser = aUser;
             InitializeComponent();
             showHomePage();
         }
@@ -56,7 +60,7 @@ namespace YouCompleteMe.Views
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
 
         private void managementProfileToolStripMenuItem_Click(object sender, EventArgs e)

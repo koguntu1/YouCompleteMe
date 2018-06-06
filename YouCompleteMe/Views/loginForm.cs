@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using YouCompleteMe.Models;
 
 namespace YouCompleteMe.Views
 {
@@ -30,14 +31,14 @@ namespace YouCompleteMe.Views
         private void btnLogin_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var mainForm = new mainForm();
+            var mainForm = new mainForm(new User());
             mainForm.Closed += (s, args) => this.Close();
             mainForm.Show();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
     }
 }
