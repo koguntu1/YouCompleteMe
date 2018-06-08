@@ -8,12 +8,14 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using YouCompleteMe.Controller;
 
 namespace YouCompleteMe.Views
 {
     public partial class registerForm : Form
     {
         private string phoneNumber;
+
         public registerForm()
         {
             InitializeComponent();
@@ -33,7 +35,13 @@ namespace YouCompleteMe.Views
         {
             if (validCredentials())
             {
+                byte[] data = System.Text.Encoding.ASCII.GetBytes(txtPassword.Text);
+                data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
+                String hash = System.Text.Encoding.ASCII.GetString(data);
+
                 this.phoneNumber = phone1.Text + phone2.Text + phone3.Text;
+
+                UserController.createUser(txtUser.Text, txtFirstName.Text, txtLastName.Text, txtEmail.Text, this.phoneNumber, hash);
 
                 this.Hide();
                 var loginForm = new loginForm();
