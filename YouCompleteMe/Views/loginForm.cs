@@ -13,8 +13,12 @@ namespace YouCompleteMe.Views
 {
     public partial class loginForm : Form
     {
+
+        private User theUser;
+
         public loginForm()
         {
+            theUser = null;
             InitializeComponent();
         }
 
@@ -30,6 +34,10 @@ namespace YouCompleteMe.Views
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            if (theUser == null)
+            {
+                MessageBox.Show("Please enter your username and password, or register with us");
+            }
             this.Hide();
             var mainForm = new mainForm(new User());
             mainForm.Closed += (s, args) => this.Close();
