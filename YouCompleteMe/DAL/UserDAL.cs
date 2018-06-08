@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YouCompleteMe.Models;
 
 namespace YouCompleteMe.DAL
 {
@@ -44,6 +45,47 @@ namespace YouCompleteMe.DAL
                 if (connection != null)
                     connection.Close();
             }
+        }
+
+        public static List<User> getUsers()
+        {
+            List<User> users = new List<User>();
+            SqlConnection connection = DBConnection.GetConnection();
+            string selectStatement = "SELECT * " +
+                "FROM users ";
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            SqlDataReader reader = null;
+            try
+            {
+                connection.Open();
+                reader = selectCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    User user = new User();
+
+                    user.userName = reader["username"].ToString();
+                    user.email = reader["email"].ToString();
+
+                    users.Add(user);
+                }
+                reader.Close();
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+                if (reader != null)
+                    reader.Close();
+            }
+            return users;
         }
     }
 }

@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using YouCompleteMe.Controller;
+using YouCompleteMe.Models;
 
 namespace YouCompleteMe.Views
 {
@@ -70,7 +71,15 @@ namespace YouCompleteMe.Views
                 MessageBox.Show("Please enter a user name");
                 value = false;
             }
+            else if (!isDuplicateName(txtUser.Text))
+            {
+                value = false;
+            }
             else if (!isValidEmail(txtEmail.Text))
+            {
+                value = false;
+            }
+            else if (!isDuplicateEmail(txtEmail.Text))
             {
                 value = false;
             }
@@ -86,6 +95,45 @@ namespace YouCompleteMe.Views
             {
                 value = false;
             }
+            return value;
+        }
+
+        //Helper to see if a user name already exists in the system
+        private bool isDuplicateName(string userName)
+        {
+            bool value = true;
+
+            List<User> users = UserController.getUsers();
+
+            for (int current = 0; current < users.Count(); current++)
+            {
+                User user = users[current];
+                if (user.userName.Equals(userName)) {
+                    MessageBox.Show("Username already exists");
+                    value = false;
+                }
+            }
+
+            return value;
+        }
+
+        //Helper to see if email already exists in the system
+        private bool isDuplicateEmail(string email)
+        {
+            bool value = true;
+
+            List<User> users = UserController.getUsers();
+
+            for (int current = 0; current < users.Count(); current++)
+            {
+                User user = users[current];
+                if (user.email.Equals(email))
+                {
+                    MessageBox.Show("Email address already exists");
+                    value = false;
+                }
+            }
+
             return value;
         }
 
