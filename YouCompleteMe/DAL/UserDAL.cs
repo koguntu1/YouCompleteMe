@@ -109,6 +109,7 @@ namespace YouCompleteMe.DAL
                 reader = selectCommand.ExecuteReader();
                 if (reader.Read())
                 {
+                    user.userID = Convert.ToInt32(reader["userID"]);
                     user.fName = reader["fName"].ToString();
                     user.lName = reader["lName"].ToString();
                     user.email = reader["email"].ToString();
@@ -134,7 +135,6 @@ namespace YouCompleteMe.DAL
                 if (reader != null)
                     reader.Close();
             }
-            return user;
             return user;
         }
     }

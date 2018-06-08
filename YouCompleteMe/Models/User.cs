@@ -8,6 +8,7 @@ namespace YouCompleteMe.Models
 {
     public class User
     {
+        public int userID { get; set; }
         public string userName { get; set; }
         public string fName { get; set; }
         public string lName { get; set; }
