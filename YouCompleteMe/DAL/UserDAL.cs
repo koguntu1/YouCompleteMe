@@ -10,6 +10,7 @@ namespace YouCompleteMe.DAL
 {
     public static class UserDAL
     {
+        //Creates a new user in the database
         public static void createUser(string username, string fName, string lName, string email, string phone, string password)
         {
             SqlConnection connection = DBConnection.GetConnection();
@@ -47,6 +48,7 @@ namespace YouCompleteMe.DAL
             }
         }
 
+        //Returns a list of all users from the database
         public static List<User> getUsers()
         {
             List<User> users = new List<User>();
