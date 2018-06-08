@@ -19,6 +19,7 @@ namespace YouCompleteMe.Views
             InitializeComponent();
         }
 
+        //Defines action of exit button
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -27,14 +28,11 @@ namespace YouCompleteMe.Views
             loginForm.Show();
         }
 
+        //Defines action of the submit button
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            string pass = txtPassword.Text;
-            string retypePass = txtConfirmPassword.Text;
-
-            if (validCredentials() && isNewPasswordValid(pass) && doNewPasswordsMatch(pass, retypePass))
+            if (validCredentials())
             {
-
                 this.phoneNumber = phone1.Text + phone2.Text + phone3.Text;
 
                 this.Hide();
@@ -44,6 +42,7 @@ namespace YouCompleteMe.Views
             }
         }
 
+        //Helper to evaluate if user has supplied all required information
         private bool validCredentials()
         {
             bool value = true;
@@ -63,78 +62,87 @@ namespace YouCompleteMe.Views
                 MessageBox.Show("Please enter a user name");
                 value = false;
             }
-
-            if (isValidPhone(phone1.Text, phone2.Text, phone3.Text))
+            else if (!isValidEmail(txtEmail.Text))
             {
-                value = true;
+                value = false;
             }
-            else if (isValidEmail(txtEmail.Text))
+            else if (!isValidPhone(phone1.Text, phone2.Text, phone3.Text))
             {
-                value = true;
+                value = false;
+            }
+            else if (!isNewPasswordValid(txtPassword.Text))
+            {
+                value = false;
+            }
+            else if (!doNewPasswordsMatch(txtPassword.Text, txtConfirmPassword.Text))
+            {
+                value = false;
             }
             return value;
         }
 
-        private Boolean isValidPhone(string first, string second, string third)
+        //Helper to evaluate if supplied phone number is in a valid format
+        private bool isValidPhone(string first, string second, string third)
         {
-            try
-            {
-                int phoneNum1 = (int)Int64.Parse(first);
+            bool value = true;
 
-                if (phoneNum1 < 0 || first.Length != 3)
+            if (first.Length != 3)
+            {
+                MessageBox.Show("Area code must be three digits");
+                value = false;
+            }
+            else if (second.Length != 3)
+            {
+                MessageBox.Show("Second section must be three digits");
+                value = false;
+            }
+            else if (third.Length != 4)
+            {
+                MessageBox.Show("Last section must be four digits");
+                value = false;
+            }
+            else
+            {
+                try
                 {
-                    return false;
+                    int phoneNum1 = (int)Int64.Parse(first);
+                    int phoneNum2 = (int)Int64.Parse(second);
+                    int phoneNum3 = (int)Int64.Parse(third);
+
+                    if (phoneNum1 < 0 || phoneNum2 < 0 || phoneNum3 < 0)
+                    {
+                        MessageBox.Show("Phone cannot contain non-numbers");
+                        value = false;
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Phone cannot contain non-numbers");
+                    value = false;
                 }
             }
-            catch (Exception)
-            {
-                return false;
-            }
-
-            try
-            {
-                int phoneNum2 = (int)Int64.Parse(second);
-
-                if (phoneNum2 < 0 || second.Length != 3)
-                {
-                    return false;
-                }
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-
-            try
-            {
-                int phoneNum3 = (int)Int64.Parse(third);
-
-                if (phoneNum3 < 0 || third.Length != 4)
-                {
-                    return false;
-                }
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-            return true;
+            return value;
         }
 
+        //Helper to evaluate if supplied email is in a valid format
         private Boolean isValidEmail(string email)
         {
+            bool value = true;
+
             Regex hasSymbol = new Regex(@"[@]");
 
             if (email == "") 
             {
-                return false;
+                MessageBox.Show("Please provide an email address");
+                value = false;
             }
             else if (!hasSymbol.IsMatch(email))
             {
-                return false;
+                MessageBox.Show("Invalid email address format");
+                value = false;
             }
 
-            return true;
+            return value;
         }
 
         //Helper that returns true if passed string matches all patterns. If false, the appropriate 
@@ -175,7 +183,7 @@ namespace YouCompleteMe.Views
             return isValid;
         }
 
-        //Returns true if retyped new password matches new password
+        //Helper that returns true if retyped new password matches new password
         private bool doNewPasswordsMatch(string password1, string password2)
         {
             bool isMatch = false;
