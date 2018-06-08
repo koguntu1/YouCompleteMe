@@ -89,5 +89,53 @@ namespace YouCompleteMe.DAL
             }
             return users;
         }
+
+        //REturns specified user based on username and password
+        public static User getAUser(string username, string password)
+        {
+            User user = new User();
+            SqlConnection connection = DBConnection.GetConnection();
+            string selectStatement = "SELECT * " +
+                "FROM users " +
+                 "WHERE username = @username AND enc_password = @password"; ;
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+
+            selectCommand.Parameters.AddWithValue("@username", username);
+            selectCommand.Parameters.AddWithValue("@password", password);
+            SqlDataReader reader = null;
+            try
+            {
+                connection.Open();
+                reader = selectCommand.ExecuteReader();
+                if (reader.Read())
+                {
+                    user.fName = reader["fName"].ToString();
+                    user.lName = reader["lName"].ToString();
+                    user.email = reader["email"].ToString();
+                    user.phone = reader["phone"].ToString();
+                }
+                else
+                {
+                    user = null;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+                if (reader != null)
+                    reader.Close();
+            }
+            return user;
+            return user;
+        }
     }
 }

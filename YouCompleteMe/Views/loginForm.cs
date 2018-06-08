@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using YouCompleteMe.Controller;
 using YouCompleteMe.Models;
 
 namespace YouCompleteMe.Views
@@ -18,7 +19,7 @@ namespace YouCompleteMe.Views
 
         public loginForm()
         {
-            theUser = null;
+            this.theUser = new User();
             InitializeComponent();
         }
 
@@ -34,19 +35,31 @@ namespace YouCompleteMe.Views
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (theUser == null)
+            CurrentUser.setCurrentUser(UserController.getAUser(textBox1.Text, textBox2.Text));
+
+            if (textBox1.Text.Trim().Equals("") || textBox2.Text.Trim().Equals(""))
             {
-                MessageBox.Show("Please enter your username and password, or register with us");
+                MessageBox.Show("Please provide your username and password, or register below");
             }
-            this.Hide();
-            var mainForm = new mainForm(new User());
-            mainForm.Closed += (s, args) => this.Close();
-            mainForm.Show();
+            else if (CurrentUser.User == null)
+            {
+                MessageBox.Show("We couldn't find you. Please try again");
+            }
+            else
+            {
+                MessageBox.Show("Welcome " + CurrentUser.User.fName);
+                this.Hide();
+                var mainForm = new mainForm(this.theUser);
+                mainForm.Closed += (s, args) => this.Close();
+                mainForm.Show();
+            }
+            
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
+
     }
 }

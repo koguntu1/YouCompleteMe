@@ -21,5 +21,11 @@ namespace YouCompleteMe.Controller
         {
             return UserDAL.getUsers();
         }
+
+        //Calls UserDAL to return a single user
+        public static User getAUser(string username, string password)
+        {
+            return UserDAL.getAUser(username, password);
+        }
     }
 }

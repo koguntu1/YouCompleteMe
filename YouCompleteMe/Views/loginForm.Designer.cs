@@ -42,11 +42,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(102, 56);
+            this.label1.Location = new System.Drawing.Point(69, 54);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(256, 39);
+            this.label1.Size = new System.Drawing.Size(329, 39);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Authorized Access";
+            this.label1.Text = "Welcome. Please Log In";
             // 
             // label2
             // 
