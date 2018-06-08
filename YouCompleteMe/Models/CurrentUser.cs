@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace YouCompleteMe.Models
 {
-    class CurrentUser
+    public class CurrentUser
     {
         public static User User { get; private set; }
 
