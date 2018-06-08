@@ -44,34 +44,35 @@ namespace YouCompleteMe.Views
             }
         }
 
-        private Boolean validCredentials()
+        private bool validCredentials()
         {
+            bool value = true;
+
             if (txtFirstName.Text == "")
             {
                 MessageBox.Show("Please enter your first name");
-                return false;
+                value = false;
             }
             else if (txtLastName.Text == "")
             {
                 MessageBox.Show("Please enter your last name");
-                return false;
+                value = false;
             }
             else if (txtUser.Text == "")
             {
                 MessageBox.Show("Please enter a user name");
-                return false;
+                value = false;
             }
-            else if (!isValidPhone(phone1.Text, phone2.Text, phone3.Text))
+
+            if (isValidPhone(phone1.Text, phone2.Text, phone3.Text))
             {
-                MessageBox.Show("Phone number is required or not properly formatted");
-                return false;
+                value = true;
             }
-            else if (!isValidEmail(txtEmail.Text))
+            else if (isValidEmail(txtEmail.Text))
             {
-                MessageBox.Show("Email is required or not properly formatted");
-                return false;
+                value = true;
             }
-            return true;
+            return value;
         }
 
         private Boolean isValidPhone(string first, string second, string third)
