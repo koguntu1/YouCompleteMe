@@ -40,10 +40,12 @@ namespace YouCompleteMe.Views
                 data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
                 String hash = System.Text.Encoding.ASCII.GetString(data);
 
-                this.phoneNumber = phone1.Text + phone2.Text + phone3.Text;
+                this.phoneNumber = phone1.Text+ phone2.Text + phone3.Text;
+                string email = txtEmail1.Text + label16.Text + txtEmail2.Text + label19.Text + txtEmail3.Text;
 
-                UserController.createUser(txtUser.Text, txtFirstName.Text, txtLastName.Text, txtEmail.Text, this.phoneNumber, hash);
+                UserController.createUser(txtUser.Text, txtFirstName.Text, txtLastName.Text, email, this.phoneNumber, hash);
 
+                MessageBox.Show("Thank you for registering. Returning to login screen");
                 this.Hide();
                 var loginForm = new loginForm();
                 loginForm.Closed += (s, args) => this.Close();
@@ -75,11 +77,11 @@ namespace YouCompleteMe.Views
             {
                 value = false;
             }
-            else if (!isValidEmail(txtEmail.Text))
+            else if (!isValidEmail())
             {
                 value = false;
             }
-            else if (!isDuplicateEmail(txtEmail.Text))
+            else if (!isDuplicateEmail(txtEmail1.Text))
             {
                 value = false;
             }
@@ -181,20 +183,13 @@ namespace YouCompleteMe.Views
         }
 
         //Helper to evaluate if supplied email is in a valid format
-        private Boolean isValidEmail(string email)
+        private Boolean isValidEmail()
         {
             bool value = true;
 
-            Regex hasSymbol = new Regex(@"[@]");
-
-            if (email == "") 
+            if (txtEmail1.Text == "" || txtEmail2.Text == "" || txtEmail3.Text == "") 
             {
-                MessageBox.Show("Please provide an email address");
-                value = false;
-            }
-            else if (!hasSymbol.IsMatch(email))
-            {
-                MessageBox.Show("Invalid email address format");
+                MessageBox.Show("Please provide a valid email address");
                 value = false;
             }
 
