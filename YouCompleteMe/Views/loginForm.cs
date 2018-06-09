@@ -19,7 +19,6 @@ namespace YouCompleteMe.Views
 
         public loginForm()
         {
-            this.theUser = new User();
             InitializeComponent();
         }
 
@@ -49,7 +48,7 @@ namespace YouCompleteMe.Views
             {
                 MessageBox.Show("Welcome " + CurrentUser.User.fName);
                 this.Hide();
-                var mainForm = new mainForm(this.theUser);
+                var mainForm = new mainForm(CurrentUser.User);
                 mainForm.Closed += (s, args) => this.Close();
                 mainForm.Show();
             }
