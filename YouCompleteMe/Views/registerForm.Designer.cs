@@ -68,7 +68,7 @@
             this.btnExit.Location = new System.Drawing.Point(346, 406);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(116, 30);
-            this.btnExit.TabIndex = 15;
+            this.btnExit.TabIndex = 23;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
@@ -79,7 +79,7 @@
             this.btnSubmit.Location = new System.Drawing.Point(44, 406);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(94, 30);
-            this.btnSubmit.TabIndex = 13;
+            this.btnSubmit.TabIndex = 22;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = true;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
@@ -117,7 +117,7 @@
             this.label2.Location = new System.Drawing.Point(40, 108);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 19);
-            this.label2.TabIndex = 9;
+            this.label2.TabIndex = 26;
             this.label2.Text = "First Name";
             // 
             // label1
@@ -136,7 +136,7 @@
             this.txtEmail1.Location = new System.Drawing.Point(178, 234);
             this.txtEmail1.Name = "txtEmail1";
             this.txtEmail1.Size = new System.Drawing.Size(87, 27);
-            this.txtEmail1.TabIndex = 19;
+            this.txtEmail1.TabIndex = 14;
             // 
             // label4
             // 
@@ -154,7 +154,7 @@
             this.txtPassword.Location = new System.Drawing.Point(178, 317);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(284, 27);
-            this.txtPassword.TabIndex = 23;
+            this.txtPassword.TabIndex = 20;
             // 
             // txtUser
             // 
@@ -162,7 +162,7 @@
             this.txtUser.Location = new System.Drawing.Point(178, 190);
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(284, 27);
-            this.txtUser.TabIndex = 22;
+            this.txtUser.TabIndex = 13;
             // 
             // label6
             // 
@@ -190,7 +190,7 @@
             this.txtConfirmPassword.Location = new System.Drawing.Point(178, 363);
             this.txtConfirmPassword.Name = "txtConfirmPassword";
             this.txtConfirmPassword.Size = new System.Drawing.Size(284, 27);
-            this.txtConfirmPassword.TabIndex = 25;
+            this.txtConfirmPassword.TabIndex = 21;
             // 
             // label8
             // 
@@ -218,7 +218,7 @@
             this.phone1.MaxLength = 3;
             this.phone1.Name = "phone1";
             this.phone1.Size = new System.Drawing.Size(50, 20);
-            this.phone1.TabIndex = 27;
+            this.phone1.TabIndex = 17;
             // 
             // phone2
             // 
@@ -226,7 +226,7 @@
             this.phone2.MaxLength = 3;
             this.phone2.Name = "phone2";
             this.phone2.Size = new System.Drawing.Size(64, 20);
-            this.phone2.TabIndex = 28;
+            this.phone2.TabIndex = 18;
             // 
             // phone3
             // 
@@ -234,7 +234,7 @@
             this.phone3.MaxLength = 4;
             this.phone3.Name = "phone3";
             this.phone3.Size = new System.Drawing.Size(96, 20);
-            this.phone3.TabIndex = 29;
+            this.phone3.TabIndex = 19;
             // 
             // label9
             // 
@@ -305,7 +305,7 @@
             this.txtEmail2.Location = new System.Drawing.Point(300, 234);
             this.txtEmail2.Name = "txtEmail2";
             this.txtEmail2.Size = new System.Drawing.Size(76, 27);
-            this.txtEmail2.TabIndex = 37;
+            this.txtEmail2.TabIndex = 15;
             // 
             // label16
             // 
@@ -351,7 +351,7 @@
             this.txtEmail3.Location = new System.Drawing.Point(401, 234);
             this.txtEmail3.Name = "txtEmail3";
             this.txtEmail3.Size = new System.Drawing.Size(61, 27);
-            this.txtEmail3.TabIndex = 42;
+            this.txtEmail3.TabIndex = 16;
             // 
             // registerForm
             // 
