@@ -52,6 +52,7 @@ namespace YouCompleteMe.Views
 
         private void registerToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            theUser = null;
             this.Hide();
             var loginForm = new loginForm();
             loginForm.Closed += (s, args) => this.Close();

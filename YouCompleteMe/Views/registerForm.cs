@@ -40,7 +40,7 @@ namespace YouCompleteMe.Views
                 data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
                 String hash = System.Text.Encoding.ASCII.GetString(data);
 
-                this.phoneNumber = phone1.Text+ phone2.Text + phone3.Text;
+                this.phoneNumber = phone1.Text + phone2.Text + phone3.Text;
                 string email = txtEmail1.Text + label16.Text + txtEmail2.Text + label19.Text + txtEmail3.Text;
 
                 UserController.createUser(txtUser.Text, txtFirstName.Text, txtLastName.Text, email, this.phoneNumber, hash);
