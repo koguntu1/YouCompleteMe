@@ -34,7 +34,11 @@ namespace YouCompleteMe.Views
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            CurrentUser.setCurrentUser(UserController.getAUser(textBox1.Text, textBox2.Text));
+            byte[] data = System.Text.Encoding.ASCII.GetBytes(textBox2.Text);
+            data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
+            String hash = System.Text.Encoding.ASCII.GetString(data);
+
+            CurrentUser.setCurrentUser(UserController.getAUser(textBox1.Text, hash));
 
             if (textBox1.Text.Trim().Equals("") || textBox2.Text.Trim().Equals(""))
             {
