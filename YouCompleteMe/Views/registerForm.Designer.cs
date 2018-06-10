@@ -60,15 +60,17 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.txtEmail3 = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.txtHint = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnExit
             // 
             this.btnExit.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Location = new System.Drawing.Point(346, 406);
+            this.btnExit.Location = new System.Drawing.Point(346, 462);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(116, 30);
-            this.btnExit.TabIndex = 23;
+            this.btnExit.TabIndex = 24;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
@@ -76,10 +78,10 @@
             // btnSubmit
             // 
             this.btnSubmit.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSubmit.Location = new System.Drawing.Point(44, 406);
+            this.btnSubmit.Location = new System.Drawing.Point(44, 462);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(94, 30);
-            this.btnSubmit.TabIndex = 22;
+            this.btnSubmit.TabIndex = 23;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = true;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
@@ -124,11 +126,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(100, 31);
+            this.label1.Location = new System.Drawing.Point(171, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(307, 39);
+            this.label1.Size = new System.Drawing.Size(205, 39);
             this.label1.TabIndex = 8;
-            this.label1.Text = "Register New Account";
+            this.label1.Text = "Join Us Today!";
             // 
             // txtEmail1
             // 
@@ -222,10 +224,10 @@
             // 
             // phone2
             // 
-            this.phone2.Location = new System.Drawing.Point(279, 281);
+            this.phone2.Location = new System.Drawing.Point(266, 281);
             this.phone2.MaxLength = 3;
             this.phone2.Name = "phone2";
-            this.phone2.Size = new System.Drawing.Size(64, 20);
+            this.phone2.Size = new System.Drawing.Size(77, 20);
             this.phone2.TabIndex = 18;
             // 
             // phone3
@@ -241,9 +243,8 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(263, 285);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(10, 13);
+            this.label9.Size = new System.Drawing.Size(0, 13);
             this.label9.TabIndex = 30;
-            this.label9.Text = "-";
             // 
             // label10
             // 
@@ -257,7 +258,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(213, 463);
+            this.label11.Location = new System.Drawing.Point(207, 509);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(90, 13);
             this.label11.TabIndex = 32;
@@ -266,7 +267,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(77, 487);
+            this.label12.Location = new System.Drawing.Point(77, 522);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(164, 13);
             this.label12.TabIndex = 33;
@@ -275,7 +276,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(77, 500);
+            this.label13.Location = new System.Drawing.Point(77, 535);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(220, 13);
             this.label13.TabIndex = 34;
@@ -284,7 +285,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(77, 513);
+            this.label14.Location = new System.Drawing.Point(77, 548);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(121, 13);
             this.label14.TabIndex = 35;
@@ -293,7 +294,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(77, 526);
+            this.label15.Location = new System.Drawing.Point(77, 561);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(266, 13);
             this.label15.TabIndex = 36;
@@ -353,11 +354,31 @@
             this.txtEmail3.Size = new System.Drawing.Size(61, 27);
             this.txtEmail3.TabIndex = 16;
             // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(40, 417);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(107, 19);
+            this.label20.TabIndex = 42;
+            this.label20.Text = "Password Hint";
+            // 
+            // txtHint
+            // 
+            this.txtHint.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtHint.Location = new System.Drawing.Point(178, 414);
+            this.txtHint.Name = "txtHint";
+            this.txtHint.Size = new System.Drawing.Size(284, 27);
+            this.txtHint.TabIndex = 22;
+            // 
             // registerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(519, 562);
+            this.ClientSize = new System.Drawing.Size(519, 597);
+            this.Controls.Add(this.txtHint);
+            this.Controls.Add(this.label20);
             this.Controls.Add(this.txtEmail3);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label18);
@@ -432,5 +453,7 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox txtEmail3;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox txtHint;
     }
 }

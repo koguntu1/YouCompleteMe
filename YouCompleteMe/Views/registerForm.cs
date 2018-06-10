@@ -40,10 +40,11 @@ namespace YouCompleteMe.Views
                 data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
                 String hash = System.Text.Encoding.ASCII.GetString(data);
 
-                this.phoneNumber = label17.Text + phone1.Text + label18.Text + label9.Text + phone2.Text + label10.Text + phone3.Text;
+                this.phoneNumber = label17.Text + phone1.Text + label18.Text + " " + phone2.Text + label10.Text + phone3.Text;
                 string email = txtEmail1.Text + label16.Text + txtEmail2.Text + label19.Text + txtEmail3.Text;
 
-                UserController.createUser(txtUser.Text, txtFirstName.Text, txtLastName.Text, email, this.phoneNumber, hash);
+                UserController.createUser(txtUser.Text, txtFirstName.Text, txtLastName.Text, email, this.phoneNumber, 
+                    hash, txtHint.Text);
 
                 MessageBox.Show("Thank you for registering. Returning to login screen");
                 this.Hide();
@@ -58,17 +59,17 @@ namespace YouCompleteMe.Views
         {
             bool value = true;
 
-            if (txtFirstName.Text == "")
+            if (txtFirstName.Text.Trim() == "")
             {
                 MessageBox.Show("Please enter your first name");
                 value = false;
             }
-            else if (txtLastName.Text == "")
+            else if (txtLastName.Text.Trim() == "")
             {
                 MessageBox.Show("Please enter your last name");
                 value = false;
             }
-            else if (txtUser.Text == "")
+            else if (txtUser.Text.Trim() == "")
             {
                 MessageBox.Show("Please enter a user name");
                 value = false;
@@ -95,6 +96,11 @@ namespace YouCompleteMe.Views
             }
             else if (!doNewPasswordsMatch(txtPassword.Text, txtConfirmPassword.Text))
             {
+                value = false;
+            }
+            else if (txtHint.Text.Trim() == "")
+            {
+                MessageBox.Show("Please provide a password hint");
                 value = false;
             }
             return value;
@@ -187,7 +193,7 @@ namespace YouCompleteMe.Views
         {
             bool value = true;
 
-            if (txtEmail1.Text == "" || txtEmail2.Text == "" || txtEmail3.Text == "") 
+            if (txtEmail1.Text.Trim() == "" || txtEmail2.Text.Trim() == "" || txtEmail3.Text.Trim() == "") 
             {
                 MessageBox.Show("Please provide a valid email address");
                 value = false;
