@@ -26,7 +26,12 @@ namespace YouCompleteMe.Views
 
         private void dateTaskView_Load(object sender, EventArgs e)
         {
-            this.label1.Text = calendarParent.getSelectedDate();
+            this.dateLabel.Text = calendarParent.getSelectedDate();
+        }
+
+        private void populateTaskList()
+        {
+
         }
     }
 }

@@ -41,5 +41,41 @@ namespace YouCompleteMe.DAL
                     reader.Close();
             }
         }
+
+        // Get all tasks for the current user
+        public static List<FurnitureListing> getAllCategories()
+        {
+            List<FurnitureListing> listing = new List<FurnitureListing>();
+
+            SqlConnection connection = RentalDBA.GetConnection();
+            string selectStatement =
+                "SELECT DISTINCT categoryName " +
+                "FROM category ";
+
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = selectCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    FurnitureListing aListing = new FurnitureListing();
+                    aListing.category = reader["categoryName"].ToString();
+                    listing.Add(aListing);
+                }
+                reader.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return listing;
+        }
     }
 }
