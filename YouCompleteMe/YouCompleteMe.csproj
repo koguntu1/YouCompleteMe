@@ -121,6 +121,7 @@
     <Compile Include="Views\tasksForm.Designer.cs">
       <DependentUpon>tasksForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Validator.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

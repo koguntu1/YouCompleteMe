@@ -14,9 +14,9 @@ namespace YouCompleteMe.DAL
         {
             SqlConnection connection = DBConnection.GetConnection();
             string insertStatement =
-                "INSERT Task " +
-                  "(task_owner, title, createdDate, currentDate, deadline, task_priority, completed) " +
-                "VALUES (@task_owner, @title, @createdDate, @currentDate, @deadline, @task_priority, @completed)";
+                "INSERT tasks " +
+                  "(task_owner, taskType, title, createdDate, currentDate, deadline, task_priority, completed) " +
+                "VALUES (@task_owner, @taskType, @title, @createdDate, @currentDate, @deadline, @task_priority, @completed)";
             SqlCommand insertCommand = new SqlCommand(insertStatement, connection);
             insertCommand.Parameters.AddWithValue("@task_owner", task.task_owner);
             insertCommand.Parameters.AddWithValue("@title", task.title);
@@ -25,12 +25,13 @@ namespace YouCompleteMe.DAL
             insertCommand.Parameters.AddWithValue("@deadline", task.deadline);
             insertCommand.Parameters.AddWithValue("@task_priority", task.task_priority);
             insertCommand.Parameters.AddWithValue("@completed", task.completed);
+            insertCommand.Parameters.AddWithValue("@taskType", task.taskType);
             try
             {
                 connection.Open();
                 insertCommand.ExecuteNonQuery();
                 string selectStatement =
-                    "SELECT IDENT_CURRENT('Task') FROM Task";
+                    "SELECT IDENT_CURRENT('tasks') FROM tasks";
                 SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
                 int taskID = Convert.ToInt32(selectCommand.ExecuteScalar());
                 return taskID;

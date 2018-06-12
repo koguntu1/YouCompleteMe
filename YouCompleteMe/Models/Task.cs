@@ -10,6 +10,7 @@ namespace YouCompleteMe.Models
     {
         public int task_owner { get; set; }
 	    public int taskID { get; set; } 
+        public int taskType { get; set; }
 	    public string title { get; set; }
 	    public DateTime createdDate { get; set; }
         public DateTime currentDate { get; set; }

@@ -15,9 +15,9 @@ namespace YouCompleteMe.Views
     {
         private User theUser;
 
-        homepageForm homepage = new homepageForm();
+        homepageForm homepage;
         AddUpdateAccountForm addUpdateAccount = new AddUpdateAccountForm();
-        tasksForm task = new tasksForm();
+        tasksForm task;
         childTasksForm childTask = new childTasksForm();
         changePasswordForm changePasswordForm = new changePasswordForm();
 
@@ -29,6 +29,9 @@ namespace YouCompleteMe.Views
             {
                 uerLToolStripMenuItem.Text = aUser.userName;
             }
+
+            task = new tasksForm(theUser);
+            homepage = new homepageForm(theUser);
             showHomePage();
         }
 
@@ -38,7 +41,7 @@ namespace YouCompleteMe.Views
             {
                 if (homepage.IsDisposed)
                 {
-                    homepage = new homepageForm();
+                    homepage = new homepageForm(theUser);
                     homepage.MdiParent = this;
                     homepage.StartPosition = FormStartPosition.CenterScreen;
                     homepage.WindowState = FormWindowState.Maximized;
@@ -94,7 +97,7 @@ namespace YouCompleteMe.Views
             {
                 if (task.IsDisposed)
                 {
-                    task = new tasksForm();
+                    task = new tasksForm(theUser);
                     task.MdiParent = this;
                     task.StartPosition = FormStartPosition.CenterScreen;
                     task.Show();
