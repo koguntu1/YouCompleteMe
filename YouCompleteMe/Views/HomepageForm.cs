@@ -22,13 +22,22 @@ namespace YouCompleteMe.Views
 
         private void monthCalendar1_DateSelected(object sender, DateRangeEventArgs e)
         {
-            dateForm dateForm = new dateForm();
-            dateForm.Show();
+            //dateForm dateForm = new dateForm();
+            //dateForm.Show();
+            dateTaskView dateView = new dateTaskView(this);
+            dateView.Show();
         }
 
         private void homepageForm_Load(object sender, EventArgs e)
         {
+            // Update tasks in the database to the current date
+            // only updates incomplete tasks
             tasksController.updateIncompleteTasksToCurrentDate();
+        }
+
+        public String getSelectedDate()
+        {
+            return monthCalendar1.SelectionRange.Start.ToShortDateString();
         }
     }
 }

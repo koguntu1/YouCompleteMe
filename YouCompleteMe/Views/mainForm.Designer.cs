@@ -32,6 +32,7 @@
             this.homeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.managementProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.managementTasksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,7 +41,6 @@
             this.addUpdateSubTaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uerLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,6 +84,13 @@
             this.managementProfileToolStripMenuItem.Text = "Management Profile";
             this.managementProfileToolStripMenuItem.Click += new System.EventHandler(this.managementProfileToolStripMenuItem_Click);
             // 
+            // changePasswordToolStripMenuItem
+            // 
+            this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.changePasswordToolStripMenuItem.Text = "Change Password";
+            this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
+            // 
             // registerToolStripMenuItem
             // 
             this.registerToolStripMenuItem.Name = "registerToolStripMenuItem";
@@ -103,13 +110,13 @@
             this.managementTasksToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addUpdateTaskToolStripMenuItem});
             this.managementTasksToolStripMenuItem.Name = "managementTasksToolStripMenuItem";
-            this.managementTasksToolStripMenuItem.Size = new System.Drawing.Size(121, 20);
-            this.managementTasksToolStripMenuItem.Text = "Management Tasks";
+            this.managementTasksToolStripMenuItem.Size = new System.Drawing.Size(116, 20);
+            this.managementTasksToolStripMenuItem.Text = "Task Management";
             // 
             // addUpdateTaskToolStripMenuItem
             // 
             this.addUpdateTaskToolStripMenuItem.Name = "addUpdateTaskToolStripMenuItem";
-            this.addUpdateTaskToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.addUpdateTaskToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addUpdateTaskToolStripMenuItem.Text = "Add/UpdateTask";
             this.addUpdateTaskToolStripMenuItem.Click += new System.EventHandler(this.addUpdateTaskToolStripMenuItem_Click);
             // 
@@ -118,8 +125,8 @@
             this.managementSubTaskToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addUpdateSubTaskToolStripMenuItem});
             this.managementSubTaskToolStripMenuItem1.Name = "managementSubTaskToolStripMenuItem1";
-            this.managementSubTaskToolStripMenuItem1.Size = new System.Drawing.Size(144, 20);
-            this.managementSubTaskToolStripMenuItem1.Text = "Management Sub Tasks";
+            this.managementSubTaskToolStripMenuItem1.Size = new System.Drawing.Size(134, 20);
+            this.managementSubTaskToolStripMenuItem1.Text = "Subtask Management";
             // 
             // addUpdateSubTaskToolStripMenuItem
             // 
@@ -140,13 +147,6 @@
             this.uerLToolStripMenuItem.Name = "uerLToolStripMenuItem";
             this.uerLToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
             this.uerLToolStripMenuItem.Text = "User_Login";
-            // 
-            // changePasswordToolStripMenuItem
-            // 
-            this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.changePasswordToolStripMenuItem.Text = "Change Password";
-            this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
             // mainForm
             // 

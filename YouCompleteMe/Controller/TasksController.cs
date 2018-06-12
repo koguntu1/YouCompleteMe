@@ -8,8 +8,7 @@ using YouCompleteMe.DAL;
 namespace YouCompleteMe.Controller
 {
     class TasksController
-    {
-       // private TasksDAL tasksDAL = new TasksDAL();
+    { 
         public int updateIncompleteTasksToCurrentDate()
         {
             return TasksDAL.updateIncompleteTasksToCurrentDate();
