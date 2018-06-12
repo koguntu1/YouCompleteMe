@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using YouCompleteMe.Controller;
 
 namespace YouCompleteMe.Views
 {
     public partial class homepageForm : Form
     {
+        TasksController tasksController = new TasksController();
+
         public homepageForm()
         {
             InitializeComponent();
@@ -25,7 +28,7 @@ namespace YouCompleteMe.Views
 
         private void homepageForm_Load(object sender, EventArgs e)
         {
-
+            tasksController.updateIncompleteTasksToCurrentDate();
         }
     }
 }
