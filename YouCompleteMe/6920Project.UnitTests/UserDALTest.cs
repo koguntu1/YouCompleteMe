@@ -50,12 +50,15 @@ namespace _6920Project.UnitTests
         [TestMethod]
         public void TestShouldReturnCorrectUser()
         {
-            CurrentUser.setCurrentUser(UserController.getAUser("test", "test"));
+            byte[] data = System.Text.Encoding.ASCII.GetBytes("Password2@");
+            data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
+            String hash = System.Text.Encoding.ASCII.GetString(data);
+            CurrentUser.setCurrentUser(UserController.getAUser("tuser1", hash));
             
-            Assert.AreEqual("test", CurrentUser.User.fName);
-            Assert.AreEqual("test", CurrentUser.User.lName);
-            Assert.AreEqual("test", CurrentUser.User.email);
-            Assert.AreEqual("test", CurrentUser.User.phone);
+            Assert.AreEqual("Test", CurrentUser.User.fName);
+            Assert.AreEqual("User", CurrentUser.User.lName);
+            Assert.AreEqual("tuser1@gmail.com", CurrentUser.User.email);
+            Assert.AreEqual("(678) 850-0797", CurrentUser.User.phone);
         }
     }
 }
