@@ -15,6 +15,5 @@ namespace YouCompleteMe.Models
         public string email { get; set; }
         public string phone { get; set; }
         public string password { get; set; }
-        public string hint { get; set; }
     }
 }

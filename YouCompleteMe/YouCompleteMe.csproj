@@ -45,14 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\SubtasksController.cs" />
-    <Compile Include="Controller\TasksController.cs" />
+    <Compile Include="Controller\TaskController.cs" />
     <Compile Include="Controller\UserController.cs" />
     <Compile Include="DAL\DBConnection.cs" />
-    <Compile Include="DAL\SubtasksDAL.cs" />
-    <Compile Include="DAL\TasksDAL.cs" />
+    <Compile Include="DAL\TaskDAL.cs" />
     <Compile Include="DAL\UserDAL.cs" />
     <Compile Include="Models\CurrentUser.cs" />
+    <Compile Include="Models\Task.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

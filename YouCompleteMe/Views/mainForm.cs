@@ -25,6 +25,10 @@ namespace YouCompleteMe.Views
         {
             theUser = aUser;
             InitializeComponent();
+            if(aUser != null)
+            {
+                uerLToolStripMenuItem.Text = aUser.userName;
+            }
             showHomePage();
         }
 

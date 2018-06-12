@@ -22,10 +22,5 @@ namespace YouCompleteMe.Views
             dateForm dateForm = new dateForm();
             dateForm.Show();
         }
-
-        private void homepageForm_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

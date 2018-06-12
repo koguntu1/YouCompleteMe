@@ -11,15 +11,14 @@ namespace YouCompleteMe.DAL
     public static class UserDAL
     {
         //Creates a new user in the database
-        public static void createUser(string username, string fName, string lName, string email, string phone, 
-            string password, string hint)
+        public static void createUser(string username, string fName, string lName, string email, string phone, string password)
         {
             SqlConnection connection = DBConnection.GetConnection();
             string insertStatement =
                 "INSERT users " +
-                "(username, fName, lName, email, phone, enc_password, hint) " +
+                "(username, fName, lName, email, phone, enc_password) " +
                 "VALUES " +
-                "(@username, @fName, @lName, @email, @phone, @password, @hint)";
+                "(@username, @fName, @lName, @email, @phone, @password)";
 
             SqlCommand insertCommand = new SqlCommand(insertStatement, connection);
             insertCommand.Parameters.AddWithValue("@username", username);
@@ -28,7 +27,6 @@ namespace YouCompleteMe.DAL
             insertCommand.Parameters.AddWithValue("@email", email);
             insertCommand.Parameters.AddWithValue("@phone", phone);
             insertCommand.Parameters.AddWithValue("@password", password);
-            insertCommand.Parameters.AddWithValue("@hint", hint);
 
             try
             {
@@ -116,7 +114,7 @@ namespace YouCompleteMe.DAL
                     user.lName = reader["lName"].ToString();
                     user.email = reader["email"].ToString();
                     user.phone = reader["phone"].ToString();
-                    user.hint = reader["hint"].ToString();
+                    user.userName = reader["userName"].ToString();
                 }
                 else
                 {
