@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace YouCompleteMe.Models
 {
-    class Task
+    class TaskModel
     {
         public int task_owner { get; set; }
 

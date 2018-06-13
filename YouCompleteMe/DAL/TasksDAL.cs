@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YouCompleteMe.Models;
 
 namespace YouCompleteMe.DAL
 {
@@ -42,17 +43,22 @@ namespace YouCompleteMe.DAL
             }
         }
 
-        // Get all tasks for the current user
-        public static List<FurnitureListing> getAllCategories()
+        // Get all tasks for the current user associated with the selected date
+        public static List<TaskModel> getCurrentUsersTasks(User currentUser, string date)
         {
-            List<FurnitureListing> listing = new List<FurnitureListing>();
+            List<TaskModel> tasks = new List<TaskModel>();
 
-            SqlConnection connection = RentalDBA.GetConnection();
+            SqlConnection connection = DBConnection.GetConnection();
             string selectStatement =
-                "SELECT DISTINCT categoryName " +
-                "FROM category ";
+                "SELECT * FROM tasks " +
+                "WHERE " +
+                "task_owner = @user and " +
+                "currentDate = @date and " +
+                "completed = 0";
 
             SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@user", currentUser.userID);
+            selectCommand.Parameters.AddWithValue("@date", date);
 
             try
             {
@@ -60,9 +66,18 @@ namespace YouCompleteMe.DAL
                 SqlDataReader reader = selectCommand.ExecuteReader();
                 while (reader.Read())
                 {
-                    FurnitureListing aListing = new FurnitureListing();
-                    aListing.category = reader["categoryName"].ToString();
-                    listing.Add(aListing);
+                    TaskModel task = new TaskModel();
+                    task.task_owner = Convert.ToInt32(reader["task_owner"]);
+                    task.taskID = Convert.ToInt32(reader["taskID"]);
+                    task.type = Convert.ToInt32(reader["taskType"]);
+                    task.priority = Convert.ToInt32(reader["task_priority"]);
+                    task.completed = Convert.ToInt32(reader["completed"]);
+                    task.title = reader["title"].ToString();
+                    task.createdDate = (DateTime)reader["createdDate"];
+                    task.currentDate = (DateTime)reader["currentDate"];
+                    task.deadline = (DateTime)reader["deadline"];
+
+                    tasks.Add(task);
                 }
                 reader.Close();
             }
@@ -75,7 +90,7 @@ namespace YouCompleteMe.DAL
                 connection.Close();
             }
 
-            return listing;
+            return tasks;
         }
     }
 }
