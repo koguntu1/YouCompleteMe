@@ -35,6 +35,10 @@ namespace YouCompleteMe.Views
             tasksController.updateIncompleteTasksToCurrentDate();
         }
 
+        public String getSelectedDate_Formatted()
+        {
+            return monthCalendar1.SelectionRange.Start.ToString("D");
+        }
         public String getSelectedDate()
         {
             return monthCalendar1.SelectionRange.Start.ToShortDateString();

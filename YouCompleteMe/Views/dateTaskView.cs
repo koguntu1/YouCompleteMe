@@ -34,6 +34,7 @@ namespace YouCompleteMe.Views
             // TODO: This line of code loads data into the 'project6920DataSet.tasks' table. You can move, or remove it, as needed.
             //this.tasksTableAdapter.Fill(this.project6920DataSet.tasks);
             //this.dateLabel.Text = calendarParent.getSelectedDate();
+            this.dateLabel.Text = calendarParent.getSelectedDate_Formatted();
             this.populateTaskList();
         }
 
