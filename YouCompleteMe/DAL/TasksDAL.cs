@@ -53,8 +53,9 @@ namespace YouCompleteMe.DAL
                 "SELECT * FROM tasks " +
                 "WHERE " +
                 "task_owner = @user and " +
-                "currentDate = @date and " +
-                "completed = 0";
+                "cast(currentDate as date) = @date and " +
+                "completed = 0 " +
+                "order by deadline, task_priority";
 
             SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
             selectCommand.Parameters.AddWithValue("@user", currentUser.userID);

@@ -32,14 +32,16 @@ namespace YouCompleteMe.Views
         private void dateTaskView_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'project6920DataSet.tasks' table. You can move, or remove it, as needed.
-            this.tasksTableAdapter.Fill(this.project6920DataSet.tasks);
-            this.dateLabel.Text = calendarParent.getSelectedDate();
-            //this.populateTaskList();
+            //this.tasksTableAdapter.Fill(this.project6920DataSet.tasks);
+            //this.dateLabel.Text = calendarParent.getSelectedDate();
+            this.populateTaskList();
         }
 
         private void populateTaskList()
         {
-            
+            MessageBox.Show("Selected date: " + calendarParent.getSelectedDate());
+            MessageBox.Show("Current User ID: " + CurrentUser.User.userID.ToString());
+            tasksDataGridView.DataSource = taskController.getTasksForCurrentUser(CurrentUser.User, calendarParent.getSelectedDate());
         }
 
         private void tasksBindingNavigatorSaveItem_Click(object sender, EventArgs e)
