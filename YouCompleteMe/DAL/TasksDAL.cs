@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using YouCompleteMe.Models;
 
 namespace YouCompleteMe.DAL
@@ -24,6 +25,8 @@ namespace YouCompleteMe.DAL
             try
             {
                 connection.Open();
+
+                // Returns the number of rows affected by this update
                 return updateCommand.ExecuteNonQuery();
             }
             catch (SqlException ex)
@@ -69,8 +72,8 @@ namespace YouCompleteMe.DAL
                     TaskModel task = new TaskModel();
                     task.task_owner = Convert.ToInt32(reader["task_owner"]);
                     task.taskID = Convert.ToInt32(reader["taskID"]);
-                    task.type = Convert.ToInt32(reader["taskType"]);
-                    task.priority = Convert.ToInt32(reader["task_priority"]);
+                    task.taskType = Convert.ToInt32(reader["taskType"]);
+                    task.task_priority = Convert.ToInt32(reader["task_priority"]);
                     task.completed = Convert.ToInt32(reader["completed"]);
                     task.title = reader["title"].ToString();
                     task.createdDate = (DateTime)reader["createdDate"];
@@ -91,6 +94,109 @@ namespace YouCompleteMe.DAL
             }
 
             return tasks;
+        }
+        // Get the current completed status
+        public static int checkCompleteStatus(int taskID)
+        {
+            int completed;
+            SqlConnection connection = DBConnection.GetConnection();
+            string selectStatement = "select completed " +
+                                     "FROM tasks " +
+                                     "where taskID = @taskID";
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@taskID", taskID);
+            SqlDataReader reader = null;
+            try
+            {
+                connection.Open();
+                completed = Convert.ToInt16(selectCommand.ExecuteScalar());
+
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+                if (reader != null)
+                    reader.Close();
+            }
+
+            return completed;
+        }
+        // Update a task to complete status
+        public static int updateTaskCompleted(int taskID)
+        {
+            SqlConnection connection = DBConnection.GetConnection();
+            string updateStatement = "UPDATE tasks " +
+                                     "set completed = 1 " +
+                                     "WHERE taskID = @taskID";
+            SqlCommand updateCommand = new SqlCommand(updateStatement, connection);
+            updateCommand.Parameters.AddWithValue("@taskID", taskID);
+
+            SqlDataReader reader = null;
+            try
+            {
+                connection.Open();
+
+                // Returns the number of rows affected by this update
+                return updateCommand.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+                if (reader != null)
+                    reader.Close();
+            }
+        }
+        public static int updateTaskIncomplete(int taskID)
+        {
+            SqlConnection connection = DBConnection.GetConnection();
+            string updateStatement = "UPDATE tasks " +
+                                     "set completed = 0, " +
+                                     "currentDate = GETDATE() " +
+                                     "WHERE taskID = @taskID";
+            SqlCommand updateCommand = new SqlCommand(updateStatement, connection);
+            updateCommand.Parameters.AddWithValue("@taskID", taskID);
+
+            SqlDataReader reader = null;
+            try
+            {
+                connection.Open();
+
+                // Returns the number of rows affected by this update
+                return updateCommand.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+                if (reader != null)
+                    reader.Close();
+            }
         }
     }
 }

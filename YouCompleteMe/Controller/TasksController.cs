@@ -21,5 +21,15 @@ namespace YouCompleteMe.Controller
         {
             return TasksDAL.getCurrentUsersTasks(currentUser, date);
         }
+
+        public int updateTaskCompleted(int taskID)
+        {
+            return TasksDAL.updateTaskCompleted(taskID);
+        }
+
+        public int updateTaskIncomplete(int taskID)
+        {
+            return TasksDAL.updateTaskIncomplete(taskID);
+        }
     }
 }

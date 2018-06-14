@@ -12,11 +12,11 @@ namespace YouCompleteMe.Models
 
         public int taskID { get; set; }
 
-        public int type { get; set; }
+        public int taskType { get; set; }
 
         public string title { get; set; }
 
-        public int priority { get; set; }
+        public int task_priority { get; set; }
 
         public int completed { get; set; }
 
