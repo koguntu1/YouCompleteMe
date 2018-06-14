@@ -55,12 +55,7 @@ namespace YouCompleteMe.Views
             this.tableAdapterManager.UpdateAll(this.project6920DataSet);
 
         }
-
-        private void tasksDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
+        // When a checkbox is checked or unchecked, calls correct update based on previous value.
         private void tasksDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 0)

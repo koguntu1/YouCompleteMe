@@ -22,11 +22,13 @@ namespace YouCompleteMe.Controller
             return TasksDAL.getCurrentUsersTasks(currentUser, date);
         }
 
+        // Update task to complete status
         public int updateTaskCompleted(int taskID)
         {
             return TasksDAL.updateTaskCompleted(taskID);
         }
 
+        // Update task to incomplete status
         public int updateTaskIncomplete(int taskID)
         {
             return TasksDAL.updateTaskIncomplete(taskID);

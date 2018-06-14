@@ -164,6 +164,8 @@ namespace YouCompleteMe.DAL
                     reader.Close();
             }
         }
+
+        // Updates a task to incomplete status and updates the currentDate
         public static int updateTaskIncomplete(int taskID)
         {
             SqlConnection connection = DBConnection.GetConnection();
