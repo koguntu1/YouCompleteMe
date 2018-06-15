@@ -14,8 +14,9 @@ namespace YouCompleteMe.Views
 {
     public partial class AddUpdateTaskForm : Form
     {
-        User user;
-        bool isUpdate = false;
+        User user; //user object to keep the information of the user are loged in
+        bool isUpdate = false;//if we update the task, this variable should set to true when update task
+                              // and set to false if we add new task
         public AddUpdateTaskForm(User _user, bool _isUpdate)
         {
             InitializeComponent();
@@ -24,14 +25,17 @@ namespace YouCompleteMe.Views
             comboPriority.SelectedIndex = 2;
         }
 
+
+        /* Exit button click*/
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /* Put data input into task object before added this task into database*/
         private void PutTask(Models.Task _task)
         {
-            if(completedCheckBox.Checked)
+            if (completedCheckBox.Checked)
             {
                 _task.completed = true;
             }
@@ -60,9 +64,12 @@ namespace YouCompleteMe.Views
 
         }
 
+        /* Check the data if it is valid or not
+           return true if valid and false if invalid
+        */
         private bool validData()
         {
-            if(Validator.IsPresent(txtTitle))
+            if (Validator.IsPresent(txtTitle))
             {
                 return true;
             }
@@ -73,6 +80,8 @@ namespace YouCompleteMe.Views
             }
         }
 
+
+        /* Handle the submit button click*/
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             try

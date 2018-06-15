@@ -7,11 +7,16 @@ using YouCompleteMe.DAL;
 
 namespace YouCompleteMe.Controller
 {
-    class TaskController
+    public class TaskController
     {
         public static int AddTask(YouCompleteMe.Models.Task task)
         {
             return TaskDAL.AddTask(task);
+        }
+
+        public static Models.Task getATask(int taskID)
+        {
+            return TaskDAL.getATask(taskID);
         }
     }
 }
