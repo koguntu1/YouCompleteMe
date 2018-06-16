@@ -11,10 +11,9 @@ namespace YouCompleteMe.Controller
     public static class UserController
     {
         //Calls UserDAL to create a new user
-        public static void createUser(string username, string fName, string lName, string email, string phone, 
-            string password, string hint)
+        public static void createUser(string username, string fName, string lName, string email, string phone, string password)
         {
-            UserDAL.createUser(username, fName, lName, email, phone, password, hint);
+            UserDAL.createUser(username, fName, lName, email, phone, password);
         }
 
         //Calls UserDAL to return a list of users

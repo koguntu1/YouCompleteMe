@@ -199,6 +199,7 @@
             this.Controls.Add(this.txtFromDate);
             this.Controls.Add(this.label1);
             this.Name = "tasksForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Management Tasks";
             ((System.ComponentModel.ISupportInitialize)(this.listTaskGridView)).EndInit();
             this.ResumeLayout(false);

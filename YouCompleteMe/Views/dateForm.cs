@@ -7,14 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using YouCompleteMe.Models;
 
 namespace YouCompleteMe.Views
 {
     public partial class dateForm : Form
     {
-        public dateForm()
+        User user;
+        public dateForm(User _user)
         {
             InitializeComponent();
+            user = _user;
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -24,13 +27,13 @@ namespace YouCompleteMe.Views
 
         private void btnUpdateTask_Click(object sender, EventArgs e)
         {
-            AddUpdateTaskForm addUpdateTaskForm = new AddUpdateTaskForm();
+            AddUpdateTaskForm addUpdateTaskForm = new AddUpdateTaskForm(user, true);
             addUpdateTaskForm.Show();
         }
 
         private void btnAddNewTask_Click(object sender, EventArgs e)
         {
-            AddUpdateTaskForm addUpdateTaskForm = new AddUpdateTaskForm();
+            AddUpdateTaskForm addUpdateTaskForm = new AddUpdateTaskForm(user,false);
             addUpdateTaskForm.Show();
         }
     }

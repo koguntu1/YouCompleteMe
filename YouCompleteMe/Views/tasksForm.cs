@@ -7,25 +7,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using YouCompleteMe.Models;
 
 namespace YouCompleteMe.Views
 {
     public partial class tasksForm : Form
     {
-        public tasksForm()
+        User user;
+        public tasksForm(User _user)
         {
             InitializeComponent();
+            user = _user;
         }
 
         private void btnAddNewTask_Click(object sender, EventArgs e)
         {
-            AddUpdateTaskForm addUpdateTaskForm = new AddUpdateTaskForm();
+            AddUpdateTaskForm addUpdateTaskForm = new AddUpdateTaskForm(user, false);
             addUpdateTaskForm.Show();
         }
 
         private void btnUpdateTask_Click(object sender, EventArgs e)
         {
-            AddUpdateTaskForm addUpdateTaskForm = new AddUpdateTaskForm();
+            AddUpdateTaskForm addUpdateTaskForm = new AddUpdateTaskForm(user, false);
             addUpdateTaskForm.Show();
         }
 
