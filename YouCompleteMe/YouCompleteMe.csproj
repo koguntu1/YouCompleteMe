@@ -54,6 +54,11 @@
     <Compile Include="Models\Task.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="project6920DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>project6920DataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\AddUpdateAccountForm.cs">
       <SubType>Form</SubType>
@@ -164,6 +169,17 @@
     <EmbeddedResource Include="Views\tasksForm.resx">
       <DependentUpon>tasksForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="project6920DataSet1.xsc">
+      <DependentUpon>project6920DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="project6920DataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>project6920DataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="project6920DataSet1.xss">
+      <DependentUpon>project6920DataSet1.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

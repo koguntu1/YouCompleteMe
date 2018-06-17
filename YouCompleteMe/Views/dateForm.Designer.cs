@@ -28,18 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
-            this.listTaskGridView = new System.Windows.Forms.DataGridView();
-            this.numberTask = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Deadline = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAddNewTask = new System.Windows.Forms.Button();
             this.btnUpdateTask = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.listTaskGridView)).BeginInit();
+            this.project6920DataSet = new YouCompleteMe.project6920DataSet();
+            this.tasksBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tasksTableAdapter = new YouCompleteMe.project6920DataSetTableAdapters.tasksTableAdapter();
+            this.tableAdapterManager = new YouCompleteMe.project6920DataSetTableAdapters.TableAdapterManager();
+            this.tasksDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.project6920DataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tasksBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tasksDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -50,45 +58,6 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 23);
             this.label1.TabIndex = 0;
-            // 
-            // listTaskGridView
-            // 
-            this.listTaskGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.listTaskGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.numberTask,
-            this.Description,
-            this.Status,
-            this.Deadline,
-            this.StartDate});
-            this.listTaskGridView.Location = new System.Drawing.Point(42, 72);
-            this.listTaskGridView.Name = "listTaskGridView";
-            this.listTaskGridView.Size = new System.Drawing.Size(530, 226);
-            this.listTaskGridView.TabIndex = 1;
-            // 
-            // numberTask
-            // 
-            this.numberTask.HeaderText = "No";
-            this.numberTask.Name = "numberTask";
-            // 
-            // Description
-            // 
-            this.Description.HeaderText = "Description";
-            this.Description.Name = "Description";
-            // 
-            // Status
-            // 
-            this.Status.HeaderText = "Status";
-            this.Status.Name = "Status";
-            // 
-            // Deadline
-            // 
-            this.Deadline.HeaderText = "Deadline";
-            this.Deadline.Name = "Deadline";
-            // 
-            // StartDate
-            // 
-            this.StartDate.HeaderText = "Start Date";
-            this.StartDate.Name = "StartDate";
             // 
             // btnAddNewTask
             // 
@@ -132,21 +101,104 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "label2";
             // 
+            // project6920DataSet
+            // 
+            this.project6920DataSet.DataSetName = "project6920DataSet";
+            this.project6920DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tasksBindingSource
+            // 
+            this.tasksBindingSource.DataMember = "tasks";
+            this.tasksBindingSource.DataSource = this.project6920DataSet;
+            // 
+            // tasksTableAdapter
+            // 
+            this.tasksTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.tasksTableAdapter = this.tasksTableAdapter;
+            this.tableAdapterManager.UpdateOrder = YouCompleteMe.project6920DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // tasksDataGridView
+            // 
+            this.tasksDataGridView.AutoGenerateColumns = false;
+            this.tasksDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tasksDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewCheckBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn7});
+            this.tasksDataGridView.DataSource = this.tasksBindingSource;
+            this.tasksDataGridView.Location = new System.Drawing.Point(42, 69);
+            this.tasksDataGridView.Name = "tasksDataGridView";
+            this.tasksDataGridView.Size = new System.Drawing.Size(530, 220);
+            this.tasksDataGridView.TabIndex = 6;
+            // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            this.dataGridViewCheckBoxColumn1.DataPropertyName = "completed";
+            this.dataGridViewCheckBoxColumn1.HeaderText = "completed";
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            this.dataGridViewCheckBoxColumn1.Width = 75;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "taskID";
+            this.dataGridViewTextBoxColumn2.HeaderText = "taskID";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "title";
+            this.dataGridViewTextBoxColumn4.HeaderText = "title";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "taskType";
+            this.dataGridViewTextBoxColumn3.HeaderText = "taskType";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "task_priority";
+            this.dataGridViewTextBoxColumn8.HeaderText = "task_priority";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "deadline";
+            this.dataGridViewTextBoxColumn7.HeaderText = "deadline";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            // 
             // dateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(613, 379);
+            this.Controls.Add(this.tasksDataGridView);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnUpdateTask);
             this.Controls.Add(this.btnAddNewTask);
-            this.Controls.Add(this.listTaskGridView);
             this.Controls.Add(this.label1);
             this.Name = "dateForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Date Form";
-            ((System.ComponentModel.ISupportInitialize)(this.listTaskGridView)).EndInit();
+            this.Load += new System.EventHandler(this.dateForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.project6920DataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tasksBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tasksDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -155,15 +207,20 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView listTaskGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn numberTask;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Deadline;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StartDate;
         private System.Windows.Forms.Button btnAddNewTask;
         private System.Windows.Forms.Button btnUpdateTask;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Label label2;
+        private project6920DataSet project6920DataSet;
+        private System.Windows.Forms.BindingSource tasksBindingSource;
+        private project6920DataSetTableAdapters.tasksTableAdapter tasksTableAdapter;
+        private project6920DataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private System.Windows.Forms.DataGridView tasksDataGridView;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
     }
 }

@@ -36,5 +36,20 @@ namespace YouCompleteMe.Views
             AddUpdateTaskForm addUpdateTaskForm = new AddUpdateTaskForm(user,false);
             addUpdateTaskForm.Show();
         }
+
+        private void tasksBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.tasksBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.project6920DataSet);
+
+        }
+
+        private void dateForm_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'project6920DataSet.tasks' table. You can move, or remove it, as needed.
+            this.tasksTableAdapter.Fill(this.project6920DataSet.tasks);
+
+        }
     }
 }
