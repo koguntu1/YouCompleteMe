@@ -15,10 +15,13 @@ namespace YouCompleteMe.Views
     public partial class dateForm : Form
     {
         User user;
-        public dateForm(User _user)
+        homepageForm parentCalendar;
+
+        public dateForm(User _user, homepageForm _calendar)
         {
             InitializeComponent();
             user = _user;
+            this.parentCalendar = _calendar;
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -51,7 +54,7 @@ namespace YouCompleteMe.Views
             // TODO: This line of code loads data into the 'project6920DataSet.tasks' table. You can move, or remove it, as needed.
             //this.tasksTableAdapter.Fill(this.project6920DataSet.tasks);
 
-            tasksDataGridView.DataSource = TaskController.getUserTasks(_user, )
+            tasksDataGridView.DataSource = TaskController.getUserTasks(user, parentCalendar.getSelectedDate());
 
         }
     }
