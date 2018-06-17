@@ -111,8 +111,7 @@ namespace YouCompleteMe.DAL
                 "SELECT * FROM tasks " +
                 "WHERE " +
                 "task_owner = @user and " +
-                "cast(currentDate as date) = @date and " +
-                "completed = 0 " +
+                "cast(currentDate as date) = @date " +
                 "order by deadline, task_priority";
 
             SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
