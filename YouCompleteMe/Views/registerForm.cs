@@ -43,7 +43,7 @@ namespace YouCompleteMe.Views
                 this.phoneNumber = label17.Text + phone1.Text + label18.Text + label9.Text + phone2.Text + label10.Text + phone3.Text;
                 string email = txtEmail1.Text + label16.Text + txtEmail2.Text + label19.Text + txtEmail3.Text;
 
-                UserController.createUser(txtUser.Text, txtFirstName.Text, txtLastName.Text, email, this.phoneNumber, hash);
+                UserController.createUser(txtUser.Text, txtFirstName.Text, txtLastName.Text, email, this.phoneNumber, hash, "placeholder_hint");
 
                 MessageBox.Show("Thank you for registering. Returning to login screen");
                 this.Hide();
