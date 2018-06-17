@@ -137,6 +137,7 @@
             this.tasksDataGridView.Name = "tasksDataGridView";
             this.tasksDataGridView.Size = new System.Drawing.Size(530, 220);
             this.tasksDataGridView.TabIndex = 6;
+            this.tasksDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tasksDataGridView_CellContentClick);
             // 
             // dataGridViewCheckBoxColumn1
             // 

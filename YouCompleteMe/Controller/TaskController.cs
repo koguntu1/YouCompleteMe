@@ -30,12 +30,12 @@ namespace YouCompleteMe.Controller
             return TaskDAL.updateIncompleteTasksToCurrentDate();
         }
 
-         public int updateTaskCompleted(int taskID)
+         public static int updateTaskCompleted(int taskID)
         {
             return TaskDAL.updateTaskCompleted(taskID);
         }
 
-        public int updateTaskIncomplete(int taskID)
+        public static int updateTaskIncomplete(int taskID)
         {
             return TaskDAL.updateTaskIncomplete(taskID);
         }

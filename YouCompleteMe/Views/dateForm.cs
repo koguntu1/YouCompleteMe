@@ -57,5 +57,22 @@ namespace YouCompleteMe.Views
             tasksDataGridView.DataSource = TaskController.getUserTasks(user, parentCalendar.getSelectedDate());
 
         }
+
+        private void tasksDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                if (Convert.ToInt16(tasksDataGridView.Rows[e.RowIndex].Cells[0].Value) == 0)
+                {
+                    TaskController.updateTaskCompleted(Convert.ToInt32(tasksDataGridView.Rows[e.RowIndex].Cells[1].Value));
+                    tasksDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+                else if (Convert.ToInt16(tasksDataGridView.Rows[e.RowIndex].Cells[0].Value) == 1)
+                {
+                    TaskController.updateTaskIncomplete(Convert.ToInt32(tasksDataGridView.Rows[e.RowIndex].Cells[1].Value));
+                    tasksDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+            }
+        }
     }
 }
