@@ -52,6 +52,7 @@ namespace YouCompleteMe.Views
         // Load with the current users tasks for the selected date
         private void dateForm_Load(object sender, EventArgs e)
         {
+            this.label2.Text = parentCalendar.getSelectedDate_Formatted();
             tasksDataGridView.DataSource = TaskController.getUserTasks(user, parentCalendar.getSelectedDate());
 
         }
