@@ -100,5 +100,57 @@ namespace YouCompleteMe.DAL
             }
             return task;
         }
+
+        // Get all tasks for the current user associated with the selected date
+        public static List<Models.Task> getCurrentUsersTasks(User currentUser, string date)
+        {
+            List<Models.Task> tasks = new List<Models.Task>();
+
+            SqlConnection connection = DBConnection.GetConnection();
+            string selectStatement =
+                "SELECT * FROM tasks " +
+                "WHERE " +
+                "task_owner = @user and " +
+                "cast(currentDate as date) = @date and " +
+                "completed = 0 " +
+                "order by deadline, task_priority";
+
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@user", currentUser.userID);
+            selectCommand.Parameters.AddWithValue("@date", date);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = selectCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    Models.Task task = new Models.Task();
+                    task.task_owner = Convert.ToInt32(reader["task_owner"]);
+                    task.taskID = Convert.ToInt32(reader["taskID"]);
+                    task.taskType = Convert.ToInt32(reader["taskType"]);
+                    task.task_priority = Convert.ToInt32(reader["task_priority"]);
+                    //task.completed = Convert.ToInt32(reader["completed"]);
+                    task.completed = Convert.ToBoolean(reader["completed"]);
+                    task.title = reader["title"].ToString();
+                    task.createdDate = (DateTime)reader["createdDate"];
+                    task.currentDate = (DateTime)reader["currentDate"];
+                    task.deadline = (DateTime)reader["deadline"];
+
+                    tasks.Add(task);
+                }
+                reader.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return tasks;
+        }
     }
 }

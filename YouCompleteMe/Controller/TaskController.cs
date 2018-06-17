@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using YouCompleteMe.DAL;
+using YouCompleteMe.Models;
 
 namespace YouCompleteMe.Controller
 {
@@ -17,6 +18,11 @@ namespace YouCompleteMe.Controller
         public static Models.Task getATask(int taskID)
         {
             return TaskDAL.getATask(taskID);
+        }
+
+        public static List<Models.Task> getUserTasks(User currentUser, string date)
+        {
+            return TaskDAL.getCurrentUsersTasks(currentUser, date);
         }
     }
 }

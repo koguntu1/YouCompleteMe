@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using YouCompleteMe.Controller;
 using YouCompleteMe.Models;
 
 namespace YouCompleteMe.Views
@@ -48,7 +49,9 @@ namespace YouCompleteMe.Views
         private void dateForm_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'project6920DataSet.tasks' table. You can move, or remove it, as needed.
-            this.tasksTableAdapter.Fill(this.project6920DataSet.tasks);
+            //this.tasksTableAdapter.Fill(this.project6920DataSet.tasks);
+
+            tasksDataGridView.DataSource = TaskController.getUserTasks(_user, )
 
         }
     }
