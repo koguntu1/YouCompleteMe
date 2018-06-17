@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using YouCompleteMe.Controller;
 using YouCompleteMe.Models;
 
 namespace YouCompleteMe.Views
@@ -156,6 +157,11 @@ namespace YouCompleteMe.Views
                     changePasswordForm.Show();
                 }
             }
+        }
+
+        private void mainForm_Load(object sender, EventArgs e)
+        {
+            TaskController.updateIncompleteTasksToCurrentDate();
         }
     }
 }

@@ -22,7 +22,7 @@ namespace YouCompleteMe.Views
 
         private void monthCalendar1_DateSelected(object sender, DateRangeEventArgs e)
         {
-            dateForm dateForm = new dateForm(user);
+            dateForm dateForm = new dateForm(user, this);
             dateForm.Show();
         }
 

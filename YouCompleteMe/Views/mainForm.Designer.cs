@@ -116,7 +116,7 @@
             // addUpdateTaskToolStripMenuItem
             // 
             this.addUpdateTaskToolStripMenuItem.Name = "addUpdateTaskToolStripMenuItem";
-            this.addUpdateTaskToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addUpdateTaskToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.addUpdateTaskToolStripMenuItem.Text = "Add/UpdateTask";
             this.addUpdateTaskToolStripMenuItem.Click += new System.EventHandler(this.addUpdateTaskToolStripMenuItem_Click);
             // 
@@ -159,6 +159,7 @@
             this.Name = "mainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "You Complete Me Application";
+            this.Load += new System.EventHandler(this.mainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

@@ -24,5 +24,10 @@ namespace YouCompleteMe.Controller
         {
             return TaskDAL.getCurrentUsersTasks(currentUser, date);
         }
+
+        public static int updateIncompleteTasksToCurrentDate()
+        {
+            return TaskDAL.updateIncompleteTasksToCurrentDate();
+        }
     }
 }
