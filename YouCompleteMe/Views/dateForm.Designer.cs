@@ -196,7 +196,7 @@
             this.Controls.Add(this.label1);
             this.Name = "dateForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Date Form";
+            this.Text = "Selected Date Form";
             this.Load += new System.EventHandler(this.dateForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.project6920DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tasksBindingSource)).EndInit();
