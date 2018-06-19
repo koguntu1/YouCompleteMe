@@ -27,5 +27,10 @@ namespace YouCompleteMe.Controller
         {
             return UserDAL.getAUser(username, password);
         }
+
+        public static string getPassword(string userName)
+        {
+            return UserDAL.getPassword(userName);
+        }
     }
 }

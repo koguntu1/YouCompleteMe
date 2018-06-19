@@ -30,12 +30,12 @@
         {
             this.btnExit = new System.Windows.Forms.Button();
             this.btnSubmit = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.newPasswordText = new System.Windows.Forms.TextBox();
+            this.currentPasswordText = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.retypePasswordText = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -61,21 +61,21 @@
             this.btnSubmit.UseVisualStyleBackColor = true;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
-            // textBox2
+            // newPasswordText
             // 
-            this.textBox2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(335, 206);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(200, 27);
-            this.textBox2.TabIndex = 11;
+            this.newPasswordText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newPasswordText.Location = new System.Drawing.Point(335, 206);
+            this.newPasswordText.Name = "newPasswordText";
+            this.newPasswordText.Size = new System.Drawing.Size(200, 27);
+            this.newPasswordText.TabIndex = 11;
             // 
-            // textBox1
+            // currentPasswordText
             // 
-            this.textBox1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(335, 165);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(200, 27);
-            this.textBox1.TabIndex = 10;
+            this.currentPasswordText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currentPasswordText.Location = new System.Drawing.Point(335, 165);
+            this.currentPasswordText.Name = "currentPasswordText";
+            this.currentPasswordText.Size = new System.Drawing.Size(200, 27);
+            this.currentPasswordText.TabIndex = 10;
             // 
             // label3
             // 
@@ -107,13 +107,13 @@
             this.label1.TabIndex = 14;
             this.label1.Text = "Change Password";
             // 
-            // textBox3
+            // retypePasswordText
             // 
-            this.textBox3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(335, 252);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(200, 27);
-            this.textBox3.TabIndex = 16;
+            this.retypePasswordText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.retypePasswordText.Location = new System.Drawing.Point(335, 252);
+            this.retypePasswordText.Name = "retypePasswordText";
+            this.retypePasswordText.Size = new System.Drawing.Size(200, 27);
+            this.retypePasswordText.TabIndex = 16;
             // 
             // label4
             // 
@@ -130,13 +130,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(694, 464);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.retypePasswordText);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnSubmit);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.newPasswordText);
+            this.Controls.Add(this.currentPasswordText);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Name = "changePasswordForm";
@@ -150,12 +150,12 @@
 
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnSubmit;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox newPasswordText;
+        private System.Windows.Forms.TextBox currentPasswordText;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox retypePasswordText;
         private System.Windows.Forms.Label label4;
     }
 }

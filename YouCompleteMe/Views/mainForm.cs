@@ -20,7 +20,7 @@ namespace YouCompleteMe.Views
         AddUpdateAccountForm addUpdateAccount = new AddUpdateAccountForm();
         tasksForm task;
         childTasksForm childTask = new childTasksForm();
-        changePasswordForm changePasswordForm = new changePasswordForm();
+        private changePasswordForm changePasswordForm;
 
         public mainForm(User aUser)
         {
@@ -33,6 +33,7 @@ namespace YouCompleteMe.Views
 
             task = new tasksForm(theUser);
             homepage = new homepageForm(theUser);
+            changePasswordForm = new changePasswordForm(aUser);
             showHomePage();
         }
 
@@ -143,7 +144,7 @@ namespace YouCompleteMe.Views
             {
                 if (changePasswordForm.IsDisposed)
                 {
-                    changePasswordForm = new changePasswordForm();
+                    changePasswordForm = new changePasswordForm(this.theUser);
                     changePasswordForm.MdiParent = this;
                     changePasswordForm.StartPosition = FormStartPosition.CenterScreen;
                     changePasswordForm.WindowState = FormWindowState.Maximized;

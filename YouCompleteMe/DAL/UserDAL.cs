@@ -139,5 +139,45 @@ namespace YouCompleteMe.DAL
             }
             return user;
         }
+
+        //Returns the password for the passed user
+        public static String getPassword(string username)
+        {
+            string password = "";
+            SqlConnection connection = DBConnection.GetConnection();
+            string selectStatement = "SELECT enc_password " +
+                "FROM users " +
+                "WHERE username = @Username";
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@Username", username);
+
+            SqlDataReader reader = null;
+            try
+            {
+                connection.Open();
+                reader = selectCommand.ExecuteReader(System.Data.CommandBehavior.SingleRow);
+
+                while (reader.Read())
+                {
+                    password = reader["enc_password"].ToString();
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+                if (reader != null)
+                    reader.Close();
+            }
+            return password;
+        }
     }
 }
