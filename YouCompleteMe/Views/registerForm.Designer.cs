@@ -70,7 +70,7 @@
             this.btnExit.Location = new System.Drawing.Point(346, 406);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(116, 30);
-            this.btnExit.TabIndex = 23;
+            this.btnExit.TabIndex = 24;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
@@ -81,7 +81,7 @@
             this.btnSubmit.Location = new System.Drawing.Point(44, 406);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(94, 30);
-            this.btnSubmit.TabIndex = 22;
+            this.btnSubmit.TabIndex = 23;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = true;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
@@ -371,7 +371,7 @@
             this.hintText.Location = new System.Drawing.Point(177, 366);
             this.hintText.Name = "hintText";
             this.hintText.Size = new System.Drawing.Size(284, 27);
-            this.hintText.TabIndex = 43;
+            this.hintText.TabIndex = 22;
             // 
             // registerForm
             // 

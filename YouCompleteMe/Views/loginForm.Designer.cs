@@ -123,12 +123,13 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(195, 261);
+            this.label4.Location = new System.Drawing.Point(164, 263);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(114, 13);
+            this.label4.Size = new System.Drawing.Size(164, 13);
             this.label4.TabIndex = 8;
-            this.label4.Text = "Forgot your password?";
+            this.label4.Text = "Forgot your password? Click here";
             this.label4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // loginForm
             // 

@@ -120,6 +120,12 @@
     <Compile Include="Views\registerForm.Designer.cs">
       <DependentUpon>registerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\resetPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\resetPassword.Designer.cs">
+      <DependentUpon>resetPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\tasksForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\registerForm.resx">
       <DependentUpon>registerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\resetPassword.resx">
+      <DependentUpon>resetPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\tasksForm.resx">
       <DependentUpon>tasksForm.cs</DependentUpon>

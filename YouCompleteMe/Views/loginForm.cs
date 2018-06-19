@@ -14,9 +14,6 @@ namespace YouCompleteMe.Views
 {
     public partial class loginForm : Form
     {
-
-        private User theUser;
-
         public loginForm()
         {
             InitializeComponent();
@@ -64,5 +61,12 @@ namespace YouCompleteMe.Views
             Application.Exit();
         }
 
+        private void label4_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var resetPassword = new resetPassword();
+            resetPassword.Closed += (s, args) => this.Close();
+            resetPassword.Show();
+        }
     }
 }
