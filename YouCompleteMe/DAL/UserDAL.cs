@@ -179,5 +179,38 @@ namespace YouCompleteMe.DAL
             }
             return password;
         }
+
+        //Updates the password for the passed user to the passed password
+        public static void updatePassword(string username, string password)
+        {
+            SqlConnection connection = DBConnection.GetConnection();
+            string updateStatement = "UPDATE users " +
+                "SET enc_password = @Password " +
+                "WHERE username = @Username";
+            SqlCommand updateCommand = new SqlCommand(updateStatement, connection);
+            updateCommand.Parameters.AddWithValue("@Username", username);
+            updateCommand.Parameters.AddWithValue("@Password", password);
+            SqlDataReader reader = null;
+            try
+            {
+                connection.Open();
+                updateCommand.ExecuteNonQuery();
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+                if (reader != null)
+                    reader.Close();
+            }
+        }
     }
 }
