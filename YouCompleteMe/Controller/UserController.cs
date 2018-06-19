@@ -27,5 +27,17 @@ namespace YouCompleteMe.Controller
         {
             return UserDAL.getAUser(username, password);
         }
+
+        //Calls UserDAL to return passed user's password
+        public static string getPassword(string userName)
+        {
+            return UserDAL.getPassword(userName);
+        }
+
+        //Calls UserDAL to update user's password
+        public static void updatePassword(string userName, string password)
+        {
+            UserDAL.updatePassword(userName, password);
+        }
     }
 }
