@@ -68,7 +68,7 @@
             this.userNameText.Location = new System.Drawing.Point(171, 96);
             this.userNameText.Name = "userNameText";
             this.userNameText.Size = new System.Drawing.Size(284, 27);
-            this.userNameText.TabIndex = 12;
+            this.userNameText.TabIndex = 0;
             // 
             // hintText
             // 
@@ -76,7 +76,7 @@
             this.hintText.Location = new System.Drawing.Point(171, 150);
             this.hintText.Name = "hintText";
             this.hintText.Size = new System.Drawing.Size(284, 27);
-            this.hintText.TabIndex = 13;
+            this.hintText.TabIndex = 1;
             // 
             // label3
             // 
@@ -102,7 +102,7 @@
             this.button1.Location = new System.Drawing.Point(12, 320);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 16;
+            this.button1.TabIndex = 4;
             this.button1.Text = "Submit";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.submitOnClick);
@@ -112,7 +112,7 @@
             this.button2.Location = new System.Drawing.Point(380, 320);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 17;
+            this.button2.TabIndex = 5;
             this.button2.Text = "Cancel";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.cancelOnClick);
@@ -123,7 +123,7 @@
             this.passwordText.Location = new System.Drawing.Point(171, 207);
             this.passwordText.Name = "passwordText";
             this.passwordText.Size = new System.Drawing.Size(284, 27);
-            this.passwordText.TabIndex = 18;
+            this.passwordText.TabIndex = 2;
             // 
             // confirmText
             // 
@@ -131,7 +131,7 @@
             this.confirmText.Location = new System.Drawing.Point(171, 263);
             this.confirmText.Name = "confirmText";
             this.confirmText.Size = new System.Drawing.Size(284, 27);
-            this.confirmText.TabIndex = 19;
+            this.confirmText.TabIndex = 3;
             // 
             // label5
             // 
