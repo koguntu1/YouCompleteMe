@@ -28,6 +28,12 @@ namespace YouCompleteMe.Controller
             return UserDAL.getAUser(username, password);
         }
 
+        //Calls UserDAL to return a single user
+        public static User verifyAUser(string username, string hint)
+        {
+            return UserDAL.verifyAUser(username, hint);
+        }
+
         //Calls UserDAL to return passed user's password
         public static string getPassword(string userName)
         {

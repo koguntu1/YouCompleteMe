@@ -63,11 +63,11 @@ namespace YouCompleteMe.Views
                 DialogResult dialogResult = MessageBox.Show("Do you want to reset your password?", "Did You Forget Your Password?", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
+                    counter = 0;
                     this.Hide();
                     var resetPassword = new resetPassword();
                     resetPassword.Closed += (s, args) => this.Close();
                     resetPassword.Show();
-                    counter = 0;
                 }
                 else if (dialogResult == DialogResult.No)
                 {
