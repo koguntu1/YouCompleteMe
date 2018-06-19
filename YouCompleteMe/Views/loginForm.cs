@@ -14,9 +14,12 @@ namespace YouCompleteMe.Views
 {
     public partial class loginForm : Form
     {
+        private int counter;
+
         public loginForm()
         {
             InitializeComponent();
+            counter = 0;
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
@@ -43,6 +46,7 @@ namespace YouCompleteMe.Views
             }
             else if (CurrentUser.User == null)
             {
+                counter++;
                 MessageBox.Show("We couldn't find you. Please try again");
             }
             else
@@ -52,6 +56,24 @@ namespace YouCompleteMe.Views
                 var mainForm = new mainForm(CurrentUser.User);
                 mainForm.Closed += (s, args) => this.Close();
                 mainForm.Show();
+            }
+
+            if (counter == 3)
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you want to reset your password?", "Did You Forget Your Password?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    this.Hide();
+                    var resetPassword = new resetPassword();
+                    resetPassword.Closed += (s, args) => this.Close();
+                    resetPassword.Show();
+                    counter = 0;
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    counter = 0;
+                    return;
+                }
             }
             
         }
