@@ -51,7 +51,7 @@
             this.btnExit.Location = new System.Drawing.Point(465, 411);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(130, 30);
-            this.btnExit.TabIndex = 13;
+            this.btnExit.TabIndex = 14;
             this.btnExit.Text = "Cancel";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
@@ -62,7 +62,7 @@
             this.btnSubmit.Location = new System.Drawing.Point(162, 411);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(151, 30);
-            this.btnSubmit.TabIndex = 12;
+            this.btnSubmit.TabIndex = 13;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = true;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
@@ -120,7 +120,7 @@
             this.retypePasswordText.Location = new System.Drawing.Point(395, 352);
             this.retypePasswordText.Name = "retypePasswordText";
             this.retypePasswordText.Size = new System.Drawing.Size(200, 27);
-            this.retypePasswordText.TabIndex = 16;
+            this.retypePasswordText.TabIndex = 12;
             // 
             // label4
             // 
