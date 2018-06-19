@@ -43,7 +43,7 @@ namespace YouCompleteMe.Views
                 this.phoneNumber = label17.Text + phone1.Text + label18.Text + label9.Text + phone2.Text + label10.Text + phone3.Text;
                 string email = txtEmail1.Text + label16.Text + txtEmail2.Text + label19.Text + txtEmail3.Text;
 
-                UserController.createUser(txtUser.Text, txtFirstName.Text, txtLastName.Text, email, this.phoneNumber, hash, "placeholder_hint");
+                UserController.createUser(txtUser.Text, txtFirstName.Text, txtLastName.Text, email, this.phoneNumber, hash, hintText.Text);
 
                 MessageBox.Show("Thank you for registering. Returning to login screen");
                 this.Hide();
@@ -95,6 +95,16 @@ namespace YouCompleteMe.Views
             }
             else if (!doNewPasswordsMatch(txtPassword.Text, txtConfirmPassword.Text))
             {
+                value = false;
+            }
+            else if (hintText.Text.Trim() == "")
+            {
+                MessageBox.Show("Please provide a hint in case you forget your password");
+                value = false;
+            }
+            else if (hintText.Text.Equals(txtPassword.Text))
+            {
+                MessageBox.Show("Your hint cannot be your password");
                 value = false;
             }
             return value;
