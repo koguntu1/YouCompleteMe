@@ -19,10 +19,7 @@ namespace YouCompleteMe.Views
 
         private void cancelOnClick(object sender, EventArgs e)
         {
-            this.Hide();
-            var loginForm = new loginForm();
-            loginForm.Closed += (s, args) => this.Close();
-            loginForm.Show();
+            this.Close();
         }
     }
 }

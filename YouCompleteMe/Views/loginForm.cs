@@ -17,6 +17,7 @@ namespace YouCompleteMe.Views
         private int counter;
         private static registerForm registerForm;
         private static homepageForm homeForm;
+        private static resetPassword resetForm;
 
         public loginForm()
         {
@@ -112,10 +113,26 @@ namespace YouCompleteMe.Views
 
         private void label4_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            var resetPassword = new resetPassword();
-            resetPassword.Closed += (s, args) => this.Close();
-            resetPassword.Show();
+            if (resetForm == null)
+            {
+                this.Hide();
+                resetForm = new resetPassword();
+                resetForm.MdiParent = mainForm.Instance;
+                resetForm.FormClosed += new FormClosedEventHandler(ResetForm_FormClosed);
+                resetForm.StartPosition = FormStartPosition.CenterScreen;
+                resetForm.Show();
+            }
+            else
+            {
+                resetForm.Activate();
+            } 
+        }
+
+        private void ResetForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            resetForm.Dispose();
+            resetForm = null;
+            this.Show();
         }
     }
 }
