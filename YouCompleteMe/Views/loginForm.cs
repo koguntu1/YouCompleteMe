@@ -87,10 +87,19 @@ namespace YouCompleteMe.Views
                 if (dialogResult == DialogResult.Yes)
                 {
                     counter = 0;
-                    this.Hide();
-                    var resetPassword = new resetPassword();
-                    resetPassword.Closed += (s, args) => this.Close();
-                    resetPassword.Show();
+                    if (resetForm == null)
+                    {
+                        this.Hide();
+                        resetForm = new resetPassword();
+                        resetForm.MdiParent = mainForm.Instance;
+                        resetForm.FormClosed += new FormClosedEventHandler(ResetForm_FormClosed);
+                        resetForm.StartPosition = FormStartPosition.CenterScreen;
+                        resetForm.Show();
+                    }
+                    else
+                    {
+                        resetForm.Activate();
+                    }
                 }
                 else if (dialogResult == DialogResult.No)
                 {

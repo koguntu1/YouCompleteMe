@@ -172,7 +172,7 @@ namespace YouCompleteMe.Views
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (homepageForm.Instance == null && homepage == null)
+            if (homepage == null)
             {
                 homepage = new homepageForm(getUser());
                 homepage.MdiParent = this;
@@ -222,7 +222,6 @@ namespace YouCompleteMe.Views
         //Helper that sets all form variables to current instance if not null
         private void setFormVariables()
         {
-            homepage = homepageForm.Instance;
             addUpdateAccount = AddUpdateAccountForm.Instance;
             updateChildTask = AddUpdateChildTaskForm.Instance;
             updateTask = AddUpdateTaskForm.Instance;
