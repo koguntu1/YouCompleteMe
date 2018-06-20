@@ -39,5 +39,11 @@ namespace YouCompleteMe.Controller
         {
             return TaskDAL.updateTaskIncomplete(taskID);
         }
+
+        //get list of task with owner id
+        public static List<Models.Task> getListTasks(int userID)
+        {
+            return TaskDAL.getListTasks(userID);
+        }
     }
 }
