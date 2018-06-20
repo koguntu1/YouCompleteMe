@@ -17,5 +17,7 @@ namespace YouCompleteMe.Models
         public DateTime deadline { get; set; }
         public int task_priority { get; set; }
         public bool completed { get; set; }
+
+        public string note { get; set; }
     }
 }
