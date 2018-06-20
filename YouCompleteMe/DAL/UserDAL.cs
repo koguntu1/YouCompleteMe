@@ -91,7 +91,7 @@ namespace YouCompleteMe.DAL
             return users;
         }
 
-        //REturns specified user based on username and password
+        //Returns specified user based on username and password
         public static User getAUser(string username, string password)
         {
             User user = new User();
@@ -178,6 +178,55 @@ namespace YouCompleteMe.DAL
                     reader.Close();
             }
             return password;
+        }
+
+        //Returns specified user based on username and password
+        public static User verifyAUser(string username, string hint)
+        {
+            User user = new User();
+            SqlConnection connection = DBConnection.GetConnection();
+            string selectStatement = "SELECT * " +
+                "FROM users " +
+                 "WHERE username = @username AND hint = @hint"; ;
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+
+            selectCommand.Parameters.AddWithValue("@username", username);
+            selectCommand.Parameters.AddWithValue("@hint", hint);
+            SqlDataReader reader = null;
+            try
+            {
+                connection.Open();
+                reader = selectCommand.ExecuteReader();
+                if (reader.Read())
+                {
+                    user.userID = Convert.ToInt32(reader["userID"]);
+                    user.fName = reader["fName"].ToString();
+                    user.lName = reader["lName"].ToString();
+                    user.email = reader["email"].ToString();
+                    user.phone = reader["phone"].ToString();
+                    user.userName = reader["userName"].ToString();
+                }
+                else
+                {
+                    user = null;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+                if (reader != null)
+                    reader.Close();
+            }
+            return user;
         }
 
         //Updates the password for the passed user to the passed password
