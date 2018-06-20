@@ -15,82 +15,57 @@ namespace YouCompleteMe.Views
     public partial class mainForm : Form
     {
         private User theUser;
-        private static mainForm instance;
-        private static loginForm loginForm;
-        private static homepageForm homepage;
 
+        homepageForm homepage;
         AddUpdateAccountForm addUpdateAccount = new AddUpdateAccountForm();
         tasksForm task;
-        childTasksForm childTask = new childTasksForm();
-        private changePasswordForm changePasswordForm;
+        childTasksForm childTask ;
+        changePasswordForm changePasswordForm = new changePasswordForm();
 
-        public mainForm()
+        public mainForm(User aUser)
         {
-            instance = this;
+            theUser = aUser;
             InitializeComponent();
+            if(aUser != null)
+            {
+                uerLToolStripMenuItem.Text = aUser.userName;
+            }
+
             task = new tasksForm(theUser);
-            setToolStripMenuItemsEnabled(false);
-            showLogin();
-        }
-
-        //Returns current instance of this form
-        public static mainForm Instance
-        {
-            get
-            {
-                return instance;
-            }
-        }
-
-        private void showLogin()
-        {
-            if (CurrentUser.User == null)
-            {
-                loginForm = new loginForm();
-                loginForm.MdiParent = this;
-                loginForm.StartPosition = FormStartPosition.CenterScreen;
-                loginForm.FormClosed += LoginForm_FormClosed;
-                loginForm.Show();
-            }
-            else
-                loginForm.Activate();
-        }
-
-        private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            loginForm.Dispose();
-            loginForm = null;
-        }
-
-        //Sets menustrip to enabled/disabled based on user status
-        public void setToolStripMenuItemsEnabled(bool value)
-        {
-            toolStripMenuItem1.Enabled = value;
-            managementProfileToolStripMenuItem.Enabled = value;
-            changePasswordToolStripMenuItem.Enabled = value;
-            registerToolStripMenuItem.Enabled = value;
-            addUpdateSubTaskToolStripMenuItem.Enabled = value;
-            addUpdateTaskToolStripMenuItem.Enabled = value;
+            homepage = new homepageForm(theUser);
+            childTask = new childTasksForm(theUser);
+            showHomePage();
         }
 
         private void showHomePage()
         {
-
+            if (homepage.Enabled)
+            {
+                if (homepage.IsDisposed)
+                {
+                    homepage = new homepageForm(theUser);
+                    homepage.MdiParent = this;
+                    homepage.StartPosition = FormStartPosition.CenterScreen;
+                    homepage.WindowState = FormWindowState.Maximized;
+                    homepage.Show();
+                }
+                else
+                {
+                    homepage.MdiParent = this;
+                    homepage.StartPosition = FormStartPosition.CenterScreen;
+                    homepage.WindowState = FormWindowState.Maximized;
+                    homepage.Show();
+                }
+            }
         }
 
         private void registerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            setFormVariables();
-
-            DialogResult result = MessageBox.Show("Are you sure you want to logout, " + CurrentUser.User.fName + "?", "Logging out", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
-            {
-                CurrentUser.setCurrentUser(null);
-                setToolStripMenuItemsEnabled(false);
-                MessageBox.Show("Successfully logged out.");
-                closeAllActiveForms();
-                showLogin();
-            }
+            theUser = null;
+            this.Hide();
+            var loginForm = new loginForm();
+            loginForm.Closed += (s, args) => this.Close();
+            loginForm.Show();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -144,7 +119,7 @@ namespace YouCompleteMe.Views
             {
                 if (childTask.IsDisposed)
                 {
-                    childTask = new childTasksForm();
+                    childTask = new childTasksForm(theUser);
                     childTask.MdiParent = this;
                     childTask.StartPosition = FormStartPosition.CenterScreen;
                     childTask.Show();
@@ -169,7 +144,7 @@ namespace YouCompleteMe.Views
             {
                 if (changePasswordForm.IsDisposed)
                 {
-                    changePasswordForm = new changePasswordForm(this.theUser);
+                    changePasswordForm = new changePasswordForm();
                     changePasswordForm.MdiParent = this;
                     changePasswordForm.StartPosition = FormStartPosition.CenterScreen;
                     changePasswordForm.WindowState = FormWindowState.Maximized;
@@ -188,29 +163,6 @@ namespace YouCompleteMe.Views
         private void mainForm_Load(object sender, EventArgs e)
         {
             TaskController.updateIncompleteTasksToCurrentDate();
-        }
-
-        //Helper that sets all form variables to current instance if not null
-        private void setFormVariables()
-        {
-            homepage = homepageForm.Instance;
-        }
-
-        //Calls on helper to close all active forms before closing the employee menu form
-        private void closeAllActiveForms()
-        {
-            homepage.Close();
-            homepage = null;
-        }
-
-        //Helper that sets passed form to null if passed form is not null
-        private void ifActiveForm(Form form)
-        {
-            if (form != null)
-            {
-                form.Dispose();
-                form = null;
-            }
         }
     }
 }

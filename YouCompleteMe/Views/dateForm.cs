@@ -49,31 +49,13 @@ namespace YouCompleteMe.Views
 
         }
 
-        // Load with the current users tasks for the selected date
         private void dateForm_Load(object sender, EventArgs e)
         {
-            this.label2.Text = parentCalendar.getSelectedDate_Formatted();
+            // TODO: This line of code loads data into the 'project6920DataSet.tasks' table. You can move, or remove it, as needed.
+            //this.tasksTableAdapter.Fill(this.project6920DataSet.tasks);
+
             tasksDataGridView.DataSource = TaskController.getUserTasks(user, parentCalendar.getSelectedDate());
 
-        }
-
-        // When the checkbox is clicked the task will be updated to complete or incomplete, 
-        // depending on the current state
-        private void tasksDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex == 0)
-            {
-                if (Convert.ToInt16(tasksDataGridView.Rows[e.RowIndex].Cells[0].Value) == 0)
-                {
-                    TaskController.updateTaskCompleted(Convert.ToInt32(tasksDataGridView.Rows[e.RowIndex].Cells[1].Value));
-                    tasksDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
-                }
-                else if (Convert.ToInt16(tasksDataGridView.Rows[e.RowIndex].Cells[0].Value) == 1)
-                {
-                    TaskController.updateTaskIncomplete(Convert.ToInt32(tasksDataGridView.Rows[e.RowIndex].Cells[1].Value));
-                    tasksDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
-                }
-            }
         }
     }
 }

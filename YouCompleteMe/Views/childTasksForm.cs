@@ -7,25 +7,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using YouCompleteMe.Models;
 
 namespace YouCompleteMe.Views
 {
     public partial class childTasksForm : Form
     {
-        public childTasksForm()
+        User user;
+        public childTasksForm(User _user)
         {
             InitializeComponent();
+            user = _user;
         }
 
         private void btnUpdateSubTask_Click(object sender, EventArgs e)
         {
-            AddUpdateChildTaskForm addUpdateChildTaskForm = new AddUpdateChildTaskForm();
+            AddUpdateChildTaskForm addUpdateChildTaskForm = new AddUpdateChildTaskForm(user, true);
             addUpdateChildTaskForm.Show();
         }
 
         private void btnAddNewSubTask_Click(object sender, EventArgs e)
         {
-            AddUpdateChildTaskForm addUpdateChildTaskForm = new AddUpdateChildTaskForm();
+            AddUpdateChildTaskForm addUpdateChildTaskForm = new AddUpdateChildTaskForm(user, false);
             addUpdateChildTaskForm.Show();
         }
 

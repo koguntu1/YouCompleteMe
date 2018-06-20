@@ -95,10 +95,9 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(39, 39);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 19);
+            this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "label2";
             // 
@@ -138,7 +137,6 @@
             this.tasksDataGridView.Name = "tasksDataGridView";
             this.tasksDataGridView.Size = new System.Drawing.Size(530, 220);
             this.tasksDataGridView.TabIndex = 6;
-            this.tasksDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tasksDataGridView_CellContentClick);
             // 
             // dataGridViewCheckBoxColumn1
             // 
@@ -196,7 +194,7 @@
             this.Controls.Add(this.label1);
             this.Name = "dateForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Selected Date Form";
+            this.Text = "Date Form";
             this.Load += new System.EventHandler(this.dateForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.project6920DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tasksBindingSource)).EndInit();

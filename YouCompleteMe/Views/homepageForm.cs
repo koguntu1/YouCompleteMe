@@ -13,23 +13,11 @@ namespace YouCompleteMe.Views
 {
     public partial class homepageForm : Form
     {
-        private User user;
-
-        private static homepageForm instance;
-
+        User user;
         public homepageForm(User _user)
         {
             InitializeComponent();
             user = _user;
-            instance = this;
-        }
-
-        public static homepageForm Instance
-        {
-            get
-            {
-                return instance;
-            }
         }
 
         private void monthCalendar1_DateSelected(object sender, DateRangeEventArgs e)

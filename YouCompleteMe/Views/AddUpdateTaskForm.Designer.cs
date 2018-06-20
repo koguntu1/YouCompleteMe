@@ -42,12 +42,14 @@
             this.createDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.deadlineDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.taskTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.notesTextBox = new System.Windows.Forms.RichTextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnExit
             // 
             this.btnExit.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Location = new System.Drawing.Point(296, 425);
+            this.btnExit.Location = new System.Drawing.Point(296, 500);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(116, 30);
             this.btnExit.TabIndex = 46;
@@ -58,7 +60,7 @@
             // btnSubmit
             // 
             this.btnSubmit.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSubmit.Location = new System.Drawing.Point(76, 425);
+            this.btnSubmit.Location = new System.Drawing.Point(76, 500);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(173, 30);
             this.btnSubmit.TabIndex = 45;
@@ -113,6 +115,7 @@
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(200, 27);
             this.txtTitle.TabIndex = 33;
+            this.txtTitle.Tag = "Title";
             // 
             // label2
             // 
@@ -129,6 +132,7 @@
             this.comboPriority.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboPriority.FormattingEnabled = true;
             this.comboPriority.Items.AddRange(new object[] {
+            "",
             "1",
             "2",
             "3"});
@@ -136,6 +140,7 @@
             this.comboPriority.Name = "comboPriority";
             this.comboPriority.Size = new System.Drawing.Size(200, 27);
             this.comboPriority.TabIndex = 47;
+            this.comboPriority.Tag = "Priority";
             // 
             // completedCheckBox
             // 
@@ -165,14 +170,18 @@
             this.createDateTimePicker.Name = "createDateTimePicker";
             this.createDateTimePicker.Size = new System.Drawing.Size(200, 27);
             this.createDateTimePicker.TabIndex = 52;
+            this.createDateTimePicker.Tag = "Created Date";
             // 
             // deadlineDateTimePicker
             // 
+            this.deadlineDateTimePicker.CustomFormat = " ";
             this.deadlineDateTimePicker.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deadlineDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.deadlineDateTimePicker.Location = new System.Drawing.Point(212, 214);
             this.deadlineDateTimePicker.Name = "deadlineDateTimePicker";
             this.deadlineDateTimePicker.Size = new System.Drawing.Size(200, 27);
             this.deadlineDateTimePicker.TabIndex = 53;
+            this.deadlineDateTimePicker.Tag = "Deadline";
             // 
             // taskTypeComboBox
             // 
@@ -186,12 +195,34 @@
             this.taskTypeComboBox.Name = "taskTypeComboBox";
             this.taskTypeComboBox.Size = new System.Drawing.Size(200, 27);
             this.taskTypeComboBox.TabIndex = 54;
+            this.taskTypeComboBox.Tag = "Task Type";
+            // 
+            // notesTextBox
+            // 
+            this.notesTextBox.Location = new System.Drawing.Point(76, 394);
+            this.notesTextBox.Name = "notesTextBox";
+            this.notesTextBox.Size = new System.Drawing.Size(336, 82);
+            this.notesTextBox.TabIndex = 68;
+            this.notesTextBox.Tag = "Note";
+            this.notesTextBox.Text = "";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(72, 366);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(43, 19);
+            this.label6.TabIndex = 67;
+            this.label6.Text = "Note";
             // 
             // AddUpdateTaskForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(472, 467);
+            this.ClientSize = new System.Drawing.Size(472, 542);
+            this.Controls.Add(this.notesTextBox);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.taskTypeComboBox);
             this.Controls.Add(this.deadlineDateTimePicker);
             this.Controls.Add(this.createDateTimePicker);
@@ -230,5 +261,7 @@
         private System.Windows.Forms.DateTimePicker createDateTimePicker;
         private System.Windows.Forms.DateTimePicker deadlineDateTimePicker;
         private System.Windows.Forms.ComboBox taskTypeComboBox;
+        private System.Windows.Forms.RichTextBox notesTextBox;
+        private System.Windows.Forms.Label label6;
     }
 }

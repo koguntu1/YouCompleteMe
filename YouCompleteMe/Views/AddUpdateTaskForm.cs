@@ -22,7 +22,7 @@ namespace YouCompleteMe.Views
             InitializeComponent();
             user = _user;
             isUpdate = _isUpdate;
-            comboPriority.SelectedIndex = 2;
+            comboPriority.SelectedIndex = 0;
         }
 
 
@@ -45,15 +45,21 @@ namespace YouCompleteMe.Views
             }
 
             _task.createdDate = createDateTimePicker.Value;
+            if (deadlineDateTimePicker.Text.Trim() != "")
+            {
+                _task.deadline = deadlineDateTimePicker.Value;
+            }
+
             _task.currentDate = DateTime.Now;
-            _task.deadline = deadlineDateTimePicker.Value;
+            
             _task.task_owner = user.userID;
-            if (comboPriority.SelectedItem == null)
-                _task.task_priority = 3;
+            if (comboPriority.SelectedItem.ToString() == "")
+                _task.task_priority = -1;
             else
             {
                 _task.task_priority = Int32.Parse(comboPriority.Text);
             }
+
             if (taskTypeComboBox.SelectedItem == null)
                 _task.taskType = 3;
             else
@@ -61,6 +67,7 @@ namespace YouCompleteMe.Views
                 _task.taskType = Int32.Parse(taskTypeComboBox.Text);
             }
             _task.title = txtTitle.Text;
+            _task.note = notesTextBox.Text.Trim();
 
         }
 
