@@ -75,6 +75,7 @@ namespace YouCompleteMe.Views
                 homeForm.WindowState = FormWindowState.Maximized;
                 homeForm.FormClosed += new FormClosedEventHandler(HomeForm_FormClosed);
                 homeForm.StartPosition = FormStartPosition.CenterScreen;
+                mainForm.Instance.setToolStripMenuItemsEnabled(true);
                 homeForm.Show();
             }
 

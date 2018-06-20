@@ -29,6 +29,7 @@ namespace YouCompleteMe.Views
             instance = this;
             InitializeComponent();
             task = new tasksForm(theUser);
+            setToolStripMenuItemsEnabled(false);
             showLogin();
         }
 
@@ -61,6 +62,17 @@ namespace YouCompleteMe.Views
             loginForm = null;
         }
 
+        //Sets menustrip to enabled/disabled based on user status
+        public void setToolStripMenuItemsEnabled(bool value)
+        {
+            toolStripMenuItem1.Enabled = value;
+            managementProfileToolStripMenuItem.Enabled = value;
+            changePasswordToolStripMenuItem.Enabled = value;
+            registerToolStripMenuItem.Enabled = value;
+            addUpdateSubTaskToolStripMenuItem.Enabled = value;
+            addUpdateTaskToolStripMenuItem.Enabled = value;
+        }
+
         private void showHomePage()
         {
 
@@ -74,6 +86,7 @@ namespace YouCompleteMe.Views
             if (result == DialogResult.Yes)
             {
                 CurrentUser.setCurrentUser(null);
+                setToolStripMenuItemsEnabled(false);
                 MessageBox.Show("Successfully logged out.");
                 closeAllActiveForms();
                 showLogin();
