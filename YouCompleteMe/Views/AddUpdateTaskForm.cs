@@ -17,14 +17,24 @@ namespace YouCompleteMe.Views
         User user; //user object to keep the information of the user are loged in
         bool isUpdate = false;//if we update the task, this variable should set to true when update task
                               // and set to false if we add new task
+        private static AddUpdateTaskForm instance;
+
         public AddUpdateTaskForm(User _user, bool _isUpdate)
         {
             InitializeComponent();
             user = _user;
             isUpdate = _isUpdate;
             comboPriority.SelectedIndex = 2;
+            instance = this;
         }
 
+        public static AddUpdateTaskForm Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
 
         /* Exit button click*/
         private void btnExit_Click(object sender, EventArgs e)

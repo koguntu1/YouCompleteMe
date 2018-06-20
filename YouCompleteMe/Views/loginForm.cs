@@ -47,6 +47,7 @@ namespace YouCompleteMe.Views
         {
             registerForm.Dispose();
             registerForm = null;
+            this.Show();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

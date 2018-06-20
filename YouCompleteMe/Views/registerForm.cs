@@ -25,10 +25,7 @@ namespace YouCompleteMe.Views
         //Defines action of exit button
         private void btnExit_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            var loginForm = new loginForm();
-            loginForm.Closed += (s, args) => this.Close();
-            loginForm.Show();
+            this.Close();
         }
 
         //Defines action of the submit button

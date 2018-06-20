@@ -14,21 +14,21 @@ namespace YouCompleteMe.Views
 {
     public partial class mainForm : Form
     {
-        private User theUser;
         private static mainForm instance;
         private static loginForm loginForm;
         private static homepageForm homepage;
-
-        AddUpdateAccountForm addUpdateAccount = new AddUpdateAccountForm();
-        tasksForm task;
-        childTasksForm childTask = new childTasksForm();
+        private static AddUpdateAccountForm addUpdateAccount;
+        private static AddUpdateChildTaskForm updateChildTask;
+        private static AddUpdateTaskForm updateTask;
+        private static childTasksForm childTask;
         private changePasswordForm changePasswordForm;
+        private static dateForm dateForm;
+        private static tasksForm task;
 
         public mainForm()
         {
             instance = this;
             InitializeComponent();
-            task = new tasksForm(theUser);
             setToolStripMenuItemsEnabled(false);
             showLogin();
         }
@@ -42,6 +42,11 @@ namespace YouCompleteMe.Views
             }
         }
 
+        public User getUser()
+        {
+            return CurrentUser.User;
+        }
+
         private void showLogin()
         {
             if (CurrentUser.User == null)
@@ -51,6 +56,7 @@ namespace YouCompleteMe.Views
                 loginForm.StartPosition = FormStartPosition.CenterScreen;
                 loginForm.FormClosed += LoginForm_FormClosed;
                 loginForm.Show();
+                task = new tasksForm(getUser());
             }
             else
                 loginForm.Activate();
@@ -100,89 +106,112 @@ namespace YouCompleteMe.Views
 
         private void managementProfileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (addUpdateAccount.Enabled)
+            if (addUpdateAccount == null)
             {
-                if (addUpdateAccount.IsDisposed)
-                {
-                    addUpdateAccount = new AddUpdateAccountForm();
-                    addUpdateAccount.MdiParent = this;
-                    addUpdateAccount.StartPosition = FormStartPosition.CenterScreen;
-                    addUpdateAccount.Show();
-                }
-                else
-                {
-                    addUpdateAccount.MdiParent = this;
-                    addUpdateAccount.StartPosition = FormStartPosition.CenterScreen;
-                    addUpdateAccount.Show();
-                }
+                addUpdateAccount = new AddUpdateAccountForm(getUser());
+                addUpdateAccount.MdiParent = this;
+                addUpdateAccount.StartPosition = FormStartPosition.CenterScreen;
+                addUpdateAccount.FormClosed += AddUpdateAccount_FormClosed;
+                addUpdateAccount.Show();
             }
+            else
+            {
+                addUpdateAccount.Activate();
+            }
+        }
+
+        private void AddUpdateAccount_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            addUpdateAccount.Dispose();
+            addUpdateAccount = null;
         }
 
         private void addUpdateTaskToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (task.Enabled)
+            if (task == null)
             {
-                if (task.IsDisposed)
-                {
-                    task = new tasksForm(theUser);
-                    task.MdiParent = this;
-                    task.StartPosition = FormStartPosition.CenterScreen;
-                    task.Show();
-                }
-                else
-                {
-                    task.MdiParent = this;
-                    task.StartPosition = FormStartPosition.CenterScreen;
-                    task.Show();
-                }
+                task = new tasksForm(getUser());
+                task.MdiParent = this;
+                task.StartPosition = FormStartPosition.CenterScreen;
+                task.FormClosed += Task_FormClosed;
+                task.Show();
             }
+            else
+            {
+                task.Activate();
+            }
+        }
+
+        private void Task_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            task.Dispose();
+            task = null;
         }
 
         private void addUpdateSubTaskToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (childTask.Enabled)
+            if (childTask == null)
             {
-                if (childTask.IsDisposed)
-                {
-                    childTask = new childTasksForm();
-                    childTask.MdiParent = this;
-                    childTask.StartPosition = FormStartPosition.CenterScreen;
-                    childTask.Show();
-                }
-                else
-                {
-                    childTask.MdiParent = this;
-                    childTask.StartPosition = FormStartPosition.CenterScreen;
-                    childTask.Show();
-                }
+                childTask = new childTasksForm();
+                childTask.MdiParent = this;
+                childTask.StartPosition = FormStartPosition.CenterScreen;
+                childTask.FormClosed += ChildTask_FormClosed;
+                childTask.Show();
             }
+            else
+            {
+                childTask.Activate();
+            }
+        }
+
+        private void ChildTask_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            childTask.Dispose();
+            childTask = null;
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            showHomePage();
+            if (homepageForm.Instance == null && homepage == null)
+            {
+                homepage = new homepageForm(getUser());
+                homepage.MdiParent = this;
+                homepage.StartPosition = FormStartPosition.CenterScreen;
+                homepage.FormClosed += Home_FormClosed;
+                homepage.Show();
+            }
+            else
+            {
+                homepage.Activate();
+            }
+        }
+
+        private void Home_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            homepage.Dispose();
+            homepage = null;
         }
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (changePasswordForm.Enabled)
+            if (changePasswordForm == null)
             {
-                if (changePasswordForm.IsDisposed)
-                {
-                    changePasswordForm = new changePasswordForm(this.theUser);
-                    changePasswordForm.MdiParent = this;
-                    changePasswordForm.StartPosition = FormStartPosition.CenterScreen;
-                    changePasswordForm.WindowState = FormWindowState.Maximized;
-                    changePasswordForm.Show();
-                }
-                else
-                {
-                    changePasswordForm.MdiParent = this;
-                    changePasswordForm.StartPosition = FormStartPosition.CenterScreen;
-                    changePasswordForm.WindowState = FormWindowState.Maximized;
-                    changePasswordForm.Show();
-                }
+                changePasswordForm = new changePasswordForm(getUser());
+                changePasswordForm.MdiParent = this;
+                changePasswordForm.StartPosition = FormStartPosition.CenterScreen;
+                changePasswordForm.FormClosed += Password_FormClosed;
+                changePasswordForm.Show();
             }
+            else
+            {
+                changePasswordForm.Activate();
+            }
+        }
+
+        private void Password_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            changePasswordForm.Dispose();
+            changePasswordForm = null;
         }
 
         private void mainForm_Load(object sender, EventArgs e)
@@ -194,6 +223,13 @@ namespace YouCompleteMe.Views
         private void setFormVariables()
         {
             homepage = homepageForm.Instance;
+            addUpdateAccount = AddUpdateAccountForm.Instance;
+            updateChildTask = AddUpdateChildTaskForm.Instance;
+            updateTask = AddUpdateTaskForm.Instance;
+            childTask = childTasksForm.Instance;
+            changePasswordForm = changePasswordForm.Instance;
+            dateForm = dateForm.Instance;
+            task = tasksForm.Instance;
         }
 
         //Calls on helper to close all active forms before closing the employee menu form
@@ -201,6 +237,13 @@ namespace YouCompleteMe.Views
         {
             homepage.Close();
             homepage = null;
+            ifActiveForm(addUpdateAccount);
+            ifActiveForm(updateChildTask);
+            ifActiveForm(updateTask);
+            ifActiveForm(childTask);
+            ifActiveForm(changePasswordForm);
+            ifActiveForm(dateForm);
+            ifActiveForm(task);
         }
 
         //Helper that sets passed form to null if passed form is not null

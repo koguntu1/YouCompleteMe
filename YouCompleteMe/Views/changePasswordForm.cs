@@ -16,11 +16,21 @@ namespace YouCompleteMe.Views
     public partial class changePasswordForm : Form
     {
         private User theUser;
+        private static changePasswordForm instance;
 
         public changePasswordForm(User aUser)
         {
             InitializeComponent();
             this.theUser = aUser;
+            instance = this;
+        }
+
+        public static changePasswordForm Instance
+        {
+            get
+            {
+                return instance;
+            }
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)

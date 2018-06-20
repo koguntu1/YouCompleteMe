@@ -12,9 +12,20 @@ namespace YouCompleteMe.Views
 {
     public partial class AddUpdateChildTaskForm : Form
     {
+        private static AddUpdateChildTaskForm instance;
+
         public AddUpdateChildTaskForm()
         {
             InitializeComponent();
+            instance = this;
+        }
+
+        public static AddUpdateChildTaskForm Instance
+        {
+            get
+            {
+                return instance;
+            }
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)

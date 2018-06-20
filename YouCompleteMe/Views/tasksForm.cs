@@ -14,10 +14,21 @@ namespace YouCompleteMe.Views
     public partial class tasksForm : Form
     {
         User user;
+        private static tasksForm instance;
+
         public tasksForm(User _user)
         {
             InitializeComponent();
             user = _user;
+            instance = this;
+        }
+
+        public static tasksForm Instance
+        {
+            get
+            {
+                return instance;
+            }
         }
 
         private void btnAddNewTask_Click(object sender, EventArgs e)

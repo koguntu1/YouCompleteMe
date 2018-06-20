@@ -16,12 +16,22 @@ namespace YouCompleteMe.Views
     {
         User user;
         homepageForm parentCalendar;
+        private static dateForm instance;
 
         public dateForm(User _user, homepageForm _calendar)
         {
             InitializeComponent();
             user = _user;
             this.parentCalendar = _calendar;
+            instance = this;
+        }
+
+        public static dateForm Instance
+        {
+            get
+            {
+                return instance;
+            }
         }
 
         private void btnExit_Click(object sender, EventArgs e)
