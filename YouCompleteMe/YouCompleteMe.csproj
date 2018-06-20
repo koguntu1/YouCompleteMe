@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\SubTaskController.cs" />
     <Compile Include="Controller\TaskController.cs" />
     <Compile Include="Controller\UserController.cs" />
     <Compile Include="DAL\DBConnection.cs" />
