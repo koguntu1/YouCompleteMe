@@ -39,5 +39,10 @@ namespace YouCompleteMe.Controller
         {
             UserDAL.updatePassword(userName, password);
         }
+
+        internal static void createUser(string text1, string text2, string text3, string email, string phoneNumber, string hash)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

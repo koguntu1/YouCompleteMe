@@ -20,6 +20,7 @@ namespace _6920Project.UnitTests
             task.task_owner = 8;
             task.task_priority = 2;
             task.title = "use for test unit test";
+            task.note = "note use for test unit test";
 
             int taskID = TaskController.AddTask(task);
             Task result = TaskController.getATask(taskID);

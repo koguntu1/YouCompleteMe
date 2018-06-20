@@ -8,7 +8,7 @@ using YouCompleteMe.Models;
 
 namespace YouCompleteMe.DAL
 {
-    class TaskDAL
+   class TaskDAL
     {
         /*
         This method use for add task into database.
