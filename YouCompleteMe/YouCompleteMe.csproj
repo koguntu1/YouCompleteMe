@@ -53,6 +53,7 @@
     <Compile Include="DAL\TaskDAL.cs" />
     <Compile Include="DAL\UserDAL.cs" />
     <Compile Include="Models\CurrentUser.cs" />
+    <Compile Include="Models\SubTask.cs" />
     <Compile Include="Models\Task.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
