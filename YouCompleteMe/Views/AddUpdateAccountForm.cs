@@ -198,5 +198,22 @@ namespace YouCompleteMe.Views
 
             return value;
         }
+
+        private void deleteOnClick(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete your profile? THIS CAN'T BE UNDONE", "Delete", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                CurrentUser.setCurrentUser(null);
+                UserController.deleteUser(theUser.userID);
+                MessageBox.Show("Your profile was successfully deleted");
+                mainForm.Instance.closeAllActiveForms();
+                mainForm.Instance.showLogin();
+            }
+            else
+            {
+                return;
+            }
+        }
     }
 }

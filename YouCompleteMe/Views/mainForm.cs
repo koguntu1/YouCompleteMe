@@ -49,7 +49,7 @@ namespace YouCompleteMe.Views
             return CurrentUser.User;
         }
 
-        private void showLogin()
+        public void showLogin()
         {
             if (CurrentUser.User == null)
             {
@@ -222,7 +222,7 @@ namespace YouCompleteMe.Views
         }
 
         //Helper that sets all form variables to current instance if not null
-        private void setFormVariables()
+        public void setFormVariables()
         {
             addUpdateAccount = AddUpdateAccountForm.Instance;
             updateChildTask = AddUpdateChildTaskForm.Instance;
@@ -234,7 +234,7 @@ namespace YouCompleteMe.Views
         }
 
         //Calls on helper to close all active forms before closing the employee menu form
-        private void closeAllActiveForms()
+        public void closeAllActiveForms()
         {
             homepage = null;
             ifActiveForm(homepage);
