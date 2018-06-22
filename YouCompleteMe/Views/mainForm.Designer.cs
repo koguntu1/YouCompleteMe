@@ -73,35 +73,35 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(182, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem1.Text = "Home";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // managementProfileToolStripMenuItem
             // 
             this.managementProfileToolStripMenuItem.Name = "managementProfileToolStripMenuItem";
-            this.managementProfileToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.managementProfileToolStripMenuItem.Text = "Management Profile";
+            this.managementProfileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.managementProfileToolStripMenuItem.Text = "Manage Profile";
             this.managementProfileToolStripMenuItem.Click += new System.EventHandler(this.managementProfileToolStripMenuItem_Click);
             // 
             // changePasswordToolStripMenuItem
             // 
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
             // registerToolStripMenuItem
             // 
             this.registerToolStripMenuItem.Name = "registerToolStripMenuItem";
-            this.registerToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.registerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.registerToolStripMenuItem.Text = "Logout";
             this.registerToolStripMenuItem.Click += new System.EventHandler(this.registerToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 

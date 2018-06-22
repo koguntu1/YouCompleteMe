@@ -31,6 +31,8 @@ namespace YouCompleteMe.Views
             InitializeComponent();
             setToolStripMenuItemsEnabled(false);
             showLogin();
+            homepage = homepageForm.Instance;
+
         }
 
         //Returns current instance of this form
@@ -234,8 +236,8 @@ namespace YouCompleteMe.Views
         //Calls on helper to close all active forms before closing the employee menu form
         private void closeAllActiveForms()
         {
-            homepage.Close();
             homepage = null;
+            ifActiveForm(homepage);
             ifActiveForm(addUpdateAccount);
             ifActiveForm(updateChildTask);
             ifActiveForm(updateTask);

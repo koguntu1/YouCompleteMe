@@ -38,15 +38,14 @@
             this.monthCalendar1.Location = new System.Drawing.Point(0, 0);
             this.monthCalendar1.MaxSelectionCount = 1;
             this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 0;
-            this.monthCalendar1.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateSelected);
+            this.monthCalendar1.TabIndex = 1;
             // 
             // homepageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(690, 315);
+            this.ClientSize = new System.Drawing.Size(690, 311);
             this.Controls.Add(this.monthCalendar1);
             this.Name = "homepageForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
