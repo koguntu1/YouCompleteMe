@@ -59,11 +59,17 @@ namespace YouCompleteMe.Views
 
         private void submitOnClick(object sender, EventArgs e)
         {
+            string phone = label17.Text + phone1.Text + label18.Text + phone2.Text + label10.Text + phone3.Text;
+            string email = txtEmail1.Text + label16.Text + txtEmail2.Text + label19.Text + txtEmail3.Text;
+
             if (validCredentials())
             {
                 DialogResult dialogResult = MessageBox.Show("Are you sure you want to submit these changes?", "Submit?", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
+                    UserController.updateUser(txtFirstName.Text, txtLastName.Text, email, phone, hintText.Text, theUser.userID);
+                    MessageBox.Show("Your profile was successfully updated");
+                    this.Close();
                 }
                 else
                 {

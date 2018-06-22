@@ -45,5 +45,11 @@ namespace YouCompleteMe.Controller
         {
             UserDAL.updatePassword(userName, password);
         }
+
+        //Calls UserDAL to update the user's profile
+        public static void updateUser(string fName, string lName, string email, string phone, string hint, int id)
+        {
+            UserDAL.updateUser(fName, lName, email, phone, hint, id);
+        }
     }
 }
