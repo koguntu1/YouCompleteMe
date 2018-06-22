@@ -116,6 +116,8 @@ namespace YouCompleteMe.DAL
                     user.email = reader["email"].ToString();
                     user.phone = reader["phone"].ToString();
                     user.userName = reader["userName"].ToString();
+                    user.password = reader["enc_password"].ToString();
+                    user.hint = reader["hint"].ToString();
                 }
                 else
                 {

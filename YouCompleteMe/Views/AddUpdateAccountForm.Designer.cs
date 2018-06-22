@@ -50,6 +50,8 @@
             this.label16 = new System.Windows.Forms.Label();
             this.txtEmail2 = new System.Windows.Forms.TextBox();
             this.txtEmail1 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.hintText = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtFirstName
@@ -58,7 +60,7 @@
             this.txtFirstName.Location = new System.Drawing.Point(165, 96);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(288, 27);
-            this.txtFirstName.TabIndex = 13;
+            this.txtFirstName.TabIndex = 5;
             // 
             // label2
             // 
@@ -96,7 +98,7 @@
             this.txtLastName.Location = new System.Drawing.Point(165, 144);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(288, 27);
-            this.txtLastName.TabIndex = 20;
+            this.txtLastName.TabIndex = 6;
             // 
             // label3
             // 
@@ -115,16 +117,16 @@
             this.label4.Location = new System.Drawing.Point(26, 242);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(46, 19);
-            this.label4.TabIndex = 24;
+            this.label4.TabIndex = 1;
             this.label4.Text = "Email";
             // 
             // btnExit
             // 
             this.btnExit.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Location = new System.Drawing.Point(348, 308);
+            this.btnExit.Location = new System.Drawing.Point(348, 358);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(116, 30);
-            this.btnExit.TabIndex = 31;
+            this.btnExit.TabIndex = 16;
             this.btnExit.Text = "Cancel";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
@@ -132,20 +134,21 @@
             // btnSubmit
             // 
             this.btnSubmit.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSubmit.Location = new System.Drawing.Point(30, 308);
+            this.btnSubmit.Location = new System.Drawing.Point(30, 358);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(117, 30);
-            this.btnSubmit.TabIndex = 30;
+            this.btnSubmit.TabIndex = 14;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = true;
+            this.btnSubmit.Click += new System.EventHandler(this.submitOnClick);
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(182, 308);
+            this.button1.Location = new System.Drawing.Point(182, 358);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(148, 30);
-            this.button1.TabIndex = 32;
+            this.button1.TabIndex = 15;
             this.button1.Text = "Delete My Account";
             this.button1.UseVisualStyleBackColor = true;
             // 
@@ -191,7 +194,7 @@
             this.phone3.MaxLength = 4;
             this.phone3.Name = "phone3";
             this.phone3.Size = new System.Drawing.Size(96, 20);
-            this.phone3.TabIndex = 43;
+            this.phone3.TabIndex = 9;
             // 
             // phone2
             // 
@@ -199,7 +202,7 @@
             this.phone2.MaxLength = 3;
             this.phone2.Name = "phone2";
             this.phone2.Size = new System.Drawing.Size(64, 20);
-            this.phone2.TabIndex = 42;
+            this.phone2.TabIndex = 8;
             // 
             // phone1
             // 
@@ -207,7 +210,7 @@
             this.phone1.MaxLength = 3;
             this.phone1.Name = "phone1";
             this.phone1.Size = new System.Drawing.Size(50, 20);
-            this.phone1.TabIndex = 41;
+            this.phone1.TabIndex = 7;
             // 
             // txtEmail3
             // 
@@ -215,7 +218,7 @@
             this.txtEmail3.Location = new System.Drawing.Point(388, 239);
             this.txtEmail3.Name = "txtEmail3";
             this.txtEmail3.Size = new System.Drawing.Size(66, 27);
-            this.txtEmail3.TabIndex = 50;
+            this.txtEmail3.TabIndex = 12;
             // 
             // label19
             // 
@@ -243,7 +246,7 @@
             this.txtEmail2.Location = new System.Drawing.Point(283, 239);
             this.txtEmail2.Name = "txtEmail2";
             this.txtEmail2.Size = new System.Drawing.Size(76, 27);
-            this.txtEmail2.TabIndex = 49;
+            this.txtEmail2.TabIndex = 11;
             // 
             // txtEmail1
             // 
@@ -251,13 +254,33 @@
             this.txtEmail1.Location = new System.Drawing.Point(165, 239);
             this.txtEmail1.Name = "txtEmail1";
             this.txtEmail1.Size = new System.Drawing.Size(87, 27);
-            this.txtEmail1.TabIndex = 48;
+            this.txtEmail1.TabIndex = 10;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(26, 297);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(107, 19);
+            this.label6.TabIndex = 53;
+            this.label6.Text = "Password Hint";
+            // 
+            // hintText
+            // 
+            this.hintText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hintText.Location = new System.Drawing.Point(165, 294);
+            this.hintText.Name = "hintText";
+            this.hintText.Size = new System.Drawing.Size(288, 27);
+            this.hintText.TabIndex = 13;
             // 
             // AddUpdateAccountForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 376);
+            this.ClientSize = new System.Drawing.Size(499, 418);
+            this.Controls.Add(this.hintText);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.txtEmail3);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label16);
@@ -311,5 +334,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtEmail2;
         private System.Windows.Forms.TextBox txtEmail1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox hintText;
     }
 }
