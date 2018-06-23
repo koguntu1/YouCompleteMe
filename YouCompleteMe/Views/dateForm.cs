@@ -97,7 +97,25 @@ namespace YouCompleteMe.Views
                 taskTreeView.Nodes.Add(task.title);
                 if (task.completed == true)
                 {
-                    taskTreeView.Nodes[tasks.FindIndex(a => a.title == task.title)].Checked = true;
+                    taskTreeView.Nodes[tasks.FindIndex(a => a.taskID == task.taskID)].Checked = true;
+                }
+                if (task.task_priority == 3)
+                {
+                    taskTreeView.Nodes[tasks.FindIndex(a => a.taskID == task.taskID)].ForeColor = Color.Red;
+                    //taskTreeView.Nodes[tasks.FindIndex(a => a.taskID == task.taskID)].NodeFont = new Font(label2.Font.Name, FontStyle.Bold);
+                }
+                if (task.task_priority == 2)
+                {
+                    taskTreeView.Nodes[tasks.FindIndex(a => a.taskID == task.taskID)].ForeColor = Color.Orange;
+                }
+                List<Subtask> subtasks = SubtaskController.GetSubtasksForTask(user, task.taskID);
+                foreach(Subtask st in subtasks)
+                {
+                    taskTreeView.Nodes[tasks.FindIndex(a => a.taskID == task.taskID)].Nodes.Add(st.st_Description);
+                    if (st.st_CompleteDate != DateTime.MaxValue)
+                    {
+                        taskTreeView.Nodes[tasks.FindIndex(a => a.taskID == task.taskID)].Nodes[subtasks.FindIndex(b => b.subtaskID == st.subtaskID)].Checked = true;
+                    }  
                 }
             }
         }
