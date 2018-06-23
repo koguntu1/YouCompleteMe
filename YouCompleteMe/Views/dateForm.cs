@@ -64,6 +64,7 @@ namespace YouCompleteMe.Views
         {
             this.label2.Text = parentCalendar.getSelectedDate_Formatted();
             tasksDataGridView.DataSource = TaskController.getUserTasks(user, parentCalendar.getSelectedDate());
+            populateTaskTreeView();
 
         }
 
@@ -82,6 +83,21 @@ namespace YouCompleteMe.Views
                 {
                     TaskController.updateTaskIncomplete(Convert.ToInt32(tasksDataGridView.Rows[e.RowIndex].Cells[1].Value));
                     tasksDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+            }
+        }
+
+        private void populateTaskTreeView()
+        {
+            List<Models.Task> tasks = TaskController.getUserTasks(user, parentCalendar.getSelectedDate());
+            taskTreeView.ShowLines = false;
+
+            foreach(Models.Task task in tasks)
+            {
+                taskTreeView.Nodes.Add(task.title);
+                if (task.completed == true)
+                {
+                    taskTreeView.Nodes[tasks.FindIndex(a => a.title == task.title)].Checked = true;
                 }
             }
         }

@@ -45,6 +45,7 @@
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.taskTreeView = new System.Windows.Forms.TreeView();
             ((System.ComponentModel.ISupportInitialize)(this.project6920DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tasksBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tasksDataGridView)).BeginInit();
@@ -134,9 +135,9 @@
             this.dataGridViewTextBoxColumn8,
             this.dataGridViewTextBoxColumn7});
             this.tasksDataGridView.DataSource = this.tasksBindingSource;
-            this.tasksDataGridView.Location = new System.Drawing.Point(42, 69);
+            this.tasksDataGridView.Location = new System.Drawing.Point(420, 66);
             this.tasksDataGridView.Name = "tasksDataGridView";
-            this.tasksDataGridView.Size = new System.Drawing.Size(530, 220);
+            this.tasksDataGridView.Size = new System.Drawing.Size(515, 220);
             this.tasksDataGridView.TabIndex = 6;
             this.tasksDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tasksDataGridView_CellContentClick);
             // 
@@ -183,11 +184,20 @@
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
             // 
+            // taskTreeView
+            // 
+            this.taskTreeView.CheckBoxes = true;
+            this.taskTreeView.Location = new System.Drawing.Point(43, 66);
+            this.taskTreeView.Name = "taskTreeView";
+            this.taskTreeView.Size = new System.Drawing.Size(342, 220);
+            this.taskTreeView.TabIndex = 7;
+            // 
             // dateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(613, 379);
+            this.ClientSize = new System.Drawing.Size(947, 379);
+            this.Controls.Add(this.taskTreeView);
             this.Controls.Add(this.tasksDataGridView);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnExit);
@@ -224,5 +234,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.TreeView taskTreeView;
     }
 }
