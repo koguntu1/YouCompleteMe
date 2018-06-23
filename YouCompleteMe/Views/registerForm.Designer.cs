@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.txtLastName = new System.Windows.Forms.TextBox();
@@ -49,11 +50,6 @@
             this.phone3 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             this.txtEmail2 = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
@@ -62,6 +58,7 @@
             this.txtEmail3 = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.hintText = new System.Windows.Forms.TextBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // btnExit
@@ -157,6 +154,9 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(284, 27);
             this.txtPassword.TabIndex = 20;
+            this.toolTip1.SetToolTip(this.txtPassword, "Password Must Be:\r\nAt least 8 characters long\r\nContains one uppercase character\r\n" +
+        "Contain one lowercase character\r\nContain a number between 1 and 9\r\nContain one o" +
+        "f these characters ! @ # $ % ^ * ( ) ");
             // 
             // txtUser
             // 
@@ -256,51 +256,6 @@
             this.label10.TabIndex = 31;
             this.label10.Text = "-";
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(213, 463);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(90, 13);
-            this.label11.TabIndex = 32;
-            this.label11.Text = "* Password Rules";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(77, 487);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(164, 13);
-            this.label12.TabIndex = 33;
-            this.label12.Text = "- Minimum Length of 8 characters";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(77, 500);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(220, 13);
-            this.label13.TabIndex = 34;
-            this.label13.Text = "- Must contain an upper and lower case letter";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(77, 513);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(121, 13);
-            this.label14.TabIndex = 35;
-            this.label14.Text = "- Must contain a number";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(77, 526);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(266, 13);
-            this.label15.TabIndex = 36;
-            this.label15.Text = "- Must contain one of the following symbols: !@#$%^*()";
-            // 
             // txtEmail2
             // 
             this.txtEmail2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -373,11 +328,18 @@
             this.hintText.Size = new System.Drawing.Size(284, 27);
             this.hintText.TabIndex = 22;
             // 
+            // toolTip1
+            // 
+            this.toolTip1.AutomaticDelay = 200;
+            this.toolTip1.IsBalloon = true;
+            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTip1.ToolTipTitle = "Tips ! ! !";
+            // 
             // registerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(519, 562);
+            this.ClientSize = new System.Drawing.Size(519, 449);
             this.Controls.Add(this.hintText);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.txtEmail3);
@@ -386,11 +348,6 @@
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.txtEmail2);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.phone3);
@@ -443,11 +400,6 @@
         private System.Windows.Forms.TextBox phone3;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txtEmail2;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
@@ -456,5 +408,6 @@
         private System.Windows.Forms.TextBox txtEmail3;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox hintText;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

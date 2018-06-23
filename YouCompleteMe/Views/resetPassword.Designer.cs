@@ -28,25 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.userNameText = new System.Windows.Forms.TextBox();
             this.hintText = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.passwordText = new System.Windows.Forms.TextBox();
             this.confirmText = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(98, 23);
+            this.label1.Location = new System.Drawing.Point(85, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(291, 39);
             this.label1.TabIndex = 0;
@@ -69,6 +70,7 @@
             this.userNameText.Name = "userNameText";
             this.userNameText.Size = new System.Drawing.Size(284, 27);
             this.userNameText.TabIndex = 0;
+            this.toolTip1.SetToolTip(this.userNameText, "Required field");
             // 
             // hintText
             // 
@@ -77,6 +79,7 @@
             this.hintText.Name = "hintText";
             this.hintText.Size = new System.Drawing.Size(284, 27);
             this.hintText.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.hintText, "Required Field");
             // 
             // label3
             // 
@@ -87,15 +90,6 @@
             this.label3.Size = new System.Drawing.Size(115, 19);
             this.label3.TabIndex = 14;
             this.label3.Text = "Password Hint*";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(204, 66);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(87, 13);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "* Required Fields";
             // 
             // button1
             // 
@@ -124,6 +118,7 @@
             this.passwordText.Name = "passwordText";
             this.passwordText.Size = new System.Drawing.Size(284, 27);
             this.passwordText.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.passwordText, "Required Field");
             // 
             // confirmText
             // 
@@ -153,6 +148,13 @@
             this.label6.TabIndex = 21;
             this.label6.Text = "Confirm Password*";
             // 
+            // toolTip1
+            // 
+            this.toolTip1.AutomaticDelay = 200;
+            this.toolTip1.IsBalloon = true;
+            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTip1.ToolTipTitle = "Tips !!!";
+            // 
             // resetPassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -164,7 +166,6 @@
             this.Controls.Add(this.passwordText);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.hintText);
             this.Controls.Add(this.userNameText);
@@ -185,12 +186,12 @@
         private System.Windows.Forms.TextBox userNameText;
         private System.Windows.Forms.TextBox hintText;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox passwordText;
         private System.Windows.Forms.TextBox confirmText;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
