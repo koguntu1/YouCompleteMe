@@ -15,10 +15,10 @@ namespace YouCompleteMe.Views
     public partial class dateForm : Form
     {
         User user;
-        homepageForm parentCalendar;
+        mainForm parentCalendar;
         private static dateForm instance;
 
-        public dateForm(User _user, homepageForm _calendar)
+        public dateForm(User _user, mainForm _calendar)
         {
             InitializeComponent();
             user = _user;
@@ -42,13 +42,13 @@ namespace YouCompleteMe.Views
         private void btnUpdateTask_Click(object sender, EventArgs e)
         {
             AddUpdateTaskForm addUpdateTaskForm = new AddUpdateTaskForm(user, true);
-            addUpdateTaskForm.Show();
+            addUpdateTaskForm.ShowDialog();
         }
 
         private void btnAddNewTask_Click(object sender, EventArgs e)
         {
             AddUpdateTaskForm addUpdateTaskForm = new AddUpdateTaskForm(user,false);
-            addUpdateTaskForm.Show();
+            addUpdateTaskForm.ShowDialog();
         }
 
         private void tasksBindingNavigatorSaveItem_Click(object sender, EventArgs e)

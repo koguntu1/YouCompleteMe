@@ -18,13 +18,12 @@ namespace YouCompleteMe.Views
         bool isUpdate = false;//if we update the task, this variable should set to true when update task
                               // and set to false if we add new task
         private static AddUpdateTaskForm instance;
-
         public AddUpdateTaskForm(User _user, bool _isUpdate)
         {
             InitializeComponent();
             user = _user;
             isUpdate = _isUpdate;
-            comboPriority.SelectedIndex = 2;
+            comboPriority.SelectedIndex = 0;
             instance = this;
         }
 
@@ -58,12 +57,13 @@ namespace YouCompleteMe.Views
             _task.currentDate = DateTime.Now;
             _task.deadline = deadlineDateTimePicker.Value;
             _task.task_owner = user.userID;
-            if (comboPriority.SelectedItem == null)
-                _task.task_priority = 3;
+            if (comboPriority.SelectedItem.ToString() == "")
+                _task.task_priority = -1;
             else
             {
                 _task.task_priority = Int32.Parse(comboPriority.Text);
             }
+
             if (taskTypeComboBox.SelectedItem == null)
                 _task.taskType = 3;
             else
@@ -71,6 +71,8 @@ namespace YouCompleteMe.Views
                 _task.taskType = Int32.Parse(taskTypeComboBox.Text);
             }
             _task.title = txtTitle.Text;
+            _task.note = notesTextBox.Text.Trim();
+
 
         }
 
@@ -79,13 +81,13 @@ namespace YouCompleteMe.Views
         */
         private bool validData()
         {
-            if (Validator.IsPresent(txtTitle))
+            if (Validator.IsPresent(txtTitle) && Validator.IsPresent(notesTextBox))
             {
                 return true;
             }
             else
             {
-                MessageBox.Show("Title cannot empty.", "Input Error");
+                //MessageBox.Show("Title cannot empty.", "Input Error");
                 return false;
             }
         }
@@ -102,8 +104,13 @@ namespace YouCompleteMe.Views
                     {
                         Models.Task task = new Models.Task();
                         this.PutTask(task);
-                        int taskID = TaskController.AddTask(task);
-                        MessageBox.Show("Task successfully added");
+                        DialogResult result = MessageBox.Show("Do You Want to Add this task to database?", "Create new task", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                        if (result.Equals(DialogResult.OK))
+                        {
+                            int taskID = TaskController.AddTask(task);
+                            MessageBox.Show("Task successfully added");
+                            this.Close();
+                        }   
                     }
                 }
                 else //update task

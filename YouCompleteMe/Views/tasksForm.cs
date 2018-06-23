@@ -34,13 +34,13 @@ namespace YouCompleteMe.Views
         private void btnAddNewTask_Click(object sender, EventArgs e)
         {
             AddUpdateTaskForm addUpdateTaskForm = new AddUpdateTaskForm(user, false);
-            addUpdateTaskForm.Show();
+            addUpdateTaskForm.ShowDialog();
         }
 
         private void btnUpdateTask_Click(object sender, EventArgs e)
         {
             AddUpdateTaskForm addUpdateTaskForm = new AddUpdateTaskForm(user, false);
-            addUpdateTaskForm.Show();
+            addUpdateTaskForm.ShowDialog();
         }
 
         private void btnExit_Click(object sender, EventArgs e)

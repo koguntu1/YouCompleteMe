@@ -101,6 +101,56 @@ namespace YouCompleteMe.DAL
             return task;
         }
 
+        /* This method get the list of task of a user */
+        public static List<Models.Task> getListTasks(int userID)
+        {
+            List<Models.Task> tasks = new List<Models.Task>();
+            SqlConnection connection = DBConnection.GetConnection();
+            string selectStatement = "SELECT * " +
+                "FROM tasks WHERE task_owner = @userID ";
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@userID", userID);
+            SqlDataReader reader = null;
+            try
+            {
+                connection.Open();
+                reader = selectCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    Models.Task task = new Models.Task();
+
+                    task.task_owner = Convert.ToInt32(reader["task_owner"]);
+                    task.taskID = Convert.ToInt32(reader["taskID"]);
+                    task.taskType = Convert.ToInt32(reader["taskType"]);
+                    //task.task_priority = Convert.ToInt32(reader["task_priority"]);
+                    task.title = reader["title"].ToString();
+                    task.completed = Convert.ToBoolean(reader["completed"]);
+                    task.createdDate = Convert.ToDateTime(reader["createdDate"]);
+                    task.currentDate = Convert.ToDateTime(reader["currentDate"]);
+                    //task.deadline = Convert.ToDateTime(reader["deadline"]);
+
+                    tasks.Add(task);
+                }
+                reader.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+                if (reader != null)
+                    reader.Close();
+            }
+            return tasks;
+        }
+
         // Get all tasks for the current user associated with the selected date
         public static List<Models.Task> getCurrentUsersTasks(User currentUser, string date)
         {

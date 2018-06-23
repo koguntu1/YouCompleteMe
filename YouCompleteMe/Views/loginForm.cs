@@ -16,7 +16,6 @@ namespace YouCompleteMe.Views
     {
         private int counter;
         private static registerForm registerForm;
-        private static homepageForm homeForm;
         private static resetPassword resetForm;
 
         public loginForm()
@@ -32,7 +31,7 @@ namespace YouCompleteMe.Views
                 if (CurrentUser.User == null)
                 {
                     registerForm = new registerForm();
-                    registerForm.MdiParent = mainForm.Instance;
+                    //registerForm.MdiParent = mainForm.Instance;
                     registerForm.StartPosition = FormStartPosition.CenterScreen;
                     registerForm.FormClosed += RegisterForm_FormClosed;
                     this.Hide();
@@ -69,16 +68,23 @@ namespace YouCompleteMe.Views
             }
             else
             {
-                MessageBox.Show("Welcome " + CurrentUser.User.fName);
-                this.Close();
+                //MessageBox.Show("Welcome " + CurrentUser.User.fName);
+                //this.Close();
 
-                homeForm = new homepageForm(CurrentUser.User);
-                homeForm.MdiParent = mainForm.Instance;
-                homeForm.WindowState = FormWindowState.Maximized;
-                homeForm.FormClosed += new FormClosedEventHandler(HomeForm_FormClosed);
-                homeForm.StartPosition = FormStartPosition.CenterScreen;
-                mainForm.Instance.setToolStripMenuItemsEnabled(true);
-                homeForm.Show();
+                //homeForm = new homepageForm(CurrentUser.User);
+                //homeForm.MdiParent = mainForm.Instance;
+                //homeForm.WindowState = FormWindowState.Maximized;
+                //homeForm.FormClosed += new FormClosedEventHandler(HomeForm_FormClosed);
+                //homeForm.StartPosition = FormStartPosition.CenterScreen;
+                //mainForm.Instance.setToolStripMenuItemsEnabled(true);
+                //homeForm.Show();
+
+                /* Begin fix*/
+                this.Hide();
+                var form2 = new mainForm(CurrentUser.User);
+                form2.Closed += (s, args) => this.Close();
+                form2.Show();
+
             }
 
             if (counter == 3)
@@ -91,7 +97,7 @@ namespace YouCompleteMe.Views
                     {
                         this.Hide();
                         resetForm = new resetPassword();
-                        resetForm.MdiParent = mainForm.Instance;
+                        //resetForm.MdiParent = mainForm.Instance;
                         resetForm.FormClosed += new FormClosedEventHandler(ResetForm_FormClosed);
                         resetForm.StartPosition = FormStartPosition.CenterScreen;
                         resetForm.Show();
@@ -112,8 +118,8 @@ namespace YouCompleteMe.Views
 
         private void HomeForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            homeForm.Dispose();
-            homeForm = null;
+            //homeForm.Dispose();
+            //homeForm = null;
         }
 
         private void btnExit_Click(object sender, EventArgs e)

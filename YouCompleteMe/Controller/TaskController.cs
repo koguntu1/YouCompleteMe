@@ -20,6 +20,12 @@ namespace YouCompleteMe.Controller
             return TaskDAL.getATask(taskID);
         }
 
+        //get list of task with owner id
+        public static List<Models.Task> getListTasks(int userID)
+        {
+            return TaskDAL.getListTasks(userID);
+        }
+
         public static List<Models.Task> getUserTasks(User currentUser, string date)
         {
             return TaskDAL.getCurrentUsersTasks(currentUser, date);

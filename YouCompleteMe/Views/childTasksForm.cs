@@ -7,17 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using YouCompleteMe.Models;
 
 namespace YouCompleteMe.Views
 {
     public partial class childTasksForm : Form
     {
-
+        User user;
         private static childTasksForm instance;
 
-        public childTasksForm()
+        public childTasksForm(User _user)
         {
             InitializeComponent();
+            user = _user;
             instance = this;
         }
 
@@ -31,14 +33,14 @@ namespace YouCompleteMe.Views
 
         private void btnUpdateSubTask_Click(object sender, EventArgs e)
         {
-            AddUpdateChildTaskForm addUpdateChildTaskForm = new AddUpdateChildTaskForm();
-            addUpdateChildTaskForm.Show();
+            AddUpdateChildTaskForm addUpdateChildTaskForm = new AddUpdateChildTaskForm(user,true);
+            addUpdateChildTaskForm.ShowDialog();
         }
 
         private void btnAddNewSubTask_Click(object sender, EventArgs e)
         {
-            AddUpdateChildTaskForm addUpdateChildTaskForm = new AddUpdateChildTaskForm();
-            addUpdateChildTaskForm.Show();
+            AddUpdateChildTaskForm addUpdateChildTaskForm = new AddUpdateChildTaskForm(user, false);
+            addUpdateChildTaskForm.ShowDialog();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
