@@ -78,7 +78,7 @@ namespace YouCompleteMe.Views
             {
                 value = false;
             }
-            else if (!isDuplicateEmail(txtEmail1.Text))
+            else if (!isDuplicateEmail(txtEmail1.Text + label16.Text + txtEmail2.Text + label19.Text + txtEmail3.Text))
             {
                 value = false;
             }
