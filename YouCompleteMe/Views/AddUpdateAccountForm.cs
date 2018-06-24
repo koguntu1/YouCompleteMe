@@ -69,6 +69,7 @@ namespace YouCompleteMe.Views
                 {
                     UserController.updateUser(txtFirstName.Text, txtLastName.Text, email, phone, hintText.Text, theUser.userID);
                     MessageBox.Show("Your profile was successfully updated");
+                    CurrentUser.setCurrentUser(UserController.getAUser(theUser.userName, theUser.password));
                     this.Close();
                 }
                 else
@@ -212,6 +213,7 @@ namespace YouCompleteMe.Views
                 UserController.deleteUser(theUser.userID);
                 MessageBox.Show("Your profile was successfully deleted");
                 mainForm.Instance.closeAllActiveForms();
+                mainForm.Instance.Hide();
                 mainForm.Instance.showLogin();
             }
                         else

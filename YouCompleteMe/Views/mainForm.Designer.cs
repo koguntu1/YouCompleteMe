@@ -73,8 +73,8 @@
             // managementProfileToolStripMenuItem
             // 
             this.managementProfileToolStripMenuItem.Name = "managementProfileToolStripMenuItem";
-            this.managementProfileToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.managementProfileToolStripMenuItem.Text = "Management Profile";
+            this.managementProfileToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.managementProfileToolStripMenuItem.Text = "Manage Profile";
             this.managementProfileToolStripMenuItem.Click += new System.EventHandler(this.managementProfileToolStripMenuItem_Click);
             // 
             // changePasswordToolStripMenuItem
