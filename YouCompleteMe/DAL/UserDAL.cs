@@ -264,7 +264,7 @@ namespace YouCompleteMe.DAL
             }
         }
 
-        //Updates the password for the passed user to the passed password
+        //Updates the user 
         public static void updateUser(string fName, string lName, string email, string phone, string hint, int id)
         {
             SqlConnection connection = DBConnection.GetConnection();
@@ -281,6 +281,37 @@ namespace YouCompleteMe.DAL
             updateCommand.Parameters.AddWithValue("@email", email);
             updateCommand.Parameters.AddWithValue("@phone", phone);
             updateCommand.Parameters.AddWithValue("@hint", hint);
+            updateCommand.Parameters.AddWithValue("@id", id);
+            SqlDataReader reader = null;
+            try
+            {
+                connection.Open();
+                updateCommand.ExecuteNonQuery();
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+                if (reader != null)
+                    reader.Close();
+            }
+        }
+
+        //Deletes the user's profile
+        public static void deleteUser(int id)
+        {
+            SqlConnection connection = DBConnection.GetConnection();
+            string updateStatement = "DELETE FROM users " +
+                "WHERE userID = @id";
+            SqlCommand updateCommand = new SqlCommand(updateStatement, connection);
             updateCommand.Parameters.AddWithValue("@id", id);
             SqlDataReader reader = null;
             try

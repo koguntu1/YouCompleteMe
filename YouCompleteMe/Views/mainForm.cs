@@ -56,7 +56,7 @@ namespace YouCompleteMe.Views
             return CurrentUser.User;
         }
 
-        private void showLogin()
+        public void showLogin()
         {
             if (CurrentUser.User == null)
             {
@@ -242,7 +242,7 @@ namespace YouCompleteMe.Views
         }
 
         //Calls on helper to close all active forms before closing the employee menu form
-        private void closeAllActiveForms()
+        public void closeAllActiveForms()
         {
             //homepage.Close();
             //homepage = null;

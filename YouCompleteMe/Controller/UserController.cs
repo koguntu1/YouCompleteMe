@@ -51,5 +51,11 @@ namespace YouCompleteMe.Controller
         {
             UserDAL.updateUser(fName, lName, email, phone, hint, id);
         }
+
+        //Calls UserDAL to delete the user's profile
+        public static void deleteUser(int id)
+        {
+            UserDAL.deleteUser(id);
+        }
     }
 }
