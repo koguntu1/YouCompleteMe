@@ -68,7 +68,7 @@ namespace YouCompleteMe.Views
             }
             else
             {
-                //MessageBox.Show("Welcome " + CurrentUser.User.fName);
+                MessageBox.Show("Welcome " + CurrentUser.User.fName);
                 //this.Close();
 
                 //homeForm = new homepageForm(CurrentUser.User);
@@ -133,7 +133,7 @@ namespace YouCompleteMe.Views
             {
                 this.Hide();
                 resetForm = new resetPassword();
-                resetForm.MdiParent = mainForm.Instance;
+                //resetForm.MdiParent = mainForm.Instance;
                 resetForm.FormClosed += new FormClosedEventHandler(ResetForm_FormClosed);
                 resetForm.StartPosition = FormStartPosition.CenterScreen;
                 resetForm.Show();

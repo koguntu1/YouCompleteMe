@@ -104,6 +104,7 @@ namespace YouCompleteMe.Views
                 setToolStripMenuItemsEnabled(false);
                 MessageBox.Show("Successfully logged out.");
                 closeAllActiveForms();
+                this.Hide();
                 showLogin();
             }
         }
