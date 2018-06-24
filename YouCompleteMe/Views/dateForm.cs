@@ -99,8 +99,9 @@ namespace YouCompleteMe.Views
             foreach (Models.Task task in this.tasks)
             {
                 taskTreeView.Nodes.Add(task.title);
-                taskTreeView.Nodes[this.tasks.FindIndex(a => a.taskID == task.taskID)].Tag = task;
                 TreeNode currentNode = taskTreeView.Nodes[this.tasks.FindIndex(a => a.taskID == task.taskID)];
+                currentNode.Tag = task;
+                
 
                 // Mark complete tasks with a checked box
                 if (task.completed == true)
