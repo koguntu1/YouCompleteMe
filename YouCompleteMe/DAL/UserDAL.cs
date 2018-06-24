@@ -183,17 +183,18 @@ namespace YouCompleteMe.DAL
         }
 
         //Returns specified user based on username and password
-        public static User verifyAUser(string username, string hint)
+        public static User verifyAUser(string username, string email, string hint)
         {
             User user = new User();
             SqlConnection connection = DBConnection.GetConnection();
             string selectStatement = "SELECT * " +
                 "FROM users " +
-                 "WHERE username = @username AND hint = @hint"; ;
+                 "WHERE username = @username AND (email = @email OR hint = @hint)";
             SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
 
             selectCommand.Parameters.AddWithValue("@username", username);
             selectCommand.Parameters.AddWithValue("@hint", hint);
+            selectCommand.Parameters.AddWithValue("@email", email);
             SqlDataReader reader = null;
             try
             {

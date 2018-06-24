@@ -36,10 +36,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.passwordText = new System.Windows.Forms.TextBox();
+            this.confirmEmail = new System.Windows.Forms.TextBox();
             this.confirmText = new System.Windows.Forms.TextBox();
+            this.passwordText = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
@@ -87,13 +89,13 @@
             this.label3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(12, 153);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(115, 19);
+            this.label3.Size = new System.Drawing.Size(107, 19);
             this.label3.TabIndex = 14;
-            this.label3.Text = "Password Hint*";
+            this.label3.Text = "Password Hint";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 320);
+            this.button1.Location = new System.Drawing.Point(12, 370);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 4;
@@ -103,7 +105,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(380, 320);
+            this.button2.Location = new System.Drawing.Point(380, 370);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 5;
@@ -111,22 +113,30 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.cancelOnClick);
             // 
-            // passwordText
+            // confirmEmail
             // 
-            this.passwordText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passwordText.Location = new System.Drawing.Point(171, 207);
-            this.passwordText.Name = "passwordText";
-            this.passwordText.Size = new System.Drawing.Size(284, 27);
-            this.passwordText.TabIndex = 2;
-            this.toolTip1.SetToolTip(this.passwordText, "Required Field");
+            this.confirmEmail.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.confirmEmail.Location = new System.Drawing.Point(171, 207);
+            this.confirmEmail.Name = "confirmEmail";
+            this.confirmEmail.Size = new System.Drawing.Size(284, 27);
+            this.confirmEmail.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.confirmEmail, "Required Field");
             // 
             // confirmText
             // 
             this.confirmText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.confirmText.Location = new System.Drawing.Point(171, 263);
+            this.confirmText.Location = new System.Drawing.Point(171, 320);
             this.confirmText.Name = "confirmText";
             this.confirmText.Size = new System.Drawing.Size(284, 27);
             this.confirmText.TabIndex = 3;
+            // 
+            // passwordText
+            // 
+            this.passwordText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passwordText.Location = new System.Drawing.Point(171, 263);
+            this.passwordText.Name = "passwordText";
+            this.passwordText.Size = new System.Drawing.Size(284, 27);
+            this.passwordText.TabIndex = 3;
             // 
             // label5
             // 
@@ -134,9 +144,9 @@
             this.label5.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(12, 210);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(117, 19);
+            this.label5.Size = new System.Drawing.Size(46, 19);
             this.label5.TabIndex = 20;
-            this.label5.Text = "New Password*";
+            this.label5.Text = "Email";
             // 
             // label6
             // 
@@ -144,9 +154,19 @@
             this.label6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(12, 266);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(140, 19);
+            this.label6.Size = new System.Drawing.Size(117, 19);
             this.label6.TabIndex = 21;
-            this.label6.Text = "Confirm Password*";
+            this.label6.Text = "New Password*";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(12, 325);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(140, 19);
+            this.label7.TabIndex = 21;
+            this.label7.Text = "Confirm Password*";
             // 
             // toolTip1
             // 
@@ -159,11 +179,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(467, 363);
+            this.ClientSize = new System.Drawing.Size(467, 428);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.confirmText);
             this.Controls.Add(this.passwordText);
+            this.Controls.Add(this.confirmText);
+            this.Controls.Add(this.confirmEmail);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
@@ -188,10 +210,12 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox confirmEmail;
         private System.Windows.Forms.TextBox passwordText;
         private System.Windows.Forms.TextBox confirmText;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ToolTip toolTip1;
     }
 }

@@ -58,7 +58,7 @@ namespace _6920Project.UnitTests
             Assert.AreEqual("Test", CurrentUser.User.fName);
             Assert.AreEqual("User", CurrentUser.User.lName);
             Assert.AreEqual("tuser1@gmail.com", CurrentUser.User.email);
-            Assert.AreEqual("(678) 850-0797", CurrentUser.User.phone);
+            Assert.AreEqual("(678)850-0797", CurrentUser.User.phone);
         }
     }
 }

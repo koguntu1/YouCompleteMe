@@ -52,9 +52,9 @@ namespace YouCompleteMe.Views
                 MessageBox.Show("Please enter your user name");
                 value = false;
             }
-            else if (hintText.Text.Trim() == "")
+            else if (hintText.Text.Trim() == "" && confirmEmail.Text.Trim() == "")
             {
-                MessageBox.Show("Please enter your password hint");
+                MessageBox.Show("Please enter your password hint or email");
                 value = false;
             }
             else if (!isValidCredentials())
@@ -69,18 +69,18 @@ namespace YouCompleteMe.Views
         {
             bool value = true;
 
-            CurrentUser.setCurrentUser(UserController.verifyAUser(userNameText.Text, hintText.Text));
+            CurrentUser.setCurrentUser(UserController.verifyAUser(userNameText.Text, confirmEmail.Text, hintText.Text));
 
             if (CurrentUser.User == null)
             {
-                MessageBox.Show("Incorrect user name or hint");
+                MessageBox.Show("Your identity could not be validated");
                 value = false;
             }
             else if (!isNewPasswordValid(passwordText.Text))
             {
                 value = false;
             }
-            else if (!doNewPasswordsMatch(passwordText.Text, confirmText.Text))
+            else if (!doNewPasswordsMatch(confirmText.Text, passwordText.Text))
             {
                 value = false;
             }

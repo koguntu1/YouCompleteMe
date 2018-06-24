@@ -147,6 +147,7 @@ namespace YouCompleteMe.Views
         private void ResetForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             resetForm.Dispose();
+            resetForm.Close();
             resetForm = null;
             this.Show();
         }
