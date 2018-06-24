@@ -17,6 +17,7 @@ namespace YouCompleteMe.Views
         User user;
         homepageForm parentCalendar;
         private static dateForm instance;
+        private List<Models.Task> tasks;
 
         public dateForm(User _user, homepageForm _calendar)
         {
@@ -24,6 +25,7 @@ namespace YouCompleteMe.Views
             user = _user;
             this.parentCalendar = _calendar;
             instance = this;
+            this.tasks = TaskController.getUserTasks(user, parentCalendar.getSelectedDate());
         }
 
         public static dateForm Instance
@@ -89,34 +91,65 @@ namespace YouCompleteMe.Views
 
         private void populateTaskTreeView()
         {
-            List<Models.Task> tasks = TaskController.getUserTasks(user, parentCalendar.getSelectedDate());
+            //List<Models.Task> tasks = TaskController.getUserTasks(user, parentCalendar.getSelectedDate());
             taskTreeView.ShowLines = false;
+            //taskTreeView.AfterCheck -= taskTreeView_AfterCheck;
 
-            foreach(Models.Task task in tasks)
+            // Add tasks to the list
+            foreach (Models.Task task in this.tasks)
             {
                 taskTreeView.Nodes.Add(task.title);
+                taskTreeView.Nodes[this.tasks.FindIndex(a => a.taskID == task.taskID)].Tag = task;
+
+                // Mark complete tasks with a checked box
                 if (task.completed == true)
                 {
-                    taskTreeView.Nodes[tasks.FindIndex(a => a.taskID == task.taskID)].Checked = true;
+                    taskTreeView.Nodes[this.tasks.FindIndex(a => a.taskID == task.taskID)].Checked = true;
                 }
+                // Set font color to indicate priority
                 if (task.task_priority == 3)
                 {
-                    taskTreeView.Nodes[tasks.FindIndex(a => a.taskID == task.taskID)].ForeColor = Color.Red;
-                    //taskTreeView.Nodes[tasks.FindIndex(a => a.taskID == task.taskID)].NodeFont = new Font(label2.Font.Name, FontStyle.Bold);
+                    taskTreeView.Nodes[this.tasks.FindIndex(a => a.taskID == task.taskID)].ForeColor = Color.Red;
+                    //taskTreeView.Nodes[tasks.FindIndex(a => a.taskID == task.taskID)].NodeFont = new Font(FontFamily.GenericSansSerif, 10, FontStyle.Bold);
                 }
                 if (task.task_priority == 2)
                 {
-                    taskTreeView.Nodes[tasks.FindIndex(a => a.taskID == task.taskID)].ForeColor = Color.Orange;
+                    taskTreeView.Nodes[this.tasks.FindIndex(a => a.taskID == task.taskID)].ForeColor = Color.Orange;
                 }
+
+                // Add taskID as Node.Nodes[0] as a hidded node for reference elsewhere
+                //taskTreeView.Nodes[tasks.FindIndex(a => a.taskID == task.taskID)].Nodes.Add(task.taskID.ToString());
+                //taskTreeView.Nodes[tasks.FindIndex(a => a.taskID == task.taskID)].Nodes[0].IsVisible = false;
+
+                // Get all subtasks for the current task
                 List<Subtask> subtasks = SubtaskController.GetSubtasksForTask(user, task.taskID);
+
+                // Add each subtask as a nested node
                 foreach(Subtask st in subtasks)
                 {
-                    taskTreeView.Nodes[tasks.FindIndex(a => a.taskID == task.taskID)].Nodes.Add(st.st_Description);
+                    taskTreeView.Nodes[this.tasks.FindIndex(a => a.taskID == task.taskID)].Nodes.Add(st.st_Description);
+
+                    // Mark completed subtasks with a checked box
                     if (st.st_CompleteDate != DateTime.MaxValue)
                     {
-                        taskTreeView.Nodes[tasks.FindIndex(a => a.taskID == task.taskID)].Nodes[subtasks.FindIndex(b => b.subtaskID == st.subtaskID)].Checked = true;
+                        taskTreeView.Nodes[this.tasks.FindIndex(a => a.taskID == task.taskID)].Nodes[subtasks.FindIndex(b => b.subtaskID == st.subtaskID)].Checked = true;
                     }  
                 }
+            }
+
+            taskTreeView.BeforeCheck += taskTreeView_BeforeCheck;
+        }
+
+        private void taskTreeView_BeforeCheck(object sender, TreeViewCancelEventArgs e)
+        {
+            Models.Task tag = (Models.Task)e.Node.Tag;
+            if (e.Node.Checked == false)
+            {
+                TaskController.updateTaskCompleted(tag.taskID);
+            }
+            else if (e.Node.Checked == true)
+            {
+                TaskController.updateTaskIncomplete(tag.taskID);
             }
         }
     }

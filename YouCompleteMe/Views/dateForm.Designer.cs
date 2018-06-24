@@ -187,10 +187,12 @@
             // taskTreeView
             // 
             this.taskTreeView.CheckBoxes = true;
+            this.taskTreeView.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.taskTreeView.Location = new System.Drawing.Point(43, 66);
             this.taskTreeView.Name = "taskTreeView";
             this.taskTreeView.Size = new System.Drawing.Size(342, 220);
             this.taskTreeView.TabIndex = 7;
+            //this.taskTreeView.BeforeCheck += new System.Windows.Forms.TreeViewCancelEventHandler(this.taskTreeView_BeforeCheck);
             // 
             // dateForm
             // 
