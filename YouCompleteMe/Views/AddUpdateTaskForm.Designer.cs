@@ -176,7 +176,6 @@
             // 
             this.deadlineDateTimePicker.CustomFormat = " ";
             this.deadlineDateTimePicker.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deadlineDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.deadlineDateTimePicker.Location = new System.Drawing.Point(212, 214);
             this.deadlineDateTimePicker.Name = "deadlineDateTimePicker";
             this.deadlineDateTimePicker.Size = new System.Drawing.Size(200, 27);

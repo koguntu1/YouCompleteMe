@@ -205,7 +205,6 @@
             // 
             this.deadlinePicker.CustomFormat = " ";
             this.deadlinePicker.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deadlinePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.deadlinePicker.Location = new System.Drawing.Point(215, 210);
             this.deadlinePicker.Name = "deadlinePicker";
             this.deadlinePicker.Size = new System.Drawing.Size(200, 26);
@@ -216,7 +215,6 @@
             // 
             this.completePicker.CustomFormat = " ";
             this.completePicker.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.completePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.completePicker.Location = new System.Drawing.Point(215, 306);
             this.completePicker.Name = "completePicker";
             this.completePicker.Size = new System.Drawing.Size(200, 26);
