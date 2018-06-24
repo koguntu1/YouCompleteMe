@@ -100,26 +100,22 @@ namespace YouCompleteMe.Views
             {
                 taskTreeView.Nodes.Add(task.title);
                 taskTreeView.Nodes[this.tasks.FindIndex(a => a.taskID == task.taskID)].Tag = task;
+                TreeNode currentNode = taskTreeView.Nodes[this.tasks.FindIndex(a => a.taskID == task.taskID)];
 
                 // Mark complete tasks with a checked box
                 if (task.completed == true)
                 {
-                    taskTreeView.Nodes[this.tasks.FindIndex(a => a.taskID == task.taskID)].Checked = true;
+                    currentNode.Checked = true;
                 }
                 // Set font color to indicate priority
                 if (task.task_priority == 3)
                 {
-                    taskTreeView.Nodes[this.tasks.FindIndex(a => a.taskID == task.taskID)].ForeColor = Color.Red;
-                    //taskTreeView.Nodes[tasks.FindIndex(a => a.taskID == task.taskID)].NodeFont = new Font(FontFamily.GenericSansSerif, 10, FontStyle.Bold);
+                    currentNode.ForeColor = Color.Red;
                 }
                 if (task.task_priority == 2)
                 {
-                    taskTreeView.Nodes[this.tasks.FindIndex(a => a.taskID == task.taskID)].ForeColor = Color.Orange;
+                    currentNode.ForeColor = Color.Orange;
                 }
-
-                // Add taskID as Node.Nodes[0] as a hidded node for reference elsewhere
-                //taskTreeView.Nodes[tasks.FindIndex(a => a.taskID == task.taskID)].Nodes.Add(task.taskID.ToString());
-                //taskTreeView.Nodes[tasks.FindIndex(a => a.taskID == task.taskID)].Nodes[0].IsVisible = false;
 
                 // Get all subtasks for the current task
                 List<Subtask> subtasks = SubtaskController.GetSubtasksForTask(user, task.taskID);
@@ -127,12 +123,13 @@ namespace YouCompleteMe.Views
                 // Add each subtask as a nested node
                 foreach(Subtask st in subtasks)
                 {
-                    taskTreeView.Nodes[this.tasks.FindIndex(a => a.taskID == task.taskID)].Nodes.Add(st.st_Description);
+                    currentNode.Nodes.Add(st.st_Description);
+                    currentNode.Nodes[subtasks.FindIndex(b => b.subtaskID == st.subtaskID)].Tag = st;
 
                     // Mark completed subtasks with a checked box
                     if (st.st_CompleteDate != DateTime.MaxValue)
                     {
-                        taskTreeView.Nodes[this.tasks.FindIndex(a => a.taskID == task.taskID)].Nodes[subtasks.FindIndex(b => b.subtaskID == st.subtaskID)].Checked = true;
+                        currentNode.Nodes[subtasks.FindIndex(b => b.subtaskID == st.subtaskID)].Checked = true;
                     }  
                 }
             }
@@ -142,14 +139,29 @@ namespace YouCompleteMe.Views
 
         private void taskTreeView_BeforeCheck(object sender, TreeViewCancelEventArgs e)
         {
-            Models.Task tag = (Models.Task)e.Node.Tag;
-            if (e.Node.Checked == false)
+            if (e.Node.Parent == null)
             {
-                TaskController.updateTaskCompleted(tag.taskID);
+                Models.Task tag = (Models.Task)e.Node.Tag;
+                if (e.Node.Checked == false)
+                {
+                    TaskController.updateTaskCompleted(tag.taskID);
+                }
+                else if (e.Node.Checked == true)
+                {
+                    TaskController.updateTaskIncomplete(tag.taskID);
+                }
             }
-            else if (e.Node.Checked == true)
+            else
             {
-                TaskController.updateTaskIncomplete(tag.taskID);
+                Subtask subTag = (Subtask)e.Node.Tag;
+                if (e.Node.Checked == false)
+                {
+                    SubtaskController.UpdateSubtaskToCompleted(subTag.subtaskID);
+                }
+                else if (e.Node.Checked == true)
+                {
+                    SubtaskController.UpdateSubtaskToIncomplete(subTag.subtaskID);
+                }
             }
         }
     }

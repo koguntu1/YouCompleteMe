@@ -62,5 +62,74 @@ namespace YouCompleteMe.DAL
 
             return subtasks;
         }
+
+        // Update a subtask to complete status
+        public static int updateSubtaskCompleted(int subtaskID)
+        {
+            SqlConnection connection = DBConnection.GetConnection();
+            string updateStatement = "UPDATE subtask " +
+                                     "set st_CompleteDate = getDate() " +
+                                     "WHERE subtaskID = @subtaskID";
+            SqlCommand updateCommand = new SqlCommand(updateStatement, connection);
+            updateCommand.Parameters.AddWithValue("@subtaskID", subtaskID);
+
+            SqlDataReader reader = null;
+            try
+            {
+                connection.Open();
+
+                // Returns the number of rows affected by this update
+                return updateCommand.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+                if (reader != null)
+                    reader.Close();
+            }
+        }
+        public static int updateSubtaskIncomplete(int subtaskID)
+        {
+            SqlConnection connection = DBConnection.GetConnection();
+            string updateStatement = "UPDATE subtask " +
+                                     "set st_CompleteDate = @null " +
+                                     "WHERE subtaskID = @subtaskID";
+            SqlCommand updateCommand = new SqlCommand(updateStatement, connection);
+            updateCommand.Parameters.AddWithValue("@subtaskID", subtaskID);
+            updateCommand.Parameters.AddWithValue("@null", DBNull.Value);
+
+            SqlDataReader reader = null;
+            try
+            {
+                connection.Open();
+
+                // Returns the number of rows affected by this update
+                return updateCommand.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+                if (reader != null)
+                    reader.Close();
+            }
+        }
     }
 }

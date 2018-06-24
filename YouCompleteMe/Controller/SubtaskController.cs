@@ -15,5 +15,15 @@ namespace YouCompleteMe.Controller
         {
             return SubtaskDAL.getSubtasksForTask(currentUser, taskID);
         }
+
+        public static int UpdateSubtaskToCompleted(int subtaskID)
+        {
+            return SubtaskDAL.updateSubtaskCompleted(subtaskID);
+        }
+
+        public static int UpdateSubtaskToIncomplete(int subtaskID)
+        {
+            return SubtaskDAL.updateSubtaskIncomplete(subtaskID);
+        }
     }
 }
