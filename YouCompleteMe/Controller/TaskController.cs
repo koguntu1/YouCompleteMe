@@ -45,5 +45,10 @@ namespace YouCompleteMe.Controller
         {
             return TaskDAL.updateTaskIncomplete(taskID);
         }
+
+        public static List<Models.Task> getCurrentTaskDeadlines(User currentUser, string date)
+        {
+            return TaskDAL.getCurrentDeadlines(currentUser, date);
+        }
     }
 }
