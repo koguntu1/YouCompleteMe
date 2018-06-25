@@ -75,7 +75,10 @@ namespace YouCompleteMe.DAL
                     task.title = reader["title"].ToString();
                     task.currentDate = Convert.ToDateTime(reader["currentDate"]);
                     task.createdDate = Convert.ToDateTime(reader["createdDate"]);
-                    task.deadline = Convert.ToDateTime(reader["deadline"]);
+                    if (reader["deadline"] == DBNull.Value)
+                        task.deadline = DateTime.MaxValue;
+                    else
+                        task.deadline = (DateTime)reader["deadline"];
                     task.completed = Convert.ToBoolean(reader["completed"]);
                 }
                 else
@@ -134,7 +137,10 @@ namespace YouCompleteMe.DAL
                     task.title = reader["title"].ToString();
                     task.createdDate = (DateTime)reader["createdDate"];
                     task.currentDate = (DateTime)reader["currentDate"];
-                    task.deadline = (DateTime)reader["deadline"];
+                    if (reader["deadline"] == DBNull.Value)
+                        task.deadline = DateTime.MaxValue;
+                    else
+                        task.deadline = (DateTime)reader["deadline"];
 
                     tasks.Add(task);
                 }
@@ -251,6 +257,109 @@ namespace YouCompleteMe.DAL
                 if (reader != null)
                     reader.Close();
             }
+        }
+
+        public static List<Models.Task> getTaskDeadline(int taskID)
+        {
+            List<Models.Task> tasks = new List<Models.Task>();
+
+            SqlConnection connection = DBConnection.GetConnection();
+            string selectStatement =
+                "SELECT taskID, deadline FROM tasks " +
+                "WHERE " +
+                "taskID = @taskID";
+
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@taskID", taskID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = selectCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    Models.Task task = new Models.Task();
+                    task.task_owner = Convert.ToInt32(reader["task_owner"]);
+                    task.taskID = Convert.ToInt32(reader["taskID"]);
+                    task.taskType = Convert.ToInt32(reader["taskType"]);
+                    task.task_priority = Convert.ToInt32(reader["task_priority"]);
+                    //task.completed = Convert.ToInt32(reader["completed"]);
+                    task.completed = Convert.ToBoolean(reader["completed"]);
+                    task.title = reader["title"].ToString();
+                    task.createdDate = (DateTime)reader["createdDate"];
+                    task.currentDate = (DateTime)reader["currentDate"];
+                    if (reader["deadline"] == DBNull.Value)
+                        task.deadline = DateTime.MaxValue;
+                    else
+                        task.deadline = (DateTime)reader["deadline"];
+
+                    tasks.Add(task);
+                }
+                reader.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return tasks;
+        }
+
+        public static List<Models.Task> getCurrentDeadlines(User currentUser, string date)
+        {
+            List<Models.Task> tasks = new List<Models.Task>();
+
+            SqlConnection connection = DBConnection.GetConnection();
+            string selectStatement =
+                "SELECT * FROM tasks " +
+                "WHERE " +
+                "task_owner = @user and " +
+                "cast(deadline as date) = @date " +
+                "order by deadline";
+
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@user", currentUser.userID);
+            selectCommand.Parameters.AddWithValue("@date", date);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = selectCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    Models.Task task = new Models.Task();
+                    task.task_owner = Convert.ToInt32(reader["task_owner"]);
+                    task.taskID = Convert.ToInt32(reader["taskID"]);
+                    task.taskType = Convert.ToInt32(reader["taskType"]);
+                    task.task_priority = Convert.ToInt32(reader["task_priority"]);
+                    //task.completed = Convert.ToInt32(reader["completed"]);
+                    task.completed = Convert.ToBoolean(reader["completed"]);
+                    task.title = reader["title"].ToString();
+                    task.createdDate = (DateTime)reader["createdDate"];
+                    task.currentDate = (DateTime)reader["currentDate"];
+                    if (reader["deadline"] == DBNull.Value)
+                        task.deadline = DateTime.MaxValue;
+                    else
+                        task.deadline = (DateTime)reader["deadline"];
+
+                    tasks.Add(task);
+                }
+                reader.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return tasks;
         }
     }
 }
