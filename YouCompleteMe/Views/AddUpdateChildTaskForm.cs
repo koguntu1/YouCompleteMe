@@ -59,7 +59,7 @@ namespace YouCompleteMe.Views
         }
 
         /* Put data input into subtask object before added this subtask into database*/
-        private void PutSubTask(Models.SubTask _subtask)
+        private void PutSubTask(Models.Subtask _subtask)
         {
             _subtask.taskID = (int)comboListTask.SelectedValue;
             if (completePicker.Text.Trim() != "")
@@ -109,13 +109,13 @@ namespace YouCompleteMe.Views
                 {
                     if (validData())
                     {
-                        Models.SubTask subtask = new Models.SubTask();
+                        Models.Subtask subtask = new Models.Subtask();
                         this.PutSubTask(subtask);
 
                         DialogResult result = MessageBox.Show("Do You Want to Add this subtask to database?", "Create new subtask", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                         if (result.Equals(DialogResult.OK))
                         {
-                            int subtaskID = SubTaskController.AddSubTask(subtask);
+                            int subtaskID = SubtaskController.AddSubTask(subtask);
                             MessageBox.Show("SubTask successfully added");
                             this.Close();
                         }  

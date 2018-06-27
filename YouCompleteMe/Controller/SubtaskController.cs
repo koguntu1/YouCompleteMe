@@ -25,5 +25,20 @@ namespace YouCompleteMe.Controller
         {
             return SubtaskDAL.updateSubtaskIncomplete(subtaskID);
         }
+
+        /*
+       This method use for add subtask into database.
+       It return the subtask id of new subtask.
+       */
+        public static int AddSubTask(YouCompleteMe.Models.Subtask subtask)
+        {
+            return SubtaskDAL.AddSubTask(subtask);
+        }
+
+        /*Returns specified subtask based on subtaskID */
+        public static Models.Subtask getASubTask(int subtaskID)
+        {
+            return SubtaskDAL.getASubTask(subtaskID);
+        }
     }
 }

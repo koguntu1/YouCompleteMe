@@ -21,5 +21,7 @@ namespace YouCompleteMe.Models
         public DateTime st_Deadline { get; set; }
 
         public int st_Priority { get; set; }
+
+        public string note { get; set; }
     }
 }

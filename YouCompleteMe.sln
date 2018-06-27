@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouCompleteMe", "YouCompleteMe\YouCompleteMe.csproj", "{21FC5A55-0BEE-454A-A178-7352634F163E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "6920Project.UnitTests", "YouCompleteMe\6920Project.UnitTests\6920Project.UnitTests.csproj", "{40EB60E5-6232-43E3-AACD-D872E4F9637A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "6920Project.UnitTests", "6920Project.UnitTests\6920Project.UnitTests.csproj", "{40EB60E5-6232-43E3-AACD-D872E4F9637A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
