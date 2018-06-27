@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace YouCompleteMe.Models
 {
-    class Subtask
+    public class Subtask
     {
         public int taskID { get; set; }
 

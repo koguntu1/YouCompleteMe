@@ -8,7 +8,7 @@ using YouCompleteMe.Models;
 
 namespace YouCompleteMe.Controller
 {
-    class SubtaskController
+    public class SubtaskController
     {
 
         public static List<Subtask> GetSubtasksForTask(User currentUser, int taskID)
