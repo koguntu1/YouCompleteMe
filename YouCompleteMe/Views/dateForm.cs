@@ -67,8 +67,6 @@ namespace YouCompleteMe.Views
             this.label2.Text = parentCalendar.getSelectedDate_Formatted();
             tasksDataGridView.DataSource = TaskController.getCurrentTaskDeadlines(user, parentCalendar.getSelectedDate());
             populateTaskTreeView();
-            //populateScheduleListView();
-
         }
 
         // When the checkbox is clicked the task will be updated to complete or incomplete, 
@@ -109,7 +107,7 @@ namespace YouCompleteMe.Views
                     currentNode.Checked = true;
                 }
                 // Set font color to indicate priority
-                if (task.task_priority == 3)
+                if (task.task_priority == 1)
                 {
                     currentNode.ForeColor = Color.Red;
                 }
@@ -119,8 +117,15 @@ namespace YouCompleteMe.Views
                 }
 
                 // Add details tooltip
+                String priority = "";
+                if (task.task_priority == 1)
+                    priority = "High";
+                else if (task.task_priority == 2)
+                    priority = "Medium";
+                else
+                    priority = "Low";
                 currentNode.ToolTipText = "Deadline: " + task.deadline.ToString() + "\n" +
-                                          "Priority: " + task.task_priority.ToString() + "\n" +
+                                          "Priority: " + priority + "\n" +
                                           "Notes: " + this.getNoteString(task.taskID, -1);
                 taskTreeView.ShowNodeToolTips = true;
 
@@ -173,40 +178,7 @@ namespace YouCompleteMe.Views
                 }
             }
         }
-
-        //private void populateScheduleListView()
-        //{
-        //    //List<string> times = new List<string>()
-
-        //    //{ "00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00",
-        //    //  "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00" };
-
-        //    DateTime date = new DateTime();
-        //    var times = Enumerable.Repeat(date, 24).Select((x, i) => x.AddHours(i).ToString("HH"));
-
-        //    List<Models.Task> tasks = TaskController.getUserTasks(user, parentCalendar.getSelectedDate());
-
-        //    deadlineListView.Items.Clear();
-
-        //    foreach (string time in times)
-        //    {
-        //        ListViewItem lvItem = new ListViewItem(time);
-        //        //lvItem.Text = time;
-
-        //        string taskItems = "";
-        //        foreach (Models.Task task in tasks)
-        //        {
-        //            int hour = Convert.ToInt32(task.deadline.ToString("HH"));
-        //            if (hour == Convert.ToInt32(time)) //S && task.deadline.Date == Convert.ToDateTime(parentCalendar.getSelectedDate()).Date)
-        //            {
-        //                taskItems += task.title;
-        //            }
-        //            lvItem.SubItems.Add(taskItems);
-        //        }
-        //        deadlineListView.Items.Add(lvItem);
-        //    }
-        //}
-
+        
         private string getNoteString(int taskID, int subtaskID)
         {
             string strNotes = "";
@@ -216,6 +188,13 @@ namespace YouCompleteMe.Views
                 strNotes += "\n" + note.note_message + "\n";
             }
             return strNotes;
+        }
+
+        private void dateForm_Activated(object sender, EventArgs e)
+        {
+            taskTreeView.Nodes.Clear();
+            this.tasks = TaskController.getUserTasks(user, parentCalendar.getSelectedDate());
+            dateForm_Load(sender, e);
         }
     }
 }

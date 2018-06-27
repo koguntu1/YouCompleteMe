@@ -39,10 +39,10 @@
             this.tasksTableAdapter = new YouCompleteMe.project6920DataSetTableAdapters.tasksTableAdapter();
             this.tableAdapterManager = new YouCompleteMe.project6920DataSetTableAdapters.TableAdapterManager();
             this.tasksDataGridView = new System.Windows.Forms.DataGridView();
-            this.taskTreeView = new System.Windows.Forms.TreeView();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.taskTreeView = new System.Windows.Forms.TreeView();
             ((System.ComponentModel.ISupportInitialize)(this.project6920DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tasksBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tasksDataGridView)).BeginInit();
@@ -135,15 +135,6 @@
             this.tasksDataGridView.TabIndex = 6;
             this.tasksDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tasksDataGridView_CellContentClick);
             // 
-            // taskTreeView
-            // 
-            this.taskTreeView.CheckBoxes = true;
-            this.taskTreeView.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.taskTreeView.Location = new System.Drawing.Point(43, 66);
-            this.taskTreeView.Name = "taskTreeView";
-            this.taskTreeView.Size = new System.Drawing.Size(342, 220);
-            this.taskTreeView.TabIndex = 7;
-            // 
             // dataGridViewTextBoxColumn7
             // 
             this.dataGridViewTextBoxColumn7.DataPropertyName = "deadline";
@@ -167,6 +158,15 @@
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
             this.dataGridViewTextBoxColumn4.Width = 200;
             // 
+            // taskTreeView
+            // 
+            this.taskTreeView.CheckBoxes = true;
+            this.taskTreeView.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.taskTreeView.Location = new System.Drawing.Point(43, 66);
+            this.taskTreeView.Name = "taskTreeView";
+            this.taskTreeView.Size = new System.Drawing.Size(342, 220);
+            this.taskTreeView.TabIndex = 7;
+            // 
             // dateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -182,6 +182,7 @@
             this.Name = "dateForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Selected Date Form";
+            this.Activated += new System.EventHandler(this.dateForm_Activated);
             this.Load += new System.EventHandler(this.dateForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.project6920DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tasksBindingSource)).EndInit();
