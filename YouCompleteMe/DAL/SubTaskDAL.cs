@@ -4,33 +4,156 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YouCompleteMe.Models;
 
 namespace YouCompleteMe.DAL
 {
-    public class SubTaskDAL
+    class SubtaskDAL
     {
+        public static List<Subtask> getSubtasksForTask(User currentUser, int taskID)
+        {
+            List<Subtask> subtasks = new List<Subtask>();
+
+            SqlConnection connection = DBConnection.GetConnection();
+            string selectStatement =
+                "SELECT * FROM subtask " +
+                "WHERE " +
+                "taskID = @task " +
+                "order by st_Deadline, st_Priority";
+
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@user", currentUser.userID);
+            selectCommand.Parameters.AddWithValue("@task", taskID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = selectCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    Subtask subtask = new Subtask();
+                    subtask.taskID = Convert.ToInt32(reader["taskID"]);
+                    subtask.subtaskID = Convert.ToInt32(reader["subtaskID"]);
+                    subtask.st_Description =reader["st_Description"].ToString();
+                    //task.completed = Convert.ToInt32(reader["completed"]);
+                    subtask.st_CreatedDate = (DateTime)reader["st_CreatedDate"];
+                    if (reader["st_CompleteDate"] != DBNull.Value)
+                        subtask.st_CompleteDate = (DateTime)reader["st_CompleteDate"];
+                    else
+                        subtask.st_CompleteDate = DateTime.MaxValue;
+                    if (reader["st_Deadline"] != DBNull.Value)
+                        subtask.st_Deadline = (DateTime)reader["st_Deadline"];
+                    else
+                        subtask.st_Deadline = DateTime.MaxValue;
+                    subtask.st_Priority = Convert.ToInt32(reader["st_Priority"]);
+
+                    subtasks.Add(subtask);
+                }
+                reader.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return subtasks;
+        }
+
+        // Update a subtask to complete status
+        public static int updateSubtaskCompleted(int subtaskID)
+        {
+            SqlConnection connection = DBConnection.GetConnection();
+            string updateStatement = "UPDATE subtask " +
+                                     "set st_CompleteDate = getDate() " +
+                                     "WHERE subtaskID = @subtaskID";
+            SqlCommand updateCommand = new SqlCommand(updateStatement, connection);
+            updateCommand.Parameters.AddWithValue("@subtaskID", subtaskID);
+
+            SqlDataReader reader = null;
+            try
+            {
+                connection.Open();
+
+                // Returns the number of rows affected by this update
+                return updateCommand.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+                if (reader != null)
+                    reader.Close();
+            }
+        }
+        public static int updateSubtaskIncomplete(int subtaskID)
+        {
+            SqlConnection connection = DBConnection.GetConnection();
+            string updateStatement = "UPDATE subtask " +
+                                     "set st_CompleteDate = @null " +
+                                     "WHERE subtaskID = @subtaskID";
+            SqlCommand updateCommand = new SqlCommand(updateStatement, connection);
+            updateCommand.Parameters.AddWithValue("@subtaskID", subtaskID);
+            updateCommand.Parameters.AddWithValue("@null", DBNull.Value);
+
+            SqlDataReader reader = null;
+            try
+            {
+                connection.Open();
+
+                // Returns the number of rows affected by this update
+                return updateCommand.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+                if (reader != null)
+                    reader.Close();
+            }
+        }
+
         /*
         This method use for add subtask into database.
         It return the subtask id of new subtask.
         */
-        public static int AddSubTask(YouCompleteMe.Models.SubTask subtask)
+        public static int AddSubTask(YouCompleteMe.Models.Subtask subtask)
         {
             SqlConnection connection = DBConnection.GetConnection();
             connection.Open();
             SqlTransaction sqlTransaction = connection.BeginTransaction();
-            string insertStatement =
-                "INSERT subtask " +
-                  "(taskID, st_Description, st_CreatedDate, st_CompleteDate, st_Deadline, st_Priority) " +
-                "VALUES (@taskID, @st_Description, @st_CreatedDate, @st_CompleteDate, @st_Deadline, @st_Priority)";
+            string insertStatement = "INSERT subtask " +
+                                     "(taskID, st_Description, st_CreatedDate, st_CompleteDate, st_Deadline, st_Priority) " +
+                                     "VALUES (@taskID, @st_Description, @st_CreatedDate, @st_CompleteDate, @st_Deadline, @st_Priority)";
             SqlCommand insertCommand = new SqlCommand(insertStatement, connection, sqlTransaction);
             insertCommand.Parameters.AddWithValue("@taskID", subtask.taskID);
             insertCommand.Parameters.AddWithValue("@st_Description", subtask.st_Description);
             insertCommand.Parameters.AddWithValue("@st_CreatedDate", subtask.st_CreatedDate);
-            if(subtask.st_CompleteDate == DateTime.MinValue)
+            if (subtask.st_CompleteDate == DateTime.MinValue)
             {
                 insertCommand.Parameters.AddWithValue("@st_CompleteDate", DBNull.Value);
             }
-            else {
+            else
+            {
                 insertCommand.Parameters.AddWithValue("@st_CompleteDate", subtask.st_CompleteDate);
             }
 
@@ -43,7 +166,7 @@ namespace YouCompleteMe.DAL
                 insertCommand.Parameters.AddWithValue("@st_Deadline", subtask.st_Deadline);
             }
 
-            if(subtask.st_Priority == -1)
+            if (subtask.st_Priority == -1)
             {
                 insertCommand.Parameters.AddWithValue("@st_Priority", DBNull.Value);
             }
@@ -54,17 +177,15 @@ namespace YouCompleteMe.DAL
 
             try
             {
-                
+
                 insertCommand.ExecuteNonQuery();
-                string selectStatement =
-                    "SELECT IDENT_CURRENT('subtask') FROM subtask";
+                string selectStatement = "SELECT IDENT_CURRENT('subtask') FROM subtask";
                 SqlCommand selectCommand = new SqlCommand(selectStatement, connection, sqlTransaction);
                 int subtaskID = Convert.ToInt32(selectCommand.ExecuteScalar());
                 //add notes to notes table
-                string insertNoteStatement =
-                    "INSERT note " +
-                      "(taskID, subtaskID, note_message) " +
-                    "VALUES (@taskID, @subtaskID, @note_message)";
+                string insertNoteStatement = "INSERT note " +
+                                             "(taskID, subtaskID, note_message) " +
+                                             "VALUES (@taskID, @subtaskID, @note_message)";
                 SqlCommand insertNoteCommand = new SqlCommand(insertNoteStatement, connection, sqlTransaction);
                 insertNoteCommand.Parameters.AddWithValue("@taskID", subtask.taskID);
                 insertNoteCommand.Parameters.AddWithValue("@note_message", subtask.note);
@@ -86,9 +207,9 @@ namespace YouCompleteMe.DAL
 
 
         /*Returns specified subtask based on subtaskID */
-        public static Models.SubTask getASubTask(int subtaskID)
+        public static Models.Subtask getASubTask(int subtaskID)
         {
-            Models.SubTask subtask = new Models.SubTask();
+            Models.Subtask subtask = new Models.Subtask();
             SqlConnection connection = DBConnection.GetConnection();
             string selectStatement = "SELECT * FROM subtask WHERE subtaskID = @subtaskID";
             SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
@@ -104,13 +225,13 @@ namespace YouCompleteMe.DAL
                 {
                     subtask.taskID = Convert.ToInt32(reader["taskID"]);
                     subtask.subtaskID = Convert.ToInt32(reader["subtaskID"]);
-                    subtask.st_Priority = Convert.ToInt32(reader["st_Priority"]);
+                    //subtask.st_Priority = Convert.ToInt32(reader["st_Priority"]);
                     subtask.st_Description = reader["st_Description"].ToString();
                     //subtask.st_Deadline = Convert.ToDateTime(reader["st_Deadline"]);
                     subtask.st_CreatedDate = Convert.ToDateTime(reader["st_CreatedDate"]);
-                    //subtask.st_CompleteDate = Convert.ToDateTime(reader["st_CompleteDate"]); 
+                    //subtask.st_CompleteDate = Convert.ToDateTime(reader["st_CompleteDate"]);
                 }
-                else
+               else
                 {
                     subtask = null;
                 }
