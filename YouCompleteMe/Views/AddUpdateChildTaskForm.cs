@@ -77,10 +77,12 @@ namespace YouCompleteMe.Views
 
             if (comboPriority.SelectedItem.ToString() == "")
                 _subtask.st_Priority = -1;
+            else if (comboPriority.SelectedItem.ToString() == "Low")
+                _subtask.st_Priority = 1;
+            else if (comboPriority.SelectedItem.ToString() == "Medium")
+                _subtask.st_Priority = 2;
             else
-            {
-                _subtask.st_Priority = Int32.Parse(comboPriority.Text);
-            }
+                _subtask.st_Priority = 3;
             _subtask.note = notesTextBox.Text.Trim();
 
         }

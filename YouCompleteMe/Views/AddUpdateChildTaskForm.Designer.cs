@@ -62,9 +62,9 @@
             this.comboPriority.FormattingEnabled = true;
             this.comboPriority.Items.AddRange(new object[] {
             "",
-            "1",
-            "2",
-            "3"});
+            "Low",
+            "Medium",
+            "High"});
             this.comboPriority.Location = new System.Drawing.Point(215, 254);
             this.comboPriority.Name = "comboPriority";
             this.comboPriority.Size = new System.Drawing.Size(200, 27);
