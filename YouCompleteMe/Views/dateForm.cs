@@ -106,28 +106,31 @@ namespace YouCompleteMe.Views
 
                 // Mark complete tasks with a checked box
                 if (task.completed == true)
-                {
                     currentNode.Checked = true;
-                }
+
                 // Set font color to indicate priority
                 if (task.task_priority == 1)
-                {
                     currentNode.ForeColor = Color.Red;
-                }
-                if (task.task_priority == 2)
-                {
+                else if (task.task_priority == 2)
                     currentNode.ForeColor = Color.Orange;
-                }
 
                 // Add details tooltip
                 String priority = "";
-                if (task.task_priority == 1)
+                if (task.task_priority == -1)
+                    priority = "None";
+                else if (task.task_priority == 1)
                     priority = "High";
                 else if (task.task_priority == 2)
                     priority = "Medium";
                 else
                     priority = "Low";
-                currentNode.ToolTipText = "Deadline: " + task.deadline.ToString() + "\n" +
+
+                string deadline = "";
+                if (task.deadline == DateTime.MaxValue)
+                    deadline = "None";
+                else
+                    deadline = task.deadline.ToString();
+                currentNode.ToolTipText = "Deadline: " + deadline + "\n" +
                                           "Priority: " + priority + "\n" +
                                           "Notes: " + this.getNoteString(task.taskID, -1);
                 taskTreeView.ShowNodeToolTips = true;
@@ -142,13 +145,21 @@ namespace YouCompleteMe.Views
                     currentNode.Nodes[subtasks.FindIndex(b => b.subtaskID == st.subtaskID)].Tag = st;
                     // Add details tooltip
                     String st_priority = "";
-                    if (st.st_Priority == 1)
+                    if (st.st_Priority == -1)
+                        st_priority = "None";
+                    else if (st.st_Priority == 1)
                         st_priority = "High";
                     else if (st.st_Priority == 2)
                         st_priority = "Medium";
                     else
                         st_priority = "Low";
-                    currentNode.Nodes[subtasks.FindIndex(b => b.subtaskID == st.subtaskID)].ToolTipText = "Deadline: " + st.st_Deadline.ToString() + "\n" +
+
+                    string subtaskdeadline = "";
+                    if (st.st_Deadline == DateTime.MaxValue)
+                        subtaskdeadline = "None";
+                    else
+                        subtaskdeadline = st.st_Deadline.ToString();
+                    currentNode.Nodes[subtasks.FindIndex(b => b.subtaskID == st.subtaskID)].ToolTipText = "Deadline: " + subtaskdeadline + "\n" +
                                                                                                           "Priority: " + st_priority + "\n" +
                                                                                                           "Notes: " + this.getNoteString(task.taskID, st.subtaskID);
 

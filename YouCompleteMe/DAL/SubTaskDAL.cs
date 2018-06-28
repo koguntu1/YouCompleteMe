@@ -45,7 +45,10 @@ namespace YouCompleteMe.DAL
                         subtask.st_Deadline = (DateTime)reader["st_Deadline"];
                     else
                         subtask.st_Deadline = DateTime.MaxValue;
-                    subtask.st_Priority = Convert.ToInt32(reader["st_Priority"]);
+                    if (reader["st_Priority"] != DBNull.Value)
+                        subtask.st_Priority = Convert.ToInt32(reader["st_Priority"]);
+                    else
+                        subtask.st_Priority = -1;
 
                     subtasks.Add(subtask);
                 }
