@@ -59,6 +59,8 @@
             this.label20 = new System.Windows.Forms.Label();
             this.hintText = new System.Windows.Forms.TextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.viewPWbtn2 = new System.Windows.Forms.Button();
+            this.viewPWbtn1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnExit
@@ -157,6 +159,7 @@
             this.toolTip1.SetToolTip(this.txtPassword, "Password Must Be:\r\nAt least 8 characters long\r\nContains one uppercase character\r\n" +
         "Contain one lowercase character\r\nContain a number between 1 and 9\r\nContain one o" +
         "f these characters ! @ # $ % ^ * ( ) ");
+            this.txtPassword.UseSystemPasswordChar = true;
             // 
             // txtUser
             // 
@@ -193,6 +196,7 @@
             this.txtConfirmPassword.Name = "txtConfirmPassword";
             this.txtConfirmPassword.Size = new System.Drawing.Size(284, 27);
             this.txtConfirmPassword.TabIndex = 21;
+            this.txtConfirmPassword.UseSystemPasswordChar = true;
             // 
             // label8
             // 
@@ -335,11 +339,32 @@
             this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTip1.ToolTipTitle = "Tips ! ! !";
             // 
+            // viewPWbtn2
+            // 
+            this.viewPWbtn2.Location = new System.Drawing.Point(469, 324);
+            this.viewPWbtn2.Name = "viewPWbtn2";
+            this.viewPWbtn2.Size = new System.Drawing.Size(48, 23);
+            this.viewPWbtn2.TabIndex = 43;
+            this.viewPWbtn2.Text = "View";
+            this.viewPWbtn2.UseVisualStyleBackColor = true;
+            // 
+            // viewPWbtn1
+            // 
+            this.viewPWbtn1.Location = new System.Drawing.Point(469, 280);
+            this.viewPWbtn1.Name = "viewPWbtn1";
+            this.viewPWbtn1.Size = new System.Drawing.Size(48, 23);
+            this.viewPWbtn1.TabIndex = 44;
+            this.viewPWbtn1.Text = "View";
+            this.viewPWbtn1.UseVisualStyleBackColor = true;
+            this.viewPWbtn1.Click += new System.EventHandler(this.viewPWbtn1_Click);
+            // 
             // registerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(519, 449);
+            this.ClientSize = new System.Drawing.Size(529, 449);
+            this.Controls.Add(this.viewPWbtn1);
+            this.Controls.Add(this.viewPWbtn2);
             this.Controls.Add(this.hintText);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.txtEmail3);
@@ -409,5 +434,7 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox hintText;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button viewPWbtn2;
+        private System.Windows.Forms.Button viewPWbtn1;
     }
 }

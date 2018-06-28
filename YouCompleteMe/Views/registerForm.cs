@@ -256,5 +256,19 @@ namespace YouCompleteMe.Views
             }
             return isMatch;
         }
+
+        private void viewPWbtn1_Click(object sender, EventArgs e)
+        {
+            if (viewPWbtn1.Text == "View")
+            {
+                txtPassword.UseSystemPasswordChar = false;
+                viewPWbtn1.Text = "Hide";
+            }
+            else
+            {
+                txtPassword.UseSystemPasswordChar = true;
+                viewPWbtn1.Text = "View";
+            }
+        }
     }
 }

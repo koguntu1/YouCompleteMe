@@ -129,6 +129,7 @@
             // 
             // comboPriority
             // 
+            this.comboPriority.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboPriority.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboPriority.FormattingEnabled = true;
             this.comboPriority.Items.AddRange(new object[] {
@@ -184,6 +185,7 @@
             // 
             // taskTypeComboBox
             // 
+            this.taskTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.taskTypeComboBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.taskTypeComboBox.FormattingEnabled = true;
             this.taskTypeComboBox.Items.AddRange(new object[] {
