@@ -22,6 +22,8 @@ namespace YouCompleteMe.Views
         {
             InitializeComponent();
             counter = 0;
+            viewPWll.Text = "\uD83D\uDC41";
+            viewPWll.LinkBehavior = LinkBehavior.NeverUnderline;
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
@@ -150,6 +152,11 @@ namespace YouCompleteMe.Views
             resetForm.Close();
             resetForm = null;
             this.Show();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            textBox2.UseSystemPasswordChar = !textBox2.UseSystemPasswordChar;
         }
     }
 }

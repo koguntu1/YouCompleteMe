@@ -40,6 +40,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.viewPWll = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -153,11 +154,26 @@
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
             // 
+            // viewPWll
+            // 
+            this.viewPWll.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
+            this.viewPWll.AutoSize = true;
+            this.viewPWll.Font = new System.Drawing.Font("Arial Narrow", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.viewPWll.LinkColor = System.Drawing.Color.MidnightBlue;
+            this.viewPWll.Location = new System.Drawing.Point(393, 156);
+            this.viewPWll.Name = "viewPWll";
+            this.viewPWll.Size = new System.Drawing.Size(62, 31);
+            this.viewPWll.TabIndex = 10;
+            this.viewPWll.TabStop = true;
+            this.viewPWll.Text = "View";
+            this.viewPWll.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
             // loginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(502, 296);
+            this.Controls.Add(this.viewPWll);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnExit);
@@ -190,5 +206,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.LinkLabel viewPWll;
     }
 }

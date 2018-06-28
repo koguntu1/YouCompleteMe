@@ -20,6 +20,10 @@ namespace YouCompleteMe.Views
         public registerForm()
         {
             InitializeComponent();
+            linkLabel1.Text = "\uD83D\uDC41";
+            linkLabel2.Text = "\uD83D\uDC41";
+            linkLabel1.LinkBehavior = LinkBehavior.NeverUnderline;
+            linkLabel2.LinkBehavior = LinkBehavior.NeverUnderline;
         }
 
         //Defines action of exit button
@@ -257,18 +261,14 @@ namespace YouCompleteMe.Views
             return isMatch;
         }
 
-        private void viewPWbtn1_Click(object sender, EventArgs e)
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (viewPWbtn1.Text == "View")
-            {
-                txtPassword.UseSystemPasswordChar = false;
-                viewPWbtn1.Text = "Hide";
-            }
-            else
-            {
-                txtPassword.UseSystemPasswordChar = true;
-                viewPWbtn1.Text = "View";
-            }
+            txtPassword.UseSystemPasswordChar = !txtPassword.UseSystemPasswordChar;
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            txtConfirmPassword.UseSystemPasswordChar = !txtConfirmPassword.UseSystemPasswordChar;
         }
     }
 }

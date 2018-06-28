@@ -59,8 +59,8 @@
             this.label20 = new System.Windows.Forms.Label();
             this.hintText = new System.Windows.Forms.TextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.viewPWbtn2 = new System.Windows.Forms.Button();
-            this.viewPWbtn1 = new System.Windows.Forms.Button();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // btnExit
@@ -339,32 +339,41 @@
             this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTip1.ToolTipTitle = "Tips ! ! !";
             // 
-            // viewPWbtn2
+            // linkLabel1
             // 
-            this.viewPWbtn2.Location = new System.Drawing.Point(469, 324);
-            this.viewPWbtn2.Name = "viewPWbtn2";
-            this.viewPWbtn2.Size = new System.Drawing.Size(48, 23);
-            this.viewPWbtn2.TabIndex = 43;
-            this.viewPWbtn2.Text = "View";
-            this.viewPWbtn2.UseVisualStyleBackColor = true;
+            this.linkLabel1.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel1.LinkColor = System.Drawing.Color.Navy;
+            this.linkLabel1.Location = new System.Drawing.Point(462, 270);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(73, 31);
+            this.linkLabel1.TabIndex = 43;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "View";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // viewPWbtn1
+            // linkLabel2
             // 
-            this.viewPWbtn1.Location = new System.Drawing.Point(469, 280);
-            this.viewPWbtn1.Name = "viewPWbtn1";
-            this.viewPWbtn1.Size = new System.Drawing.Size(48, 23);
-            this.viewPWbtn1.TabIndex = 44;
-            this.viewPWbtn1.Text = "View";
-            this.viewPWbtn1.UseVisualStyleBackColor = true;
-            this.viewPWbtn1.Click += new System.EventHandler(this.viewPWbtn1_Click);
+            this.linkLabel2.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel2.LinkColor = System.Drawing.Color.Navy;
+            this.linkLabel2.Location = new System.Drawing.Point(462, 314);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(73, 31);
+            this.linkLabel2.TabIndex = 44;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "View";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
             // registerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(529, 449);
-            this.Controls.Add(this.viewPWbtn1);
-            this.Controls.Add(this.viewPWbtn2);
+            this.Controls.Add(this.linkLabel2);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.hintText);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.txtEmail3);
@@ -434,7 +443,7 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox hintText;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Button viewPWbtn2;
-        private System.Windows.Forms.Button viewPWbtn1;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel linkLabel2;
     }
 }
