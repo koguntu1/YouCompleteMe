@@ -43,6 +43,7 @@
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.taskTreeView = new System.Windows.Forms.TreeView();
+            this.btnAddSubtask = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.project6920DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tasksBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tasksDataGridView)).BeginInit();
@@ -71,18 +72,19 @@
             // btnUpdateTask
             // 
             this.btnUpdateTask.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateTask.Location = new System.Drawing.Point(233, 323);
+            this.btnUpdateTask.Location = new System.Drawing.Point(358, 323);
             this.btnUpdateTask.Name = "btnUpdateTask";
             this.btnUpdateTask.Size = new System.Drawing.Size(152, 33);
             this.btnUpdateTask.TabIndex = 3;
             this.btnUpdateTask.Text = "Update Task";
             this.btnUpdateTask.UseVisualStyleBackColor = true;
+            this.btnUpdateTask.Visible = false;
             this.btnUpdateTask.Click += new System.EventHandler(this.btnUpdateTask_Click);
             // 
             // btnExit
             // 
             this.btnExit.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Location = new System.Drawing.Point(420, 323);
+            this.btnExit.Location = new System.Drawing.Point(583, 323);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(152, 33);
             this.btnExit.TabIndex = 4;
@@ -167,11 +169,23 @@
             this.taskTreeView.Size = new System.Drawing.Size(342, 220);
             this.taskTreeView.TabIndex = 7;
             // 
+            // btnAddSubtask
+            // 
+            this.btnAddSubtask.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddSubtask.Location = new System.Drawing.Point(200, 323);
+            this.btnAddSubtask.Name = "btnAddSubtask";
+            this.btnAddSubtask.Size = new System.Drawing.Size(152, 33);
+            this.btnAddSubtask.TabIndex = 8;
+            this.btnAddSubtask.Text = "Add Subtask";
+            this.btnAddSubtask.UseVisualStyleBackColor = true;
+            this.btnAddSubtask.Click += new System.EventHandler(this.btnAddSubtask_Click);
+            // 
             // dateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(776, 379);
+            this.Controls.Add(this.btnAddSubtask);
             this.Controls.Add(this.taskTreeView);
             this.Controls.Add(this.tasksDataGridView);
             this.Controls.Add(this.label2);
@@ -208,5 +222,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.Button btnAddSubtask;
     }
 }

@@ -120,6 +120,7 @@
             this.managementSubTaskToolStripMenuItem1.Name = "managementSubTaskToolStripMenuItem1";
             this.managementSubTaskToolStripMenuItem1.Size = new System.Drawing.Size(134, 20);
             this.managementSubTaskToolStripMenuItem1.Text = "Subtask Management";
+            this.managementSubTaskToolStripMenuItem1.Visible = false;
             // 
             // addUpdateSubTaskToolStripMenuItem
             // 

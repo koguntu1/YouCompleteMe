@@ -18,6 +18,7 @@ namespace YouCompleteMe.Views
         mainForm parentCalendar;
         private static dateForm instance;
         private List<Models.Task> tasks;
+        private AddUpdateChildTaskForm subtaskForm;
 
         public dateForm(User _user, mainForm _calendar)
         {
@@ -216,6 +217,28 @@ namespace YouCompleteMe.Views
             taskTreeView.Nodes.Clear();
             this.tasks = TaskController.getUserTasks(user, parentCalendar.getSelectedDate());
             dateForm_Load(sender, e);
+        }
+
+        private void btnAddSubtask_Click(object sender, EventArgs e)
+        {
+            if (subtaskForm == null)
+            {
+                subtaskForm = new AddUpdateChildTaskForm(user, true);
+                //childTask.MdiParent = this;
+                subtaskForm.StartPosition = FormStartPosition.CenterScreen;
+                subtaskForm.FormClosed += SubtaskForm_FormClosed;
+                subtaskForm.ShowDialog();
+            }
+            else
+            {
+                subtaskForm.Activate();
+            }
+        }
+
+        private void SubtaskForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            subtaskForm.Dispose();
+            subtaskForm = null;
         }
     }
 }
