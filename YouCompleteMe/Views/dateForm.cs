@@ -170,6 +170,16 @@ namespace YouCompleteMe.Views
                 if (e.Node.Checked == false)
                 {
                     TaskController.updateTaskCompleted(tag.taskID);
+                    List<Subtask> subtasks = SubtaskController.GetSubtasksForTask(user, tag.taskID);
+                    foreach (Subtask st in subtasks)
+                    {
+                        if (st.st_CompleteDate == DateTime.MaxValue)
+                            SubtaskController.UpdateSubtaskToCompleted(st.subtaskID);
+                    }
+                    foreach (TreeNode node in e.Node.Nodes)
+                    {
+                        node.Checked = true;
+                    }
                 }
                 else if (e.Node.Checked == true)
                 {
