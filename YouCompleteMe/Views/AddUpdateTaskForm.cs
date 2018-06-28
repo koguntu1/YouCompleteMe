@@ -60,17 +60,20 @@ namespace YouCompleteMe.Views
             _task.task_owner = user.userID;
             if (comboPriority.SelectedItem.ToString() == "")
                 _task.task_priority = -1;
+            else if (comboPriority.SelectedItem.ToString() == "Low")
+                _task.task_priority = 1;
+            else if (comboPriority.SelectedItem.ToString() == "Medium")
+                _task.task_priority = 2;
             else
-            {
-                _task.task_priority = Int32.Parse(comboPriority.Text);
-            }
+                _task.task_priority = 3;
 
-            if (taskTypeComboBox.SelectedItem == null)
+            if (taskTypeComboBox.SelectedItem == null || taskTypeComboBox.SelectedItem.ToString() == "Other")
                 _task.taskType = 3;
+            else if (taskTypeComboBox.SelectedItem.ToString() == "Personal")
+                _task.taskType = 2;
             else
-            {
-                _task.taskType = Int32.Parse(taskTypeComboBox.Text);
-            }
+                _task.taskType = 1;
+
             _task.title = txtTitle.Text;
             _task.note = notesTextBox.Text.Trim();
 

@@ -133,9 +133,9 @@
             this.comboPriority.FormattingEnabled = true;
             this.comboPriority.Items.AddRange(new object[] {
             "",
-            "1",
-            "2",
-            "3"});
+            "Low",
+            "Medium",
+            "High"});
             this.comboPriority.Location = new System.Drawing.Point(212, 265);
             this.comboPriority.Name = "comboPriority";
             this.comboPriority.Size = new System.Drawing.Size(200, 27);
@@ -187,9 +187,9 @@
             this.taskTypeComboBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.taskTypeComboBox.FormattingEnabled = true;
             this.taskTypeComboBox.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3"});
+            "Personal",
+            "Professional",
+            "Other"});
             this.taskTypeComboBox.Location = new System.Drawing.Point(212, 312);
             this.taskTypeComboBox.Name = "taskTypeComboBox";
             this.taskTypeComboBox.Size = new System.Drawing.Size(200, 27);
