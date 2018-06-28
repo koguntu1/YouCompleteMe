@@ -18,17 +18,22 @@ namespace YouCompleteMe.Views
         bool isUpdate = false;//if we update the subtask, this variable should set to true when update subtask
                               // and set to false if we add new subtask
 
+        private dateForm dateForm;
+
         private static AddUpdateChildTaskForm instance;
 
-        public AddUpdateChildTaskForm(User _user, bool _isUpdate)
+        public AddUpdateChildTaskForm(User _user, bool _isUpdate, dateForm dateForm)
         {
+           
             InitializeComponent();
             user = _user;
             isUpdate = _isUpdate;
             //load tasks into comboBox
+            this.dateForm = dateForm;
             LoadComboBoxes();
             comboPriority.SelectedIndex = 0;
             instance = this;
+            
         }
 
         public static AddUpdateChildTaskForm Instance
@@ -46,7 +51,9 @@ namespace YouCompleteMe.Views
         {
             try
             {
-                taskList = TaskController.getListTasks(user.userID);
+                //taskList = TaskController.getListTasks(user.userID);
+                MessageBox.Show(dateForm.getSelectedNodeTaskID().ToString());
+                tbTask.Text = TaskController.getATask(dateForm.getSelectedNodeTaskID()).title;
                 comboListTask.DataSource = taskList;
                 comboListTask.DisplayMember = "title";
                 comboListTask.ValueMember = "taskID";
@@ -61,7 +68,8 @@ namespace YouCompleteMe.Views
         /* Put data input into subtask object before added this subtask into database*/
         private void PutSubTask(Models.Subtask _subtask)
         {
-            _subtask.taskID = (int)comboListTask.SelectedValue;
+            //_subtask.taskID = (int)comboListTask.SelectedValue;
+            _subtask.taskID = dateForm.getSelectedNodeTaskID();
             if (completePicker.Text.Trim() != "")
             {
                 _subtask.st_CompleteDate = completePicker.Value;
@@ -119,6 +127,7 @@ namespace YouCompleteMe.Views
                         {
                             int subtaskID = SubtaskController.AddSubTask(subtask);
                             MessageBox.Show("SubTask successfully added");
+                            this.dateForm.dateForm_Load(sender, e);
                             this.Close();
                         }  
                     }

@@ -45,6 +45,7 @@
             this.createDatePicker = new System.Windows.Forms.DateTimePicker();
             this.deadlinePicker = new System.Windows.Forms.DateTimePicker();
             this.completePicker = new System.Windows.Forms.DateTimePicker();
+            this.tbTask = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // notesTextBox
@@ -182,6 +183,7 @@
             this.comboListTask.Size = new System.Drawing.Size(200, 27);
             this.comboListTask.TabIndex = 69;
             this.comboListTask.Tag = "TaskID";
+            this.comboListTask.Visible = false;
             // 
             // label8
             // 
@@ -222,11 +224,21 @@
             this.completePicker.TabIndex = 72;
             this.completePicker.Tag = "complete date";
             // 
+            // tbTask
+            // 
+            this.tbTask.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbTask.Location = new System.Drawing.Point(215, 78);
+            this.tbTask.Name = "tbTask";
+            this.tbTask.ReadOnly = true;
+            this.tbTask.Size = new System.Drawing.Size(200, 27);
+            this.tbTask.TabIndex = 73;
+            // 
             // AddUpdateChildTaskForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(491, 519);
+            this.Controls.Add(this.tbTask);
             this.Controls.Add(this.completePicker);
             this.Controls.Add(this.deadlinePicker);
             this.Controls.Add(this.createDatePicker);
@@ -271,5 +283,6 @@
         private System.Windows.Forms.DateTimePicker createDatePicker;
         private System.Windows.Forms.DateTimePicker deadlinePicker;
         private System.Windows.Forms.DateTimePicker completePicker;
+        private System.Windows.Forms.TextBox tbTask;
     }
 }

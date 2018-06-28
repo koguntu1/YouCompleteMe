@@ -33,13 +33,13 @@ namespace YouCompleteMe.Views
 
         private void btnUpdateSubTask_Click(object sender, EventArgs e)
         {
-            AddUpdateChildTaskForm addUpdateChildTaskForm = new AddUpdateChildTaskForm(user,true);
+            AddUpdateChildTaskForm addUpdateChildTaskForm = new AddUpdateChildTaskForm(user, true, null);
             addUpdateChildTaskForm.ShowDialog();
         }
 
         private void btnAddNewSubTask_Click(object sender, EventArgs e)
         {
-            AddUpdateChildTaskForm addUpdateChildTaskForm = new AddUpdateChildTaskForm(user, false);
+            AddUpdateChildTaskForm addUpdateChildTaskForm = new AddUpdateChildTaskForm(user, false, null);
             addUpdateChildTaskForm.ShowDialog();
         }
 

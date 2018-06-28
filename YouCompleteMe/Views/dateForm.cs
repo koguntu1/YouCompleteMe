@@ -19,6 +19,7 @@ namespace YouCompleteMe.Views
         private static dateForm instance;
         private List<Models.Task> tasks;
         private AddUpdateChildTaskForm subtaskForm;
+        private int selectedTask;
 
         public dateForm(User _user, mainForm _calendar)
         {
@@ -26,7 +27,6 @@ namespace YouCompleteMe.Views
             user = _user;
             this.parentCalendar = _calendar;
             instance = this;
-            this.tasks = TaskController.getUserTasks(user, parentCalendar.getSelectedDate());
         }
 
         public static dateForm Instance
@@ -44,13 +44,13 @@ namespace YouCompleteMe.Views
 
         private void btnUpdateTask_Click(object sender, EventArgs e)
         {
-            AddUpdateTaskForm addUpdateTaskForm = new AddUpdateTaskForm(user, true);
+            AddUpdateTaskForm addUpdateTaskForm = new AddUpdateTaskForm(user, true, this);
             addUpdateTaskForm.ShowDialog();
         }
 
         private void btnAddNewTask_Click(object sender, EventArgs e)
         {
-            AddUpdateTaskForm addUpdateTaskForm = new AddUpdateTaskForm(user,false);
+            AddUpdateTaskForm addUpdateTaskForm = new AddUpdateTaskForm(user, false, this);
             addUpdateTaskForm.ShowDialog();
         }
 
@@ -63,9 +63,11 @@ namespace YouCompleteMe.Views
         }
 
         // Load with the current users tasks for the selected date
-        private void dateForm_Load(object sender, EventArgs e)
+        public void dateForm_Load(object sender, EventArgs e)
         {
             this.label2.Text = parentCalendar.getSelectedDate_Formatted();
+            this.tasks = TaskController.getUserTasks(user, parentCalendar.getSelectedDate());
+            this.taskTreeView.Nodes.Clear();
             tasksDataGridView.DataSource = TaskController.getCurrentTaskDeadlines(user, parentCalendar.getSelectedDate());
             populateTaskTreeView();
         }
@@ -134,7 +136,7 @@ namespace YouCompleteMe.Views
                 List<Subtask> subtasks = SubtaskController.GetSubtasksForTask(user, task.taskID);
 
                 // Add each subtask as a nested node
-                foreach(Subtask st in subtasks)
+                foreach (Subtask st in subtasks)
                 {
                     currentNode.Nodes.Add(st.st_Description);
                     currentNode.Nodes[subtasks.FindIndex(b => b.subtaskID == st.subtaskID)].Tag = st;
@@ -154,7 +156,7 @@ namespace YouCompleteMe.Views
                     if (st.st_CompleteDate != DateTime.MaxValue)
                     {
                         currentNode.Nodes[subtasks.FindIndex(b => b.subtaskID == st.subtaskID)].Checked = true;
-                    }  
+                    }
                 }
             }
 
@@ -200,30 +202,36 @@ namespace YouCompleteMe.Views
                 }
             }
         }
-        
+
         private string getNoteString(int taskID, int subtaskID)
         {
             string strNotes = "";
             List<Note> notes = NoteController.getNotes(taskID, subtaskID);
-            foreach(Note note in notes)
+            foreach (Note note in notes)
             {
                 strNotes += "\n" + note.note_message + "\n";
             }
             return strNotes;
         }
 
-        private void dateForm_Activated(object sender, EventArgs e)
-        {
-            taskTreeView.Nodes.Clear();
-            this.tasks = TaskController.getUserTasks(user, parentCalendar.getSelectedDate());
-            dateForm_Load(sender, e);
-        }
+        //private void dateForm_Activated(object sender, EventArgs e)
+        //{
+        //    taskTreeView.Nodes.Clear();
+        //    this.tasks = TaskController.getUserTasks(user, parentCalendar.getSelectedDate());
+        //    dateForm_Load(sender, e);
+        //}
 
         private void btnAddSubtask_Click(object sender, EventArgs e)
         {
-            if (subtaskForm == null)
+            if (taskTreeView.SelectedNode == null)
             {
-                subtaskForm = new AddUpdateChildTaskForm(user, true);
+                MessageBox.Show("Please select a task.");
+            }
+            else if (subtaskForm == null)
+            {
+                Models.Task tag = (Models.Task)taskTreeView.SelectedNode.Tag;
+                //MessageBox.Show(tag.taskID.ToString());
+                subtaskForm = new AddUpdateChildTaskForm(user, false, this);
                 //childTask.MdiParent = this;
                 subtaskForm.StartPosition = FormStartPosition.CenterScreen;
                 subtaskForm.FormClosed += SubtaskForm_FormClosed;
@@ -239,6 +247,19 @@ namespace YouCompleteMe.Views
         {
             subtaskForm.Dispose();
             subtaskForm = null;
+        }
+
+        public int getSelectedNodeTaskID()
+        {
+            return this.selectedTask;
+        }
+
+        private void taskTreeView_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            Models.Task tag = (Models.Task)taskTreeView.SelectedNode.Tag;
+            //MessageBox.Show(tag.taskID.ToString());
+            this.selectedTask = tag.taskID;
+            //MessageBox.Show(this.selectedTask.ToString());
         }
     }
 }

@@ -77,7 +77,7 @@ namespace YouCompleteMe.DAL
             try
             {
                 connection.Open();
-                reader = selectCommand.ExecuteReader();
+                reader = selectCommand.ExecuteReader(System.Data.CommandBehavior.SingleRow);
                 if (reader.Read())
                 {
                     task.taskID = Convert.ToInt32(reader["taskID"]);

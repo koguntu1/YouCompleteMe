@@ -168,6 +168,7 @@
             this.taskTreeView.Name = "taskTreeView";
             this.taskTreeView.Size = new System.Drawing.Size(342, 220);
             this.taskTreeView.TabIndex = 7;
+            this.taskTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.taskTreeView_AfterSelect);
             // 
             // btnAddSubtask
             // 
@@ -196,7 +197,6 @@
             this.Name = "dateForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Selected Date Form";
-            this.Activated += new System.EventHandler(this.dateForm_Activated);
             this.Load += new System.EventHandler(this.dateForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.project6920DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tasksBindingSource)).EndInit();

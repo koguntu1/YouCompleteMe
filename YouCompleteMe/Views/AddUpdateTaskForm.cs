@@ -18,13 +18,15 @@ namespace YouCompleteMe.Views
         User user; //user object to keep the information of the user are loged in
         bool isUpdate = false;//if we update the task, this variable should set to true when update task
                               // and set to false if we add new task
+        private dateForm dateForm;
         private static AddUpdateTaskForm instance;
-        public AddUpdateTaskForm(User _user, bool _isUpdate)
+        public AddUpdateTaskForm(User _user, bool _isUpdate, dateForm dateForm)
         {
             InitializeComponent();
             user = _user;
             isUpdate = _isUpdate;
             comboPriority.SelectedIndex = 0;
+            this.dateForm = dateForm;
             instance = this;
         }
 
@@ -113,6 +115,7 @@ namespace YouCompleteMe.Views
                         {
                             int taskID = TaskController.AddTask(task);
                             MessageBox.Show("Task successfully added");
+                            dateForm.dateForm_Load(sender, e);
                             this.Close();
                         }   
                     }
