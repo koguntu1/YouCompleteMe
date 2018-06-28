@@ -28,6 +28,8 @@ namespace YouCompleteMe.Views
             comboPriority.SelectedIndex = 0;
             this.dateForm = dateForm;
             instance = this;
+            deadlineDateTimePicker.Format = DateTimePickerFormat.Custom;
+            deadlineDateTimePicker.CustomFormat = "MM/dd/yyyy hh:mm";
         }
 
         public static AddUpdateTaskForm Instance

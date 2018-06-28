@@ -33,7 +33,8 @@ namespace YouCompleteMe.Views
             LoadComboBoxes();
             comboPriority.SelectedIndex = 0;
             instance = this;
-            
+            deadlinePicker.Format = DateTimePickerFormat.Custom;
+            deadlinePicker.CustomFormat = "MM/dd/yyyy hh:mm";
         }
 
         public static AddUpdateChildTaskForm Instance
