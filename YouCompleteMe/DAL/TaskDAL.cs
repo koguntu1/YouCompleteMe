@@ -17,6 +17,8 @@ namespace YouCompleteMe.DAL
         public static int AddTask(YouCompleteMe.Models.Task task)
         {
             SqlConnection connection = DBConnection.GetConnection();
+            connection.Open();
+            //SqlTransaction sqlTransaction = connection.BeginTransaction();
             string insertStatement =
                 "INSERT tasks " +
                   "(task_owner, taskType, title, createdDate, currentDate, deadline, task_priority, completed) " +
@@ -32,16 +34,26 @@ namespace YouCompleteMe.DAL
             insertCommand.Parameters.AddWithValue("@taskType", task.taskType);
             try
             {
-                connection.Open();
+                
                 insertCommand.ExecuteNonQuery();
                 string selectStatement =
                     "SELECT IDENT_CURRENT('tasks') FROM tasks";
-                SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+                SqlCommand selectCommand = new SqlCommand(selectStatement, connection);//, sqlTransaction);
                 int taskID = Convert.ToInt32(selectCommand.ExecuteScalar());
+                string insertNoteStatement = "INSERT note " +
+                                             "(taskID, subtaskID, note_message) " +
+                                             "VALUES (@taskID, @subtaskID, @note_message)";
+                SqlCommand insertNoteCommand = new SqlCommand(insertNoteStatement, connection);//, sqlTransaction);
+                insertNoteCommand.Parameters.AddWithValue("@taskID", taskID);
+                insertNoteCommand.Parameters.AddWithValue("@note_message", task.note);
+                insertNoteCommand.Parameters.AddWithValue("@subtaskID", DBNull.Value);
+                insertNoteCommand.ExecuteNonQuery();
+                //sqlTransaction.Commit();
                 return taskID;
             }
             catch (SqlException ex)
             {
+                //sqlTransaction.Rollback();
                 throw ex;
             }
             finally

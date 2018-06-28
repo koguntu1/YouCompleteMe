@@ -13,13 +13,24 @@ namespace YouCompleteMe.DAL
         public static List<Note> getNotes(int taskID, int subtaskID)
         {
             List<Note> notes = new List<Note>();
-
+            string selectStatement = "";
             SqlConnection connection = DBConnection.GetConnection();
-            string selectStatement =
-                "SELECT * FROM note " +
-                "WHERE " +
-                "taskID = @taskID or " +
-                "(subtaskID = @stID and subtaskID is not null)"; ;
+            if (subtaskID == -1)
+            {
+                selectStatement =
+                    "SELECT * FROM note " +
+                    "WHERE " +
+                    "taskID = @taskID and " +
+                    "subtaskID is null";
+            }
+            else
+            {
+                selectStatement =
+                    "SELECT * FROM note " +
+                    "WHERE " +
+                    "taskID = @taskID and " +
+                    "subtaskID = @stID";
+            }
 
             SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
             selectCommand.Parameters.AddWithValue("@taskID", taskID);

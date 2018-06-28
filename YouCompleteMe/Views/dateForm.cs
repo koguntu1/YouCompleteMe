@@ -137,6 +137,17 @@ namespace YouCompleteMe.Views
                 {
                     currentNode.Nodes.Add(st.st_Description);
                     currentNode.Nodes[subtasks.FindIndex(b => b.subtaskID == st.subtaskID)].Tag = st;
+                    // Add details tooltip
+                    String st_priority = "";
+                    if (st.st_Priority == 1)
+                        st_priority = "High";
+                    else if (st.st_Priority == 2)
+                        st_priority = "Medium";
+                    else
+                        st_priority = "Low";
+                    currentNode.Nodes[subtasks.FindIndex(b => b.subtaskID == st.subtaskID)].ToolTipText = "Deadline: " + st.st_Deadline.ToString() + "\n" +
+                                                                                                          "Priority: " + st_priority + "\n" +
+                                                                                                          "Notes: " + this.getNoteString(task.taskID, st.subtaskID);
 
                     // Mark completed subtasks with a checked box
                     if (st.st_CompleteDate != DateTime.MaxValue)
