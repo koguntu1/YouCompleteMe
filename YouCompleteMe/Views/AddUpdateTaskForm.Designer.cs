@@ -44,6 +44,7 @@
             this.taskTypeComboBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.notesTextBox = new System.Windows.Forms.RichTextBox();
+            this.cbDeadline = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnExit
@@ -97,6 +98,7 @@
             this.label3.Size = new System.Drawing.Size(98, 19);
             this.label3.TabIndex = 35;
             this.label3.Text = "Created Date";
+            this.label3.Visible = false;
             // 
             // label1
             // 
@@ -172,10 +174,12 @@
             this.createDateTimePicker.Size = new System.Drawing.Size(200, 27);
             this.createDateTimePicker.TabIndex = 52;
             this.createDateTimePicker.Tag = "create date";
+            this.createDateTimePicker.Visible = false;
             // 
             // deadlineDateTimePicker
             // 
             this.deadlineDateTimePicker.CustomFormat = " ";
+            this.deadlineDateTimePicker.Enabled = false;
             this.deadlineDateTimePicker.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deadlineDateTimePicker.Location = new System.Drawing.Point(212, 214);
             this.deadlineDateTimePicker.Name = "deadlineDateTimePicker";
@@ -217,11 +221,22 @@
             this.notesTextBox.Tag = "Note";
             this.notesTextBox.Text = "";
             // 
+            // cbDeadline
+            // 
+            this.cbDeadline.AutoSize = true;
+            this.cbDeadline.Location = new System.Drawing.Point(60, 224);
+            this.cbDeadline.Name = "cbDeadline";
+            this.cbDeadline.Size = new System.Drawing.Size(15, 14);
+            this.cbDeadline.TabIndex = 75;
+            this.cbDeadline.UseVisualStyleBackColor = true;
+            this.cbDeadline.CheckedChanged += new System.EventHandler(this.cbDeadline_CheckedChanged);
+            // 
             // AddUpdateTaskForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(472, 526);
+            this.Controls.Add(this.cbDeadline);
             this.Controls.Add(this.notesTextBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.taskTypeComboBox);
@@ -264,5 +279,6 @@
         private System.Windows.Forms.ComboBox taskTypeComboBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.RichTextBox notesTextBox;
+        private System.Windows.Forms.CheckBox cbDeadline;
     }
 }

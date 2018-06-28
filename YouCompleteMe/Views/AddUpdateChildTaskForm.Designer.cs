@@ -46,6 +46,8 @@
             this.deadlinePicker = new System.Windows.Forms.DateTimePicker();
             this.completePicker = new System.Windows.Forms.DateTimePicker();
             this.tbTask = new System.Windows.Forms.TextBox();
+            this.cbCompleted = new System.Windows.Forms.CheckBox();
+            this.cbDeadline = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // notesTextBox
@@ -134,6 +136,7 @@
             this.label3.Size = new System.Drawing.Size(98, 19);
             this.label3.TabIndex = 55;
             this.label3.Text = "Created Date";
+            this.label3.Visible = false;
             // 
             // label1
             // 
@@ -203,10 +206,12 @@
             this.createDatePicker.Size = new System.Drawing.Size(200, 26);
             this.createDatePicker.TabIndex = 70;
             this.createDatePicker.Tag = "created datetime";
+            this.createDatePicker.Visible = false;
             // 
             // deadlinePicker
             // 
             this.deadlinePicker.CustomFormat = " ";
+            this.deadlinePicker.Enabled = false;
             this.deadlinePicker.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deadlinePicker.Location = new System.Drawing.Point(215, 210);
             this.deadlinePicker.Name = "deadlinePicker";
@@ -217,6 +222,7 @@
             // completePicker
             // 
             this.completePicker.CustomFormat = " ";
+            this.completePicker.Enabled = false;
             this.completePicker.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.completePicker.Location = new System.Drawing.Point(215, 306);
             this.completePicker.Name = "completePicker";
@@ -233,11 +239,33 @@
             this.tbTask.Size = new System.Drawing.Size(200, 27);
             this.tbTask.TabIndex = 73;
             // 
+            // cbCompleted
+            // 
+            this.cbCompleted.AutoSize = true;
+            this.cbCompleted.Location = new System.Drawing.Point(64, 315);
+            this.cbCompleted.Name = "cbCompleted";
+            this.cbCompleted.Size = new System.Drawing.Size(15, 14);
+            this.cbCompleted.TabIndex = 74;
+            this.cbCompleted.UseVisualStyleBackColor = true;
+            this.cbCompleted.CheckedChanged += new System.EventHandler(this.cbCompleted_CheckedChanged);
+            // 
+            // cbDeadline
+            // 
+            this.cbDeadline.AutoSize = true;
+            this.cbDeadline.Location = new System.Drawing.Point(64, 219);
+            this.cbDeadline.Name = "cbDeadline";
+            this.cbDeadline.Size = new System.Drawing.Size(15, 14);
+            this.cbDeadline.TabIndex = 75;
+            this.cbDeadline.UseVisualStyleBackColor = true;
+            this.cbDeadline.CheckedChanged += new System.EventHandler(this.cbDeadline_CheckedChanged);
+            // 
             // AddUpdateChildTaskForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(491, 519);
+            this.Controls.Add(this.cbDeadline);
+            this.Controls.Add(this.cbCompleted);
             this.Controls.Add(this.tbTask);
             this.Controls.Add(this.completePicker);
             this.Controls.Add(this.deadlinePicker);
@@ -284,5 +312,7 @@
         private System.Windows.Forms.DateTimePicker deadlinePicker;
         private System.Windows.Forms.DateTimePicker completePicker;
         private System.Windows.Forms.TextBox tbTask;
+        private System.Windows.Forms.CheckBox cbCompleted;
+        private System.Windows.Forms.CheckBox cbDeadline;
     }
 }

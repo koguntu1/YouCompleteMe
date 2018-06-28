@@ -58,9 +58,15 @@ namespace YouCompleteMe.Views
                 _task.completed = false;
             }
 
-            _task.createdDate = createDateTimePicker.Value;
+            //_task.createdDate = createDateTimePicker.Value;
+            _task.createdDate = DateTime.Now;
             _task.currentDate = DateTime.Now;
-            _task.deadline = deadlineDateTimePicker.Value;
+
+            if (deadlineDateTimePicker.Enabled == true)
+            {
+                _task.deadline = deadlineDateTimePicker.Value;
+            }
+            
             _task.task_owner = user.userID;
             if (comboPriority.SelectedItem.ToString() == "")
                 _task.task_priority = -1;
@@ -134,6 +140,11 @@ namespace YouCompleteMe.Views
                 var line = frame.GetFileLineNumber();
                 MessageBox.Show(ex.Message + "\nLine Number: " + line.ToString(), ex.GetType().ToString());
             }
+        }
+
+        private void cbDeadline_CheckedChanged(object sender, EventArgs e)
+        {
+            deadlineDateTimePicker.Enabled = !deadlineDateTimePicker.Enabled;
         }
     }
 }

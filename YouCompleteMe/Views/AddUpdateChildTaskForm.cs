@@ -71,13 +71,16 @@ namespace YouCompleteMe.Views
         {
             //_subtask.taskID = (int)comboListTask.SelectedValue;
             _subtask.taskID = dateForm.getSelectedNodeTaskID();
-            if (completePicker.Text.Trim() != "")
+
+            if (completePicker.Enabled == true)
             {
                 _subtask.st_CompleteDate = completePicker.Value;
             }
-            _subtask.st_CreatedDate = createDatePicker.Value;
 
-            if (deadlinePicker.Text.Trim() != "")
+            //_subtask.st_CreatedDate = createDatePicker.Value;
+            _subtask.st_CreatedDate = DateTime.Now;
+
+            if (deadlinePicker.Enabled == true)
             {
                 _subtask.st_Deadline = deadlinePicker.Value;
             }
@@ -147,6 +150,16 @@ namespace YouCompleteMe.Views
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void cbCompleted_CheckedChanged(object sender, EventArgs e)
+        {
+            completePicker.Enabled = !completePicker.Enabled;
+        }
+
+        private void cbDeadline_CheckedChanged(object sender, EventArgs e)
+        {
+            deadlinePicker.Enabled = !deadlinePicker.Enabled;
         }
     }
 }
