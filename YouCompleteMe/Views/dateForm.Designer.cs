@@ -50,6 +50,8 @@
             this.btnStartTimer = new System.Windows.Forms.Button();
             this.btnStopTimer = new System.Windows.Forms.Button();
             this.lblTimer = new System.Windows.Forms.Label();
+            this.cbPersonal = new System.Windows.Forms.CheckBox();
+            this.cbProfessional = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.project6920DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tasksBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tasksDataGridView)).BeginInit();
@@ -102,7 +104,7 @@
             // 
             this.lblDate.AutoSize = true;
             this.lblDate.Font = new System.Drawing.Font("Calibri", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDate.Location = new System.Drawing.Point(38, 29);
+            this.lblDate.Location = new System.Drawing.Point(38, 22);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(65, 26);
             this.lblDate.TabIndex = 5;
@@ -246,11 +248,35 @@
             this.lblTimer.TabIndex = 13;
             this.lblTimer.Text = "00:00";
             // 
+            // cbPersonal
+            // 
+            this.cbPersonal.AutoSize = true;
+            this.cbPersonal.Location = new System.Drawing.Point(684, 13);
+            this.cbPersonal.Name = "cbPersonal";
+            this.cbPersonal.Size = new System.Drawing.Size(67, 17);
+            this.cbPersonal.TabIndex = 14;
+            this.cbPersonal.Text = "Personal";
+            this.cbPersonal.UseVisualStyleBackColor = true;
+            this.cbPersonal.CheckedChanged += new System.EventHandler(this.cbPersonal_CheckedChanged);
+            // 
+            // cbProfessional
+            // 
+            this.cbProfessional.AutoSize = true;
+            this.cbProfessional.Location = new System.Drawing.Point(684, 37);
+            this.cbProfessional.Name = "cbProfessional";
+            this.cbProfessional.Size = new System.Drawing.Size(83, 17);
+            this.cbProfessional.TabIndex = 15;
+            this.cbProfessional.Text = "Professional";
+            this.cbProfessional.UseVisualStyleBackColor = true;
+            // 
             // dateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(776, 455);
+            this.Controls.Add(this.cbProfessional);
+            this.Controls.Add(this.cbPersonal);
+            this.Controls.Add(this.lblDate);
             this.Controls.Add(this.lblTimer);
             this.Controls.Add(this.btnStopTimer);
             this.Controls.Add(this.btnStartTimer);
@@ -259,7 +285,6 @@
             this.Controls.Add(this.btnAddSubtask);
             this.Controls.Add(this.taskTreeView);
             this.Controls.Add(this.tasksDataGridView);
-            this.Controls.Add(this.lblDate);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnUpdateTask);
             this.Controls.Add(this.btnAddNewTask);
@@ -299,5 +324,7 @@
         private System.Windows.Forms.Button btnStartTimer;
         private System.Windows.Forms.Button btnStopTimer;
         private System.Windows.Forms.Label lblTimer;
+        private System.Windows.Forms.CheckBox cbPersonal;
+        private System.Windows.Forms.CheckBox cbProfessional;
     }
 }

@@ -14,6 +14,8 @@ namespace _6920Project.UnitTests
             YouCompleteMe.Models.Subtask subtask = new YouCompleteMe.Models.Subtask();
             subtask.taskID = 33;
             subtask.st_CreatedDate = DateTime.Now;
+            subtask.st_Deadline = DateTime.Now;
+            subtask.st_CompleteDate = DateTime.Now;
             subtask.st_Priority = 2;
             subtask.st_Description = "use for test unit test";
             subtask.note = "this use only for unit test";

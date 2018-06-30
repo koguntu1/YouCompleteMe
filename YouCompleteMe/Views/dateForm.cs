@@ -327,5 +327,10 @@ namespace YouCompleteMe.Views
             this.minutes = 0;
             this.timerSecs = 0;
         }
+
+        private void cbPersonal_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
