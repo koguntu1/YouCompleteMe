@@ -46,6 +46,10 @@
             this.btnAddSubtask = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.taskTimer = new System.Windows.Forms.Timer(this.components);
+            this.btnStartTimer = new System.Windows.Forms.Button();
+            this.btnStopTimer = new System.Windows.Forms.Button();
+            this.lblTimer = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.project6920DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tasksBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tasksDataGridView)).BeginInit();
@@ -63,7 +67,7 @@
             // btnAddNewTask
             // 
             this.btnAddNewTask.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddNewTask.Location = new System.Drawing.Point(43, 410);
+            this.btnAddNewTask.Location = new System.Drawing.Point(12, 410);
             this.btnAddNewTask.Name = "btnAddNewTask";
             this.btnAddNewTask.Size = new System.Drawing.Size(152, 33);
             this.btnAddNewTask.TabIndex = 2;
@@ -74,7 +78,7 @@
             // btnUpdateTask
             // 
             this.btnUpdateTask.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateTask.Location = new System.Drawing.Point(359, 410);
+            this.btnUpdateTask.Location = new System.Drawing.Point(391, 410);
             this.btnUpdateTask.Name = "btnUpdateTask";
             this.btnUpdateTask.Size = new System.Drawing.Size(152, 33);
             this.btnUpdateTask.TabIndex = 3;
@@ -135,7 +139,7 @@
             this.tasksDataGridView.DataSource = this.tasksBindingSource;
             this.tasksDataGridView.Location = new System.Drawing.Point(391, 106);
             this.tasksDataGridView.Name = "tasksDataGridView";
-            this.tasksDataGridView.Size = new System.Drawing.Size(344, 259);
+            this.tasksDataGridView.Size = new System.Drawing.Size(373, 259);
             this.tasksDataGridView.TabIndex = 6;
             // 
             // dataGridViewTextBoxColumn7
@@ -165,16 +169,16 @@
             // 
             this.taskTreeView.CheckBoxes = true;
             this.taskTreeView.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.taskTreeView.Location = new System.Drawing.Point(42, 106);
+            this.taskTreeView.Location = new System.Drawing.Point(12, 106);
             this.taskTreeView.Name = "taskTreeView";
-            this.taskTreeView.Size = new System.Drawing.Size(342, 259);
+            this.taskTreeView.Size = new System.Drawing.Size(372, 259);
             this.taskTreeView.TabIndex = 7;
             this.taskTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.taskTreeView_AfterSelect);
             // 
             // btnAddSubtask
             // 
             this.btnAddSubtask.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddSubtask.Location = new System.Drawing.Point(201, 410);
+            this.btnAddSubtask.Location = new System.Drawing.Point(232, 410);
             this.btnAddSubtask.Name = "btnAddSubtask";
             this.btnAddSubtask.Size = new System.Drawing.Size(152, 33);
             this.btnAddSubtask.TabIndex = 8;
@@ -202,11 +206,54 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "Deadlines:";
             // 
+            // taskTimer
+            // 
+            this.taskTimer.Interval = 1000;
+            this.taskTimer.Tick += new System.EventHandler(this.taskTimer_Tick);
+            // 
+            // btnStartTimer
+            // 
+            this.btnStartTimer.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStartTimer.Location = new System.Drawing.Point(12, 371);
+            this.btnStartTimer.Name = "btnStartTimer";
+            this.btnStartTimer.Size = new System.Drawing.Size(152, 33);
+            this.btnStartTimer.TabIndex = 11;
+            this.btnStartTimer.Text = "Start Task Timer";
+            this.btnStartTimer.UseVisualStyleBackColor = true;
+            this.btnStartTimer.Click += new System.EventHandler(this.btnStartTimer_Click);
+            // 
+            // btnStopTimer
+            // 
+            this.btnStopTimer.Enabled = false;
+            this.btnStopTimer.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStopTimer.Location = new System.Drawing.Point(232, 371);
+            this.btnStopTimer.Name = "btnStopTimer";
+            this.btnStopTimer.Size = new System.Drawing.Size(152, 33);
+            this.btnStopTimer.TabIndex = 12;
+            this.btnStopTimer.Text = "Stop Task Timer";
+            this.btnStopTimer.UseVisualStyleBackColor = true;
+            this.btnStopTimer.Click += new System.EventHandler(this.btnStopTimer_Click);
+            // 
+            // lblTimer
+            // 
+            this.lblTimer.AutoSize = true;
+            this.lblTimer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblTimer.Font = new System.Drawing.Font("Lucida Console", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTimer.Location = new System.Drawing.Point(166, 375);
+            this.lblTimer.Name = "lblTimer";
+            this.lblTimer.Padding = new System.Windows.Forms.Padding(5);
+            this.lblTimer.Size = new System.Drawing.Size(64, 25);
+            this.lblTimer.TabIndex = 13;
+            this.lblTimer.Text = "00:00";
+            // 
             // dateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(776, 455);
+            this.Controls.Add(this.lblTimer);
+            this.Controls.Add(this.btnStopTimer);
+            this.Controls.Add(this.btnStartTimer);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnAddSubtask);
@@ -248,5 +295,9 @@
         private System.Windows.Forms.Button btnAddSubtask;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Timer taskTimer;
+        private System.Windows.Forms.Button btnStartTimer;
+        private System.Windows.Forms.Button btnStopTimer;
+        private System.Windows.Forms.Label lblTimer;
     }
 }

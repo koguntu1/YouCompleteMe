@@ -20,6 +20,10 @@ namespace YouCompleteMe.Views
         private List<Models.Task> tasks;
         private AddUpdateChildTaskForm subtaskForm;
         private int selectedTask;
+        private int timedTaskID;
+        private int timerSecs = 0;
+        private int seconds = 0;
+        private int minutes = 0;
 
         public dateForm(User _user, mainForm _calendar)
         {
@@ -253,6 +257,64 @@ namespace YouCompleteMe.Views
                 Models.Task tag = (Models.Task)taskTreeView.SelectedNode.Tag;
                 this.selectedTask = tag.taskID;
             }
+        }
+
+        //////////TIMER//////////
+
+        // Increment the timer label on each tick
+        private void taskTimer_Tick(object sender, EventArgs e)
+        {
+            this.timerSecs++;
+            if (seconds < 60)
+                seconds++;
+            else
+            {
+                seconds = 0;
+                minutes++;
+            }
+            lblTimer.Refresh();
+            lblTimer.Text = String.Format("{0:D2}:{1:D2}", minutes, seconds);
+            //lblTimer.Text = String.Format(timerSecs.ToString());
+        }
+
+        // Start timer button should check that a task is selected,
+        // set the current task being timed,
+        // clear the timer label and start ther timer ticking,
+        // and enable the stop button / disable itself
+        private void btnStartTimer_Click(object sender, EventArgs e)
+        {
+            Models.Task tag = (Models.Task)taskTreeView.SelectedNode.Tag;
+            if (tag.taskID == 0)
+                MessageBox.Show("Please select a task.\nYou can only time top-level tasks (not subtasks).");
+            else
+            {
+                this.timedTaskID = this.getSelectedNodeTaskID();
+                lblTimer.Text = "00:00";
+                btnStartTimer.Enabled = false;
+                btnStopTimer.Enabled = true;
+                taskTimer.Start();
+                MessageBox.Show(this.timedTaskID.ToString());
+            }
+        }
+
+        // Stop timer button should update the database based on the current timer,
+        // stop the timer ticking,
+        // clear the timerSecs variable for the next timer session,
+        // and enable the start button / disable itself
+        private void btnStopTimer_Click(object sender, EventArgs e)
+        {
+            //if (checkTimerForTask() == null)
+            //then insert new row for the timed task with timerSecs
+            //else
+            //then update the timer table task row adding timerSecs
+
+            taskTimer.Stop();
+            btnStopTimer.Enabled = false;
+            btnStartTimer.Enabled = true;
+            //MessageBox.Show(timerSecs.ToString());
+            this.seconds = 0;
+            this.minutes = 0;
+            this.timerSecs = 0;
         }
     }
 }
