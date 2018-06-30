@@ -36,10 +36,11 @@ create table note (
 	note_message varchar(1000) not null,
 	primary key(taskID, noteID)
 );
+
+drop table activities;
+
 create table activities (
-	taskID int, 
-	subtaskID int, 
-	startTime datetime not null, 
-	endTime datetime not null,
-	primary key(taskID, startTime)
+	taskID int not null,
+	seconds int not null,
+	primary key (taskID)
 );
