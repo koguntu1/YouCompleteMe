@@ -32,6 +32,7 @@ namespace YouCompleteMe.Views
             user = _user;
             this.parentCalendar = _calendar;
             instance = this;
+            this.tasks = TaskController.getUserTasks(user, parentCalendar.getSelectedDate());
         }
 
         public static dateForm Instance
@@ -46,7 +47,6 @@ namespace YouCompleteMe.Views
         public void dateForm_Load(object sender, EventArgs e)
         {
             this.lblDate.Text = parentCalendar.getSelectedDate_Formatted();
-            this.tasks = TaskController.getUserTasks(user, parentCalendar.getSelectedDate());
             this.taskTreeView.Nodes.Clear();
             tasksDataGridView.DataSource = TaskController.getCurrentTaskDeadlines(user, parentCalendar.getSelectedDate());
             populateTaskTreeView();
@@ -87,7 +87,7 @@ namespace YouCompleteMe.Views
          */
         private void populateTaskTreeView()
         {
-            //List<Models.Task> tasks = TaskController.getUserTasks(user, parentCalendar.getSelectedDate());
+            //this.tasks = TaskController.getUserTasks(user, parentCalendar.getSelectedDate());
             taskTreeView.ShowLines = false;
             //taskTreeView.AfterCheck -= taskTreeView_AfterCheck;
 
@@ -330,7 +330,65 @@ namespace YouCompleteMe.Views
 
         private void cbPersonal_CheckedChanged(object sender, EventArgs e)
         {
+            if (cbPersonal.Checked == false)
+            {
+                List<Models.Task> idsToRemove = TaskController.getTaskOfType(user, parentCalendar.getSelectedDate(), 2);
+                foreach (Models.Task task in idsToRemove)
+                {
+                    this.tasks = this.tasks.Where(tasks => tasks.taskID != task.taskID).ToList();
+                }
+            }
+            else
+            {
+                List<Models.Task> idsToAdd = TaskController.getTaskOfType(user, parentCalendar.getSelectedDate(), 2);
+                foreach (Models.Task task in idsToAdd)
+                {
+                    this.tasks.Add(task);
+                }
+            }
+            this.dateForm_Load(sender, e);
+        }
 
+        private void cbProfessional_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbProfessional.Checked == false)
+            {
+                List<Models.Task> idsToRemove = TaskController.getTaskOfType(user, parentCalendar.getSelectedDate(), 1);
+                foreach (Models.Task task in idsToRemove)
+                {
+                    this.tasks = this.tasks.Where(tasks => tasks.taskID != task.taskID).ToList();
+                }
+            }
+            else
+            {
+                List<Models.Task> idsToAdd = TaskController.getTaskOfType(user, parentCalendar.getSelectedDate(), 1);
+                foreach (Models.Task task in idsToAdd)
+                {
+                    this.tasks.Add(task);
+                }
+            }
+            this.dateForm_Load(sender, e);
+        }
+
+        private void cbOther_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbOther.Checked == false)
+            {
+                List<Models.Task> idsToRemove = TaskController.getTaskOfType(user, parentCalendar.getSelectedDate(), 3);
+                foreach (Models.Task task in idsToRemove)
+                {
+                    this.tasks = this.tasks.Where(tasks => tasks.taskID != task.taskID).ToList();
+                }
+            }
+            else
+            {
+                List<Models.Task> idsToAdd = TaskController.getTaskOfType(user, parentCalendar.getSelectedDate(), 3);
+                foreach (Models.Task task in idsToAdd)
+                {
+                    this.tasks.Add(task);
+                }
+            }
+            this.dateForm_Load(sender, e);
         }
     }
 }
