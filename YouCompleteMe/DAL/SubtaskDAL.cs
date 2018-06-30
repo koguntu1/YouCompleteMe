@@ -151,7 +151,7 @@ namespace YouCompleteMe.DAL
             insertCommand.Parameters.AddWithValue("@taskID", subtask.taskID);
             insertCommand.Parameters.AddWithValue("@st_Description", subtask.st_Description);
             insertCommand.Parameters.AddWithValue("@st_CreatedDate", subtask.st_CreatedDate);
-            if (subtask.st_CompleteDate == DateTime.MinValue)
+            if (subtask.st_CompleteDate == DateTime.MaxValue)
             {
                 insertCommand.Parameters.AddWithValue("@st_CompleteDate", DBNull.Value);
             }
@@ -160,7 +160,7 @@ namespace YouCompleteMe.DAL
                 insertCommand.Parameters.AddWithValue("@st_CompleteDate", subtask.st_CompleteDate);
             }
 
-            if (subtask.st_Deadline == DateTime.MinValue)
+            if (subtask.st_Deadline == DateTime.MaxValue)
             {
                 insertCommand.Parameters.AddWithValue("@st_Deadline", DBNull.Value);
             }
