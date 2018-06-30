@@ -250,6 +250,7 @@
             this.cbProfessional.TabIndex = 15;
             this.cbProfessional.Text = "Professional";
             this.cbProfessional.UseVisualStyleBackColor = true;
+            this.cbProfessional.CheckedChanged += new System.EventHandler(this.cbProfessional_CheckedChanged);
             // 
             // cbOther
             // 
@@ -262,6 +263,7 @@
             this.cbOther.TabIndex = 16;
             this.cbOther.Text = "Other";
             this.cbOther.UseVisualStyleBackColor = true;
+            this.cbOther.CheckedChanged += new System.EventHandler(this.cbOther_CheckedChanged);
             // 
             // dataGridViewTextBoxColumn7
             // 

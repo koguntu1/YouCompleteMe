@@ -348,5 +348,47 @@ namespace YouCompleteMe.Views
             }
             this.dateForm_Load(sender, e);
         }
+
+        private void cbProfessional_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbProfessional.Checked == false)
+            {
+                List<Models.Task> idsToRemove = TaskController.getTaskOfType(user, parentCalendar.getSelectedDate(), 1);
+                foreach (Models.Task task in idsToRemove)
+                {
+                    this.tasks = this.tasks.Where(tasks => tasks.taskID != task.taskID).ToList();
+                }
+            }
+            else
+            {
+                List<Models.Task> idsToAdd = TaskController.getTaskOfType(user, parentCalendar.getSelectedDate(), 1);
+                foreach (Models.Task task in idsToAdd)
+                {
+                    this.tasks.Add(task);
+                }
+            }
+            this.dateForm_Load(sender, e);
+        }
+
+        private void cbOther_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbOther.Checked == false)
+            {
+                List<Models.Task> idsToRemove = TaskController.getTaskOfType(user, parentCalendar.getSelectedDate(), 3);
+                foreach (Models.Task task in idsToRemove)
+                {
+                    this.tasks = this.tasks.Where(tasks => tasks.taskID != task.taskID).ToList();
+                }
+            }
+            else
+            {
+                List<Models.Task> idsToAdd = TaskController.getTaskOfType(user, parentCalendar.getSelectedDate(), 3);
+                foreach (Models.Task task in idsToAdd)
+                {
+                    this.tasks.Add(task);
+                }
+            }
+            this.dateForm_Load(sender, e);
+        }
     }
 }
