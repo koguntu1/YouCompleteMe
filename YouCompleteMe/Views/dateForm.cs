@@ -25,6 +25,7 @@ namespace YouCompleteMe.Views
         private int seconds = 0;
         private int minutes = 0;
 
+        // Form takes a user and main calendar form objects
         public dateForm(User _user, mainForm _calendar)
         {
             InitializeComponent();
@@ -41,32 +42,7 @@ namespace YouCompleteMe.Views
             }
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btnUpdateTask_Click(object sender, EventArgs e)
-        {
-            AddUpdateTaskForm addUpdateTaskForm = new AddUpdateTaskForm(user, true, this);
-            addUpdateTaskForm.ShowDialog();
-        }
-
-        private void btnAddNewTask_Click(object sender, EventArgs e)
-        {
-            AddUpdateTaskForm addUpdateTaskForm = new AddUpdateTaskForm(user, false, this);
-            addUpdateTaskForm.ShowDialog();
-        }
-
-        private void tasksBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.tasksBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.project6920DataSet);
-
-        }
-
-        // Load with the current users tasks for the selected date
+        // Load form with the current users tasks for the selected date
         public void dateForm_Load(object sender, EventArgs e)
         {
             this.lblDate.Text = parentCalendar.getSelectedDate_Formatted();
@@ -76,6 +52,39 @@ namespace YouCompleteMe.Views
             populateTaskTreeView();
         }
 
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        // Open update task form
+        private void btnUpdateTask_Click(object sender, EventArgs e)
+        {
+            AddUpdateTaskForm addUpdateTaskForm = new AddUpdateTaskForm(user, true, this);
+            addUpdateTaskForm.ShowDialog();
+        }
+
+        // Open add new task form
+        private void btnAddNewTask_Click(object sender, EventArgs e)
+        {
+            AddUpdateTaskForm addUpdateTaskForm = new AddUpdateTaskForm(user, false, this);
+            addUpdateTaskForm.ShowDialog();
+        }
+
+
+        /* Currently unused */
+        //private void tasksBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        //{
+        //    this.Validate();
+        //    this.tasksBindingSource.EndEdit();
+        //    this.tableAdapterManager.UpdateAll(this.project6920DataSet);
+        //}
+
+
+        /* 
+         * Populate the task tree view with tasks and subtasks
+         */
         private void populateTaskTreeView()
         {
             //List<Models.Task> tasks = TaskController.getUserTasks(user, parentCalendar.getSelectedDate());
@@ -159,6 +168,10 @@ namespace YouCompleteMe.Views
             taskTreeView.BeforeCheck += taskTreeView_BeforeCheck;
         }
 
+        /*
+         * Updates tasks and subtasks to complete or incomplete in the database
+         * based on the current checked status
+         */
         private void taskTreeView_BeforeCheck(object sender, TreeViewCancelEventArgs e)
         {
             // Check whether the node is a task or a subtask
@@ -199,6 +212,9 @@ namespace YouCompleteMe.Views
             }
         }
 
+        /*
+         * Gets all notes for the given task or subtask
+         */
         private string getNoteString(int taskID, int subtaskID)
         {
             string strNotes = "";
@@ -210,13 +226,9 @@ namespace YouCompleteMe.Views
             return strNotes;
         }
 
-        //private void dateForm_Activated(object sender, EventArgs e)
-        //{
-        //    taskTreeView.Nodes.Clear();
-        //    this.tasks = TaskController.getUserTasks(user, parentCalendar.getSelectedDate());
-        //    dateForm_Load(sender, e);
-        //}
-
+        /*
+         * Opens the add subtask form
+         */
         private void btnAddSubtask_Click(object sender, EventArgs e)
         {
             if (taskTreeView.SelectedNode == null)
@@ -283,8 +295,8 @@ namespace YouCompleteMe.Views
         // and enable the stop button / disable itself
         private void btnStartTimer_Click(object sender, EventArgs e)
         {
-            Models.Task tag = (Models.Task)taskTreeView.SelectedNode.Tag;
-            if (tag.taskID == 0)
+
+            if (taskTreeView.SelectedNode == null || taskTreeView.SelectedNode.Parent != null)
                 MessageBox.Show("Please select a task.\nYou can only time top-level tasks (not subtasks).");
             else
             {
@@ -303,15 +315,14 @@ namespace YouCompleteMe.Views
         // and enable the start button / disable itself
         private void btnStopTimer_Click(object sender, EventArgs e)
         {
-            //if (checkTimerForTask() == null)
-            //then insert new row for the timed task with timerSecs
-            //else
-            //then update the timer table task row adding timerSecs
+            if (TimerController.checkForTask(timedTaskID) == null)
+                TimerController.AddActivity(timedTaskID, timerSecs);
+            else
+                TimerController.updateTaskAlreadyInActivities(timedTaskID, timerSecs);
 
             taskTimer.Stop();
             btnStopTimer.Enabled = false;
             btnStartTimer.Enabled = true;
-            //MessageBox.Show(timerSecs.ToString());
             this.seconds = 0;
             this.minutes = 0;
             this.timerSecs = 0;

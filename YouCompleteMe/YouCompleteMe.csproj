@@ -48,6 +48,7 @@
     <Compile Include="Controller\NoteController.cs" />
     <Compile Include="Controller\SubtaskController.cs" />
     <Compile Include="Controller\TaskController.cs" />
+    <Compile Include="Controller\TimerController.cs" />
     <Compile Include="Controller\UserController.cs" />
     <Compile Include="DAL\DBConnection.cs" />
     <Compile Include="DAL\NoteDAL.cs" />
@@ -201,6 +202,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\TimerDAL.cs" />
     <Content Include="Resources\YouCompleteMe1.gif" />
     <Content Include="Resources\YouCompleteMe4.gif" />
   </ItemGroup>
