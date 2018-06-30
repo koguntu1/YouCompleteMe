@@ -53,7 +53,7 @@ namespace YouCompleteMe.Views
             try
             {
                 //taskList = TaskController.getListTasks(user.userID);
-                MessageBox.Show(dateForm.getSelectedNodeTaskID().ToString());
+                //MessageBox.Show(dateForm.getSelectedNodeTaskID().ToString());
                 tbTask.Text = TaskController.getATask(dateForm.getSelectedNodeTaskID()).title;
                 comboListTask.DataSource = taskList;
                 comboListTask.DisplayMember = "title";
@@ -73,17 +73,17 @@ namespace YouCompleteMe.Views
             _subtask.taskID = dateForm.getSelectedNodeTaskID();
 
             if (completePicker.Enabled == true)
-            {
                 _subtask.st_CompleteDate = completePicker.Value;
-            }
+            else
+                _subtask.st_CompleteDate = DateTime.MaxValue;
 
             //_subtask.st_CreatedDate = createDatePicker.Value;
             _subtask.st_CreatedDate = DateTime.Now;
 
             if (deadlinePicker.Enabled == true)
-            {
                 _subtask.st_Deadline = deadlinePicker.Value;
-            }
+            else
+                _subtask.st_Deadline = DateTime.MaxValue;
             
             _subtask.st_Description = txtDescription.Text.Trim();
 

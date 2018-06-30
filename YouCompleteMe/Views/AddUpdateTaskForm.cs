@@ -63,14 +63,14 @@ namespace YouCompleteMe.Views
             _task.currentDate = DateTime.Now;
 
             if (deadlineDateTimePicker.Enabled == true)
-            {
                 _task.deadline = deadlineDateTimePicker.Value;
-            }
+            else
+                _task.deadline = DateTime.MaxValue;
             
             _task.task_owner = user.userID;
             if (comboPriority.SelectedItem.ToString() == "")
                 _task.task_priority = -1;
-            else if (comboPriority.SelectedItem.ToString() == "Low")
+            else if (comboPriority.SelectedItem.ToString() == "High")
                 _task.task_priority = 1;
             else if (comboPriority.SelectedItem.ToString() == "Medium")
                 _task.task_priority = 2;

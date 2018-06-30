@@ -65,30 +65,11 @@ namespace YouCompleteMe.Views
         // Load with the current users tasks for the selected date
         public void dateForm_Load(object sender, EventArgs e)
         {
-            this.label2.Text = parentCalendar.getSelectedDate_Formatted();
+            this.lblDate.Text = parentCalendar.getSelectedDate_Formatted();
             this.tasks = TaskController.getUserTasks(user, parentCalendar.getSelectedDate());
             this.taskTreeView.Nodes.Clear();
             tasksDataGridView.DataSource = TaskController.getCurrentTaskDeadlines(user, parentCalendar.getSelectedDate());
             populateTaskTreeView();
-        }
-
-        // When the checkbox is clicked the task will be updated to complete or incomplete, 
-        // depending on the current state
-        private void tasksDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex == 0)
-            {
-                if (Convert.ToInt16(tasksDataGridView.Rows[e.RowIndex].Cells[0].Value) == 0)
-                {
-                    TaskController.updateTaskCompleted(Convert.ToInt32(tasksDataGridView.Rows[e.RowIndex].Cells[1].Value));
-                    tasksDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
-                }
-                else if (Convert.ToInt16(tasksDataGridView.Rows[e.RowIndex].Cells[0].Value) == 1)
-                {
-                    TaskController.updateTaskIncomplete(Convert.ToInt32(tasksDataGridView.Rows[e.RowIndex].Cells[1].Value));
-                    tasksDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
-                }
-            }
         }
 
         private void populateTaskTreeView()
@@ -236,7 +217,7 @@ namespace YouCompleteMe.Views
         {
             if (taskTreeView.SelectedNode == null)
             {
-                MessageBox.Show("Please select a task.");
+                MessageBox.Show("Please select a task from the Task List.");
             }
             else if (subtaskForm == null)
             {
@@ -267,10 +248,11 @@ namespace YouCompleteMe.Views
 
         private void taskTreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            Models.Task tag = (Models.Task)taskTreeView.SelectedNode.Tag;
-            //MessageBox.Show(tag.taskID.ToString());
-            this.selectedTask = tag.taskID;
-            //MessageBox.Show(this.selectedTask.ToString());
+            if (e.Node.Parent == null)
+            {
+                Models.Task tag = (Models.Task)taskTreeView.SelectedNode.Tag;
+                this.selectedTask = tag.taskID;
+            }
         }
     }
 }

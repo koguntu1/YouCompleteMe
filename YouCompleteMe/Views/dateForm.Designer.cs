@@ -33,7 +33,7 @@
             this.btnAddNewTask = new System.Windows.Forms.Button();
             this.btnUpdateTask = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblDate = new System.Windows.Forms.Label();
             this.project6920DataSet = new YouCompleteMe.project6920DataSet();
             this.tasksBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tasksTableAdapter = new YouCompleteMe.project6920DataSetTableAdapters.tasksTableAdapter();
@@ -44,6 +44,8 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.taskTreeView = new System.Windows.Forms.TreeView();
             this.btnAddSubtask = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.project6920DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tasksBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tasksDataGridView)).BeginInit();
@@ -61,7 +63,7 @@
             // btnAddNewTask
             // 
             this.btnAddNewTask.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddNewTask.Location = new System.Drawing.Point(42, 323);
+            this.btnAddNewTask.Location = new System.Drawing.Point(43, 410);
             this.btnAddNewTask.Name = "btnAddNewTask";
             this.btnAddNewTask.Size = new System.Drawing.Size(152, 33);
             this.btnAddNewTask.TabIndex = 2;
@@ -72,7 +74,7 @@
             // btnUpdateTask
             // 
             this.btnUpdateTask.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateTask.Location = new System.Drawing.Point(358, 323);
+            this.btnUpdateTask.Location = new System.Drawing.Point(359, 410);
             this.btnUpdateTask.Name = "btnUpdateTask";
             this.btnUpdateTask.Size = new System.Drawing.Size(152, 33);
             this.btnUpdateTask.TabIndex = 3;
@@ -84,7 +86,7 @@
             // btnExit
             // 
             this.btnExit.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Location = new System.Drawing.Point(583, 323);
+            this.btnExit.Location = new System.Drawing.Point(583, 410);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(152, 33);
             this.btnExit.TabIndex = 4;
@@ -92,15 +94,15 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // label2
+            // lblDate
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(39, 39);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 19);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "label2";
+            this.lblDate.AutoSize = true;
+            this.lblDate.Font = new System.Drawing.Font("Calibri", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate.Location = new System.Drawing.Point(38, 29);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(65, 26);
+            this.lblDate.TabIndex = 5;
+            this.lblDate.Text = "label2";
             // 
             // project6920DataSet
             // 
@@ -131,11 +133,10 @@
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn4});
             this.tasksDataGridView.DataSource = this.tasksBindingSource;
-            this.tasksDataGridView.Location = new System.Drawing.Point(391, 66);
+            this.tasksDataGridView.Location = new System.Drawing.Point(391, 106);
             this.tasksDataGridView.Name = "tasksDataGridView";
-            this.tasksDataGridView.Size = new System.Drawing.Size(344, 220);
+            this.tasksDataGridView.Size = new System.Drawing.Size(344, 259);
             this.tasksDataGridView.TabIndex = 6;
-            this.tasksDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tasksDataGridView_CellContentClick);
             // 
             // dataGridViewTextBoxColumn7
             // 
@@ -164,16 +165,16 @@
             // 
             this.taskTreeView.CheckBoxes = true;
             this.taskTreeView.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.taskTreeView.Location = new System.Drawing.Point(43, 66);
+            this.taskTreeView.Location = new System.Drawing.Point(42, 106);
             this.taskTreeView.Name = "taskTreeView";
-            this.taskTreeView.Size = new System.Drawing.Size(342, 220);
+            this.taskTreeView.Size = new System.Drawing.Size(342, 259);
             this.taskTreeView.TabIndex = 7;
             this.taskTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.taskTreeView_AfterSelect);
             // 
             // btnAddSubtask
             // 
             this.btnAddSubtask.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddSubtask.Location = new System.Drawing.Point(200, 323);
+            this.btnAddSubtask.Location = new System.Drawing.Point(201, 410);
             this.btnAddSubtask.Name = "btnAddSubtask";
             this.btnAddSubtask.Size = new System.Drawing.Size(152, 33);
             this.btnAddSubtask.TabIndex = 8;
@@ -181,15 +182,37 @@
             this.btnAddSubtask.UseVisualStyleBackColor = true;
             this.btnAddSubtask.Click += new System.EventHandler(this.btnAddSubtask_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(39, 80);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(69, 19);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Task List:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(387, 80);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(78, 19);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Deadlines:";
+            // 
             // dateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(776, 379);
+            this.ClientSize = new System.Drawing.Size(776, 455);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnAddSubtask);
             this.Controls.Add(this.taskTreeView);
             this.Controls.Add(this.tasksDataGridView);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblDate);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnUpdateTask);
             this.Controls.Add(this.btnAddNewTask);
@@ -212,7 +235,7 @@
         private System.Windows.Forms.Button btnAddNewTask;
         private System.Windows.Forms.Button btnUpdateTask;
         private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblDate;
         private project6920DataSet project6920DataSet;
         private System.Windows.Forms.BindingSource tasksBindingSource;
         private project6920DataSetTableAdapters.tasksTableAdapter tasksTableAdapter;
@@ -223,5 +246,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.Button btnAddSubtask;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }

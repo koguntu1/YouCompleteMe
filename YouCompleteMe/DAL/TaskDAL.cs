@@ -28,8 +28,14 @@ namespace YouCompleteMe.DAL
             insertCommand.Parameters.AddWithValue("@title", task.title);
             insertCommand.Parameters.AddWithValue("@createdDate", task.createdDate);
             insertCommand.Parameters.AddWithValue("@currentDate", task.currentDate);
-            insertCommand.Parameters.AddWithValue("@deadline", task.deadline);
-            insertCommand.Parameters.AddWithValue("@task_priority", task.task_priority);
+            if (task.deadline == DateTime.MaxValue)
+                insertCommand.Parameters.AddWithValue("@deadline", DBNull.Value);
+            else
+                insertCommand.Parameters.AddWithValue("@deadline", task.deadline);
+            if (task.task_priority == -1)
+                insertCommand.Parameters.AddWithValue("@task_priority", DBNull.Value);
+            else
+                insertCommand.Parameters.AddWithValue("@task_priority", task.task_priority);
             insertCommand.Parameters.AddWithValue("@completed", task.completed);
             insertCommand.Parameters.AddWithValue("@taskType", task.taskType);
             try
@@ -193,7 +199,10 @@ namespace YouCompleteMe.DAL
                     task.task_owner = Convert.ToInt32(reader["task_owner"]);
                     task.taskID = Convert.ToInt32(reader["taskID"]);
                     task.taskType = Convert.ToInt32(reader["taskType"]);
-                    task.task_priority = Convert.ToInt32(reader["task_priority"]);
+                    if (reader["task_priority"] == DBNull.Value)
+                        task.task_priority = -1;
+                    else
+                        task.task_priority = Convert.ToInt32(reader["task_priority"]);
                     //task.completed = Convert.ToInt32(reader["completed"]);
                     task.completed = Convert.ToBoolean(reader["completed"]);
                     task.title = reader["title"].ToString();
