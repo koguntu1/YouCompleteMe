@@ -39,9 +39,6 @@
             this.tasksTableAdapter = new YouCompleteMe.project6920DataSetTableAdapters.tasksTableAdapter();
             this.tableAdapterManager = new YouCompleteMe.project6920DataSetTableAdapters.TableAdapterManager();
             this.tasksDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.taskTreeView = new System.Windows.Forms.TreeView();
             this.btnAddSubtask = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -52,6 +49,10 @@
             this.lblTimer = new System.Windows.Forms.Label();
             this.cbPersonal = new System.Windows.Forms.CheckBox();
             this.cbProfessional = new System.Windows.Forms.CheckBox();
+            this.cbOther = new System.Windows.Forms.CheckBox();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.project6920DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tasksBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tasksDataGridView)).BeginInit();
@@ -139,33 +140,10 @@
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn4});
             this.tasksDataGridView.DataSource = this.tasksBindingSource;
-            this.tasksDataGridView.Location = new System.Drawing.Point(391, 106);
+            this.tasksDataGridView.Location = new System.Drawing.Point(394, 106);
             this.tasksDataGridView.Name = "tasksDataGridView";
             this.tasksDataGridView.Size = new System.Drawing.Size(373, 259);
             this.tasksDataGridView.TabIndex = 6;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "deadline";
-            this.dataGridViewTextBoxColumn7.HeaderText = "deadline";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "taskID";
-            this.dataGridViewTextBoxColumn2.HeaderText = "taskID";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "title";
-            this.dataGridViewTextBoxColumn4.HeaderText = "title";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 200;
             // 
             // taskTreeView
             // 
@@ -251,6 +229,8 @@
             // cbPersonal
             // 
             this.cbPersonal.AutoSize = true;
+            this.cbPersonal.Checked = true;
+            this.cbPersonal.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbPersonal.Location = new System.Drawing.Point(684, 13);
             this.cbPersonal.Name = "cbPersonal";
             this.cbPersonal.Size = new System.Drawing.Size(67, 17);
@@ -262,6 +242,8 @@
             // cbProfessional
             // 
             this.cbProfessional.AutoSize = true;
+            this.cbProfessional.Checked = true;
+            this.cbProfessional.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbProfessional.Location = new System.Drawing.Point(684, 37);
             this.cbProfessional.Name = "cbProfessional";
             this.cbProfessional.Size = new System.Drawing.Size(83, 17);
@@ -269,11 +251,48 @@
             this.cbProfessional.Text = "Professional";
             this.cbProfessional.UseVisualStyleBackColor = true;
             // 
+            // cbOther
+            // 
+            this.cbOther.AutoSize = true;
+            this.cbOther.Checked = true;
+            this.cbOther.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbOther.Location = new System.Drawing.Point(684, 61);
+            this.cbOther.Name = "cbOther";
+            this.cbOther.Size = new System.Drawing.Size(52, 17);
+            this.cbOther.TabIndex = 16;
+            this.cbOther.Text = "Other";
+            this.cbOther.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "deadline";
+            this.dataGridViewTextBoxColumn7.HeaderText = "deadline";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "taskID";
+            this.dataGridViewTextBoxColumn2.HeaderText = "taskID";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "title";
+            this.dataGridViewTextBoxColumn4.HeaderText = "title";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 210;
+            // 
             // dateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(776, 455);
+            this.Controls.Add(this.cbOther);
             this.Controls.Add(this.cbProfessional);
             this.Controls.Add(this.cbPersonal);
             this.Controls.Add(this.lblDate);
@@ -314,9 +333,6 @@
         private project6920DataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.DataGridView tasksDataGridView;
         private System.Windows.Forms.TreeView taskTreeView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.Button btnAddSubtask;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -326,5 +342,9 @@
         private System.Windows.Forms.Label lblTimer;
         private System.Windows.Forms.CheckBox cbPersonal;
         private System.Windows.Forms.CheckBox cbProfessional;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.CheckBox cbOther;
     }
 }

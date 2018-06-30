@@ -173,7 +173,7 @@ namespace YouCompleteMe.DAL
         }
 
         // Get all tasks for the current user associated with the selected date
-        public static List<Models.Task> getCurrentUsersTasks(User currentUser, string date)
+        public static List<Models.Task> getCurrentUsersTasks(User currentUser, string date)//, int personal, int professional, int other)
         {
             List<Models.Task> tasks = new List<Models.Task>();
 
@@ -188,6 +188,7 @@ namespace YouCompleteMe.DAL
             SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
             selectCommand.Parameters.AddWithValue("@user", currentUser.userID);
             selectCommand.Parameters.AddWithValue("@date", date);
+            //selectCommand.Parameters.AddWithValue("@type", "("+personal + ", " + professional + ", " + other+")");
 
             try
             {
@@ -214,6 +215,64 @@ namespace YouCompleteMe.DAL
                         task.deadline = (DateTime)reader["deadline"];
 
                     tasks.Add(task);
+                }
+                reader.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return tasks;
+        }
+
+        public static List<Models.Task> getTasksOfType(User currentUser, string date, int type)
+        {
+            List<Models.Task> tasks = new List<Models.Task>();
+
+            SqlConnection connection = DBConnection.GetConnection();
+            string selectStatement =
+                "SELECT * FROM tasks " +
+                "WHERE " +
+                "task_owner = @user and " +
+                "cast(currentDate as date) = @date and " +
+                "taskType = @type " +
+                "order by deadline, task_priority";
+
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@user", currentUser.userID);
+            selectCommand.Parameters.AddWithValue("@date", date);
+            selectCommand.Parameters.AddWithValue("@type", type);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = selectCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    Models.Task task = new Models.Task();
+                    task.task_owner = Convert.ToInt32(reader["task_owner"]);
+                    task.taskID = Convert.ToInt32(reader["taskID"]);
+                    task.taskType = Convert.ToInt32(reader["taskType"]);
+                    if (reader["task_priority"] == DBNull.Value)
+                        task.task_priority = -1;
+                    else
+                        task.task_priority = Convert.ToInt32(reader["task_priority"]);
+                    //task.completed = Convert.ToInt32(reader["completed"]);
+                    task.completed = Convert.ToBoolean(reader["completed"]);
+                    task.title = reader["title"].ToString();
+                    task.createdDate = (DateTime)reader["createdDate"];
+                    task.currentDate = (DateTime)reader["currentDate"];
+                    if (reader["deadline"] == DBNull.Value)
+                        task.deadline = DateTime.MaxValue;
+                    else
+                        task.deadline = (DateTime)reader["deadline"];
+
+                    tasks.Add(task); ;
                 }
                 reader.Close();
             }
@@ -353,7 +412,10 @@ namespace YouCompleteMe.DAL
                     task.task_owner = Convert.ToInt32(reader["task_owner"]);
                     task.taskID = Convert.ToInt32(reader["taskID"]);
                     task.taskType = Convert.ToInt32(reader["taskType"]);
-                    task.task_priority = Convert.ToInt32(reader["task_priority"]);
+                    if (reader["task_priority"] == DBNull.Value)
+                        task.task_priority = -1;
+                    else
+                        task.task_priority = Convert.ToInt32(reader["task_priority"]);
                     //task.completed = Convert.ToInt32(reader["completed"]);
                     task.completed = Convert.ToBoolean(reader["completed"]);
                     task.title = reader["title"].ToString();
@@ -406,7 +468,10 @@ namespace YouCompleteMe.DAL
                     task.task_owner = Convert.ToInt32(reader["task_owner"]);
                     task.taskID = Convert.ToInt32(reader["taskID"]);
                     task.taskType = Convert.ToInt32(reader["taskType"]);
-                    task.task_priority = Convert.ToInt32(reader["task_priority"]);
+                    if (reader["task_priority"] == DBNull.Value)
+                        task.task_priority = -1;
+                    else
+                        task.task_priority = Convert.ToInt32(reader["task_priority"]);
                     //task.completed = Convert.ToInt32(reader["completed"]);
                     task.completed = Convert.ToBoolean(reader["completed"]);
                     task.title = reader["title"].ToString();

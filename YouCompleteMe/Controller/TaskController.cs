@@ -31,6 +31,11 @@ namespace YouCompleteMe.Controller
             return TaskDAL.getCurrentUsersTasks(currentUser, date);
         }
 
+        public static List<Models.Task> getTaskOfType(User currentUser, string date, int type)
+        {
+            return TaskDAL.getTasksOfType(currentUser, date, type);
+        }
+
         public static int updateIncompleteTasksToCurrentDate()
         {
             return TaskDAL.updateIncompleteTasksToCurrentDate();
