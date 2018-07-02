@@ -89,7 +89,7 @@ namespace YouCompleteMe.DAL
                     task.taskID = Convert.ToInt32(reader["taskID"]);
                     task.taskType = Convert.ToInt32(reader["taskType"]);
                     task.task_owner = Convert.ToInt32(reader["task_owner"]);
-                    task.task_priority = Convert.ToInt32(reader["task_priority"]);
+                    //task.task_priority = Convert.ToInt32(reader["task_priority"]);
                     task.title = reader["title"].ToString();
                     task.currentDate = Convert.ToDateTime(reader["currentDate"]);
                     task.createdDate = Convert.ToDateTime(reader["createdDate"]);

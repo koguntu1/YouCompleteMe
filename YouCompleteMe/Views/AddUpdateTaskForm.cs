@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using YouCompleteMe.Controller;
@@ -122,7 +123,11 @@ namespace YouCompleteMe.Views
                         if (result.Equals(DialogResult.OK))
                         {
                             int taskID = TaskController.AddTask(task);
-                            MessageBox.Show("Task successfully added");
+                            if (taskID != 0)
+                                MessageBox.Show("Task successfully added");
+                            else
+                                MessageBox.Show("Task was not added.  Please try again.");
+                            //Thread.Sleep(5000);
                             dateForm.dateForm_Load(sender, e);
                             this.Close();
                         }   

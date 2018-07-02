@@ -32,7 +32,7 @@ namespace YouCompleteMe.Views
             user = _user;
             this.parentCalendar = _calendar;
             instance = this;
-            this.tasks = TaskController.getUserTasks(user, parentCalendar.getSelectedDate());
+            //this.tasks = TaskController.getUserTasks(user, parentCalendar.getSelectedDate());
         }
 
         public static dateForm Instance
@@ -48,6 +48,7 @@ namespace YouCompleteMe.Views
         {
             this.lblDate.Text = parentCalendar.getSelectedDate_Formatted();
             this.taskTreeView.Nodes.Clear();
+            this.tasks = TaskController.getUserTasks(user, parentCalendar.getSelectedDate());
             tasksDataGridView.DataSource = TaskController.getCurrentTaskDeadlines(user, parentCalendar.getSelectedDate());
             populateTaskTreeView();
         }
@@ -237,6 +238,7 @@ namespace YouCompleteMe.Views
             }
             else if (subtaskForm == null)
             {
+                //MessageBox.Show(this.getSelectedNodeTaskID().ToString());
                 Models.Task tag = (Models.Task)taskTreeView.SelectedNode.Tag;
                 //MessageBox.Show(tag.taskID.ToString());
                 subtaskForm = new AddUpdateChildTaskForm(user, false, this);
@@ -346,7 +348,9 @@ namespace YouCompleteMe.Views
                     this.tasks.Add(task);
                 }
             }
-            this.dateForm_Load(sender, e);
+            taskTreeView.Nodes.Clear();
+            //this.dateForm_Load(sender, e);
+            this.populateTaskTreeView();
         }
 
         private void cbProfessional_CheckedChanged(object sender, EventArgs e)
@@ -367,7 +371,9 @@ namespace YouCompleteMe.Views
                     this.tasks.Add(task);
                 }
             }
-            this.dateForm_Load(sender, e);
+            taskTreeView.Nodes.Clear();
+            //this.dateForm_Load(sender, e);
+            this.populateTaskTreeView();
         }
 
         private void cbOther_CheckedChanged(object sender, EventArgs e)
@@ -388,7 +394,9 @@ namespace YouCompleteMe.Views
                     this.tasks.Add(task);
                 }
             }
-            this.dateForm_Load(sender, e);
+            taskTreeView.Nodes.Clear();
+            //this.dateForm_Load(sender, e);
+            this.populateTaskTreeView();
         }
     }
 }
