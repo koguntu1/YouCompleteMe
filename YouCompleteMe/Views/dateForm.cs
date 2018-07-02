@@ -305,7 +305,7 @@ namespace YouCompleteMe.Views
                 btnStartTimer.Enabled = false;
                 btnStopTimer.Enabled = true;
                 taskTimer.Start();
-                MessageBox.Show(this.timedTaskID.ToString());
+                //MessageBox.Show(this.timedTaskID.ToString());
             }
         }
 
