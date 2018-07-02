@@ -35,12 +35,6 @@ namespace YouCompleteMe.Views
             phone2.Text = theUser.phone.Substring(5,3);
             phone3.Text = theUser.phone.Substring(9,4);
 
-            int atChar = theUser.email.IndexOf("@");
-            int atPeriod = theUser.email.LastIndexOf(".");
-
-            txtEmail1.Text = theUser.email.Substring(0, atChar);
-            txtEmail2.Text = theUser.email.Substring(atChar + 1, atPeriod - atChar - 1);
-            txtEmail3.Text = theUser.email.Substring(atPeriod + 1, theUser.email.Length - atPeriod - 1);
             hintText.Text = theUser.hint;
         }
 
