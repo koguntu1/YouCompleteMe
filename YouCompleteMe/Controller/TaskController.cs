@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,6 +55,24 @@ namespace YouCompleteMe.Controller
         public static List<Models.Task> getCurrentTaskDeadlines(User currentUser, string date)
         {
             return TaskDAL.getCurrentDeadlines(currentUser, date);
+        }
+
+        /* Add this method to get the list of tasks have created date between fromDate and toDate with completed or not*/
+        public static DataSet GetListTaskByCreatedDate(DateTime fromDate, DateTime toDate, bool isCompleted)
+        {
+            return TaskDAL.GetListTaskByCreatedDate(fromDate, toDate, isCompleted);
+        }
+
+        /*This method get all task has deadline then set bold in calendar*/
+        public static List<DateTime> getAllDeadline()
+        {
+            return TaskDAL.getAllDeadline();
+        }
+
+        /*Delete task by task id*/
+        public static void deleteTask(int taskID)
+        {
+            TaskDAL.deleteTask(taskID);
         }
     }
 }

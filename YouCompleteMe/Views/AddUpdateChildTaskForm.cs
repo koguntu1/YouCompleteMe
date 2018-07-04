@@ -30,8 +30,8 @@ namespace YouCompleteMe.Views
             isUpdate = _isUpdate;
             //load tasks into comboBox
             this.dateForm = dateForm;
-            LoadComboBoxes();
-            comboPriority.SelectedIndex = 0;
+            //LoadComboBoxes();
+            //comboPriority.SelectedIndex = 0;
             instance = this;
             deadlinePicker.Format = DateTimePickerFormat.Custom;
             deadlinePicker.CustomFormat = "MM/dd/yyyy hh:mm";

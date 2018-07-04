@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -89,7 +90,7 @@ namespace YouCompleteMe.DAL
                     task.taskID = Convert.ToInt32(reader["taskID"]);
                     task.taskType = Convert.ToInt32(reader["taskType"]);
                     task.task_owner = Convert.ToInt32(reader["task_owner"]);
-                    //task.task_priority = Convert.ToInt32(reader["task_priority"]);
+                    task.task_priority = Convert.ToInt32(reader["task_priority"]);
                     task.title = reader["title"].ToString();
                     task.currentDate = Convert.ToDateTime(reader["currentDate"]);
                     task.createdDate = Convert.ToDateTime(reader["createdDate"]);
@@ -497,5 +498,108 @@ namespace YouCompleteMe.DAL
 
             return tasks;
         }
+
+        /* Add this method to get the list of tasks have created date between fromDate and toDate with completed or not*/
+        public static DataSet GetListTaskByCreatedDate(DateTime fromDate, DateTime toDate, bool isCompleted)
+        {
+            SqlConnection connection = DBConnection.GetConnection();
+            string selectStatement =
+                "SELECT * FROM tasks where (createdDate between @fromDate and @toDate)";
+            if (isCompleted)
+            {
+                selectStatement = selectStatement + " and completed = 1";
+            }
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@fromDate", fromDate);
+            selectCommand.Parameters.AddWithValue("@toDate", toDate);
+            // Create a new data adapter based on the specified query.
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(selectStatement, connection);
+            // Populate a new data table
+            DataSet dataSet = new DataSet();
+            try
+            {
+                connection.Open();
+                SqlDataReader sdr = selectCommand.ExecuteReader();
+                dataSet.Locale = System.Globalization.CultureInfo.InvariantCulture;
+                dataSet.Tables.Add("tasks");
+
+                //Load DataReader into the DataTable.
+                dataSet.Tables[0].Load(sdr);
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return dataSet;
+        }
+
+        /*This method get all task has deadline then set bold in calendar*/
+        public static List<DateTime> getAllDeadline()
+        {
+            List<DateTime> dateTimeList = new List<DateTime>();
+            SqlConnection connection = DBConnection.GetConnection();
+            string selectStatement =
+                "SELECT * FROM tasks " +
+                "WHERE " +
+                "deadline is not null";
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = selectCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    dateTimeList.Add((DateTime)reader["deadline"]);
+                }
+                reader.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return dateTimeList;
+        }
+
+        /*Delete task by task id*/
+        public static void deleteTask(int taskID)
+        {
+            SqlConnection connection = DBConnection.GetConnection();
+            string deleteStatement = "DELETE FROM tasks " +
+                                     "WHERE taskID = @taskID";
+            SqlCommand deleteCommand = new SqlCommand(deleteStatement, connection);
+            deleteCommand.Parameters.AddWithValue("@taskID", taskID);
+
+            SqlDataReader reader = null;
+            try
+            {
+                connection.Open();
+                deleteCommand.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+                if (reader != null)
+                    reader.Close();
+            }
+        }
+
     }
 }

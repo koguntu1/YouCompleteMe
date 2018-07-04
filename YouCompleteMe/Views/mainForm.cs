@@ -38,8 +38,16 @@ namespace YouCompleteMe.Views
             {
                 uerLToolStripMenuItem.Text = "Wellcome: "+theUser.userName;
             }
+            boldCalendar();
             //setToolStripMenuItemsEnabled(false);
             //showLogin();
+        }
+
+        /*Bold calendar for day associa with deadline*/
+        public void boldCalendar()
+        {
+            DateTime[] dateTimes = TaskController.getAllDeadline().ToArray();
+            monthCalendar1.BoldedDates = dateTimes;
         }
 
         //Returns current instance of this form
@@ -162,7 +170,7 @@ namespace YouCompleteMe.Views
         {
             if (childTask == null)
             {
-                childTask = new childTasksForm(theUser);
+                childTask = new childTasksForm(theUser, null);
                 //childTask.MdiParent = this;
                 childTask.StartPosition = FormStartPosition.CenterScreen;
                 childTask.FormClosed += ChildTask_FormClosed;

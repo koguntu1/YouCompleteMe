@@ -29,21 +29,16 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.txtFromDate = new System.Windows.Forms.TextBox();
-            this.txtToDate = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
-            this.btnUpdateTask = new System.Windows.Forms.Button();
             this.btnAddNewTask = new System.Windows.Forms.Button();
-            this.listTaskGridView = new System.Windows.Forms.DataGridView();
-            this.numberTask = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Deadline = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.listSubTasks = new System.Windows.Forms.DataGridViewButtonColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.completedCheckBox = new System.Windows.Forms.CheckBox();
+            this.fromdateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.todateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.listTaskGridView = new System.Windows.Forms.DataGridView();
+            this.btnDeleteTask = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.listTaskGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,22 +51,6 @@
             this.label1.Size = new System.Drawing.Size(102, 23);
             this.label1.TabIndex = 1;
             this.label1.Text = "From Date :";
-            // 
-            // txtFromDate
-            // 
-            this.txtFromDate.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFromDate.Location = new System.Drawing.Point(126, 65);
-            this.txtFromDate.Name = "txtFromDate";
-            this.txtFromDate.Size = new System.Drawing.Size(184, 27);
-            this.txtFromDate.TabIndex = 2;
-            // 
-            // txtToDate
-            // 
-            this.txtToDate.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtToDate.Location = new System.Drawing.Point(481, 65);
-            this.txtToDate.Name = "txtToDate";
-            this.txtToDate.Size = new System.Drawing.Size(185, 27);
-            this.txtToDate.TabIndex = 4;
             // 
             // label2
             // 
@@ -94,21 +73,10 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // btnUpdateTask
-            // 
-            this.btnUpdateTask.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateTask.Location = new System.Drawing.Point(370, 419);
-            this.btnUpdateTask.Name = "btnUpdateTask";
-            this.btnUpdateTask.Size = new System.Drawing.Size(138, 33);
-            this.btnUpdateTask.TabIndex = 7;
-            this.btnUpdateTask.Text = "Update Task";
-            this.btnUpdateTask.UseVisualStyleBackColor = true;
-            this.btnUpdateTask.Click += new System.EventHandler(this.btnUpdateTask_Click);
-            // 
             // btnAddNewTask
             // 
             this.btnAddNewTask.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddNewTask.Location = new System.Drawing.Point(194, 419);
+            this.btnAddNewTask.Location = new System.Drawing.Point(186, 419);
             this.btnAddNewTask.Name = "btnAddNewTask";
             this.btnAddNewTask.Size = new System.Drawing.Size(152, 33);
             this.btnAddNewTask.TabIndex = 6;
@@ -116,61 +84,15 @@
             this.btnAddNewTask.UseVisualStyleBackColor = true;
             this.btnAddNewTask.Click += new System.EventHandler(this.btnAddNewTask_Click);
             // 
-            // listTaskGridView
-            // 
-            this.listTaskGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.listTaskGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.numberTask,
-            this.Description,
-            this.Status,
-            this.Deadline,
-            this.StartDate,
-            this.listSubTasks});
-            this.listTaskGridView.Location = new System.Drawing.Point(16, 111);
-            this.listTaskGridView.Name = "listTaskGridView";
-            this.listTaskGridView.Size = new System.Drawing.Size(650, 292);
-            this.listTaskGridView.TabIndex = 5;
-            // 
-            // numberTask
-            // 
-            this.numberTask.HeaderText = "No";
-            this.numberTask.Name = "numberTask";
-            // 
-            // Description
-            // 
-            this.Description.HeaderText = "Description";
-            this.Description.Name = "Description";
-            // 
-            // Status
-            // 
-            this.Status.HeaderText = "Status";
-            this.Status.Name = "Status";
-            // 
-            // Deadline
-            // 
-            this.Deadline.HeaderText = "Deadline";
-            this.Deadline.Name = "Deadline";
-            // 
-            // StartDate
-            // 
-            this.StartDate.HeaderText = "Start Date";
-            this.StartDate.Name = "StartDate";
-            // 
-            // listSubTasks
-            // 
-            this.listSubTasks.HeaderText = "See List SubTasks";
-            this.listSubTasks.Name = "listSubTasks";
-            this.listSubTasks.Width = 150;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(18, 19);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(109, 23);
+            this.label3.Size = new System.Drawing.Size(297, 23);
             this.label3.TabIndex = 9;
-            this.label3.Text = "Search Tasks";
+            this.label3.Text = "Search Tasks Based On Created Date";
             // 
             // btnSearch
             // 
@@ -183,20 +105,66 @@
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
+            // completedCheckBox
+            // 
+            this.completedCheckBox.AutoSize = true;
+            this.completedCheckBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.completedCheckBox.Location = new System.Drawing.Point(481, 21);
+            this.completedCheckBox.Name = "completedCheckBox";
+            this.completedCheckBox.Size = new System.Drawing.Size(102, 23);
+            this.completedCheckBox.TabIndex = 49;
+            this.completedCheckBox.Text = "Completed";
+            this.completedCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // fromdateTimePicker
+            // 
+            this.fromdateTimePicker.Location = new System.Drawing.Point(126, 69);
+            this.fromdateTimePicker.Name = "fromdateTimePicker";
+            this.fromdateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.fromdateTimePicker.TabIndex = 50;
+            // 
+            // todateTimePicker
+            // 
+            this.todateTimePicker.Location = new System.Drawing.Point(466, 70);
+            this.todateTimePicker.Name = "todateTimePicker";
+            this.todateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.todateTimePicker.TabIndex = 51;
+            // 
+            // listTaskGridView
+            // 
+            this.listTaskGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.listTaskGridView.Location = new System.Drawing.Point(16, 111);
+            this.listTaskGridView.Name = "listTaskGridView";
+            this.listTaskGridView.Size = new System.Drawing.Size(650, 292);
+            this.listTaskGridView.TabIndex = 5;
+            this.listTaskGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listTaskGridView_CellContentClick);
+            // 
+            // btnDeleteTask
+            // 
+            this.btnDeleteTask.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteTask.Location = new System.Drawing.Point(370, 419);
+            this.btnDeleteTask.Name = "btnDeleteTask";
+            this.btnDeleteTask.Size = new System.Drawing.Size(152, 33);
+            this.btnDeleteTask.TabIndex = 52;
+            this.btnDeleteTask.Text = "Delete Task";
+            this.btnDeleteTask.UseVisualStyleBackColor = true;
+            this.btnDeleteTask.Click += new System.EventHandler(this.btnDeleteTask_Click);
+            // 
             // tasksForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(694, 464);
+            this.Controls.Add(this.btnDeleteTask);
+            this.Controls.Add(this.todateTimePicker);
+            this.Controls.Add(this.fromdateTimePicker);
+            this.Controls.Add(this.completedCheckBox);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.btnUpdateTask);
             this.Controls.Add(this.btnAddNewTask);
             this.Controls.Add(this.listTaskGridView);
-            this.Controls.Add(this.txtToDate);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtFromDate);
             this.Controls.Add(this.label1);
             this.Name = "tasksForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -210,20 +178,15 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtFromDate;
-        private System.Windows.Forms.TextBox txtToDate;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.Button btnUpdateTask;
         private System.Windows.Forms.Button btnAddNewTask;
-        private System.Windows.Forms.DataGridView listTaskGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn numberTask;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Deadline;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StartDate;
-        private System.Windows.Forms.DataGridViewButtonColumn listSubTasks;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.CheckBox completedCheckBox;
+        private System.Windows.Forms.DateTimePicker fromdateTimePicker;
+        private System.Windows.Forms.DateTimePicker todateTimePicker;
+        private System.Windows.Forms.DataGridView listTaskGridView;
+        private System.Windows.Forms.Button btnDeleteTask;
     }
 }
