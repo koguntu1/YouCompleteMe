@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -256,5 +257,73 @@ namespace YouCompleteMe.DAL
             }
             return subtask;
         }
+
+        /* Add this method to get the list of subtasks have taskID and created date between fromDate and toDate*/
+        public static DataSet GetListSubTaskByCreatedDate(int taskID,DateTime fromDate, DateTime toDate)
+        {
+            SqlConnection connection = DBConnection.GetConnection();
+            string selectStatement =
+                "SELECT * FROM subtask where (st_CreatedDate between @fromDate and @toDate) and taskID = @taskID";
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@fromDate", fromDate);
+            selectCommand.Parameters.AddWithValue("@toDate", toDate);
+            selectCommand.Parameters.AddWithValue("@taskID", taskID);
+            // Create a new data adapter based on the specified query.
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(selectStatement, connection);
+            // Populate a new data table
+            DataSet dataSet = new DataSet();
+            try
+            {
+                connection.Open();
+                SqlDataReader sdr = selectCommand.ExecuteReader();
+                dataSet.Locale = System.Globalization.CultureInfo.InvariantCulture;
+                dataSet.Tables.Add("subtask");
+
+                //Load DataReader into the DataTable.
+                dataSet.Tables[0].Load(sdr);
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return dataSet;
+        }
+
+        /*Delete subtask by subtask id*/
+        public static void deleteSubTask(int subtaskID)
+        {
+            SqlConnection connection = DBConnection.GetConnection();
+            string deleteStatement = "DELETE FROM subtask " +
+                                     "WHERE subtaskID = @subtaskID";
+            SqlCommand deleteCommand = new SqlCommand(deleteStatement, connection);
+            deleteCommand.Parameters.AddWithValue("@subtaskID", subtaskID);
+
+            SqlDataReader reader = null;
+            try
+            {
+                connection.Open();
+                deleteCommand.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+                if (reader != null)
+                    reader.Close();
+            }
+        }
+
     }
 }
