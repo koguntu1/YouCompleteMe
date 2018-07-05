@@ -26,6 +26,7 @@ namespace YouCompleteMe.Views
         private static tasksForm task;
         private static childTasksForm childTask;
         private static CompletedTaskParameterForm completedTask;
+        private static ViewCompletedTasksForm completedTaskReport;
 
         private User theUser;
 
@@ -262,6 +263,7 @@ namespace YouCompleteMe.Views
             ifActiveForm(changePasswordForm);
             ifActiveForm(dateForm);
             ifActiveForm(completedTask);
+            ifActiveForm(completedTaskReport);
             //ifActiveForm(task);
         }
 

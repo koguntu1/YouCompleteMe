@@ -39,9 +39,9 @@
             this.managementSubTaskToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.addUpdateSubTaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.completedTasksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uerLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
-            this.completedTasksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -138,6 +138,13 @@
             this.reportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.reportsToolStripMenuItem.Text = "Reports";
             // 
+            // completedTasksToolStripMenuItem
+            // 
+            this.completedTasksToolStripMenuItem.Name = "completedTasksToolStripMenuItem";
+            this.completedTasksToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.completedTasksToolStripMenuItem.Text = "Completed Tasks";
+            this.completedTasksToolStripMenuItem.Click += new System.EventHandler(this.showCompletedTaskReport);
+            // 
             // uerLToolStripMenuItem
             // 
             this.uerLToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -154,13 +161,6 @@
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 2;
             this.monthCalendar1.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateSelected);
-            // 
-            // completedTasksToolStripMenuItem
-            // 
-            this.completedTasksToolStripMenuItem.Name = "completedTasksToolStripMenuItem";
-            this.completedTasksToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.completedTasksToolStripMenuItem.Text = "Completed Tasks";
-            this.completedTasksToolStripMenuItem.Click += new System.EventHandler(this.showCompletedTaskReport);
             // 
             // mainForm
             // 
