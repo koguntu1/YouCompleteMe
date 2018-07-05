@@ -500,11 +500,11 @@ namespace YouCompleteMe.DAL
         }
 
         /* Add this method to get the list of tasks have created date between fromDate and toDate with completed or not*/
-        public static DataSet GetListTaskByCreatedDate(DateTime fromDate, DateTime toDate, bool isCompleted)
+        public static DataSet GetListTaskByCreatedDate(int id, DateTime fromDate, DateTime toDate, bool isCompleted)
         {
             SqlConnection connection = DBConnection.GetConnection();
             string selectStatement =
-                "SELECT * FROM tasks where (createdDate between @fromDate and @toDate)";
+                "SELECT * FROM tasks where task_owner = @id AND (createdDate between @fromDate and @toDate)";
             if (isCompleted)
             {
                 selectStatement = selectStatement + " and completed = 1";
@@ -512,6 +512,7 @@ namespace YouCompleteMe.DAL
             SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
             selectCommand.Parameters.AddWithValue("@fromDate", fromDate);
             selectCommand.Parameters.AddWithValue("@toDate", toDate);
+            selectCommand.Parameters.AddWithValue("@id", id);
             // Create a new data adapter based on the specified query.
             SqlDataAdapter dataAdapter = new SqlDataAdapter(selectStatement, connection);
             // Populate a new data table

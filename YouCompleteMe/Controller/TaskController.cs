@@ -58,9 +58,9 @@ namespace YouCompleteMe.Controller
         }
 
         /* Add this method to get the list of tasks have created date between fromDate and toDate with completed or not*/
-        public static DataSet GetListTaskByCreatedDate(DateTime fromDate, DateTime toDate, bool isCompleted)
+        public static DataSet GetListTaskByCreatedDate(int id, DateTime fromDate, DateTime toDate, bool isCompleted)
         {
-            return TaskDAL.GetListTaskByCreatedDate(fromDate, toDate, isCompleted);
+            return TaskDAL.GetListTaskByCreatedDate(id, fromDate, toDate, isCompleted);
         }
 
         /*This method get all task has deadline then set bold in calendar*/

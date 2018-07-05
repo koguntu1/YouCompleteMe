@@ -37,7 +37,7 @@ namespace YouCompleteMe.Views
             theUser = _user;
             if (theUser != null)
             {
-                uerLToolStripMenuItem.Text = "Wellcome: "+theUser.userName;
+                uerLToolStripMenuItem.Text = "Welcome: "+theUser.fName;
             }
             boldCalendar();
             //setToolStripMenuItemsEnabled(false);

@@ -70,7 +70,6 @@ namespace YouCompleteMe.Views
             }
             else
             {
-                MessageBox.Show("Welcome " + CurrentUser.User.fName);
                 //this.Close();
 
                 //homeForm = new homepageForm(CurrentUser.User);

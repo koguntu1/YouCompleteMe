@@ -79,7 +79,7 @@ namespace YouCompleteMe.Views
                     if (completedCheckBox.Checked)
                         isCompleted = true;
 
-                    DataSet ds = TaskController.GetListTaskByCreatedDate(fromDate, toDate, isCompleted);
+                    DataSet ds = TaskController.GetListTaskByCreatedDate(user.userID, fromDate, toDate, isCompleted);
                     if (ds.Tables.Count > 0)
                     {
 

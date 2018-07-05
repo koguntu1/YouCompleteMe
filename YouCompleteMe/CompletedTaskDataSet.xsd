@@ -100,7 +100,7 @@ SELECT title, createdDate, deadline, currentDate, taskID, task_owner FROM tasks 
   <xs:element name="CompletedTaskDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="CompletedTaskDataSet" msprop:Generator_UserDSName="CompletedTaskDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="tasks" msprop:Generator_TableClassName="tasksDataTable" msprop:Generator_TableVarName="tabletasks" msprop:Generator_RowChangedName="tasksRowChanged" msprop:Generator_TablePropName="tasks" msprop:Generator_RowDeletingName="tasksRowDeleting" msprop:Generator_RowChangingName="tasksRowChanging" msprop:Generator_RowEvHandlerName="tasksRowChangeEventHandler" msprop:Generator_RowDeletedName="tasksRowDeleted" msprop:Generator_RowClassName="tasksRow" msprop:Generator_UserTableName="tasks" msprop:Generator_RowEvArgName="tasksRowChangeEvent">
+        <xs:element name="tasks" msprop:Generator_TableClassName="tasksDataTable" msprop:Generator_TableVarName="tabletasks" msprop:Generator_TablePropName="tasks" msprop:Generator_RowDeletingName="tasksRowDeleting" msprop:Generator_RowChangingName="tasksRowChanging" msprop:Generator_RowEvHandlerName="tasksRowChangeEventHandler" msprop:Generator_RowDeletedName="tasksRowDeleted" msprop:Generator_UserTableName="tasks" msprop:Generator_RowChangedName="tasksRowChanged" msprop:Generator_RowEvArgName="tasksRowChangeEvent" msprop:Generator_RowClassName="tasksRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="title" msprop:Generator_ColumnVarNameInTable="columntitle" msprop:Generator_ColumnPropNameInRow="title" msprop:Generator_ColumnPropNameInTable="titleColumn" msprop:Generator_UserColumnName="title">
@@ -116,7 +116,7 @@ SELECT title, createdDate, deadline, currentDate, taskID, task_owner FROM tasks 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="tasks1" msprop:Generator_TableClassName="tasks1DataTable" msprop:Generator_TableVarName="tabletasks1" msprop:Generator_TablePropName="tasks1" msprop:Generator_RowDeletingName="tasks1RowDeleting" msprop:Generator_RowChangingName="tasks1RowChanging" msprop:Generator_RowEvHandlerName="tasks1RowChangeEventHandler" msprop:Generator_RowDeletedName="tasks1RowDeleted" msprop:Generator_UserTableName="tasks1" msprop:Generator_RowChangedName="tasks1RowChanged" msprop:Generator_RowEvArgName="tasks1RowChangeEvent" msprop:Generator_RowClassName="tasks1Row">
+        <xs:element name="tasks1" msprop:Generator_TableClassName="tasks1DataTable" msprop:Generator_TableVarName="tabletasks1" msprop:Generator_RowChangedName="tasks1RowChanged" msprop:Generator_TablePropName="tasks1" msprop:Generator_RowDeletingName="tasks1RowDeleting" msprop:Generator_RowChangingName="tasks1RowChanging" msprop:Generator_RowEvHandlerName="tasks1RowChangeEventHandler" msprop:Generator_RowDeletedName="tasks1RowDeleted" msprop:Generator_RowClassName="tasks1Row" msprop:Generator_UserTableName="tasks1" msprop:Generator_RowEvArgName="tasks1RowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="title" msprop:Generator_ColumnVarNameInTable="columntitle" msprop:Generator_ColumnPropNameInRow="title" msprop:Generator_ColumnPropNameInTable="titleColumn" msprop:Generator_UserColumnName="title">
