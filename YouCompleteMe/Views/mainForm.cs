@@ -25,7 +25,7 @@ namespace YouCompleteMe.Views
         private static dateForm dateForm;
         private static tasksForm task;
         private static childTasksForm childTask;
-        private static CompletedTaskParameterForm taskParameter;
+        private static ViewCompletedTasksForm taskParameter;
 
         private User theUser;
 
@@ -298,7 +298,7 @@ namespace YouCompleteMe.Views
         {
             if (taskParameter == null)
             {
-                taskParameter = new CompletedTaskParameterForm(theUser);
+                taskParameter = new ViewCompletedTasksForm(theUser);
                 taskParameter.StartPosition = FormStartPosition.CenterScreen;
                 taskParameter.FormClosed += TaskParameter_FormClosed;
                 taskParameter.ShowDialog();

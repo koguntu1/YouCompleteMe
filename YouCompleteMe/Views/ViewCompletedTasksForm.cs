@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using YouCompleteMe.Controller;
 using YouCompleteMe.Models;
 
 namespace YouCompleteMe.Views
@@ -15,12 +16,16 @@ namespace YouCompleteMe.Views
     {
         private static CompletedTaskParameterForm parameter;
         private static ViewCompletedTasksForm instance;
+        private User theUser;
 
-        public ViewCompletedTasksForm(CompletedTaskParameterForm parameters)
+        public ViewCompletedTasksForm(User aUser)
         {
             instance = this;
-            parameter = parameters;
+            theUser = aUser;
+
             InitializeComponent();
+            startDate.Value = TaskController.getMinDate(theUser.userID);
+            endDate.Value = TaskController.getMinDate(theUser.userID);
         }
 
         public ViewCompletedTasksForm Instance
@@ -31,10 +36,15 @@ namespace YouCompleteMe.Views
             }
         }
 
-        private void ViewCompletedTasksForm_Load(object sender, EventArgs e)
+        private void submitOnClick(object sender, EventArgs e)
         {
-            this.tasks1TableAdapter1.Fill(this.completedTaskDataSet.tasks1, parameter.getUser().userID, parameter.getStart(), parameter.getEnd());
+            this.tasks1TableAdapter1.Fill(this.completedTaskDataSet.tasks1, theUser.userID, startDate.Value, endDate.Value);
             this.reportViewer1.RefreshReport();
+        }
+
+        private void closeOnClick(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

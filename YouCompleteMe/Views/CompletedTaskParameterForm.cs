@@ -37,25 +37,7 @@ namespace YouCompleteMe.Views
 
         private void submitOnClick(object sender, EventArgs e)
         {
-            try
-            {
-                if (report == null)
-                {
-                    report = new ViewCompletedTasksForm(this);
-                    report.FormClosed += new FormClosedEventHandler(TaskReport_FormClosed);
-                    report.StartPosition = FormStartPosition.CenterScreen;
-                    this.Hide();
-                    report.Show();
-                }
-                else
-                {
-                    report.Activate();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            
         }
 
         private void cancelOnClick(object sender, EventArgs e)
