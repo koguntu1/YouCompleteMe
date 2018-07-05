@@ -74,5 +74,10 @@ namespace YouCompleteMe.Controller
         {
             TaskDAL.deleteTask(taskID);
         }
+
+        public static DateTime getMinDate(int id)
+        {
+            return TaskDAL.getMinDate(id);
+        }
     }
 }

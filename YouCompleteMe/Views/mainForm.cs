@@ -25,6 +25,7 @@ namespace YouCompleteMe.Views
         private static dateForm dateForm;
         private static tasksForm task;
         private static childTasksForm childTask;
+        private static CompletedTaskParameterForm completedTask;
 
         private User theUser;
 
@@ -260,6 +261,7 @@ namespace YouCompleteMe.Views
             //ifActiveForm(childTask);
             ifActiveForm(changePasswordForm);
             ifActiveForm(dateForm);
+            ifActiveForm(completedTask);
             //ifActiveForm(task);
         }
 
@@ -291,6 +293,30 @@ namespace YouCompleteMe.Views
         public String getSelectedDate()
         {
             return monthCalendar1.SelectionRange.Start.ToShortDateString();
+        }
+
+        private void showCompletedTaskReport(object sender, EventArgs e)
+        {
+            if (completedTask == null)
+            {
+                completedTask = new CompletedTaskParameterForm(theUser);
+                completedTask.StartPosition = FormStartPosition.CenterScreen;
+                completedTask.FormClosed += CompletedTask_FormClosed;
+                completedTask.ShowDialog();
+            }
+            else
+            {
+                completedTask.Activate();
+            }
+        }
+
+        private void CompletedTask_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (completedTask != null)
+            {
+                completedTask.Dispose();
+                completedTask = null;
+            }
         }
     }
 }

@@ -601,5 +601,32 @@ namespace YouCompleteMe.DAL
             }
         }
 
+        public static DateTime getMinDate(int id)
+        {
+            DateTime date;
+
+            SqlConnection connection = DBConnection.GetConnection();
+            string selectStatement =
+                "SELECT MIN(createdDate) FROM tasks WHERE task_owner = @id ";
+
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@id", id);
+            try
+            {
+                connection.Open();
+                selectCommand.ExecuteNonQuery();
+                date = (DateTime)selectCommand.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return date;
+        }
+        
     }
 }
