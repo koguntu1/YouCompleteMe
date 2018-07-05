@@ -70,6 +70,21 @@ namespace YouCompleteMe.Views
             endDate.Value = TaskController.getMinDate(theUser.userID);
         }
 
+        public DateTime getStart()
+        {
+            return startDate.Value;
+        }
+
+        public DateTime getEnd()
+        {
+            return endDate.Value;
+        }
+
+        public User getUser()
+        {
+            return theUser;
+        }
+
         //Sets open report form to null and shows this form with selected values reset
         private void TaskReport_FormClosed(object sender, FormClosedEventArgs e)
         {

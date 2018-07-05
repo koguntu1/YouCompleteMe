@@ -25,8 +25,7 @@ namespace YouCompleteMe.Views
         private static dateForm dateForm;
         private static tasksForm task;
         private static childTasksForm childTask;
-        private static CompletedTaskParameterForm completedTask;
-        private static ViewCompletedTasksForm completedTaskReport;
+        private static CompletedTaskParameterForm taskParameter;
 
         private User theUser;
 
@@ -262,8 +261,6 @@ namespace YouCompleteMe.Views
             //ifActiveForm(childTask);
             ifActiveForm(changePasswordForm);
             ifActiveForm(dateForm);
-            ifActiveForm(completedTask);
-            ifActiveForm(completedTaskReport);
             //ifActiveForm(task);
         }
 
@@ -297,27 +294,27 @@ namespace YouCompleteMe.Views
             return monthCalendar1.SelectionRange.Start.ToShortDateString();
         }
 
-        private void showCompletedTaskReport(object sender, EventArgs e)
+        private void completedTaskReport(object sender, EventArgs e)
         {
-            if (completedTask == null)
+            if (taskParameter == null)
             {
-                completedTask = new CompletedTaskParameterForm(theUser);
-                completedTask.StartPosition = FormStartPosition.CenterScreen;
-                completedTask.FormClosed += CompletedTask_FormClosed;
-                completedTask.ShowDialog();
+                taskParameter = new CompletedTaskParameterForm(theUser);
+                taskParameter.StartPosition = FormStartPosition.CenterScreen;
+                taskParameter.FormClosed += TaskParameter_FormClosed;
+                taskParameter.ShowDialog();
             }
             else
             {
-                completedTask.Activate();
+                taskParameter.Activate();
             }
         }
 
-        private void CompletedTask_FormClosed(object sender, FormClosedEventArgs e)
+        private void TaskParameter_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (completedTask != null)
+            if (taskParameter != null)
             {
-                completedTask.Dispose();
-                completedTask = null;
+                taskParameter.Dispose();
+                taskParameter = null;
             }
         }
     }

@@ -63,6 +63,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompletedTaskDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompletedTaskDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Controller\NoteController.cs" />
     <Compile Include="Controller\SubtaskController.cs" />
     <Compile Include="Controller\TaskController.cs" />
@@ -175,6 +180,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Report.rdlc" />
     <EmbeddedResource Include="Views\AddUpdateAccountForm.resx">
       <DependentUpon>AddUpdateAccountForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -214,6 +220,16 @@
     <EmbeddedResource Include="Views\ViewCompletedTasksForm.resx">
       <DependentUpon>ViewCompletedTasksForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="CompletedTaskDataSet.xsc">
+      <DependentUpon>CompletedTaskDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CompletedTaskDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CompletedTaskDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="CompletedTaskDataSet.xss">
+      <DependentUpon>CompletedTaskDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="project6920DataSet1.xsc">
       <DependentUpon>project6920DataSet1.xsd</DependentUpon>

@@ -39,9 +39,9 @@
             this.managementSubTaskToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.addUpdateSubTaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.completedTasksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uerLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.completedTaskReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -133,17 +133,10 @@
             // reportsToolStripMenuItem
             // 
             this.reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.completedTasksToolStripMenuItem});
+            this.completedTaskReportToolStripMenuItem});
             this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
             this.reportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.reportsToolStripMenuItem.Text = "Reports";
-            // 
-            // completedTasksToolStripMenuItem
-            // 
-            this.completedTasksToolStripMenuItem.Name = "completedTasksToolStripMenuItem";
-            this.completedTasksToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.completedTasksToolStripMenuItem.Text = "Completed Tasks";
-            this.completedTasksToolStripMenuItem.Click += new System.EventHandler(this.showCompletedTaskReport);
             // 
             // uerLToolStripMenuItem
             // 
@@ -161,6 +154,13 @@
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 2;
             this.monthCalendar1.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateSelected);
+            // 
+            // completedTaskReportToolStripMenuItem
+            // 
+            this.completedTaskReportToolStripMenuItem.Name = "completedTaskReportToolStripMenuItem";
+            this.completedTaskReportToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.completedTaskReportToolStripMenuItem.Text = "Completed Task Report";
+            this.completedTaskReportToolStripMenuItem.Click += new System.EventHandler(this.completedTaskReport);
             // 
             // mainForm
             // 
@@ -196,6 +196,6 @@
         private System.Windows.Forms.ToolStripMenuItem addUpdateSubTaskToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
-        private System.Windows.Forms.ToolStripMenuItem completedTasksToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem completedTaskReportToolStripMenuItem;
     }
 }
