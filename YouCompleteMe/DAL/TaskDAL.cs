@@ -539,15 +539,17 @@ namespace YouCompleteMe.DAL
         }
 
         /*This method get all task has deadline then set bold in calendar*/
-        public static List<DateTime> getAllDeadline()
+        public static List<DateTime> getAllDeadline(User user)
         {
             List<DateTime> dateTimeList = new List<DateTime>();
             SqlConnection connection = DBConnection.GetConnection();
             string selectStatement =
                 "SELECT * FROM tasks " +
                 "WHERE " +
-                "deadline is not null";
+                "deadline is not null and " +
+                "task_owner = @user;";
             SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@user", user.userID);
 
             try
             {

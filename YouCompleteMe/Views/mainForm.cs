@@ -47,7 +47,7 @@ namespace YouCompleteMe.Views
         /*Bold calendar for day associa with deadline*/
         public void boldCalendar()
         {
-            DateTime[] dateTimes = TaskController.getAllDeadline().ToArray();
+            DateTime[] dateTimes = TaskController.getAllDeadline(theUser).ToArray();
             monthCalendar1.BoldedDates = dateTimes;
         }
 
