@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using YouCompleteMe.Controller;
 using YouCompleteMe.Models;
 
@@ -47,7 +48,7 @@ namespace YouCompleteMe.Views
         /*Bold calendar for day associa with deadline*/
         public void boldCalendar()
         {
-            DateTime[] dateTimes = TaskController.getAllDeadline().ToArray();
+            DateTime[] dateTimes = TaskController.getAllDeadline(theUser).ToArray();
             monthCalendar1.BoldedDates = dateTimes;
         }
 
@@ -236,6 +237,7 @@ namespace YouCompleteMe.Views
         private void mainForm_Load(object sender, EventArgs e)
         {
             TaskController.updateIncompleteTasksToCurrentDate();
+            this.populateScorecard();
         }
 
         //Helper that sets all form variables to current instance if not null
@@ -316,6 +318,78 @@ namespace YouCompleteMe.Views
                 taskParameter.Dispose();
                 taskParameter = null;
             }
+        }
+
+        //////////SCORECARD CODE//////////
+
+        private void populateScorecard()
+        {
+            this.populatePieChart();
+            this.populateAverageTimeOnTaskLabel();
+            this.populatePercentageOnTimeLabel();
+            this.populateMeetingLabel();
+        }
+
+        /* Populates the pie chart with the current month's data */
+        private void populatePieChart()
+        {
+            chart1.Series.Clear();
+            chart1.Legends.Clear();
+
+            chart1.Legends.Add("Tasks");
+            chart1.Legends[0].LegendStyle = LegendStyle.Table;
+            chart1.Legends[0].Docking = Docking.Right;
+            chart1.Legends[0].Alignment = StringAlignment.Center;
+            chart1.Legends[0].Title = "Completed Tasks";
+
+            chart1.Series.Add("Tasks");
+
+            chart1.Series["Tasks"].ChartType = SeriesChartType.Pie;
+            chart1.Series["Tasks"].Points.AddXY("Task 1", 20);
+            chart1.Series["Tasks"].Points.AddXY("Task 2", 20);
+            chart1.Series["Tasks"].Points.AddXY("Task 3", 20);
+            chart1.Series["Tasks"].Points.AddXY("Task 4", 20);
+            chart1.Series["Tasks"].Points.AddXY("Task 5", 20);
+
+        }
+
+        private void populateCompleteTasksList()
+        {
+            // Not 100% sure about this being a listBox.  Could be a datagridview, list view, etc.
+            // TODO: Populate this list with all tasks completed this month
+            // Display red when completed after the deadline and green if completed before the deadline
+            this.listBox1.DataSource = TaskController.getUserTasks(theUser, DateTime.Now.ToShortDateString());
+        }
+
+        private double getPercentageOfTimeWorked(int taskID)
+        {
+            // TODO: Get the percentage of time spent on a given task in the current month
+            // Need to write sql statement to pull the task and use that data to calculate the percentage here
+
+            return 0;
+        }
+
+        private void populatePercentageOnTimeLabel()
+        {
+            // TODO: This should get the tasks completed in the current month and compare the currentDate field (when the task was completed) 
+            // and the deadline to see how many were completed on time
+
+            lblPercentCompleteByDeadline.Text = "90%";
+        }
+
+        private void populateAverageTimeOnTaskLabel()
+        {
+            // TODO: This should look at all tasks worked on during this month and average the total time spent on each
+
+            lblAverageTimeOnTasks.Text = "3 hrs";
+        }
+
+        private void populateMeetingLabel()
+        {
+            // TODO: This should add all hours spent in meetings for the current month
+            // this will require an update to the database to change the activities table to keep track of individual timer sessions
+
+            lblMeetingHours.Text = "4 hrs";
         }
     }
 }
