@@ -400,7 +400,7 @@ namespace YouCompleteMe.Views
             int totalEntries = TaskController.getTotalEntriesWithTime(theUser.userID);
             int averageTime = totalTime / totalEntries;
 
-            lblAverageTimeOnTasks.Text = averageTime.ToString();
+            lblAverageTimeOnTasks.Text = averageTime.ToString() + "hrs";
         }
 
         private void populateMeetingLabel()
@@ -409,6 +409,15 @@ namespace YouCompleteMe.Views
             // this will require an update to the database to change the activities table to keep track of individual timer sessions
 
             lblMeetingHours.Text = "4 hrs";
+        }
+
+        // Updates the scorecard when tab is selected.
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == 1)
+            {
+                this.populateScorecard();
+            }
         }
     }
 }
