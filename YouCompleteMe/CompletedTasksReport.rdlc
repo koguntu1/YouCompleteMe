@@ -188,7 +188,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -240,7 +239,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!createdDate.Value</Value>
+                              <Value>=FormatDateTime(Fields!createdDate.Value, DateFormat.ShortDate)</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                                 <Color>#333333</Color>
@@ -275,7 +274,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!currentDate.Value</Value>
+                              <Value>=FormatDateTime(Fields!currentDate.Value, DateFormat.ShortDate)</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                                 <Color>#333333</Color>
@@ -310,7 +309,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!deadline.Value</Value>
+                              <Value>=FormatDateTime(Fields!deadline.Value, DateFormat.ShortDate)</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                                 <Color>#333333</Color>
@@ -361,7 +360,7 @@
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
         <Height>0.5in</Height>
-        <Width>10.29167in</Width>
+        <Width>10.29168in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -374,7 +373,7 @@
       <BackgroundColor>WhiteSmoke</BackgroundColor>
     </Style>
   </Body>
-  <Width>10.29167in</Width>
+  <Width>10.29168in</Width>
   <Page>
     <PageHeader>
       <Height>1in</Height>

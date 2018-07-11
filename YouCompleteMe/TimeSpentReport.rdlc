@@ -259,6 +259,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -270,7 +271,13 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=(Fields!seconds.Value &amp; " seconds")</Value>
+                              <Value>=Switch(
+	Fields!seconds.Value &gt;= 86400, CInt(Fields!seconds.Value / 86400) &amp; " day",
+	Fields!seconds.Value &gt;= 3600, CInt(Fields!seconds.Value / 3600) &amp; " hr" &amp; " " &amp; CInt((Fields!seconds.Value MOD 3600) / 60) &amp; " min" &amp; " " &amp; Fields!seconds.Value MOD 3600 MOD 60 &amp; " sec",
+	Fields!seconds.Value &gt;= 60, 
+		CInt(Fields!seconds.Value / 60) &amp; " min" &amp; " " &amp; (Fields!seconds.Value MOD 60 &amp; " sec"),
+	Fields!seconds.Value &lt; 60, (Fields!seconds.Value &amp; " seconds")
+)</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                                 <Color>#333333</Color>
