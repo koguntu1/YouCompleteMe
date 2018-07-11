@@ -59,8 +59,9 @@ namespace YouCompleteMe.Views
         //Helper to reset combo box and dates to default values
         private void reset()
         {
-            startDate.Value = TaskController.getMinDate(theUser.userID);
-            endDate.Value = TaskController.getMinDate(theUser.userID);
+            DateTime date = TaskController.getMinDate(theUser.userID);
+            startDate.Value = date;
+            endDate.Value = date;
         }
 
         public DateTime getStart()

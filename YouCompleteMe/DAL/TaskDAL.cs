@@ -606,7 +606,7 @@ namespace YouCompleteMe.DAL
 
         public static DateTime getMinDate(int id)
         {
-            DateTime date;
+            DateTime date = new DateTime();
 
             SqlConnection connection = DBConnection.GetConnection();
             string selectStatement =

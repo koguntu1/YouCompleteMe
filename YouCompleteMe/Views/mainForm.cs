@@ -298,6 +298,14 @@ namespace YouCompleteMe.Views
 
         private void completedTaskReport(object sender, EventArgs e)
         {
+            List<Models.Task> tasks = TaskController.getListTasks(theUser.userID);
+
+            if (tasks.Count == 0)
+            {
+                MessageBox.Show("It looks like you don't have any tasks right now");
+                return;
+            }
+
             if (taskParameter == null)
             {
                 taskParameter = new CompletedTaskParameterForm(theUser);

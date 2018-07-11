@@ -235,7 +235,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!createdDate.Value</Value>
+                              <Value>=FormatDateTime(Fields!createdDate.Value, DateFormat.ShortDate)</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                                 <Color>#333333</Color>
@@ -270,7 +270,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!seconds.Value)</Value>
+                              <Value>=(Fields!seconds.Value &amp; " seconds")</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                                 <Color>#333333</Color>
@@ -305,7 +305,10 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!completed.Value</Value>
+                              <Value>=Switch(
+	Fields!completed.Value = false, "No",
+	Fields!completed.Value = true, "Yes"
+)</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                                 <Color>#333333</Color>
