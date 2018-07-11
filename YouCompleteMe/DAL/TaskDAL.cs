@@ -630,6 +630,58 @@ namespace YouCompleteMe.DAL
             }
             return date;
         }
-        
+
+        //This will return completed tasks that were finished on time
+
+        public static List<Models.Task> getTasksCompletedOnTime(int userID)
+        {
+            List<Models.Task> tasks = new List<Models.Task>();
+            SqlConnection connection = DBConnection.GetConnection();
+            string selectStatement = "SELECT * " +
+                "FROM tasks " +
+                "WHERE task_owner = @userID AND deadline IS NOT NULL AND completed = 1 AND currentDate <= deadline";
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@userID", userID);
+            SqlDataReader reader = null;
+            try
+            {
+                connection.Open();
+                reader = selectCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    Models.Task task = new Models.Task();
+
+                    task.task_owner = Convert.ToInt32(reader["task_owner"]);
+                    task.taskID = Convert.ToInt32(reader["taskID"]);
+                    task.taskType = Convert.ToInt32(reader["taskType"]);
+                    //task.task_priority = Convert.ToInt32(reader["task_priority"]);
+                    task.title = reader["title"].ToString();
+                    task.completed = Convert.ToBoolean(reader["completed"]);
+                    task.createdDate = Convert.ToDateTime(reader["createdDate"]);
+                    task.currentDate = Convert.ToDateTime(reader["currentDate"]);
+                    //task.deadline = Convert.ToDateTime(reader["deadline"]);
+
+                    tasks.Add(task);
+                }
+                reader.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+                if (reader != null)
+                    reader.Close();
+            }
+            return tasks;
+        }
+
     }
 }

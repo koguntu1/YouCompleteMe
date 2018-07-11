@@ -379,10 +379,19 @@ namespace YouCompleteMe.Views
 
         private void populatePercentageOnTimeLabel()
         {
-            // TODO: This should get the tasks completed in the current month and compare the currentDate field (when the task was completed) 
-            // and the deadline to see how many were completed on time
+            double total = TaskController.getListTasks(theUser.userID).Count;
+            double onTime = TaskController.getTasksCompletedOnTime(theUser.userID).Count;
+            double percentage;
 
-            lblPercentCompleteByDeadline.Text = "90%";
+            if (total == 0)
+            {
+                percentage = 0;
+            }
+            else
+            {
+                percentage = (onTime / total) * 100;
+            }
+            lblPercentCompleteByDeadline.Text = string.Format("{0:0.00}", percentage + "%");
         }
 
         private void populateAverageTimeOnTaskLabel()

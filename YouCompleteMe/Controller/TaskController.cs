@@ -79,5 +79,10 @@ namespace YouCompleteMe.Controller
         {
             return TaskDAL.getMinDate(id);
         }
+
+        public static List<Models.Task> getTasksCompletedOnTime(int userID)
+        {
+            return TaskDAL.getTasksCompletedOnTime(userID);
+        }
     }
 }
