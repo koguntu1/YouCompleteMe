@@ -84,5 +84,15 @@ namespace YouCompleteMe.Controller
         {
             return TaskDAL.getTasksCompletedOnTime(userID);
         }
+
+        public static int getTotalTime(int userID)
+        {
+            return TaskDAL.getTotalTime(userID);
+        }
+
+        public static int getTotalEntriesWithTime(int userID)
+        {
+            return TaskDAL.getTotalEntriesWithTime(userID);
+        }
     }
 }

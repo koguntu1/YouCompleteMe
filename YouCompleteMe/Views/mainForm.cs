@@ -389,16 +389,18 @@ namespace YouCompleteMe.Views
             }
             else
             {
-                percentage = (onTime / total) * 100;
+                percentage = onTime / total;
             }
-            lblPercentCompleteByDeadline.Text = string.Format("{0:0.00}", percentage + "%");
+            lblPercentCompleteByDeadline.Text = string.Format("{0:P2}", percentage);
         }
 
         private void populateAverageTimeOnTaskLabel()
         {
-            // TODO: This should look at all tasks worked on during this month and average the total time spent on each
+            int totalTime = TaskController.getTotalTime(theUser.userID);
+            int totalEntries = TaskController.getTotalEntriesWithTime(theUser.userID);
+            int averageTime = totalTime / totalEntries;
 
-            lblAverageTimeOnTasks.Text = "3 hrs";
+            lblAverageTimeOnTasks.Text = averageTime.ToString();
         }
 
         private void populateMeetingLabel()

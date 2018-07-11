@@ -683,5 +683,72 @@ namespace YouCompleteMe.DAL
             return tasks;
         }
 
+        //This will return the total time for tasks
+        public static int getTotalTime(int userID)
+        {
+            int time;
+
+            SqlConnection connection = DBConnection.GetConnection();
+            string selectStatement = "SELECT SUM(a.seconds) " +
+                "FROM tasks t " +
+                "JOIN activities a ON t.taskID = a.taskID " +
+                "WHERE t.task_owner = @userID";
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@userID", userID);
+            try
+            {
+                connection.Open();
+                selectCommand.ExecuteNonQuery();
+                time = (int)selectCommand.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+            return time;
+        }
+
+        //This will return the total number of entries with time for tasks
+        public static int getTotalEntriesWithTime(int userID)
+        {
+            int time;
+
+            SqlConnection connection = DBConnection.GetConnection();
+            string selectStatement = "SELECT COUNT(a.seconds) " +
+                "FROM tasks t " +
+                "JOIN activities a ON t.taskID = a.taskID " +
+                "WHERE t.task_owner = @userID";
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@userID", userID);
+            try
+            {
+                connection.Open();
+                selectCommand.ExecuteNonQuery();
+                time = (int)selectCommand.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+            return time;
+        }
     }
 }
