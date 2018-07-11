@@ -49,30 +49,30 @@
             this.calendarTab = new System.Windows.Forms.TabPage();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.scorecardTab = new System.Windows.Forms.TabPage();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.lblPercentCompleteByDeadline = new System.Windows.Forms.Label();
-            this.lblAverageTimeOnTasks = new System.Windows.Forms.Label();
-            this.lblMeetingHours = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.lblPercentCompleteByDeadline = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lblAverageTimeOnTasks = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lblMeetingHours = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.calendarTab.SuspendLayout();
             this.scorecardTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -80,8 +80,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.homeToolStripMenuItem,
             this.managementTasksToolStripMenuItem,
-            this.managementSubTaskToolStripMenuItem1,
             this.reportsToolStripMenuItem,
+            this.managementSubTaskToolStripMenuItem1,
             this.uerLToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -222,141 +222,6 @@
             this.scorecardTab.Text = "Scorecard";
             this.scorecardTab.UseVisualStyleBackColor = true;
             // 
-            // chart1
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(0, 6);
-            this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(398, 265);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
-            title1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title1.Name = "Title1";
-            title1.Text = "Time Spent";
-            this.chart1.Titles.Add(title1);
-            // 
-            // lblPercentCompleteByDeadline
-            // 
-            this.lblPercentCompleteByDeadline.AutoSize = true;
-            this.lblPercentCompleteByDeadline.Font = new System.Drawing.Font("Calibri", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPercentCompleteByDeadline.Location = new System.Drawing.Point(39, 61);
-            this.lblPercentCompleteByDeadline.Name = "lblPercentCompleteByDeadline";
-            this.lblPercentCompleteByDeadline.Size = new System.Drawing.Size(88, 39);
-            this.lblPercentCompleteByDeadline.TabIndex = 1;
-            this.lblPercentCompleteByDeadline.Text = "100%";
-            this.lblPercentCompleteByDeadline.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblAverageTimeOnTasks
-            // 
-            this.lblAverageTimeOnTasks.AutoSize = true;
-            this.lblAverageTimeOnTasks.Font = new System.Drawing.Font("Calibri", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAverageTimeOnTasks.Location = new System.Drawing.Point(47, 190);
-            this.lblAverageTimeOnTasks.Name = "lblAverageTimeOnTasks";
-            this.lblAverageTimeOnTasks.Size = new System.Drawing.Size(81, 39);
-            this.lblAverageTimeOnTasks.TabIndex = 2;
-            this.lblAverageTimeOnTasks.Text = "8 hrs";
-            this.lblAverageTimeOnTasks.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblMeetingHours
-            // 
-            this.lblMeetingHours.AutoSize = true;
-            this.lblMeetingHours.Font = new System.Drawing.Font("Calibri", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMeetingHours.Location = new System.Drawing.Point(15, 326);
-            this.lblMeetingHours.Name = "lblMeetingHours";
-            this.lblMeetingHours.Size = new System.Drawing.Size(113, 39);
-            this.lblMeetingHours.TabIndex = 3;
-            this.lblMeetingHours.Text = "160 hrs";
-            this.lblMeetingHours.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(134, 61);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "of tasks";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(134, 190);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "spent on";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(133, 326);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "in total";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(133, 74);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "completed";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(134, 87);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "on time";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(134, 216);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(45, 13);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "per task";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(134, 203);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(46, 13);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "average";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(133, 352);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(49, 13);
-            this.label8.TabIndex = 11;
-            this.label8.Text = "meetings";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(133, 339);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(44, 13);
-            this.label9.TabIndex = 12;
-            this.label9.Text = "spent in";
-            // 
             // splitContainer1
             // 
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -394,6 +259,141 @@
             this.listBox1.Size = new System.Drawing.Size(390, 173);
             this.listBox1.TabIndex = 1;
             // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(0, 6);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(398, 265);
+            this.chart1.TabIndex = 0;
+            this.chart1.Text = "chart1";
+            title1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title1.Name = "Title1";
+            title1.Text = "Time Spent";
+            this.chart1.Titles.Add(title1);
+            // 
+            // lblPercentCompleteByDeadline
+            // 
+            this.lblPercentCompleteByDeadline.AutoSize = true;
+            this.lblPercentCompleteByDeadline.Font = new System.Drawing.Font("Calibri", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPercentCompleteByDeadline.Location = new System.Drawing.Point(39, 61);
+            this.lblPercentCompleteByDeadline.Name = "lblPercentCompleteByDeadline";
+            this.lblPercentCompleteByDeadline.Size = new System.Drawing.Size(88, 39);
+            this.lblPercentCompleteByDeadline.TabIndex = 1;
+            this.lblPercentCompleteByDeadline.Text = "100%";
+            this.lblPercentCompleteByDeadline.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(133, 339);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(44, 13);
+            this.label9.TabIndex = 12;
+            this.label9.Text = "spent in";
+            // 
+            // lblAverageTimeOnTasks
+            // 
+            this.lblAverageTimeOnTasks.AutoSize = true;
+            this.lblAverageTimeOnTasks.Font = new System.Drawing.Font("Calibri", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAverageTimeOnTasks.Location = new System.Drawing.Point(47, 190);
+            this.lblAverageTimeOnTasks.Name = "lblAverageTimeOnTasks";
+            this.lblAverageTimeOnTasks.Size = new System.Drawing.Size(81, 39);
+            this.lblAverageTimeOnTasks.TabIndex = 2;
+            this.lblAverageTimeOnTasks.Text = "8 hrs";
+            this.lblAverageTimeOnTasks.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(133, 352);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(49, 13);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "meetings";
+            // 
+            // lblMeetingHours
+            // 
+            this.lblMeetingHours.AutoSize = true;
+            this.lblMeetingHours.Font = new System.Drawing.Font("Calibri", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMeetingHours.Location = new System.Drawing.Point(15, 326);
+            this.lblMeetingHours.Name = "lblMeetingHours";
+            this.lblMeetingHours.Size = new System.Drawing.Size(113, 39);
+            this.lblMeetingHours.TabIndex = 3;
+            this.lblMeetingHours.Text = "160 hrs";
+            this.lblMeetingHours.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(134, 203);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(46, 13);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "average";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(134, 61);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "of tasks";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(134, 216);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(45, 13);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "per task";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(134, 190);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(48, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "spent on";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(134, 87);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(41, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "on time";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(133, 326);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(38, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "in total";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(133, 74);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(56, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "completed";
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -411,12 +411,12 @@
             this.tabControl1.ResumeLayout(false);
             this.calendarTab.ResumeLayout(false);
             this.scorecardTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

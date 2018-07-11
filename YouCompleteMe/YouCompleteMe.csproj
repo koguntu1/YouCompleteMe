@@ -52,6 +52,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -171,6 +172,7 @@
     <Compile Include="Views\ViewCompletedTasksForm.Designer.cs">
       <DependentUpon>ViewCompletedTasksForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CompletedTasksReport.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -181,7 +183,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Report.rdlc" />
     <EmbeddedResource Include="Views\AddUpdateAccountForm.resx">
       <DependentUpon>AddUpdateAccountForm.cs</DependentUpon>
     </EmbeddedResource>
