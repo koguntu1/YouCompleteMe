@@ -93,6 +93,11 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="TimeSpentDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TimeSpentDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddUpdateAccountForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,6 +177,12 @@
     <Compile Include="Views\ViewCompletedTasksForm.Designer.cs">
       <DependentUpon>ViewCompletedTasksForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewTimeSpentOnTaskForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewTimeSpentOnTaskForm.Designer.cs">
+      <DependentUpon>ViewTimeSpentOnTaskForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="CompletedTasksReport.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -183,6 +194,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TimeSpentReport.rdlc" />
     <EmbeddedResource Include="Views\AddUpdateAccountForm.resx">
       <DependentUpon>AddUpdateAccountForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -222,6 +234,9 @@
     <EmbeddedResource Include="Views\ViewCompletedTasksForm.resx">
       <DependentUpon>ViewCompletedTasksForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ViewTimeSpentOnTaskForm.resx">
+      <DependentUpon>ViewTimeSpentOnTaskForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="CompletedTaskDataSet.xsc">
       <DependentUpon>CompletedTaskDataSet.xsd</DependentUpon>
     </None>
@@ -253,6 +268,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="TimeSpentDataSet.xsc">
+      <DependentUpon>TimeSpentDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="TimeSpentDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TimeSpentDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TimeSpentDataSet.xss">
+      <DependentUpon>TimeSpentDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

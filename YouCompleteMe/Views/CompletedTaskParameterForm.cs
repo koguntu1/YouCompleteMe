@@ -16,6 +16,7 @@ namespace YouCompleteMe.Views
     {
         private static CompletedTaskParameterForm instance;
         private static ViewCompletedTasksForm report;
+        private static ViewTimeSpentOnTaskForm timeReport;
         private User theUser;
 
         public CompletedTaskParameterForm(User aUser)
@@ -35,7 +36,7 @@ namespace YouCompleteMe.Views
             }
         }
 
-        private void submitOnClick(object sender, EventArgs e)
+        private void completedOnClick(object sender, EventArgs e)
         {
             if (report == null)
             {
@@ -82,6 +83,29 @@ namespace YouCompleteMe.Views
         {
             report.Dispose();
             report = null;
+            reset();
+            this.Show();
+        }
+
+        private void timeOnClick(object sender, EventArgs e)
+        {
+            if (report == null)
+            {
+                timeReport = new ViewTimeSpentOnTaskForm(instance, theUser);
+                timeReport.StartPosition = FormStartPosition.CenterScreen;
+                timeReport.FormClosed += TimeReport_FormClosed;
+                timeReport.ShowDialog();
+            }
+            else
+            {
+                timeReport.Activate();
+            }
+        }
+
+        private void TimeReport_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            timeReport.Dispose();
+            timeReport = null;
             reset();
             this.Show();
         }

@@ -30,13 +30,27 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.tasks1TableAdapter = new YouCompleteMe.CompletedTaskDataSetTableAdapters.tasks1TableAdapter();
             this.completedTaskDataSet = new YouCompleteMe.CompletedTaskDataSet();
             this.tasks1BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tasks1TableAdapter = new YouCompleteMe.CompletedTaskDataSetTableAdapters.tasks1TableAdapter();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.completedTaskDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tasks1BindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // tasks1TableAdapter
+            // 
+            this.tasks1TableAdapter.ClearBeforeFill = true;
+            // 
+            // completedTaskDataSet
+            // 
+            this.completedTaskDataSet.DataSetName = "CompletedTaskDataSet";
+            this.completedTaskDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tasks1BindingSource
+            // 
+            this.tasks1BindingSource.DataMember = "tasks1";
+            this.tasks1BindingSource.DataSource = this.completedTaskDataSet;
             // 
             // reportViewer1
             // 
@@ -51,20 +65,6 @@
             this.reportViewer1.Size = new System.Drawing.Size(950, 623);
             this.reportViewer1.TabIndex = 0;
             // 
-            // completedTaskDataSet
-            // 
-            this.completedTaskDataSet.DataSetName = "CompletedTaskDataSet";
-            this.completedTaskDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tasks1BindingSource
-            // 
-            this.tasks1BindingSource.DataMember = "tasks1";
-            this.tasks1BindingSource.DataSource = this.completedTaskDataSet;
-            // 
-            // tasks1TableAdapter
-            // 
-            this.tasks1TableAdapter.ClearBeforeFill = true;
-            // 
             // ViewCompletedTasksForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -72,7 +72,7 @@
             this.ClientSize = new System.Drawing.Size(950, 623);
             this.Controls.Add(this.reportViewer1);
             this.Name = "ViewCompletedTasksForm";
-            this.Text = "ViewCompletedTasksForm";
+            this.Text = "Completed Tasks";
             this.Load += new System.EventHandler(this.ViewCompletedTasksForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.completedTaskDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tasks1BindingSource)).EndInit();
@@ -82,9 +82,9 @@
 
         #endregion
 
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
-        private System.Windows.Forms.BindingSource tasks1BindingSource;
-        private CompletedTaskDataSet completedTaskDataSet;
         private CompletedTaskDataSetTableAdapters.tasks1TableAdapter tasks1TableAdapter;
+        private CompletedTaskDataSet completedTaskDataSet;
+        private System.Windows.Forms.BindingSource tasks1BindingSource;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }

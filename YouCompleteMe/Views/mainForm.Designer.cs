@@ -40,10 +40,10 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.managementTasksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addUpdateTaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.managementSubTaskToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.addUpdateSubTaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.completedTaskReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.managementSubTaskToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.addUpdateSubTaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uerLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.calendarTab = new System.Windows.Forms.TabPage();
@@ -144,6 +144,21 @@
             this.addUpdateTaskToolStripMenuItem.Text = "Add/UpdateTask";
             this.addUpdateTaskToolStripMenuItem.Click += new System.EventHandler(this.addUpdateTaskToolStripMenuItem_Click);
             // 
+            // reportsToolStripMenuItem
+            // 
+            this.reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.completedTaskReportToolStripMenuItem});
+            this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
+            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.reportsToolStripMenuItem.Text = "Reports";
+            // 
+            // completedTaskReportToolStripMenuItem
+            // 
+            this.completedTaskReportToolStripMenuItem.Name = "completedTaskReportToolStripMenuItem";
+            this.completedTaskReportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.completedTaskReportToolStripMenuItem.Text = "View Reports";
+            this.completedTaskReportToolStripMenuItem.Click += new System.EventHandler(this.completedTaskReport);
+            // 
             // managementSubTaskToolStripMenuItem1
             // 
             this.managementSubTaskToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -159,21 +174,6 @@
             this.addUpdateSubTaskToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.addUpdateSubTaskToolStripMenuItem.Text = "Add/Update Sub Task";
             this.addUpdateSubTaskToolStripMenuItem.Click += new System.EventHandler(this.addUpdateSubTaskToolStripMenuItem_Click);
-            // 
-            // reportsToolStripMenuItem
-            // 
-            this.reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.completedTaskReportToolStripMenuItem});
-            this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
-            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.reportsToolStripMenuItem.Text = "Reports";
-            // 
-            // completedTaskReportToolStripMenuItem
-            // 
-            this.completedTaskReportToolStripMenuItem.Name = "completedTaskReportToolStripMenuItem";
-            this.completedTaskReportToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.completedTaskReportToolStripMenuItem.Text = "Completed Task Report";
-            this.completedTaskReportToolStripMenuItem.Click += new System.EventHandler(this.completedTaskReport);
             // 
             // uerLToolStripMenuItem
             // 
