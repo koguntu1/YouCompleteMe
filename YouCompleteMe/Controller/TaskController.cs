@@ -64,9 +64,9 @@ namespace YouCompleteMe.Controller
         }
 
         /*This method get all task has deadline then set bold in calendar*/
-        public static List<DateTime> getAllDeadline(User currentUser)
+        public static List<DateTime> getAllDeadline(User user)
         {
-            return TaskDAL.getAllDeadline(currentUser);
+            return TaskDAL.getAllDeadline(user);
         }
 
         /*Delete task by task id*/
