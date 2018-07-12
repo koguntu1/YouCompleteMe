@@ -354,10 +354,11 @@ namespace YouCompleteMe.Views
 
             List<Models.Task> tasks = TaskController.getMonthlyUserTasks(theUser, DateTime.Now.ToShortDateString());
 
-            //foreach (Models.Task task in tasks)
-            //{
-            //    chart1.Series["Tasks"].Points.AddXY(task.title, )
-            //}
+            foreach (Models.Task task in tasks)
+            {
+
+                //chart1.Series["Tasks"].Points.AddXY(task.title, )
+            }
             chart1.Series["Tasks"].ChartType = SeriesChartType.Pie;
             chart1.Series["Tasks"].Points.AddXY("Task 1", 20);
             chart1.Series["Tasks"].Points.AddXY("Task 2", 20);

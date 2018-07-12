@@ -748,7 +748,8 @@ namespace YouCompleteMe.DAL
             string selectStatement = "SELECT SUM(a.seconds) " +
                 "FROM tasks t " +
                 "JOIN activities a ON t.taskID = a.taskID " +
-                "WHERE t.task_owner = @userID " +
+                "WHERE t.task_owner = @userID and " +
+                "startTime > dateadd(day, -30, getdate()) " +
                 "GROUP BY t.task_owner";
             SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
             selectCommand.Parameters.AddWithValue("@userID", userID);
@@ -783,7 +784,8 @@ namespace YouCompleteMe.DAL
             string selectStatement = "SELECT COUNT(distinct a.taskID) " +
                 "FROM tasks t " +
                 "JOIN activities a ON t.taskID = a.taskID " +
-                "WHERE t.task_owner = @userID";
+                "WHERE t.task_owner = @userID and " +
+                "startTime > dateadd(day, -30, getdate())";
             SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
             selectCommand.Parameters.AddWithValue("@userID", userID);
             try
@@ -807,5 +809,38 @@ namespace YouCompleteMe.DAL
             }
             return time;
         }
+
+        //public static double getMonthlyTaskPercentage(User currentUser, string date)
+        //{
+        //    double taskPercent;
+
+        //    SqlConnection connection = DBConnection.GetConnection();
+        //    string selectStatement = "SELECT AVG " +
+        //        "FROM tasks t " +
+        //        "JOIN activities a ON t.taskID = a.taskID " +
+        //        "WHERE t.task_owner = @userID";
+        //    SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+        //    selectCommand.Parameters.AddWithValue("@userID", userID);
+        //    try
+        //    {
+        //        connection.Open();
+        //        selectCommand.ExecuteNonQuery();
+        //        taskPercent = (int)selectCommand.ExecuteScalar();
+        //    }
+        //    catch (SqlException ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    finally
+        //    {
+        //        if (connection != null)
+        //            connection.Close();
+        //    }
+        //    return taskPercent;
+        //}
     }
 }
