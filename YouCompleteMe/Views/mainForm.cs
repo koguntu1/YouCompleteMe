@@ -405,11 +405,19 @@ namespace YouCompleteMe.Views
 
         private void populateAverageTimeOnTaskLabel()
         {
-            int totalTime = TaskController.getTotalTime(theUser.userID);
-            int totalEntries = TaskController.getTotalEntriesWithTime(theUser.userID);
-            double averageTime = (totalTime / totalEntries) / 3600.0;
-
-            lblAverageTimeOnTasks.Text = averageTime.ToString("#.##") + "hrs";
+            try
+            {
+                int totalTime = TaskController.getTotalTime(theUser.userID);
+                int totalEntries = TaskController.getTotalEntriesWithTime(theUser.userID);
+                
+                double averageTime = (totalTime / totalEntries) / 3600.0;
+                lblAverageTimeOnTasks.Text = averageTime.ToString("#.##") + "hrs";
+                
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("You have not logged any time on assignments. Score card information will be limited");
+            }
         }
 
         private void populateMeetingLabel()

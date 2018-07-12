@@ -285,7 +285,7 @@
             // 
             this.lblPercentCompleteByDeadline.AutoSize = true;
             this.lblPercentCompleteByDeadline.Font = new System.Drawing.Font("Calibri", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPercentCompleteByDeadline.Location = new System.Drawing.Point(39, 61);
+            this.lblPercentCompleteByDeadline.Location = new System.Drawing.Point(14, 61);
             this.lblPercentCompleteByDeadline.Name = "lblPercentCompleteByDeadline";
             this.lblPercentCompleteByDeadline.Size = new System.Drawing.Size(88, 39);
             this.lblPercentCompleteByDeadline.TabIndex = 1;
@@ -295,7 +295,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(133, 339);
+            this.label9.Location = new System.Drawing.Point(211, 339);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(44, 13);
             this.label9.TabIndex = 12;
@@ -305,17 +305,17 @@
             // 
             this.lblAverageTimeOnTasks.AutoSize = true;
             this.lblAverageTimeOnTasks.Font = new System.Drawing.Font("Calibri", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAverageTimeOnTasks.Location = new System.Drawing.Point(47, 190);
+            this.lblAverageTimeOnTasks.Location = new System.Drawing.Point(14, 190);
             this.lblAverageTimeOnTasks.Name = "lblAverageTimeOnTasks";
             this.lblAverageTimeOnTasks.Size = new System.Drawing.Size(81, 39);
             this.lblAverageTimeOnTasks.TabIndex = 2;
-            this.lblAverageTimeOnTasks.Text = "8 hrs";
+            this.lblAverageTimeOnTasks.Text = "0 hrs";
             this.lblAverageTimeOnTasks.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(133, 352);
+            this.label8.Location = new System.Drawing.Point(203, 352);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(49, 13);
             this.label8.TabIndex = 11;
@@ -325,7 +325,7 @@
             // 
             this.lblMeetingHours.AutoSize = true;
             this.lblMeetingHours.Font = new System.Drawing.Font("Calibri", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMeetingHours.Location = new System.Drawing.Point(15, 326);
+            this.lblMeetingHours.Location = new System.Drawing.Point(14, 326);
             this.lblMeetingHours.Name = "lblMeetingHours";
             this.lblMeetingHours.Size = new System.Drawing.Size(113, 39);
             this.lblMeetingHours.TabIndex = 3;
@@ -353,7 +353,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(207, 216);
+            this.label6.Location = new System.Drawing.Point(210, 216);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(45, 13);
             this.label6.TabIndex = 9;
@@ -380,7 +380,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(133, 326);
+            this.label3.Location = new System.Drawing.Point(214, 326);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 13);
             this.label3.TabIndex = 6;
