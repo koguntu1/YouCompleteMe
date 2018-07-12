@@ -289,7 +289,7 @@ namespace YouCompleteMe.Views
             }
             lblTimer.Refresh();
             lblTimer.Text = String.Format("{0:D2}:{1:D2}", minutes, seconds);
-            //lblTimer.Text = String.Format(timerSecs.ToString());
+           // lblTimer.Text = String.Format(timerSecs.ToString());
             /* Add code for popup in each 5 mins*/
             int interval = 5;
             if (minutes > 0 && minutes % interval == 0)
