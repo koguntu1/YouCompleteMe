@@ -94,5 +94,10 @@ namespace YouCompleteMe.Controller
         {
             return TaskDAL.getTotalEntriesWithTime(userID);
         }
+
+        public static List<Models.Task> getMonthlyUserTasks(User user, string date)
+        {
+            return TaskDAL.getMonthlyUsersTasks(user, date);
+        }
     }
 }

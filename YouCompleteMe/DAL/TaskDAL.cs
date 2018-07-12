@@ -231,6 +231,62 @@ namespace YouCompleteMe.DAL
             return tasks;
         }
 
+        public static List<Models.Task> getMonthlyUsersTasks(User currentUser, string date)//, int personal, int professional, int other)
+        {
+            List<Models.Task> tasks = new List<Models.Task>();
+
+            SqlConnection connection = DBConnection.GetConnection();
+            string selectStatement =
+                "SELECT * FROM tasks " +
+                "WHERE " +
+                "task_owner = @user and " +
+                "cast(currentDate as date) > dateadd(month, -1, @date)";
+
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@user", currentUser.userID);
+            selectCommand.Parameters.AddWithValue("@date", date);
+            //selectCommand.Parameters.AddWithValue("@type", "("+personal + ", " + professional + ", " + other+")");
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = selectCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    Models.Task task = new Models.Task();
+                    task.task_owner = Convert.ToInt32(reader["task_owner"]);
+                    task.taskID = Convert.ToInt32(reader["taskID"]);
+                    task.taskType = Convert.ToInt32(reader["taskType"]);
+                    if (reader["task_priority"] == DBNull.Value)
+                        task.task_priority = -1;
+                    else
+                        task.task_priority = Convert.ToInt32(reader["task_priority"]);
+                    //task.completed = Convert.ToInt32(reader["completed"]);
+                    task.completed = Convert.ToBoolean(reader["completed"]);
+                    task.title = reader["title"].ToString();
+                    task.createdDate = (DateTime)reader["createdDate"];
+                    task.currentDate = (DateTime)reader["currentDate"];
+                    if (reader["deadline"] == DBNull.Value)
+                        task.deadline = DateTime.MaxValue;
+                    else
+                        task.deadline = (DateTime)reader["deadline"];
+
+                    tasks.Add(task);
+                }
+                reader.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return tasks;
+        }
+
         public static List<Models.Task> getTasksOfType(User currentUser, string date, int type)
         {
             List<Models.Task> tasks = new List<Models.Task>();
@@ -692,7 +748,8 @@ namespace YouCompleteMe.DAL
             string selectStatement = "SELECT SUM(a.seconds) " +
                 "FROM tasks t " +
                 "JOIN activities a ON t.taskID = a.taskID " +
-                "WHERE t.task_owner = @userID";
+                "WHERE t.task_owner = @userID " +
+                "GROUP BY t.task_owner";
             SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
             selectCommand.Parameters.AddWithValue("@userID", userID);
             try
@@ -723,7 +780,7 @@ namespace YouCompleteMe.DAL
             int time;
 
             SqlConnection connection = DBConnection.GetConnection();
-            string selectStatement = "SELECT COUNT(a.seconds) " +
+            string selectStatement = "SELECT COUNT(distinct a.taskID) " +
                 "FROM tasks t " +
                 "JOIN activities a ON t.taskID = a.taskID " +
                 "WHERE t.task_owner = @userID";

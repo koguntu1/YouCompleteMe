@@ -352,6 +352,12 @@ namespace YouCompleteMe.Views
 
             chart1.Series.Add("Tasks");
 
+            List<Models.Task> tasks = TaskController.getMonthlyUserTasks(theUser, DateTime.Now.ToShortDateString());
+
+            //foreach (Models.Task task in tasks)
+            //{
+            //    chart1.Series["Tasks"].Points.AddXY(task.title, )
+            //}
             chart1.Series["Tasks"].ChartType = SeriesChartType.Pie;
             chart1.Series["Tasks"].Points.AddXY("Task 1", 20);
             chart1.Series["Tasks"].Points.AddXY("Task 2", 20);
@@ -398,9 +404,9 @@ namespace YouCompleteMe.Views
         {
             int totalTime = TaskController.getTotalTime(theUser.userID);
             int totalEntries = TaskController.getTotalEntriesWithTime(theUser.userID);
-            int averageTime = totalTime / totalEntries;
+            double averageTime = (totalTime / totalEntries) / 3600.0;
 
-            lblAverageTimeOnTasks.Text = averageTime.ToString() + "hrs";
+            lblAverageTimeOnTasks.Text = averageTime.ToString("#.##") + "hrs";
         }
 
         private void populateMeetingLabel()
