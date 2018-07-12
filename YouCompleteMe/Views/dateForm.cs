@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tulpep.NotificationWindow;
 using YouCompleteMe.Controller;
 using YouCompleteMe.Models;
 
@@ -289,6 +290,15 @@ namespace YouCompleteMe.Views
             lblTimer.Refresh();
             lblTimer.Text = String.Format("{0:D2}:{1:D2}", minutes, seconds);
             //lblTimer.Text = String.Format(timerSecs.ToString());
+            /* Add code for popup in each 5 mins*/
+            int interval = 5;
+            if (minutes > 0 && minutes % interval == 0)
+            {
+                PopupNotifier popup = new PopupNotifier();
+                popup.TitleText = "Notification";
+                popup.ContentText = "You've been on for while! You need a break!!! \nWe will remind you in every 30 mins.";
+                popup.Popup();
+            }
         }
 
         // Start timer button should check that a task is selected,
