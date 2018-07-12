@@ -388,29 +388,15 @@ namespace YouCompleteMe.Views
 
         private void populatePercentageOnTimeLabel()
         {
-            double total = TaskController.getListTasks(theUser.userID).Count;
-            double onTime = TaskController.getTasksCompletedOnTime(theUser.userID).Count;
-            double percentage;
-
-            if (total == 0)
-            {
-                percentage = 0;
-            }
-            else
-            {
-                percentage = onTime / total;
-            }
-            lblPercentCompleteByDeadline.Text = string.Format("{0:P2}", percentage);
+            
+            lblPercentCompleteByDeadline.Text = string.Format("{0:P2}", TaskController.getPercent(theUser.userID));
         }
 
         private void populateAverageTimeOnTaskLabel()
         {
             try
             {
-                int totalTime = TaskController.getTotalTime(theUser.userID);
-                int totalEntries = TaskController.getTotalEntriesWithTime(theUser.userID);
-                
-                double averageTime = (totalTime / totalEntries) / 3600.0;
+                double averageTime = TaskController.getAverageTime(theUser.userID);
                 lblAverageTimeOnTasks.Text = averageTime.ToString("#.##") + "hrs";
                 
             }

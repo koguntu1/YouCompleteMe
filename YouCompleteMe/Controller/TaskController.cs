@@ -104,5 +104,27 @@ namespace YouCompleteMe.Controller
         {
             return TaskDAL.getTimeSpentOnTask(taskID);
         }
+
+        public static double getAverageTime(int userID)
+        {
+            return (getTotalTime(userID) / getTotalEntriesWithTime(userID)) / 3600.0;
+        }
+
+        public static double getPercent(int userID)
+        {
+            double total = getListTasks(userID).Count;
+            double onTime = getTasksCompletedOnTime(userID).Count;
+            double percentage;
+
+            if (total == 0)
+            {
+                percentage = 0;
+            }
+            else
+            {
+                percentage = onTime / total;
+            }
+            return percentage;
+        }
     }
 }
