@@ -237,10 +237,14 @@ namespace YouCompleteMe.DAL
 
             SqlConnection connection = DBConnection.GetConnection();
             string selectStatement =
-                "SELECT * FROM tasks " +
+                "SELECT distinct task_owner, t.taskID, t.title FROM tasks t " +
+                "left join activities a " +
+                "on t.taskID = a.taskID " +
                 "WHERE " +
                 "task_owner = @user and " +
-                "cast(currentDate as date) > dateadd(month, -1, @date)";
+                "cast(currentDate as date) > dateadd(month, -1, @date) and " +
+                "startTime > dateadd(day, -30, getdate())";
+
 
             SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
             selectCommand.Parameters.AddWithValue("@user", currentUser.userID);
@@ -256,20 +260,20 @@ namespace YouCompleteMe.DAL
                     Models.Task task = new Models.Task();
                     task.task_owner = Convert.ToInt32(reader["task_owner"]);
                     task.taskID = Convert.ToInt32(reader["taskID"]);
-                    task.taskType = Convert.ToInt32(reader["taskType"]);
-                    if (reader["task_priority"] == DBNull.Value)
-                        task.task_priority = -1;
-                    else
-                        task.task_priority = Convert.ToInt32(reader["task_priority"]);
-                    //task.completed = Convert.ToInt32(reader["completed"]);
-                    task.completed = Convert.ToBoolean(reader["completed"]);
+                    //task.taskType = Convert.ToInt32(reader["taskType"]);
+                    //if (reader["task_priority"] == DBNull.Value)
+                    //    task.task_priority = -1;
+                    //else
+                    //    task.task_priority = Convert.ToInt32(reader["task_priority"]);
+                    ////task.completed = Convert.ToInt32(reader["completed"]);
+                    //task.completed = Convert.ToBoolean(reader["completed"]);
                     task.title = reader["title"].ToString();
-                    task.createdDate = (DateTime)reader["createdDate"];
-                    task.currentDate = (DateTime)reader["currentDate"];
-                    if (reader["deadline"] == DBNull.Value)
-                        task.deadline = DateTime.MaxValue;
-                    else
-                        task.deadline = (DateTime)reader["deadline"];
+                    //task.createdDate = (DateTime)reader["createdDate"];
+                    //task.currentDate = (DateTime)reader["currentDate"];
+                    //if (reader["deadline"] == DBNull.Value)
+                    //    task.deadline = DateTime.MaxValue;
+                    //else
+                    //    task.deadline = (DateTime)reader["deadline"];
 
                     tasks.Add(task);
                 }
@@ -810,37 +814,39 @@ namespace YouCompleteMe.DAL
             return time;
         }
 
-        //public static double getMonthlyTaskPercentage(User currentUser, string date)
-        //{
-        //    double taskPercent;
+        public static double getTimeSpentOnTask(int taskID)
+        {
+            int taskTime;
 
-        //    SqlConnection connection = DBConnection.GetConnection();
-        //    string selectStatement = "SELECT AVG " +
-        //        "FROM tasks t " +
-        //        "JOIN activities a ON t.taskID = a.taskID " +
-        //        "WHERE t.task_owner = @userID";
-        //    SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
-        //    selectCommand.Parameters.AddWithValue("@userID", userID);
-        //    try
-        //    {
-        //        connection.Open();
-        //        selectCommand.ExecuteNonQuery();
-        //        taskPercent = (int)selectCommand.ExecuteScalar();
-        //    }
-        //    catch (SqlException ex)
-        //    {
-        //        throw ex;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //    finally
-        //    {
-        //        if (connection != null)
-        //            connection.Close();
-        //    }
-        //    return taskPercent;
-        //}
+            SqlConnection connection = DBConnection.GetConnection();
+            string selectStatement = "SELECT sum(a.seconds) " +
+                "FROM tasks t " +
+                "JOIN activities a ON t.taskID = a.taskID " +
+                "WHERE a.taskID = @taskID and " +
+                "startTime > dateadd(day, -30, getdate()) " +
+                "group by a.taskID";
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@taskID", taskID);
+            try
+            {
+                connection.Open();
+                //selectCommand.ExecuteNonQuery();
+                taskTime = (int)selectCommand.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+            return taskTime;
+        }
     }
 }

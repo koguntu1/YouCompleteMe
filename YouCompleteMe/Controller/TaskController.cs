@@ -99,5 +99,10 @@ namespace YouCompleteMe.Controller
         {
             return TaskDAL.getMonthlyUsersTasks(user, date);
         }
+
+        public static double getTimeSpentOnTask(int taskID)
+        {
+            return TaskDAL.getTimeSpentOnTask(taskID);
+        }
     }
 }

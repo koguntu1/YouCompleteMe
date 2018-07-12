@@ -348,23 +348,25 @@ namespace YouCompleteMe.Views
             chart1.Legends[0].LegendStyle = LegendStyle.Table;
             chart1.Legends[0].Docking = Docking.Right;
             chart1.Legends[0].Alignment = StringAlignment.Center;
-            chart1.Legends[0].Title = "Completed Tasks";
+            chart1.Legends[0].Title = "Tasks";
 
             chart1.Series.Add("Tasks");
+            chart1.Series["Tasks"].ChartType = SeriesChartType.Pie;
 
             List<Models.Task> tasks = TaskController.getMonthlyUserTasks(theUser, DateTime.Now.ToShortDateString());
 
             foreach (Models.Task task in tasks)
             {
-
-                //chart1.Series["Tasks"].Points.AddXY(task.title, )
+                double timeSpent = TaskController.getTimeSpentOnTask(task.taskID);
+                double taskPercent = (double)timeSpent / TaskController.getTotalTime(theUser.userID);
+                chart1.Series["Tasks"].Points.AddXY(task.title, taskPercent);
             }
-            chart1.Series["Tasks"].ChartType = SeriesChartType.Pie;
-            chart1.Series["Tasks"].Points.AddXY("Task 1", 20);
-            chart1.Series["Tasks"].Points.AddXY("Task 2", 20);
-            chart1.Series["Tasks"].Points.AddXY("Task 3", 20);
-            chart1.Series["Tasks"].Points.AddXY("Task 4", 20);
-            chart1.Series["Tasks"].Points.AddXY("Task 5", 20);
+            
+            //chart1.Series["Tasks"].Points.AddXY("Task 1", 20);
+            //chart1.Series["Tasks"].Points.AddXY("Task 2", 20);
+            //chart1.Series["Tasks"].Points.AddXY("Task 3", 20);
+            //chart1.Series["Tasks"].Points.AddXY("Task 4", 20);
+            //chart1.Series["Tasks"].Points.AddXY("Task 5", 20);
 
         }
 
