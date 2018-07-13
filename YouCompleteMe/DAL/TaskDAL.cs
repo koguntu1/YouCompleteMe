@@ -231,6 +231,66 @@ namespace YouCompleteMe.DAL
             return tasks;
         }
 
+        public static List<Models.Task> getMonthlyUsersTasks(User currentUser, string date)//, int personal, int professional, int other)
+        {
+            List<Models.Task> tasks = new List<Models.Task>();
+
+            SqlConnection connection = DBConnection.GetConnection();
+            string selectStatement =
+                "SELECT distinct task_owner, t.taskID, t.title FROM tasks t " +
+                "left join activities a " +
+                "on t.taskID = a.taskID " +
+                "WHERE " +
+                "task_owner = @user and " +
+                "cast(currentDate as date) > dateadd(month, -1, @date) and " +
+                "startTime > dateadd(day, -30, getdate())";
+
+
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@user", currentUser.userID);
+            selectCommand.Parameters.AddWithValue("@date", date);
+            //selectCommand.Parameters.AddWithValue("@type", "("+personal + ", " + professional + ", " + other+")");
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = selectCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    Models.Task task = new Models.Task();
+                    task.task_owner = Convert.ToInt32(reader["task_owner"]);
+                    task.taskID = Convert.ToInt32(reader["taskID"]);
+                    //task.taskType = Convert.ToInt32(reader["taskType"]);
+                    //if (reader["task_priority"] == DBNull.Value)
+                    //    task.task_priority = -1;
+                    //else
+                    //    task.task_priority = Convert.ToInt32(reader["task_priority"]);
+                    ////task.completed = Convert.ToInt32(reader["completed"]);
+                    //task.completed = Convert.ToBoolean(reader["completed"]);
+                    task.title = reader["title"].ToString();
+                    //task.createdDate = (DateTime)reader["createdDate"];
+                    //task.currentDate = (DateTime)reader["currentDate"];
+                    //if (reader["deadline"] == DBNull.Value)
+                    //    task.deadline = DateTime.MaxValue;
+                    //else
+                    //    task.deadline = (DateTime)reader["deadline"];
+
+                    tasks.Add(task);
+                }
+                reader.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return tasks;
+        }
+
         public static List<Models.Task> getTasksOfType(User currentUser, string date, int type)
         {
             List<Models.Task> tasks = new List<Models.Task>();
@@ -606,7 +666,7 @@ namespace YouCompleteMe.DAL
 
         public static DateTime getMinDate(int id)
         {
-            DateTime date;
+            DateTime date = new DateTime();
 
             SqlConnection connection = DBConnection.GetConnection();
             string selectStatement =
@@ -630,6 +690,163 @@ namespace YouCompleteMe.DAL
             }
             return date;
         }
-        
+
+        //This will return completed tasks that were finished on time
+
+        public static List<Models.Task> getTasksCompletedOnTime(int userID)
+        {
+            List<Models.Task> tasks = new List<Models.Task>();
+            SqlConnection connection = DBConnection.GetConnection();
+            string selectStatement = "SELECT * " +
+                "FROM tasks " +
+                "WHERE task_owner = @userID AND deadline IS NOT NULL AND completed = 1 AND currentDate <= deadline";
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@userID", userID);
+            SqlDataReader reader = null;
+            try
+            {
+                connection.Open();
+                reader = selectCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    Models.Task task = new Models.Task();
+
+                    task.task_owner = Convert.ToInt32(reader["task_owner"]);
+                    task.taskID = Convert.ToInt32(reader["taskID"]);
+                    task.taskType = Convert.ToInt32(reader["taskType"]);
+                    //task.task_priority = Convert.ToInt32(reader["task_priority"]);
+                    task.title = reader["title"].ToString();
+                    task.completed = Convert.ToBoolean(reader["completed"]);
+                    task.createdDate = Convert.ToDateTime(reader["createdDate"]);
+                    task.currentDate = Convert.ToDateTime(reader["currentDate"]);
+                    //task.deadline = Convert.ToDateTime(reader["deadline"]);
+
+                    tasks.Add(task);
+                }
+                reader.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+                if (reader != null)
+                    reader.Close();
+            }
+            return tasks;
+        }
+
+        //This will return the total time for tasks
+        public static int getTotalTime(int userID)
+        {
+            int time;
+
+            SqlConnection connection = DBConnection.GetConnection();
+            string selectStatement = "SELECT SUM(a.seconds) " +
+                "FROM tasks t " +
+                "JOIN activities a ON t.taskID = a.taskID " +
+                "WHERE t.task_owner = @userID and " +
+                "startTime > dateadd(day, -30, getdate()) " +
+                "GROUP BY t.task_owner";
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@userID", userID);
+            try
+            {
+                connection.Open();
+                selectCommand.ExecuteNonQuery();
+                time = (int)selectCommand.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+            return time;
+        }
+
+        //This will return the total number of entries with time for tasks
+        public static int getTotalEntriesWithTime(int userID)
+        {
+            int time;
+
+            SqlConnection connection = DBConnection.GetConnection();
+            string selectStatement = "SELECT COUNT(distinct a.taskID) " +
+                "FROM tasks t " +
+                "JOIN activities a ON t.taskID = a.taskID " +
+                "WHERE t.task_owner = @userID and " +
+                "startTime > dateadd(day, -30, getdate())";
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@userID", userID);
+            try
+            {
+                connection.Open();
+                selectCommand.ExecuteNonQuery();
+                time = (int)selectCommand.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+            return time;
+        }
+
+        public static double getTimeSpentOnTask(int taskID)
+        {
+            int taskTime;
+
+            SqlConnection connection = DBConnection.GetConnection();
+            string selectStatement = "SELECT sum(a.seconds) " +
+                "FROM tasks t " +
+                "JOIN activities a ON t.taskID = a.taskID " +
+                "WHERE a.taskID = @taskID and " +
+                "startTime > dateadd(day, -30, getdate()) " +
+                "group by a.taskID";
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@taskID", taskID);
+            try
+            {
+                connection.Open();
+                //selectCommand.ExecuteNonQuery();
+                taskTime = (int)selectCommand.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+            return taskTime;
+        }
     }
 }

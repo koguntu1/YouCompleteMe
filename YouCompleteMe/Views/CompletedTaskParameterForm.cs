@@ -16,6 +16,7 @@ namespace YouCompleteMe.Views
     {
         private static CompletedTaskParameterForm instance;
         private static ViewCompletedTasksForm report;
+        private static ViewTimeSpentOnTaskForm timeReport;
         private User theUser;
 
         public CompletedTaskParameterForm(User aUser)
@@ -35,26 +36,18 @@ namespace YouCompleteMe.Views
             }
         }
 
-        private void submitOnClick(object sender, EventArgs e)
+        private void completedOnClick(object sender, EventArgs e)
         {
-            try
+            if (report == null)
             {
-                if (report == null)
-                {
-                    report = new ViewCompletedTasksForm(this);
-                    report.FormClosed += new FormClosedEventHandler(TaskReport_FormClosed);
-                    report.StartPosition = FormStartPosition.CenterScreen;
-                    this.Hide();
-                    report.Show();
-                }
-                else
-                {
-                    report.Activate();
-                }
+                report = new ViewCompletedTasksForm(instance, theUser);
+                report.StartPosition = FormStartPosition.CenterScreen;
+                report.FormClosed += TaskReport_FormClosed;
+                report.ShowDialog();
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                report.Activate();
             }
         }
 
@@ -66,8 +59,9 @@ namespace YouCompleteMe.Views
         //Helper to reset combo box and dates to default values
         private void reset()
         {
-            startDate.Value = TaskController.getMinDate(theUser.userID);
-            endDate.Value = TaskController.getMinDate(theUser.userID);
+            DateTime date = TaskController.getMinDate(theUser.userID);
+            startDate.Value = date;
+            endDate.Value = date;
         }
 
         public DateTime getStart()
@@ -90,6 +84,29 @@ namespace YouCompleteMe.Views
         {
             report.Dispose();
             report = null;
+            reset();
+            this.Show();
+        }
+
+        private void timeOnClick(object sender, EventArgs e)
+        {
+            if (report == null)
+            {
+                timeReport = new ViewTimeSpentOnTaskForm(instance, theUser);
+                timeReport.StartPosition = FormStartPosition.CenterScreen;
+                timeReport.FormClosed += TimeReport_FormClosed;
+                timeReport.ShowDialog();
+            }
+            else
+            {
+                timeReport.Activate();
+            }
+        }
+
+        private void TimeReport_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            timeReport.Dispose();
+            timeReport = null;
             reset();
             this.Show();
         }

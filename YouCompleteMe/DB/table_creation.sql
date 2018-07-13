@@ -40,7 +40,8 @@ create table note (
 drop table activities;
 
 create table activities (
+	startTime datetime not null,
 	taskID int not null,
 	seconds int not null,
-	primary key (taskID)
+	primary key (startTime, taskID)
 );

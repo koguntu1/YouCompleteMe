@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using YouCompleteMe.Controller;
 using YouCompleteMe.Models;
 
@@ -236,6 +237,7 @@ namespace YouCompleteMe.Views
         private void mainForm_Load(object sender, EventArgs e)
         {
             TaskController.updateIncompleteTasksToCurrentDate();
+            this.populateScorecard();
         }
 
         //Helper that sets all form variables to current instance if not null
@@ -296,6 +298,14 @@ namespace YouCompleteMe.Views
 
         private void completedTaskReport(object sender, EventArgs e)
         {
+            List<Models.Task> tasks = TaskController.getListTasks(theUser.userID);
+
+            if (tasks.Count == 0)
+            {
+                MessageBox.Show("It looks like you don't have any tasks right now");
+                return;
+            }
+
             if (taskParameter == null)
             {
                 taskParameter = new CompletedTaskParameterForm(theUser);
@@ -315,6 +325,101 @@ namespace YouCompleteMe.Views
             {
                 taskParameter.Dispose();
                 taskParameter = null;
+            }
+        }
+
+        //////////SCORECARD CODE//////////
+
+        private void populateScorecard()
+        {
+            this.populatePieChart();
+            this.populateAverageTimeOnTaskLabel();
+            this.populatePercentageOnTimeLabel();
+            this.populateMeetingLabel();
+        }
+
+        /* Populates the pie chart with the current month's data */
+        private void populatePieChart()
+        {
+            chart1.Series.Clear();
+            chart1.Legends.Clear();
+
+            chart1.Legends.Add("Tasks");
+            chart1.Legends[0].LegendStyle = LegendStyle.Table;
+            chart1.Legends[0].Docking = Docking.Right;
+            chart1.Legends[0].Alignment = StringAlignment.Center;
+            chart1.Legends[0].Title = "Tasks";
+
+            chart1.Series.Add("Tasks");
+            chart1.Series["Tasks"].ChartType = SeriesChartType.Pie;
+
+            List<Models.Task> tasks = TaskController.getMonthlyUserTasks(theUser, DateTime.Now.ToShortDateString());
+
+            foreach (Models.Task task in tasks)
+            {
+                double timeSpent = TaskController.getTimeSpentOnTask(task.taskID);
+                double taskPercent = (double)timeSpent / TaskController.getTotalTime(theUser.userID);
+                chart1.Series["Tasks"].Points.AddXY(task.title, taskPercent);
+            }
+            
+            //chart1.Series["Tasks"].Points.AddXY("Task 1", 20);
+            //chart1.Series["Tasks"].Points.AddXY("Task 2", 20);
+            //chart1.Series["Tasks"].Points.AddXY("Task 3", 20);
+            //chart1.Series["Tasks"].Points.AddXY("Task 4", 20);
+            //chart1.Series["Tasks"].Points.AddXY("Task 5", 20);
+
+        }
+
+        private void populateCompleteTasksList()
+        {
+            // Not 100% sure about this being a listBox.  Could be a datagridview, list view, etc.
+            // TODO: Populate this list with all tasks completed this month
+            // Display red when completed after the deadline and green if completed before the deadline
+            this.listBox1.DataSource = TaskController.getUserTasks(theUser, DateTime.Now.ToShortDateString());
+        }
+
+        private double getPercentageOfTimeWorked(int taskID)
+        {
+            // TODO: Get the percentage of time spent on a given task in the current month
+            // Need to write sql statement to pull the task and use that data to calculate the percentage here
+
+            return 0;
+        }
+
+        private void populatePercentageOnTimeLabel()
+        {
+            
+            lblPercentCompleteByDeadline.Text = string.Format("{0:P2}", TaskController.getPercent(theUser.userID));
+        }
+
+        private void populateAverageTimeOnTaskLabel()
+        {
+            try
+            {
+                double averageTime = TaskController.getAverageTime(theUser.userID);
+                lblAverageTimeOnTasks.Text = averageTime.ToString("#.##") + "hrs";
+                
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("You have not logged any time on assignments. Score card information will be limited");
+            }
+        }
+
+        private void populateMeetingLabel()
+        {
+            // TODO: This should add all hours spent in meetings for the current month
+            // this will require an update to the database to change the activities table to keep track of individual timer sessions
+
+            lblMeetingHours.Text = "4 hrs";
+        }
+
+        // Updates the scorecard when tab is selected.
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == 1)
+            {
+                this.populateScorecard();
             }
         }
     }

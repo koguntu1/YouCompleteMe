@@ -89,8 +89,8 @@ namespace YouCompleteMe.DAL
             connection.Open();
             string insertStatement =
                 "INSERT activities " +
-                  "(taskID, seconds) " +
-                "VALUES (@taskID, @seconds)";
+                  "(startTime, taskID, seconds) " +
+                "VALUES (getdate(), @taskID, @seconds)";
             SqlCommand insertCommand = new SqlCommand(insertStatement, connection);
             insertCommand.Parameters.AddWithValue("@taskID", taskID);
             insertCommand.Parameters.AddWithValue("@seconds", timerSecs);

@@ -79,5 +79,52 @@ namespace YouCompleteMe.Controller
         {
             return TaskDAL.getMinDate(id);
         }
+
+        public static List<Models.Task> getTasksCompletedOnTime(int userID)
+        {
+            return TaskDAL.getTasksCompletedOnTime(userID);
+        }
+
+        public static int getTotalTime(int userID)
+        {
+            return TaskDAL.getTotalTime(userID);
+        }
+
+        public static int getTotalEntriesWithTime(int userID)
+        {
+            return TaskDAL.getTotalEntriesWithTime(userID);
+        }
+
+        public static List<Models.Task> getMonthlyUserTasks(User user, string date)
+        {
+            return TaskDAL.getMonthlyUsersTasks(user, date);
+        }
+
+        public static double getTimeSpentOnTask(int taskID)
+        {
+            return TaskDAL.getTimeSpentOnTask(taskID);
+        }
+
+        public static double getAverageTime(int userID)
+        {
+            return (getTotalTime(userID) / getTotalEntriesWithTime(userID)) / 3600.0;
+        }
+
+        public static double getPercent(int userID)
+        {
+            double total = getListTasks(userID).Count;
+            double onTime = getTasksCompletedOnTime(userID).Count;
+            double percentage;
+
+            if (total == 0)
+            {
+                percentage = 0;
+            }
+            else
+            {
+                percentage = onTime / total;
+            }
+            return percentage;
+        }
     }
 }

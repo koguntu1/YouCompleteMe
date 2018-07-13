@@ -327,10 +327,10 @@ namespace YouCompleteMe.Views
         // and enable the start button / disable itself
         private void btnStopTimer_Click(object sender, EventArgs e)
         {
-            if (TimerController.checkForTask(timedTaskID) == null)
-                TimerController.AddActivity(timedTaskID, timerSecs);
-            else
-                TimerController.updateTaskAlreadyInActivities(timedTaskID, timerSecs);
+            //if (TimerController.checkForTask(timedTaskID) == null)
+            TimerController.AddActivity(timedTaskID, timerSecs);
+            //else
+            //    TimerController.updateTaskAlreadyInActivities(timedTaskID, timerSecs);
 
             taskTimer.Stop();
             btnStopTimer.Enabled = false;
