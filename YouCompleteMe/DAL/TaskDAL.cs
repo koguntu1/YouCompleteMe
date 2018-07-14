@@ -107,6 +107,7 @@ namespace YouCompleteMe.DAL
                         task.deadline = DateTime.MaxValue;
                     else
                         task.deadline = (DateTime)reader["deadline"];
+                    task.isMeeting = Convert.ToInt16(reader["isMeeting"]);
                 }
                 else
                 {
@@ -158,6 +159,7 @@ namespace YouCompleteMe.DAL
                     task.createdDate = Convert.ToDateTime(reader["createdDate"]);
                     task.currentDate = Convert.ToDateTime(reader["currentDate"]);
                     //task.deadline = Convert.ToDateTime(reader["deadline"]);
+                    task.isMeeting = Convert.ToInt16(reader["isMeeting"]);
 
                     tasks.Add(task);
                 }
@@ -341,6 +343,7 @@ namespace YouCompleteMe.DAL
                         task.deadline = DateTime.MaxValue;
                     else
                         task.deadline = (DateTime)reader["deadline"];
+                    task.isMeeting = Convert.ToInt16(reader["isMeeting"]);
 
                     tasks.Add(task); ;
                 }

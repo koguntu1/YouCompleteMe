@@ -54,6 +54,7 @@
             this.cbProfessional = new System.Windows.Forms.CheckBox();
             this.cbOther = new System.Windows.Forms.CheckBox();
             this.btnAddMeeting = new System.Windows.Forms.Button();
+            this.cbMeetings = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.project6920DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tasksBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tasksDataGridView)).BeginInit();
@@ -282,7 +283,7 @@
             this.cbOther.AutoSize = true;
             this.cbOther.Checked = true;
             this.cbOther.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbOther.Location = new System.Drawing.Point(684, 61);
+            this.cbOther.Location = new System.Drawing.Point(683, 83);
             this.cbOther.Name = "cbOther";
             this.cbOther.Size = new System.Drawing.Size(52, 17);
             this.cbOther.TabIndex = 16;
@@ -301,11 +302,25 @@
             this.btnAddMeeting.UseVisualStyleBackColor = true;
             this.btnAddMeeting.Click += new System.EventHandler(this.btnAddMeeting_Click);
             // 
+            // cbMeetings
+            // 
+            this.cbMeetings.AutoSize = true;
+            this.cbMeetings.Checked = true;
+            this.cbMeetings.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbMeetings.Location = new System.Drawing.Point(683, 60);
+            this.cbMeetings.Name = "cbMeetings";
+            this.cbMeetings.Size = new System.Drawing.Size(69, 17);
+            this.cbMeetings.TabIndex = 18;
+            this.cbMeetings.Text = "Meetings";
+            this.cbMeetings.UseVisualStyleBackColor = true;
+            this.cbMeetings.CheckedChanged += new System.EventHandler(this.cbMeetings_CheckedChanged);
+            // 
             // dateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(776, 455);
+            this.Controls.Add(this.cbMeetings);
             this.Controls.Add(this.btnAddMeeting);
             this.Controls.Add(this.cbOther);
             this.Controls.Add(this.cbProfessional);
@@ -362,5 +377,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.CheckBox cbOther;
         private System.Windows.Forms.Button btnAddMeeting;
+        private System.Windows.Forms.CheckBox cbMeetings;
     }
 }

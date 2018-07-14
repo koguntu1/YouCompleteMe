@@ -74,6 +74,7 @@
             this.taskTypeComboBox.Size = new System.Drawing.Size(200, 27);
             this.taskTypeComboBox.TabIndex = 89;
             this.taskTypeComboBox.Tag = "Task Type";
+            this.taskTypeComboBox.Visible = false;
             // 
             // deadlineDateTimePicker
             // 
@@ -116,6 +117,7 @@
             this.label7.Size = new System.Drawing.Size(42, 19);
             this.label7.TabIndex = 82;
             this.label7.Text = "Type";
+            this.label7.Visible = false;
             // 
             // label5
             // 

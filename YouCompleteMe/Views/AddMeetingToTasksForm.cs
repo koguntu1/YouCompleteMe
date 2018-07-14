@@ -58,12 +58,7 @@ namespace YouCompleteMe.Views
                         {
                             MessageBox.Show("Please select a valid date and time for the meeting time.");
                         }
-                        if (taskTypeComboBox.SelectedItem == null || taskTypeComboBox.SelectedItem.ToString() == "Other")
-                            task.taskType = 3;
-                        else if (taskTypeComboBox.SelectedItem.ToString() == "Personal")
-                            task.taskType = 2;
-                        else
-                            task.taskType = 1;
+                        task.taskType = 4;
                         task.isMeeting = 1;
                         DialogResult result = MessageBox.Show("Do you want to add this meeting to your schedule?", "Add Meeting", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                         if (result.Equals(DialogResult.OK))
