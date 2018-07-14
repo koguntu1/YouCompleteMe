@@ -180,10 +180,10 @@
     <Compile Include="Views\ViewCompletedTasksForm.Designer.cs">
       <DependentUpon>ViewCompletedTasksForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewTimeSpentOnTaskForm.cs">
+    <Compile Include="Views\ViewTimeSpentOnTaskForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ViewTimeSpentOnTaskForm.Designer.cs">
+    <Compile Include="Views\ViewTimeSpentOnTaskForm.Designer.cs">
       <DependentUpon>ViewTimeSpentOnTaskForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="CompletedTasksReport.rdlc" />
@@ -237,7 +237,7 @@
     <EmbeddedResource Include="Views\ViewCompletedTasksForm.resx">
       <DependentUpon>ViewCompletedTasksForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ViewTimeSpentOnTaskForm.resx">
+    <EmbeddedResource Include="Views\ViewTimeSpentOnTaskForm.resx">
       <DependentUpon>ViewTimeSpentOnTaskForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="CompletedTaskDataSet.xsc">
