@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.homeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.managementProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,7 +50,6 @@
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.scorecardTab = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lblPercentCompleteByDeadline = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -231,7 +230,6 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.listBox1);
             this.splitContainer1.Panel1.Controls.Add(this.chart1);
             // 
             // splitContainer1.Panel2
@@ -252,40 +250,34 @@
             this.splitContainer1.SplitterDistance = 403;
             this.splitContainer1.TabIndex = 13;
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(8, 278);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(390, 173);
-            this.listBox1.TabIndex = 1;
-            // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(0, 6);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(398, 265);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series2.CustomProperties = "PieLabelStyle=Disabled";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            series2.SmartLabelStyle.Enabled = false;
+            this.chart1.Series.Add(series2);
+            this.chart1.Size = new System.Drawing.Size(398, 449);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
-            title1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title1.Name = "Title1";
-            title1.Text = "Time Spent";
-            this.chart1.Titles.Add(title1);
+            title2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title2.Name = "Title1";
+            title2.Text = "Time Spent";
+            this.chart1.Titles.Add(title2);
             // 
             // lblPercentCompleteByDeadline
             // 
             this.lblPercentCompleteByDeadline.AutoSize = true;
             this.lblPercentCompleteByDeadline.Font = new System.Drawing.Font("Calibri", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPercentCompleteByDeadline.Location = new System.Drawing.Point(14, 61);
+            this.lblPercentCompleteByDeadline.Location = new System.Drawing.Point(39, 61);
             this.lblPercentCompleteByDeadline.Name = "lblPercentCompleteByDeadline";
             this.lblPercentCompleteByDeadline.Size = new System.Drawing.Size(88, 39);
             this.lblPercentCompleteByDeadline.TabIndex = 1;
@@ -295,7 +287,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(211, 339);
+            this.label9.Location = new System.Drawing.Point(179, 332);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(44, 13);
             this.label9.TabIndex = 12;
@@ -305,7 +297,7 @@
             // 
             this.lblAverageTimeOnTasks.AutoSize = true;
             this.lblAverageTimeOnTasks.Font = new System.Drawing.Font("Calibri", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAverageTimeOnTasks.Location = new System.Drawing.Point(14, 190);
+            this.lblAverageTimeOnTasks.Location = new System.Drawing.Point(46, 177);
             this.lblAverageTimeOnTasks.Name = "lblAverageTimeOnTasks";
             this.lblAverageTimeOnTasks.Size = new System.Drawing.Size(81, 39);
             this.lblAverageTimeOnTasks.TabIndex = 2;
@@ -315,7 +307,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(203, 352);
+            this.label8.Location = new System.Drawing.Point(174, 345);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(49, 13);
             this.label8.TabIndex = 11;
@@ -325,7 +317,7 @@
             // 
             this.lblMeetingHours.AutoSize = true;
             this.lblMeetingHours.Font = new System.Drawing.Font("Calibri", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMeetingHours.Location = new System.Drawing.Point(14, 326);
+            this.lblMeetingHours.Location = new System.Drawing.Point(14, 319);
             this.lblMeetingHours.Name = "lblMeetingHours";
             this.lblMeetingHours.Size = new System.Drawing.Size(113, 39);
             this.lblMeetingHours.TabIndex = 3;
@@ -335,7 +327,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(209, 203);
+            this.label7.Location = new System.Drawing.Point(177, 190);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(46, 13);
             this.label7.TabIndex = 10;
@@ -344,7 +336,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(211, 61);
+            this.label1.Location = new System.Drawing.Point(179, 61);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 13);
             this.label1.TabIndex = 4;
@@ -353,7 +345,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(210, 216);
+            this.label6.Location = new System.Drawing.Point(178, 203);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(45, 13);
             this.label6.TabIndex = 9;
@@ -362,7 +354,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(207, 190);
+            this.label2.Location = new System.Drawing.Point(175, 177);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 13);
             this.label2.TabIndex = 5;
@@ -371,7 +363,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(211, 87);
+            this.label5.Location = new System.Drawing.Point(182, 87);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 13);
             this.label5.TabIndex = 8;
@@ -380,7 +372,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(214, 326);
+            this.label3.Location = new System.Drawing.Point(182, 319);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 13);
             this.label3.TabIndex = 6;
@@ -389,7 +381,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(199, 74);
+            this.label4.Location = new System.Drawing.Point(167, 74);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(56, 13);
             this.label4.TabIndex = 7;
@@ -456,6 +448,5 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.ListBox listBox1;
     }
 }

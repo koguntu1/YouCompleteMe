@@ -53,6 +53,8 @@ namespace YouCompleteMe.Views
             this.tasks = TaskController.getUserTasks(user, parentCalendar.getSelectedDate());
             tasksDataGridView.DataSource = TaskController.getCurrentTaskDeadlines(user, parentCalendar.getSelectedDate());
             populateTaskTreeView();
+            btnPause.Text = "\u23F8";
+            btnStopTimer.Text = "\u23F9";
         }
 
 
@@ -310,18 +312,26 @@ namespace YouCompleteMe.Views
         // and enable the stop button / disable itself
         private void btnStartTimer_Click(object sender, EventArgs e)
         {
-
             if (taskTreeView.SelectedNode == null || taskTreeView.SelectedNode.Parent != null)
                 MessageBox.Show("Please select a task.\nYou can only time top-level tasks (not subtasks).");
             else
             {
                 this.timedTaskID = this.getSelectedNodeTaskID();
-                lblTimer.Text = "00:00";
+                if (this.timerSecs == 0)
+                    lblTimer.Text = "00:00";
                 btnStartTimer.Enabled = false;
                 btnStopTimer.Enabled = true;
+                btnPause.Enabled = true;
                 taskTimer.Start();
                 //MessageBox.Show(this.timedTaskID.ToString());
             }
+        }
+
+        private void btnPause_Click(object sender, EventArgs e)
+        {
+            taskTimer.Stop();
+            btnStopTimer.Enabled = true;
+            btnStartTimer.Enabled = true;
         }
 
         // Stop timer button should update the database based on the current timer,
@@ -338,6 +348,7 @@ namespace YouCompleteMe.Views
             taskTimer.Stop();
             btnStopTimer.Enabled = false;
             btnStartTimer.Enabled = true;
+            btnPause.Enabled = false;
             this.seconds = 0;
             this.minutes = 0;
             this.timerSecs = 0;

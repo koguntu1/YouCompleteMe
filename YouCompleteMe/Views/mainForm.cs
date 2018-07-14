@@ -370,21 +370,13 @@ namespace YouCompleteMe.Views
 
         }
 
-        private void populateCompleteTasksList()
-        {
-            // Not 100% sure about this being a listBox.  Could be a datagridview, list view, etc.
-            // TODO: Populate this list with all tasks completed this month
-            // Display red when completed after the deadline and green if completed before the deadline
-            this.listBox1.DataSource = TaskController.getUserTasks(theUser, DateTime.Now.ToShortDateString());
-        }
-
-        private double getPercentageOfTimeWorked(int taskID)
-        {
-            // TODO: Get the percentage of time spent on a given task in the current month
-            // Need to write sql statement to pull the task and use that data to calculate the percentage here
-
-            return 0;
-        }
+        //private void populateCompleteTasksList()
+        //{
+        //    // Not 100% sure about this being a listBox.  Could be a datagridview, list view, etc.
+        //    // TODO: Populate this list with all tasks completed this month
+        //    // Display red when completed after the deadline and green if completed before the deadline
+        //    this.listBox1.DataSource = TaskController.getUserTasks(theUser, DateTime.Now.ToShortDateString());
+        //}
 
         private void populatePercentageOnTimeLabel()
         {
@@ -408,9 +400,6 @@ namespace YouCompleteMe.Views
 
         private void populateMeetingLabel()
         {
-            // TODO: This should add all hours spent in meetings for the current month
-            // this will require an update to the database to change the activities table to keep track of individual timer sessions
-
             lblMeetingHours.Text = TaskController.getMonthlyMeetingTime(theUser, DateTime.Now.ToShortDateString()).ToString("#.##") + " hrs";
         }
 

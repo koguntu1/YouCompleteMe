@@ -55,6 +55,7 @@
             this.cbOther = new System.Windows.Forms.CheckBox();
             this.btnAddMeeting = new System.Windows.Forms.Button();
             this.cbMeetings = new System.Windows.Forms.CheckBox();
+            this.btnPause = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.project6920DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tasksBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tasksDataGridView)).BeginInit();
@@ -231,12 +232,12 @@
             // btnStopTimer
             // 
             this.btnStopTimer.Enabled = false;
-            this.btnStopTimer.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStopTimer.Location = new System.Drawing.Point(232, 371);
+            this.btnStopTimer.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStopTimer.Location = new System.Drawing.Point(308, 372);
             this.btnStopTimer.Name = "btnStopTimer";
-            this.btnStopTimer.Size = new System.Drawing.Size(152, 33);
+            this.btnStopTimer.Size = new System.Drawing.Size(76, 33);
             this.btnStopTimer.TabIndex = 12;
-            this.btnStopTimer.Text = "Stop Task Timer";
+            this.btnStopTimer.Text = "Stop Timer";
             this.btnStopTimer.UseVisualStyleBackColor = true;
             this.btnStopTimer.Click += new System.EventHandler(this.btnStopTimer_Click);
             // 
@@ -315,11 +316,24 @@
             this.cbMeetings.UseVisualStyleBackColor = true;
             this.cbMeetings.CheckedChanged += new System.EventHandler(this.cbMeetings_CheckedChanged);
             // 
+            // btnPause
+            // 
+            this.btnPause.Enabled = false;
+            this.btnPause.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPause.Location = new System.Drawing.Point(232, 372);
+            this.btnPause.Name = "btnPause";
+            this.btnPause.Size = new System.Drawing.Size(75, 33);
+            this.btnPause.TabIndex = 19;
+            this.btnPause.Text = "||";
+            this.btnPause.UseVisualStyleBackColor = true;
+            this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
+            // 
             // dateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(776, 455);
+            this.Controls.Add(this.btnPause);
             this.Controls.Add(this.cbMeetings);
             this.Controls.Add(this.btnAddMeeting);
             this.Controls.Add(this.cbOther);
@@ -378,5 +392,6 @@
         private System.Windows.Forms.CheckBox cbOther;
         private System.Windows.Forms.Button btnAddMeeting;
         private System.Windows.Forms.CheckBox cbMeetings;
+        private System.Windows.Forms.Button btnPause;
     }
 }
