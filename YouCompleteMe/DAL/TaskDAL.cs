@@ -363,7 +363,8 @@ namespace YouCompleteMe.DAL
             SqlConnection connection = DBConnection.GetConnection();
             string updateStatement = "UPDATE tasks set " +
                                      "currentDate = GETDATE() " +
-                                     "WHERE completed = 0";
+                                     "WHERE completed = 0 and" +
+                                     "isMeeting = 0";
             SqlCommand updateCommand = new SqlCommand(updateStatement, connection);
 
             SqlDataReader reader = null;
