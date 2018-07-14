@@ -25,6 +25,8 @@ namespace YouCompleteMe.Views
             this.user = _user;
             this.isUpdate = _isUpdate;
             this.dateForm = _dateForm;
+            deadlineDateTimePicker.Format = DateTimePickerFormat.Custom;
+            deadlineDateTimePicker.CustomFormat = "MM/dd/yyyy hh:mm";
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -63,12 +65,12 @@ namespace YouCompleteMe.Views
                         else
                             task.taskType = 1;
                         task.isMeeting = 1;
-                        DialogResult result = MessageBox.Show("Do You Want to Add this task to database?", "Create new task", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                        DialogResult result = MessageBox.Show("Do you want to add this meeting to your schedule?", "Add Meeting", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                         if (result.Equals(DialogResult.OK))
                         {
                             int taskID = TaskController.AddTask(task);
                             if (taskID == 0)
-                                MessageBox.Show("Task was not added.  Please try again.");
+                                MessageBox.Show("Meeting was not added.  Please try again.");
                             //Thread.Sleep(5000);
                             dateForm.dateForm_Load(sender, e);
                             this.Close();

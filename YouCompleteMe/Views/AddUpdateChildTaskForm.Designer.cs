@@ -65,7 +65,6 @@
             this.comboPriority.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboPriority.FormattingEnabled = true;
             this.comboPriority.Items.AddRange(new object[] {
-            "",
             "Low",
             "Medium",
             "High"});
@@ -287,6 +286,7 @@
             this.Name = "AddUpdateChildTaskForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddUpdateChildTaskForm";
+            this.Load += new System.EventHandler(this.AddUpdateChildTaskForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

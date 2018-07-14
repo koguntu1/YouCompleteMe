@@ -91,18 +91,22 @@ namespace YouCompleteMe.DAL
                 reader = selectCommand.ExecuteReader(System.Data.CommandBehavior.SingleRow);
                 if (reader.Read())
                 {
+                    task.task_owner = Convert.ToInt32(reader["task_owner"]);
                     task.taskID = Convert.ToInt32(reader["taskID"]);
                     task.taskType = Convert.ToInt32(reader["taskType"]);
-                    task.task_owner = Convert.ToInt32(reader["task_owner"]);
-                    task.task_priority = Convert.ToInt32(reader["task_priority"]);
+                    if (reader["task_priority"] == DBNull.Value)
+                        task.task_priority = -1;
+                    else
+                        task.task_priority = Convert.ToInt32(reader["task_priority"]);
+                    //task.completed = Convert.ToInt32(reader["completed"]);
+                    task.completed = Convert.ToBoolean(reader["completed"]);
                     task.title = reader["title"].ToString();
-                    task.currentDate = Convert.ToDateTime(reader["currentDate"]);
-                    task.createdDate = Convert.ToDateTime(reader["createdDate"]);
+                    task.createdDate = (DateTime)reader["createdDate"];
+                    task.currentDate = (DateTime)reader["currentDate"];
                     if (reader["deadline"] == DBNull.Value)
                         task.deadline = DateTime.MaxValue;
                     else
                         task.deadline = (DateTime)reader["deadline"];
-                    task.completed = Convert.ToBoolean(reader["completed"]);
                 }
                 else
                 {

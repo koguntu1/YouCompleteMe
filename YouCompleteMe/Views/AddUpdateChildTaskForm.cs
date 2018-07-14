@@ -17,6 +17,7 @@ namespace YouCompleteMe.Views
         User user; //user object to keep the information of the user are loged in
         bool isUpdate = false;//if we update the subtask, this variable should set to true when update subtask
                               // and set to false if we add new subtask
+        string taskTitle = "";
 
         private dateForm dateForm;
 
@@ -35,6 +36,7 @@ namespace YouCompleteMe.Views
             instance = this;
             deadlinePicker.Format = DateTimePickerFormat.Custom;
             deadlinePicker.CustomFormat = "MM/dd/yyyy hh:mm";
+            this.taskTitle = TaskController.getATask(dateForm.getSelectedNodeTaskID()).title;
         }
 
         public static AddUpdateChildTaskForm Instance
@@ -125,12 +127,13 @@ namespace YouCompleteMe.Views
                     {
                         Models.Subtask subtask = new Models.Subtask();
                         this.PutSubTask(subtask);
-
-                        DialogResult result = MessageBox.Show("Do You Want to Add this subtask to database?", "Create new subtask", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                        int subtaskID = 0;
+                        DialogResult result = MessageBox.Show("Do you want to add this subtask to the following task:\n" + taskTitle, "Create new subtask", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                         if (result.Equals(DialogResult.OK))
                         {
-                            int subtaskID = SubtaskController.AddSubTask(subtask);
-                            MessageBox.Show("SubTask successfully added");
+                            subtaskID = SubtaskController.AddSubTask(subtask);
+                            //if (subtaskID == 0)
+                             //   MessageBox.Show("Subtask was not ablet o be added.  Please try again.");
                             this.dateForm.dateForm_Load(sender, e);
                             this.Close();
                         }  
@@ -160,6 +163,12 @@ namespace YouCompleteMe.Views
         private void cbDeadline_CheckedChanged(object sender, EventArgs e)
         {
             deadlinePicker.Enabled = !deadlinePicker.Enabled;
+        }
+
+        private void AddUpdateChildTaskForm_Load(object sender, EventArgs e)
+        {
+            tbTask.Text = taskTitle;
+            comboPriority.SelectedIndex = 0;
         }
     }
 }

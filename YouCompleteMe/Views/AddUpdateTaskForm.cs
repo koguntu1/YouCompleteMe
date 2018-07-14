@@ -120,13 +120,11 @@ namespace YouCompleteMe.Views
                         Models.Task task = new Models.Task();
                         this.PutTask(task);
                         task.isMeeting = 0;
-                        DialogResult result = MessageBox.Show("Do You Want to Add this task to database?", "Create new task", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                        DialogResult result = MessageBox.Show("Do you want to add this task to your to do list?", "Create New Task", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                         if (result.Equals(DialogResult.OK))
                         {
                             int taskID = TaskController.AddTask(task);
-                            if (taskID != 0)
-                                MessageBox.Show("Task successfully added");
-                            else
+                            if (taskID == 0)
                                 MessageBox.Show("Task was not added.  Please try again.");
                             //Thread.Sleep(5000);
                             dateForm.dateForm_Load(sender, e);
