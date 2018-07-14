@@ -48,14 +48,17 @@ namespace YouCompleteMe.DAL
                     "SELECT IDENT_CURRENT('tasks') FROM tasks";
                 SqlCommand selectCommand = new SqlCommand(selectStatement, connection);//, sqlTransaction);
                 int taskID = Convert.ToInt32(selectCommand.ExecuteScalar());
-                string insertNoteStatement = "INSERT note " +
+                if (task.note != "")
+                {
+                    string insertNoteStatement = "INSERT note " +
                                              "(taskID, subtaskID, note_message) " +
                                              "VALUES (@taskID, @subtaskID, @note_message)";
-                SqlCommand insertNoteCommand = new SqlCommand(insertNoteStatement, connection);//, sqlTransaction);
-                insertNoteCommand.Parameters.AddWithValue("@taskID", taskID);
-                insertNoteCommand.Parameters.AddWithValue("@note_message", task.note);
-                insertNoteCommand.Parameters.AddWithValue("@subtaskID", DBNull.Value);
-                insertNoteCommand.ExecuteNonQuery();
+                    SqlCommand insertNoteCommand = new SqlCommand(insertNoteStatement, connection);//, sqlTransaction);
+                    insertNoteCommand.Parameters.AddWithValue("@taskID", taskID);
+                    insertNoteCommand.Parameters.AddWithValue("@note_message", task.note);
+                    insertNoteCommand.Parameters.AddWithValue("@subtaskID", DBNull.Value);
+                    insertNoteCommand.ExecuteNonQuery();
+                }
                 //sqlTransaction.Commit();
                 return taskID;
             }

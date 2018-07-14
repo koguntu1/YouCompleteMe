@@ -45,7 +45,8 @@ namespace YouCompleteMe.Views
                         task.createdDate = DateTime.Now;
                         task.currentDate = Convert.ToDateTime(deadlineDateTimePicker.Text);
                         task.completed = false;
-                        
+                        task.note = notesTextBox.Text.Trim();
+
                         task.title = txtTitle.Text;
                         try
                         {
