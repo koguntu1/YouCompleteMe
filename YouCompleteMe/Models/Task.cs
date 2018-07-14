@@ -18,5 +18,6 @@ namespace YouCompleteMe.Models
         public int task_priority { get; set; }
         public bool completed { get; set; }
         public string note { get; set; }
+        public int isMeeting { get; set; }
     }
 }

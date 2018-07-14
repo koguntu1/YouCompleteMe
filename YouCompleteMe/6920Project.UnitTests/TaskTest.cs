@@ -21,6 +21,7 @@ namespace _6920Project.UnitTests
             task.task_priority = 2;
             task.title = "use for test unit test";
             task.note = "test note";
+            task.isMeeting = 0;
 
             int taskID = TaskController.AddTask(task);
             Task result = TaskController.getATask(taskID);

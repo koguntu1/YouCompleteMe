@@ -119,6 +119,7 @@ namespace YouCompleteMe.Views
                     {
                         Models.Task task = new Models.Task();
                         this.PutTask(task);
+                        task.isMeeting = 0;
                         DialogResult result = MessageBox.Show("Do You Want to Add this task to database?", "Create new task", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                         if (result.Equals(DialogResult.OK))
                         {

@@ -22,8 +22,8 @@ namespace YouCompleteMe.DAL
             //SqlTransaction sqlTransaction = connection.BeginTransaction();
             string insertStatement =
                 "INSERT tasks " +
-                  "(task_owner, taskType, title, createdDate, currentDate, deadline, task_priority, completed) " +
-                "VALUES (@task_owner, @taskType, @title, @createdDate, @currentDate, @deadline, @task_priority, @completed)";
+                  "(task_owner, taskType, title, createdDate, currentDate, deadline, task_priority, completed, isMeeting) " +
+                "VALUES (@task_owner, @taskType, @title, @createdDate, @currentDate, @deadline, @task_priority, @completed, @meeting)";
             SqlCommand insertCommand = new SqlCommand(insertStatement, connection);
             insertCommand.Parameters.AddWithValue("@task_owner", task.task_owner);
             insertCommand.Parameters.AddWithValue("@title", task.title);
@@ -39,6 +39,7 @@ namespace YouCompleteMe.DAL
                 insertCommand.Parameters.AddWithValue("@task_priority", task.task_priority);
             insertCommand.Parameters.AddWithValue("@completed", task.completed);
             insertCommand.Parameters.AddWithValue("@taskType", task.taskType);
+            insertCommand.Parameters.AddWithValue("@meeting", task.isMeeting);
             try
             {
                 
