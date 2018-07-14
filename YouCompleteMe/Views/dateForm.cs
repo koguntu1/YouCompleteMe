@@ -291,12 +291,12 @@ namespace YouCompleteMe.Views
             lblTimer.Text = String.Format("{0:D2}:{1:D2}", minutes, seconds);
            // lblTimer.Text = String.Format(timerSecs.ToString());
             /* Add code for popup in each 5 mins*/
-            int interval = 1;
+            int interval = 5;
             if (minutes > 0 && minutes % interval == 0)
             {
                 PopupNotifier popup = new PopupNotifier();
                 popup.TitleText = "Notification";
-                popup.ContentText = "You've been on for while! You need a break!!! \nWe will remind you in every 30 mins.";
+                popup.ContentText = "You've been on for while! You need a break!!! \nWe will remind you in every 5 mins.";
                 popup.Popup();
             }
         }
