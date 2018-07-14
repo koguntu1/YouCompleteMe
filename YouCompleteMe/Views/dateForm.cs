@@ -20,6 +20,7 @@ namespace YouCompleteMe.Views
         private static dateForm instance;
         private List<Models.Task> tasks;
         private AddUpdateChildTaskForm subtaskForm;
+        private AddMeetingToTasksForm meetingForm;
         private int selectedTask;
         private int timedTaskID;
         private int timerSecs = 0;
@@ -407,6 +408,28 @@ namespace YouCompleteMe.Views
             taskTreeView.Nodes.Clear();
             //this.dateForm_Load(sender, e);
             this.populateTaskTreeView();
+        }
+
+        private void btnAddMeeting_Click(object sender, EventArgs e)
+        {
+            if (meetingForm == null)
+            {
+                meetingForm = new AddMeetingToTasksForm(user, false, this);
+                //childTask.MdiParent = this;
+                meetingForm.StartPosition = FormStartPosition.CenterScreen;
+                meetingForm.FormClosed += MeetingForm_FormClosed;
+                meetingForm.ShowDialog();
+            }
+            else
+            {
+                meetingForm.Activate();
+            }
+        }
+
+        private void MeetingForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            meetingForm.Dispose();
+            meetingForm = null;
         }
     }
 }

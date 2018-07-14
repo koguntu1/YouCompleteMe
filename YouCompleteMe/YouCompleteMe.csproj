@@ -101,11 +101,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TimeSpentDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Views\AddMeetingToTasks.cs">
+    <Compile Include="Views\AddMeetingToTasksForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\AddMeetingToTasks.Designer.cs">
-      <DependentUpon>AddMeetingToTasks.cs</DependentUpon>
+    <Compile Include="Views\AddMeetingToTasksForm.Designer.cs">
+      <DependentUpon>AddMeetingToTasksForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\AddUpdateAccountForm.cs">
       <SubType>Form</SubType>
@@ -204,8 +204,8 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="TimeSpentReport.rdlc" />
-    <EmbeddedResource Include="Views\AddMeetingToTasks.resx">
-      <DependentUpon>AddMeetingToTasks.cs</DependentUpon>
+    <EmbeddedResource Include="Views\AddMeetingToTasksForm.resx">
+      <DependentUpon>AddMeetingToTasksForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\AddUpdateAccountForm.resx">
       <DependentUpon>AddUpdateAccountForm.cs</DependentUpon>
