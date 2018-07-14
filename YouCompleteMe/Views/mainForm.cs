@@ -411,7 +411,7 @@ namespace YouCompleteMe.Views
             // TODO: This should add all hours spent in meetings for the current month
             // this will require an update to the database to change the activities table to keep track of individual timer sessions
 
-            lblMeetingHours.Text = "4 hrs";
+            lblMeetingHours.Text = TaskController.getMonthlyMeetingTime(theUser, DateTime.Now.ToShortDateString()).ToString("#.##") + " hrs";
         }
 
         // Updates the scorecard when tab is selected.

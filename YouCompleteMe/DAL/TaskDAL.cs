@@ -253,8 +253,9 @@ namespace YouCompleteMe.DAL
                 "on t.taskID = a.taskID " +
                 "WHERE " +
                 "task_owner = @user and " +
-                "cast(currentDate as date) > dateadd(month, -1, @date) and " +
-                "startTime > dateadd(day, -30, getdate())";
+                "isMeeting = 0 and " +
+                "cast(currentDate as date) >= dateadd(month, -1, @date) and " +
+                "startTime >= dateadd(day, -30, getdate())";
 
 
             SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
@@ -300,6 +301,46 @@ namespace YouCompleteMe.DAL
             }
 
             return tasks;
+        }
+
+        public static double getMonthlyMeetingTime(User currentUser, string date)//, int personal, int professional, int other)
+        {
+            double timeSpent = 0;
+            SqlConnection connection = DBConnection.GetConnection();
+            string selectStatement =
+                "SELECT sum(a.seconds) " +
+                "FROM activities a " +
+                "left join tasks t " +
+                "on t.taskID = a.taskID " +
+                "WHERE " +
+                "t.task_owner = @user and " +
+                "t.isMeeting = 1 and " +
+                "cast(t.currentDate as date) >= dateadd(month, -1, @date) and " +
+                "a.startTime >= dateadd(month, -1, @date)";
+
+
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@user", currentUser.userID);
+            selectCommand.Parameters.AddWithValue("@date", date);
+
+            try
+            {
+                connection.Open();
+                if (selectCommand.ExecuteScalar() != DBNull.Value)
+                    timeSpent = (Convert.ToDouble(selectCommand.ExecuteScalar()) / 60.0) / 60.0;
+                else
+                    timeSpent = 0.0;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return timeSpent;
         }
 
         public static List<Models.Task> getTasksOfType(User currentUser, string date, int type)

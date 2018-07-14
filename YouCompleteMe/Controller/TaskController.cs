@@ -126,5 +126,10 @@ namespace YouCompleteMe.Controller
             }
             return percentage;
         }
+
+        public static double getMonthlyMeetingTime(User user, string date)
+        {
+            return TaskDAL.getMonthlyMeetingTime(user, date);
+        }
     }
 }
