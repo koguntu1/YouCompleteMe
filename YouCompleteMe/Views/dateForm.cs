@@ -110,6 +110,8 @@ namespace YouCompleteMe.Views
                     currentNode.ForeColor = Color.Red;
                 else if (task.task_priority == 2)
                     currentNode.ForeColor = Color.Orange;
+                if (task.isMeeting == 1)
+                    currentNode.ForeColor = Color.Blue;
 
                 // Add details tooltip
                 String priority = "";

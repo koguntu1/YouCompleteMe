@@ -222,6 +222,7 @@ namespace YouCompleteMe.DAL
                         task.deadline = DateTime.MaxValue;
                     else
                         task.deadline = (DateTime)reader["deadline"];
+                    task.isMeeting = Convert.ToInt16(reader["isMeeting"]);
 
                     tasks.Add(task);
                 }
@@ -363,7 +364,7 @@ namespace YouCompleteMe.DAL
             SqlConnection connection = DBConnection.GetConnection();
             string updateStatement = "UPDATE tasks set " +
                                      "currentDate = GETDATE() " +
-                                     "WHERE completed = 0 and" +
+                                     "WHERE completed = 0 and " +
                                      "isMeeting = 0";
             SqlCommand updateCommand = new SqlCommand(updateStatement, connection);
 
