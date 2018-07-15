@@ -7,13 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using YouCompleteMe.Models;
 
 namespace YouCompleteMe.Views
 {
     public partial class ViewAverageTimePerTask : Form
     {
-        public ViewAverageTimePerTask()
+        private static CompletedTaskParameterForm parameter;
+        private User theUser;
+        public ViewAverageTimePerTask(CompletedTaskParameterForm aParameter, User aUser)
         {
+            parameter = aParameter;
+            theUser = aUser;
             InitializeComponent();
         }
     }
