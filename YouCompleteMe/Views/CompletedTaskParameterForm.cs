@@ -17,6 +17,7 @@ namespace YouCompleteMe.Views
         private static CompletedTaskParameterForm instance;
         private static ViewCompletedTasksForm report;
         private static ViewTimeSpentOnTaskForm timeReport;
+        private static ViewAverageTimePerTask averageReport;
         private User theUser;
 
         public CompletedTaskParameterForm(User aUser)
@@ -107,6 +108,29 @@ namespace YouCompleteMe.Views
         {
             timeReport.Dispose();
             timeReport = null;
+            reset();
+            this.Show();
+        }
+
+        private void averageTimeOnClick(object sender, EventArgs e)
+        {
+            if (averageReport == null)
+            {
+                averageReport = new ViewAverageTimePerTask(instance, theUser);
+                averageReport.StartPosition = FormStartPosition.CenterScreen;
+                averageReport.FormClosed += AverageReport_FormClosed;
+                averageReport.ShowDialog();
+            }
+            else
+            {
+                averageReport.Activate();
+            }
+        }
+
+        private void AverageReport_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            averageReport.Dispose();
+            averageReport = null;
             reset();
             this.Show();
         }

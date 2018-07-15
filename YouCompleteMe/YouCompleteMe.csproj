@@ -68,6 +68,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AverageTimeDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AverageTimeDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="CompletedTaskDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -180,6 +185,12 @@
       <DependentUpon>tasksForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Validator.cs" />
+    <Compile Include="Views\ViewAverageTimePerTask.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ViewAverageTimePerTask.Designer.cs">
+      <DependentUpon>ViewAverageTimePerTask.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ViewCompletedTasksForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -192,6 +203,7 @@
     <Compile Include="Views\ViewTimeSpentOnTaskForm.Designer.cs">
       <DependentUpon>ViewTimeSpentOnTaskForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AverageTimeReport.rdlc" />
     <EmbeddedResource Include="CompletedTasksReport.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -243,12 +255,26 @@
     <EmbeddedResource Include="Views\tasksForm.resx">
       <DependentUpon>tasksForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\ViewAverageTimePerTask.resx">
+      <DependentUpon>ViewAverageTimePerTask.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\ViewCompletedTasksForm.resx">
       <DependentUpon>ViewCompletedTasksForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ViewTimeSpentOnTaskForm.resx">
       <DependentUpon>ViewTimeSpentOnTaskForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="AverageTimeDataSet.xsc">
+      <DependentUpon>AverageTimeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="AverageTimeDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AverageTimeDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="AverageTimeDataSet.xss">
+      <DependentUpon>AverageTimeDataSet.xsd</DependentUpon>
+    </None>
     <None Include="CompletedTaskDataSet.xsc">
       <DependentUpon>CompletedTaskDataSet.xsd</DependentUpon>
     </None>

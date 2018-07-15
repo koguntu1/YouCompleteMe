@@ -20,9 +20,9 @@ namespace YouCompleteMe {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("TimeSpentDataSet")]
+    [global::System.Xml.Serialization.XmlRootAttribute("AverageTimeDataSet")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class TimeSpentDataSet : global::System.Data.DataSet {
+    public partial class AverageTimeDataSet : global::System.Data.DataSet {
         
         private activitiesDataTable tableactivities;
         
@@ -32,7 +32,7 @@ namespace YouCompleteMe {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public TimeSpentDataSet() {
+        public AverageTimeDataSet() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -43,7 +43,7 @@ namespace YouCompleteMe {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected TimeSpentDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected AverageTimeDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -142,7 +142,7 @@ namespace YouCompleteMe {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            TimeSpentDataSet cln = ((TimeSpentDataSet)(base.Clone()));
+            AverageTimeDataSet cln = ((AverageTimeDataSet)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -223,9 +223,9 @@ namespace YouCompleteMe {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "TimeSpentDataSet";
+            this.DataSetName = "AverageTimeDataSet";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/TimeSpentDataSet.xsd";
+            this.Namespace = "http://tempuri.org/AverageTimeDataSet.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableactivities = new activitiesDataTable();
@@ -257,7 +257,7 @@ namespace YouCompleteMe {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            TimeSpentDataSet ds = new TimeSpentDataSet();
+            AverageTimeDataSet ds = new AverageTimeDataSet();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -314,6 +314,8 @@ namespace YouCompleteMe {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class activitiesDataTable : global::System.Data.TypedTableBase<activitiesRow> {
             
+            private global::System.Data.DataColumn columnstartTime;
+            
             private global::System.Data.DataColumn columntaskID;
             
             private global::System.Data.DataColumn columnseconds;
@@ -349,6 +351,14 @@ namespace YouCompleteMe {
             protected activitiesDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn startTimeColumn {
+                get {
+                    return this.columnstartTime;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -404,9 +414,10 @@ namespace YouCompleteMe {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public activitiesRow AddactivitiesRow(int taskID, int seconds) {
+            public activitiesRow AddactivitiesRow(System.DateTime startTime, int taskID, int seconds) {
                 activitiesRow rowactivitiesRow = ((activitiesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
+                        startTime,
                         taskID,
                         seconds};
                 rowactivitiesRow.ItemArray = columnValuesArray;
@@ -416,8 +427,9 @@ namespace YouCompleteMe {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public activitiesRow FindBytaskID(int taskID) {
+            public activitiesRow FindBystartTimetaskID(System.DateTime startTime, int taskID) {
                 return ((activitiesRow)(this.Rows.Find(new object[] {
+                            startTime,
                             taskID})));
             }
             
@@ -438,6 +450,7 @@ namespace YouCompleteMe {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
+                this.columnstartTime = base.Columns["startTime"];
                 this.columntaskID = base.Columns["taskID"];
                 this.columnseconds = base.Columns["seconds"];
             }
@@ -445,14 +458,17 @@ namespace YouCompleteMe {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
+                this.columnstartTime = new global::System.Data.DataColumn("startTime", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstartTime);
                 this.columntaskID = new global::System.Data.DataColumn("taskID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntaskID);
                 this.columnseconds = new global::System.Data.DataColumn("seconds", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnseconds);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnstartTime,
                                 this.columntaskID}, true));
+                this.columnstartTime.AllowDBNull = false;
                 this.columntaskID.AllowDBNull = false;
-                this.columntaskID.Unique = true;
                 this.columnseconds.AllowDBNull = false;
             }
             
@@ -521,7 +537,7 @@ namespace YouCompleteMe {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                TimeSpentDataSet ds = new TimeSpentDataSet();
+                AverageTimeDataSet ds = new AverageTimeDataSet();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -589,11 +605,11 @@ namespace YouCompleteMe {
             
             private global::System.Data.DataColumn columntitle;
             
-            private global::System.Data.DataColumn columncreatedDate;
-            
-            private global::System.Data.DataColumn columncompleted;
-            
             private global::System.Data.DataColumn columnExpr1;
+            
+            private global::System.Data.DataColumn columnExpr2;
+            
+            private global::System.Data.DataColumn columnExpr3;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -638,25 +654,25 @@ namespace YouCompleteMe {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn createdDateColumn {
-                get {
-                    return this.columncreatedDate;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn completedColumn {
-                get {
-                    return this.columncompleted;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public global::System.Data.DataColumn Expr1Column {
                 get {
                     return this.columnExpr1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn Expr2Column {
+                get {
+                    return this.columnExpr2;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn Expr3Column {
+                get {
+                    return this.columnExpr3;
                 }
             }
             
@@ -697,13 +713,13 @@ namespace YouCompleteMe {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tasksRow AddtasksRow(string title, System.DateTime createdDate, bool completed, int Expr1) {
+            public tasksRow AddtasksRow(string title, int Expr1, int Expr2, int Expr3) {
                 tasksRow rowtasksRow = ((tasksRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         title,
-                        createdDate,
-                        completed,
-                        Expr1};
+                        Expr1,
+                        Expr2,
+                        Expr3};
                 rowtasksRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtasksRow);
                 return rowtasksRow;
@@ -727,9 +743,9 @@ namespace YouCompleteMe {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
                 this.columntitle = base.Columns["title"];
-                this.columncreatedDate = base.Columns["createdDate"];
-                this.columncompleted = base.Columns["completed"];
                 this.columnExpr1 = base.Columns["Expr1"];
+                this.columnExpr2 = base.Columns["Expr2"];
+                this.columnExpr3 = base.Columns["Expr3"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -737,17 +753,17 @@ namespace YouCompleteMe {
             private void InitClass() {
                 this.columntitle = new global::System.Data.DataColumn("title", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntitle);
-                this.columncreatedDate = new global::System.Data.DataColumn("createdDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncreatedDate);
-                this.columncompleted = new global::System.Data.DataColumn("completed", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncompleted);
                 this.columnExpr1 = new global::System.Data.DataColumn("Expr1", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnExpr1);
+                this.columnExpr2 = new global::System.Data.DataColumn("Expr2", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnExpr2);
+                this.columnExpr3 = new global::System.Data.DataColumn("Expr3", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnExpr3);
                 this.columntitle.AllowDBNull = false;
                 this.columntitle.MaxLength = 255;
-                this.columncreatedDate.AllowDBNull = false;
-                this.columncompleted.AllowDBNull = false;
                 this.columnExpr1.ReadOnly = true;
+                this.columnExpr2.ReadOnly = true;
+                this.columnExpr3.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -815,7 +831,7 @@ namespace YouCompleteMe {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                TimeSpentDataSet ds = new TimeSpentDataSet();
+                AverageTimeDataSet ds = new AverageTimeDataSet();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -890,6 +906,17 @@ namespace YouCompleteMe {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime startTime {
+                get {
+                    return ((global::System.DateTime)(this[this.tableactivities.startTimeColumn]));
+                }
+                set {
+                    this[this.tableactivities.startTimeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public int taskID {
                 get {
                     return ((int)(this[this.tableactivities.taskIDColumn]));
@@ -938,28 +965,6 @@ namespace YouCompleteMe {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime createdDate {
-                get {
-                    return ((global::System.DateTime)(this[this.tabletasks.createdDateColumn]));
-                }
-                set {
-                    this[this.tabletasks.createdDateColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool completed {
-                get {
-                    return ((bool)(this[this.tabletasks.completedColumn]));
-                }
-                set {
-                    this[this.tabletasks.completedColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public int Expr1 {
                 get {
                     try {
@@ -976,6 +981,38 @@ namespace YouCompleteMe {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int Expr2 {
+                get {
+                    try {
+                        return ((int)(this[this.tabletasks.Expr2Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Expr2\' in table \'tasks\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletasks.Expr2Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int Expr3 {
+                get {
+                    try {
+                        return ((int)(this[this.tabletasks.Expr3Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Expr3\' in table \'tasks\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletasks.Expr3Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsExpr1Null() {
                 return this.IsNull(this.tabletasks.Expr1Column);
             }
@@ -984,6 +1021,30 @@ namespace YouCompleteMe {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetExpr1Null() {
                 this[this.tabletasks.Expr1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsExpr2Null() {
+                return this.IsNull(this.tabletasks.Expr2Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetExpr2Null() {
+                this[this.tabletasks.Expr2Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsExpr3Null() {
+                return this.IsNull(this.tabletasks.Expr3Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetExpr3Null() {
+                this[this.tabletasks.Expr3Column] = global::System.Convert.DBNull;
             }
         }
         
@@ -1056,7 +1117,7 @@ namespace YouCompleteMe {
         }
     }
 }
-namespace YouCompleteMe.TimeSpentDataSetTableAdapters {
+namespace YouCompleteMe.AverageTimeDataSetTableAdapters {
     
     
     /// <summary>
@@ -1180,31 +1241,36 @@ namespace YouCompleteMe.TimeSpentDataSetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "activities";
+            tableMapping.ColumnMappings.Add("startTime", "startTime");
             tableMapping.ColumnMappings.Add("taskID", "taskID");
             tableMapping.ColumnMappings.Add("seconds", "seconds");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[activities] WHERE (([taskID] = @Original_taskID) AND ([seconds" +
-                "] = @Original_seconds))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[activities] WHERE (([startTime] = @Original_startTime) AND ([t" +
+                "askID] = @Original_taskID) AND ([seconds] = @Original_seconds))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_startTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "startTime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_taskID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "taskID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_seconds", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "seconds", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[activities] ([taskID], [seconds]) VALUES (@taskID, @seconds);\n" +
-                "SELECT taskID, seconds FROM activities WHERE (taskID = @taskID)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[activities] ([startTime], [taskID], [seconds]) VALUES (@startT" +
+                "ime, @taskID, @seconds);\r\nSELECT startTime, taskID, seconds FROM activities WHER" +
+                "E (startTime = @startTime) AND (taskID = @taskID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@startTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "startTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@taskID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "taskID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@seconds", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "seconds", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[activities] SET [taskID] = @taskID, [seconds] = @seconds WHERE (([t" +
-                "askID] = @Original_taskID) AND ([seconds] = @Original_seconds));\nSELECT taskID, " +
-                "seconds FROM activities WHERE (taskID = @taskID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[activities] SET [startTime] = @startTime, [taskID] = @taskID, [seconds] = @seconds WHERE (([startTime] = @Original_startTime) AND ([taskID] = @Original_taskID) AND ([seconds] = @Original_seconds));
+SELECT startTime, taskID, seconds FROM activities WHERE (startTime = @startTime) AND (taskID = @taskID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@startTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "startTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@taskID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "taskID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@seconds", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "seconds", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_startTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "startTime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_taskID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "taskID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_seconds", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "seconds", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
@@ -1222,7 +1288,7 @@ namespace YouCompleteMe.TimeSpentDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT taskID, seconds FROM dbo.activities";
+            this._commandCollection[0].CommandText = "SELECT startTime, taskID, seconds FROM dbo.activities";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1230,7 +1296,7 @@ namespace YouCompleteMe.TimeSpentDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(TimeSpentDataSet.activitiesDataTable dataTable) {
+        public virtual int Fill(AverageTimeDataSet.activitiesDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1243,9 +1309,9 @@ namespace YouCompleteMe.TimeSpentDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual TimeSpentDataSet.activitiesDataTable GetData() {
+        public virtual AverageTimeDataSet.activitiesDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            TimeSpentDataSet.activitiesDataTable dataTable = new TimeSpentDataSet.activitiesDataTable();
+            AverageTimeDataSet.activitiesDataTable dataTable = new AverageTimeDataSet.activitiesDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -1253,14 +1319,14 @@ namespace YouCompleteMe.TimeSpentDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(TimeSpentDataSet.activitiesDataTable dataTable) {
+        public virtual int Update(AverageTimeDataSet.activitiesDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(TimeSpentDataSet dataSet) {
+        public virtual int Update(AverageTimeDataSet dataSet) {
             return this.Adapter.Update(dataSet, "activities");
         }
         
@@ -1283,9 +1349,10 @@ namespace YouCompleteMe.TimeSpentDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_taskID, int Original_seconds) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_taskID));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_seconds));
+        public virtual int Delete(System.DateTime Original_startTime, int Original_taskID, int Original_seconds) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((System.DateTime)(Original_startTime));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_taskID));
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_seconds));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1306,9 +1373,10 @@ namespace YouCompleteMe.TimeSpentDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int taskID, int seconds) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(taskID));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(seconds));
+        public virtual int Insert(System.DateTime startTime, int taskID, int seconds) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((System.DateTime)(startTime));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(taskID));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(seconds));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1329,11 +1397,13 @@ namespace YouCompleteMe.TimeSpentDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int taskID, int seconds, int Original_taskID, int Original_seconds) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(taskID));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(seconds));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_taskID));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_seconds));
+        public virtual int Update(System.DateTime startTime, int taskID, int seconds, System.DateTime Original_startTime, int Original_taskID, int Original_seconds) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((System.DateTime)(startTime));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(taskID));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(seconds));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((System.DateTime)(Original_startTime));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_taskID));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_seconds));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1354,8 +1424,8 @@ namespace YouCompleteMe.TimeSpentDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int seconds, int Original_taskID, int Original_seconds) {
-            return this.Update(Original_taskID, seconds, Original_taskID, Original_seconds);
+        public virtual int Update(int seconds, System.DateTime Original_startTime, int Original_taskID, int Original_seconds) {
+            return this.Update(Original_startTime, Original_taskID, seconds, Original_startTime, Original_taskID, Original_seconds);
         }
     }
     
@@ -1481,9 +1551,9 @@ namespace YouCompleteMe.TimeSpentDataSetTableAdapters {
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "tasks";
             tableMapping.ColumnMappings.Add("title", "title");
-            tableMapping.ColumnMappings.Add("createdDate", "createdDate");
-            tableMapping.ColumnMappings.Add("completed", "completed");
             tableMapping.ColumnMappings.Add("Expr1", "Expr1");
+            tableMapping.ColumnMappings.Add("Expr2", "Expr2");
+            tableMapping.ColumnMappings.Add("Expr3", "Expr3");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -1500,12 +1570,11 @@ namespace YouCompleteMe.TimeSpentDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"/*GROUP BY  t.title, t.createdDate, t.completed*/
-SELECT        t.title, t.createdDate, SUM(a.seconds) AS Expr1, t.completed
+            this._commandCollection[0].CommandText = @"SELECT        t.title, SUM(a.seconds) AS Expr1, COUNT(a.startTime) AS Expr2, COUNT(a.startTime) AS Expr3
 FROM            tasks AS t INNER JOIN
                          activities AS a ON t.taskID = a.taskID
 WHERE        (t.task_owner = @id) AND (a.startTime >= @start) AND (a.startTime <= @end)
-GROUP BY t.title, t.createdDate, t.completed";
+GROUP BY t.title";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "task_owner", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@start", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "startTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -1516,7 +1585,7 @@ GROUP BY t.title, t.createdDate, t.completed";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(TimeSpentDataSet.tasksDataTable dataTable, int id, System.DateTime start, System.DateTime end) {
+        public virtual int Fill(AverageTimeDataSet.tasksDataTable dataTable, int id, System.DateTime start, System.DateTime end) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id));
             this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(start));
@@ -1532,12 +1601,12 @@ GROUP BY t.title, t.createdDate, t.completed";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual TimeSpentDataSet.tasksDataTable GetData(int id, System.DateTime start, System.DateTime end) {
+        public virtual AverageTimeDataSet.tasksDataTable GetData(int id, System.DateTime start, System.DateTime end) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id));
             this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(start));
             this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(end));
-            TimeSpentDataSet.tasksDataTable dataTable = new TimeSpentDataSet.tasksDataTable();
+            AverageTimeDataSet.tasksDataTable dataTable = new AverageTimeDataSet.tasksDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -1634,7 +1703,7 @@ GROUP BY t.title, t.createdDate, t.completed";
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private int UpdateUpdatedRows(TimeSpentDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(AverageTimeDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             if ((this._activitiesTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.activities.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
@@ -1653,7 +1722,7 @@ GROUP BY t.title, t.createdDate, t.completed";
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private int UpdateInsertedRows(TimeSpentDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(AverageTimeDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             if ((this._activitiesTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.activities.Select(null, null, global::System.Data.DataViewRowState.Added);
@@ -1671,7 +1740,7 @@ GROUP BY t.title, t.createdDate, t.completed";
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private int UpdateDeletedRows(TimeSpentDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(AverageTimeDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
             if ((this._activitiesTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.activities.Select(null, null, global::System.Data.DataViewRowState.Deleted);
@@ -1713,7 +1782,7 @@ GROUP BY t.title, t.createdDate, t.completed";
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public virtual int UpdateAll(TimeSpentDataSet dataSet) {
+        public virtual int UpdateAll(AverageTimeDataSet dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }

@@ -6,16 +6,16 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.52344in</Width>
+              <Width>2.44271in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.52344in</Width>
+              <Width>2.44271in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.52344in</Width>
+              <Width>2.44271in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.52344in</Width>
+              <Width>2.44271in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -55,7 +55,7 @@
                           <Style>Solid</Style>
                           <Width>1pt</Width>
                         </BottomBorder>
-                        <BackgroundColor>PowderBlue</BackgroundColor>
+                        <BackgroundColor>GreenYellow</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -73,7 +73,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Created Date</Value>
+                              <Value>Number of Sessions</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
                                 <FontSize>11pt</FontSize>
@@ -97,7 +97,7 @@
                           <Style>Solid</Style>
                           <Width>1pt</Width>
                         </BottomBorder>
-                        <BackgroundColor>LightBlue</BackgroundColor>
+                        <BackgroundColor>Chartreuse</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -115,7 +115,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Time Spent</Value>
+                              <Value>Average Time</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
                                 <FontSize>11pt</FontSize>
@@ -139,7 +139,7 @@
                           <Style>Solid</Style>
                           <Width>1pt</Width>
                         </BottomBorder>
-                        <BackgroundColor>LightSkyBlue</BackgroundColor>
+                        <BackgroundColor>PaleGreen</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -157,7 +157,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Completed?</Value>
+                              <Value>Total Time</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
                                 <FontSize>11pt</FontSize>
@@ -181,7 +181,7 @@
                           <Style>Solid</Style>
                           <Width>1pt</Width>
                         </BottomBorder>
-                        <BackgroundColor>SkyBlue</BackgroundColor>
+                        <BackgroundColor>LightGreen</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -221,7 +221,7 @@
                         <Border>
                           <Style>None</Style>
                         </Border>
-                        <BackgroundColor>PowderBlue</BackgroundColor>
+                        <BackgroundColor>GreenYellow</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -232,14 +232,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="createdDate">
+                    <Textbox Name="Expr21">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=FormatDateTime(Fields!createdDate.Value, DateFormat.ShortDate)</Value>
+                              <Value>=IIF(Fields!Expr2.Value &gt; 1, Fields!Expr2.Value &amp; " sessions", Fields!Expr2.Value &amp; " session")</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                                 <Color>#333333</Color>
@@ -251,12 +251,54 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>createdDate</rd:DefaultName>
+                      <rd:DefaultName>Expr21</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
                         </Border>
-                        <BackgroundColor>LightBlue</BackgroundColor>
+                        <BackgroundColor>Chartreuse</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                    <rd:Selected>true</rd:Selected>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Expr2">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Switch(
+	(Fields!Expr1.Value / Fields!Expr2.Value) &gt;= 86400, CInt((Fields!Expr1.Value / Fields!Expr2.Value) / 86400) &amp; " day",
+	(Fields!Expr1.Value / Fields!Expr2.Value) &gt;= 3600, CInt((Fields!Expr1.Value / Fields!Expr2.Value) / 3600) &amp; " hr" &amp; " " &amp; CInt(((Fields!Expr1.Value / Fields!Expr2.Value) MOD 3600) / 60) &amp; " min" &amp; " " &amp; Round((Fields!Expr1.Value / Fields!Expr2.Value) MOD 3600 MOD 60,2) &amp; " sec",
+	(Fields!Expr1.Value / Fields!Expr2.Value) &gt;= 60, 
+		CInt((Fields!Expr1.Value / Fields!Expr2.Value) / 60) &amp; " min" &amp; " " &amp; (Round((Fields!Expr1.Value / Fields!Expr2.Value) MOD 60,2) &amp; " sec"),
+	(Fields!Expr1.Value / Fields!Expr2.Value) &lt; 60, (Round((Fields!Expr1.Value / Fields!Expr2.Value),2) &amp; " seconds")
+)</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                                <Color>#333333</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Expr2</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <BackgroundColor>PaleGreen</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -297,45 +339,7 @@
                         <Border>
                           <Style>None</Style>
                         </Border>
-                        <BackgroundColor>LightSkyBlue</BackgroundColor>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="completed">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Switch(
-	Fields!completed.Value = false, "No",
-	Fields!completed.Value = true, "Yes"
-)</Value>
-                              <Style>
-                                <FontWeight>Normal</FontWeight>
-                                <Color>#333333</Color>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>completed</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>None</Style>
-                        </Border>
-                        <BackgroundColor>SkyBlue</BackgroundColor>
+                        <BackgroundColor>LightGreen</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -366,9 +370,9 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
-        <DataSetName>TimeDataSpent</DataSetName>
+        <DataSetName>DataSet1</DataSetName>
         <Height>0.5in</Height>
-        <Width>10.09376in</Width>
+        <Width>9.77083in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -381,21 +385,21 @@
       <BackgroundColor>WhiteSmoke</BackgroundColor>
     </Style>
   </Body>
-  <Width>10.09376in</Width>
+  <Width>9.77083in</Width>
   <Page>
     <PageHeader>
       <Height>1in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
-        <Textbox Name="Textbox1">
+        <Textbox Name="Textbox9">
           <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Time Spent on Tasks</Value>
+                  <Value>Average Time Per Task Report</Value>
                   <Style>
                     <FontSize>20pt</FontSize>
                   </Style>
@@ -406,11 +410,11 @@
               </Style>
             </Paragraph>
           </Paragraphs>
-          <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>0.16542in</Top>
-          <Left>3.57167in</Left>
-          <Height>0.48958in</Height>
-          <Width>3.34375in</Width>
+          <rd:DefaultName>Textbox9</rd:DefaultName>
+          <Top>0.2175in</Top>
+          <Left>3.03in</Left>
+          <Height>0.45833in</Height>
+          <Width>4.51042in</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -437,18 +441,18 @@
   </Page>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="TimeSpentDataSet">
+    <DataSource Name="AverageTimeDataSet">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>778c30d0-6d7f-4264-9c60-21bd5ca69e9c</rd:DataSourceID>
+      <rd:DataSourceID>fbf8d5e3-f00e-4dec-bba3-04b600ec63ad</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="TimeDataSpent">
+    <DataSet Name="DataSet1">
       <Query>
-        <DataSourceName>TimeSpentDataSet</DataSourceName>
+        <DataSourceName>AverageTimeDataSet</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -456,22 +460,22 @@
           <DataField>title</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="createdDate">
-          <DataField>createdDate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="completed">
-          <DataField>completed</DataField>
-          <rd:TypeName>System.Boolean</rd:TypeName>
-        </Field>
         <Field Name="Expr1">
           <DataField>Expr1</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="Expr2">
+          <DataField>Expr2</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Expr3">
+          <DataField>Expr3</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>TimeSpentDataSet</rd:DataSetName>
-        <rd:SchemaPath>\\Mac\Home\Desktop\CS6920\youcompletemerepo\YouCompleteMe\TimeSpentDataSet.xsd</rd:SchemaPath>
+        <rd:DataSetName>AverageTimeDataSet</rd:DataSetName>
+        <rd:SchemaPath>\\Mac\Home\Desktop\CS6920\youcompletemerepo\YouCompleteMe\AverageTimeDataSet.xsd</rd:SchemaPath>
         <rd:TableName>tasks</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
@@ -480,5 +484,5 @@
     </DataSet>
   </DataSets>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
-  <rd:ReportID>b03c5ac6-3bc2-4952-aa6a-9fb8ad6ef310</rd:ReportID>
+  <rd:ReportID>64f57ef8-2a16-41f0-949f-6e250ba9c182</rd:ReportID>
 </Report>
