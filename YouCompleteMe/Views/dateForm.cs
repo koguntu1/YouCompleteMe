@@ -48,6 +48,11 @@ namespace YouCompleteMe.Views
         // Load form with the current users tasks for the selected date
         public void dateForm_Load(object sender, EventArgs e)
         {
+            loadData();
+        }
+
+        public void loadData()
+        {
             this.lblDate.Text = parentCalendar.getSelectedDate_Formatted();
             this.taskTreeView.Nodes.Clear();
             this.tasks = TaskController.getUserTasks(user, parentCalendar.getSelectedDate());
@@ -466,6 +471,44 @@ namespace YouCompleteMe.Views
         {
             meetingForm.Dispose();
             meetingForm = null;
+        }
+
+
+        /*Add function for delete*/
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            var selectedNode = taskTreeView.SelectedNode;
+            if(selectedNode != null)
+            {
+                if (selectedNode.Parent == null)
+                {
+                    // Root-level node, delete task
+                    Models.Task task = (Models.Task)selectedNode.Tag;
+                    DialogResult result = MessageBox.Show("Do You Want to Delete this task and it's all subtasks out database?", "Delete task", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    if (result.Equals(DialogResult.OK))
+                    {
+                        TaskController.deleteTask(task.taskID);
+                        loadData();
+                        MessageBox.Show("Delete successfully this task and all it's subtasks");
+                    }
+                }
+                else
+                {
+                    // Child node, delete child task only
+                    Models.Subtask subtask = (Models.Subtask)selectedNode.Tag;
+                    DialogResult result = MessageBox.Show("Do You Want to Delete this subtask out database?", "Delete subtask", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    if (result.Equals(DialogResult.OK))
+                    {
+                        TaskController.deleteTask(subtask.subtaskID);
+                        loadData();
+                        MessageBox.Show("SubTask successfully deleted");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("No task or subtask selected. Please try your delete again.");
+            }
         }
     }
 }

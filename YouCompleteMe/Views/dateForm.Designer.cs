@@ -56,6 +56,7 @@
             this.btnAddMeeting = new System.Windows.Forms.Button();
             this.cbMeetings = new System.Windows.Forms.CheckBox();
             this.btnPause = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.project6920DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tasksBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tasksDataGridView)).BeginInit();
@@ -75,7 +76,7 @@
             this.btnAddNewTask.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddNewTask.Location = new System.Drawing.Point(12, 410);
             this.btnAddNewTask.Name = "btnAddNewTask";
-            this.btnAddNewTask.Size = new System.Drawing.Size(152, 33);
+            this.btnAddNewTask.Size = new System.Drawing.Size(177, 33);
             this.btnAddNewTask.TabIndex = 2;
             this.btnAddNewTask.Text = "Create New Task";
             this.btnAddNewTask.UseVisualStyleBackColor = true;
@@ -84,7 +85,7 @@
             // btnUpdateTask
             // 
             this.btnUpdateTask.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateTask.Location = new System.Drawing.Point(394, 371);
+            this.btnUpdateTask.Location = new System.Drawing.Point(419, 373);
             this.btnUpdateTask.Name = "btnUpdateTask";
             this.btnUpdateTask.Size = new System.Drawing.Size(152, 33);
             this.btnUpdateTask.TabIndex = 3;
@@ -96,7 +97,7 @@
             // btnExit
             // 
             this.btnExit.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Location = new System.Drawing.Point(583, 410);
+            this.btnExit.Location = new System.Drawing.Point(599, 410);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(152, 33);
             this.btnExit.TabIndex = 4;
@@ -185,9 +186,9 @@
             // btnAddSubtask
             // 
             this.btnAddSubtask.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddSubtask.Location = new System.Drawing.Point(232, 410);
+            this.btnAddSubtask.Location = new System.Drawing.Point(226, 410);
             this.btnAddSubtask.Name = "btnAddSubtask";
-            this.btnAddSubtask.Size = new System.Drawing.Size(152, 33);
+            this.btnAddSubtask.Size = new System.Drawing.Size(158, 33);
             this.btnAddSubtask.TabIndex = 8;
             this.btnAddSubtask.Text = "Add Subtask";
             this.btnAddSubtask.UseVisualStyleBackColor = true;
@@ -295,7 +296,7 @@
             // btnAddMeeting
             // 
             this.btnAddMeeting.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddMeeting.Location = new System.Drawing.Point(394, 410);
+            this.btnAddMeeting.Location = new System.Drawing.Point(599, 371);
             this.btnAddMeeting.Name = "btnAddMeeting";
             this.btnAddMeeting.Size = new System.Drawing.Size(152, 33);
             this.btnAddMeeting.TabIndex = 17;
@@ -328,11 +329,23 @@
             this.btnPause.UseVisualStyleBackColor = true;
             this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Location = new System.Drawing.Point(419, 412);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(152, 33);
+            this.btnDelete.TabIndex = 56;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // dateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(776, 455);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnPause);
             this.Controls.Add(this.cbMeetings);
             this.Controls.Add(this.btnAddMeeting);
@@ -393,5 +406,6 @@
         private System.Windows.Forms.Button btnAddMeeting;
         private System.Windows.Forms.CheckBox cbMeetings;
         private System.Windows.Forms.Button btnPause;
+        private System.Windows.Forms.Button btnDelete;
     }
 }

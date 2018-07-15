@@ -48,7 +48,8 @@ namespace YouCompleteMe.Views
                         //hide some columns
                         listSubTaskGridView.Columns[0].Visible = false;
                         listSubTaskGridView.Columns[1].Visible = false;
-                        listSubTaskGridView.Columns[7].Visible = false;
+                        listSubTaskGridView.Columns[8].Visible = false;
+                        listSubTaskGridView.Columns[6].Visible = false;
 
                 }
                     else

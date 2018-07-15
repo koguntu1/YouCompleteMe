@@ -640,6 +640,39 @@ namespace YouCompleteMe.DAL
 
                 //Load DataReader into the DataTable.
                 dataSet.Tables[0].Load(sdr);
+                dataSet.Tables[0].Columns.Add(new DataColumn("Task_Type", typeof(string)));
+                dataSet.Tables[0].Columns.Add(new DataColumn("TaskPriority", typeof(string)));
+                for (int i = 0; i < dataSet.Tables[0].Rows.Count; i++)
+                {
+
+                    if (dataSet.Tables[0].Rows[i]["taskType"].ToString() == "1")
+                    {
+                        dataSet.Tables[0].Rows[i]["Task_Type"] = "Professional";
+                    }else if (dataSet.Tables[0].Rows[i]["taskType"].ToString() == "2")
+                    {
+                        dataSet.Tables[0].Rows[i]["Task_Type"] = "Personal";
+                    }else if (dataSet.Tables[0].Rows[i]["taskType"].ToString() == "3")
+                    {
+                        dataSet.Tables[0].Rows[i]["Task_Type"] = "Other";
+                    }else
+                    {
+                        dataSet.Tables[0].Rows[i]["Task_Type"] = "Meeting";
+                    }
+
+                    if (dataSet.Tables[0].Rows[i]["task_priority"].ToString() == "1")
+                    {
+                        dataSet.Tables[0].Rows[i]["TaskPriority"] = "High";
+                    }
+                    else if (dataSet.Tables[0].Rows[i]["task_priority"].ToString() == "2")
+                    {
+                        dataSet.Tables[0].Rows[i]["TaskPriority"] = "Medium";
+                    }
+                    else
+                    {
+                        dataSet.Tables[0].Rows[i]["TaskPriority"] = "Low";
+                    }
+                }
+
             }
             catch (SqlException ex)
             {
@@ -689,24 +722,53 @@ namespace YouCompleteMe.DAL
         /*Delete task by task id*/
         public static void deleteTask(int taskID)
         {
+            //delete list subtasks of this task id
             SqlConnection connection = DBConnection.GetConnection();
-            string deleteStatement = "DELETE FROM tasks " +
-                                     "WHERE taskID = @taskID";
-            SqlCommand deleteCommand = new SqlCommand(deleteStatement, connection);
-            deleteCommand.Parameters.AddWithValue("@taskID", taskID);
-
+            connection.Open();
+            SqlTransaction sqlTransaction = connection.BeginTransaction();
+            string selectStatement = "SELECT * " +
+                "FROM subtask WHERE taskID = @taskID ";
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection, sqlTransaction);
+            selectCommand.Parameters.AddWithValue("@taskID", taskID);
             SqlDataReader reader = null;
             try
             {
-                connection.Open();
+                List<int> listSubtasks = new List<int>();
+                reader = selectCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    int subtaskID = Convert.ToInt32(reader["subtaskID"]);
+                    listSubtasks.Add(subtaskID);
+                }
+                reader.Close();
+
+                //delete list of subtask of this task id
+                for(int i=0; i < listSubtasks.Count;i++)
+                {
+                    //delete this subtask
+                    string deleteSubtaskStatement = "DELETE FROM subtask " +
+                                     "WHERE subtaskID = @subtaskID";
+                    SqlCommand deleteSubtaskCommand = new SqlCommand(deleteSubtaskStatement, connection, sqlTransaction);
+                    deleteSubtaskCommand.Parameters.AddWithValue("@subtaskID", listSubtasks[i]);
+                    deleteSubtaskCommand.ExecuteNonQuery();
+                }
+
+                //final, delete this task
+                string deleteStatement = "DELETE FROM tasks " +
+                                     "WHERE taskID = @taskID";
+                SqlCommand deleteCommand = new SqlCommand(deleteStatement, connection, sqlTransaction);
+                deleteCommand.Parameters.AddWithValue("@taskID", taskID);
                 deleteCommand.ExecuteNonQuery();
+                sqlTransaction.Commit();
             }
             catch (SqlException ex)
             {
+                sqlTransaction.Rollback();
                 throw ex;
             }
             catch (Exception ex)
             {
+                sqlTransaction.Rollback();
                 throw ex;
             }
             finally

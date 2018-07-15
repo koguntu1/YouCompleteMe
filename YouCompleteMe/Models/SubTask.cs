@@ -22,6 +22,8 @@ namespace YouCompleteMe.Models
 
         public int st_Priority { get; set; }
 
+        public string Priority { get; set; }
+
         public string note { get; set; }
     }
 }

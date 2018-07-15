@@ -57,9 +57,9 @@ namespace YouCompleteMe.Views
         public void refreshData()
         {
             //clear data table first
-            if (listTaskGridView.Columns.Count >= 10)
+            if (listTaskGridView.Columns.Count >= 13)
             {
-                listTaskGridView.Columns.RemoveAt(9);
+                listTaskGridView.Columns.RemoveAt(12);
             }
             listTaskGridView.DataSource = null;
             listTaskGridView.Rows.Clear();
@@ -90,6 +90,8 @@ namespace YouCompleteMe.Views
                         //hide some columns
                         listTaskGridView.Columns[0].Visible = false;
                         listTaskGridView.Columns[1].Visible = false;
+                        listTaskGridView.Columns[2].Visible = false;
+                        listTaskGridView.Columns[7].Visible = false;
                         listTaskGridView.Columns[8].Visible = false;
                         //add button to data grid
                         DataGridViewButtonColumn SubTaskButton = new DataGridViewButtonColumn();
@@ -98,7 +100,7 @@ namespace YouCompleteMe.Views
                         SubTaskButton.UseColumnTextForButtonValue = true;
                         if (listTaskGridView.Columns["Detail SubTasks"] == null)
                         {
-                            listTaskGridView.Columns.Insert(9, SubTaskButton);
+                            listTaskGridView.Columns.Insert(12, SubTaskButton);
                         }
                     }
                     else
@@ -120,7 +122,7 @@ namespace YouCompleteMe.Views
         {
             try
             {
-                if (e.ColumnIndex == 9)
+                if (e.ColumnIndex == 12)
                 {
                     DataGridViewRow row = this.listTaskGridView.Rows[e.RowIndex];
                     Models.Task task = new Models.Task();
@@ -151,6 +153,7 @@ namespace YouCompleteMe.Views
                 if (result.Equals(DialogResult.OK))
                 {
                     TaskController.deleteTask(id);
+                    refreshData();
                     MessageBox.Show("Task successfully deleted");
                 }
             }
