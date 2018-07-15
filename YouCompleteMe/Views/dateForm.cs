@@ -499,7 +499,7 @@ namespace YouCompleteMe.Views
                     DialogResult result = MessageBox.Show("Do You Want to Delete this subtask out database?", "Delete subtask", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                     if (result.Equals(DialogResult.OK))
                     {
-                        TaskController.deleteTask(subtask.subtaskID);
+                        SubtaskController.deleteSubTask(subtask.subtaskID);
                         loadData();
                         MessageBox.Show("SubTask successfully deleted");
                     }
