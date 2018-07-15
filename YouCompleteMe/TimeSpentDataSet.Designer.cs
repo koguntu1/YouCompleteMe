@@ -593,7 +593,7 @@ namespace YouCompleteMe {
             
             private global::System.Data.DataColumn columncompleted;
             
-            private global::System.Data.DataColumn columnseconds;
+            private global::System.Data.DataColumn columnExpr1;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -654,9 +654,9 @@ namespace YouCompleteMe {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn secondsColumn {
+            public global::System.Data.DataColumn Expr1Column {
                 get {
-                    return this.columnseconds;
+                    return this.columnExpr1;
                 }
             }
             
@@ -697,13 +697,13 @@ namespace YouCompleteMe {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tasksRow AddtasksRow(string title, System.DateTime createdDate, bool completed, int seconds) {
+            public tasksRow AddtasksRow(string title, System.DateTime createdDate, bool completed, int Expr1) {
                 tasksRow rowtasksRow = ((tasksRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         title,
                         createdDate,
                         completed,
-                        seconds};
+                        Expr1};
                 rowtasksRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtasksRow);
                 return rowtasksRow;
@@ -729,7 +729,7 @@ namespace YouCompleteMe {
                 this.columntitle = base.Columns["title"];
                 this.columncreatedDate = base.Columns["createdDate"];
                 this.columncompleted = base.Columns["completed"];
-                this.columnseconds = base.Columns["seconds"];
+                this.columnExpr1 = base.Columns["Expr1"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -741,13 +741,13 @@ namespace YouCompleteMe {
                 base.Columns.Add(this.columncreatedDate);
                 this.columncompleted = new global::System.Data.DataColumn("completed", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncompleted);
-                this.columnseconds = new global::System.Data.DataColumn("seconds", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnseconds);
+                this.columnExpr1 = new global::System.Data.DataColumn("Expr1", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnExpr1);
                 this.columntitle.AllowDBNull = false;
                 this.columntitle.MaxLength = 255;
                 this.columncreatedDate.AllowDBNull = false;
                 this.columncompleted.AllowDBNull = false;
-                this.columnseconds.AllowDBNull = false;
+                this.columnExpr1.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -960,13 +960,30 @@ namespace YouCompleteMe {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int seconds {
+            public int Expr1 {
                 get {
-                    return ((int)(this[this.tabletasks.secondsColumn]));
+                    try {
+                        return ((int)(this[this.tabletasks.Expr1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Expr1\' in table \'tasks\' is DBNull.", e);
+                    }
                 }
                 set {
-                    this[this.tabletasks.secondsColumn] = value;
+                    this[this.tabletasks.Expr1Column] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsExpr1Null() {
+                return this.IsNull(this.tabletasks.Expr1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetExpr1Null() {
+                this[this.tabletasks.Expr1Column] = global::System.Convert.DBNull;
             }
         }
         
@@ -1175,16 +1192,16 @@ namespace YouCompleteMe.TimeSpentDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_seconds", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "seconds", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[activities] ([taskID], [seconds]) VALUES (@taskID, @seconds);\r" +
-                "\nSELECT taskID, seconds FROM activities WHERE (taskID = @taskID)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[activities] ([taskID], [seconds]) VALUES (@taskID, @seconds);\n" +
+                "SELECT taskID, seconds FROM activities WHERE (taskID = @taskID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@taskID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "taskID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@seconds", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "seconds", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[activities] SET [taskID] = @taskID, [seconds] = @seconds WHERE (([t" +
-                "askID] = @Original_taskID) AND ([seconds] = @Original_seconds));\r\nSELECT taskID," +
-                " seconds FROM activities WHERE (taskID = @taskID)";
+                "askID] = @Original_taskID) AND ([seconds] = @Original_seconds));\nSELECT taskID, " +
+                "seconds FROM activities WHERE (taskID = @taskID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@taskID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "taskID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@seconds", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "seconds", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -1466,7 +1483,7 @@ namespace YouCompleteMe.TimeSpentDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("title", "title");
             tableMapping.ColumnMappings.Add("createdDate", "createdDate");
             tableMapping.ColumnMappings.Add("completed", "completed");
-            tableMapping.ColumnMappings.Add("seconds", "seconds");
+            tableMapping.ColumnMappings.Add("Expr1", "Expr1");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -1483,11 +1500,12 @@ namespace YouCompleteMe.TimeSpentDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        t.title, t.createdDate, a.seconds, t.completed
+            this._commandCollection[0].CommandText = @"/*GROUP BY  t.title, t.createdDate, t.completed*/
+SELECT        t.title, t.createdDate, SUM(a.seconds) AS Expr1, t.completed
 FROM            tasks AS t INNER JOIN
                          activities AS a ON t.taskID = a.taskID
 WHERE        (t.task_owner = @id) AND (a.startTime >= @start) AND (a.startTime <= @end)
---GROUP BY  t.title, t.createdDate, t.completed";
+GROUP BY t.title, t.createdDate, t.completed";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "task_owner", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@start", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "startTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));

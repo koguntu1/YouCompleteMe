@@ -110,5 +110,10 @@ namespace YouCompleteMe.Views
             reset();
             this.Show();
         }
+
+        private void averageTimeOnClick(object sender, EventArgs e)
+        {
+
+        }
     }
 }

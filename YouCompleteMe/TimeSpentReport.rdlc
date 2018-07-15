@@ -267,7 +267,7 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="seconds">
+                    <Textbox Name="Expr1">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -275,11 +275,11 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Switch(
-	Fields!seconds.Value &gt;= 86400, CInt(Fields!seconds.Value / 86400) &amp; " day",
-	Fields!seconds.Value &gt;= 3600, CInt(Fields!seconds.Value / 3600) &amp; " hr" &amp; " " &amp; CInt((Fields!seconds.Value MOD 3600) / 60) &amp; " min" &amp; " " &amp; Fields!seconds.Value MOD 3600 MOD 60 &amp; " sec",
-	Fields!seconds.Value &gt;= 60, 
-		CInt(Fields!seconds.Value / 60) &amp; " min" &amp; " " &amp; (Fields!seconds.Value MOD 60 &amp; " sec"),
-	Fields!seconds.Value &lt; 60, (Fields!seconds.Value &amp; " seconds")
+	Fields!Expr1.Value &gt;= 86400, CInt(Fields!Expr1.Value / 86400) &amp; " day",
+	Fields!Expr1.Value &gt;= 3600, CInt(Fields!Expr1.Value / 3600) &amp; " hr" &amp; " " &amp; CInt((Fields!Expr1.Value MOD 3600) / 60) &amp; " min" &amp; " " &amp; Fields!Expr1.Value MOD 3600 MOD 60 &amp; " sec",
+	Fields!Expr1.Value &gt;= 60, 
+		CInt(Fields!Expr1.Value / 60) &amp; " min" &amp; " " &amp; (Fields!Expr1.Value MOD 60 &amp; " sec"),
+	Fields!Expr1.Value &lt; 60, (Fields!Expr1.Value &amp; " seconds")
 )</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
@@ -292,7 +292,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>seconds</rd:DefaultName>
+                      <rd:DefaultName>Expr1</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -304,6 +304,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -368,7 +369,7 @@
         </TablixRowHierarchy>
         <DataSetName>TimeDataSpent</DataSetName>
         <Height>0.5in</Height>
-        <Width>10.09375in</Width>
+        <Width>10.09376in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -381,7 +382,7 @@
       <BackgroundColor>WhiteSmoke</BackgroundColor>
     </Style>
   </Body>
-  <Width>10.09375in</Width>
+  <Width>10.09376in</Width>
   <Page>
     <PageHeader>
       <Height>1in</Height>
@@ -464,14 +465,14 @@
           <DataField>completed</DataField>
           <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
-        <Field Name="seconds">
-          <DataField>seconds</DataField>
+        <Field Name="Expr1">
+          <DataField>Expr1</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>TimeSpentDataSet</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\hayden.smith\Desktop\Bullhorn\youcompletemerepo\YouCompleteMe\TimeSpentDataSet.xsd</rd:SchemaPath>
+        <rd:SchemaPath>\\Mac\Home\Desktop\CS6920\youcompletemerepo\YouCompleteMe\TimeSpentDataSet.xsd</rd:SchemaPath>
         <rd:TableName>tasks</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
