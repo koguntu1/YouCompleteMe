@@ -235,7 +235,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Expr2.Value</Value>
+                              <Value>=Fields!Expr2.Value &amp; " sessions"</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                                 <Color>#333333</Color>
@@ -270,7 +270,13 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!Expr2.Value)</Value>
+                              <Value>=Switch(
+	(Fields!Expr1.Value / Fields!Expr2.Value) &gt;= 86400, CInt((Fields!Expr1.Value / Fields!Expr2.Value) / 86400) &amp; " day",
+	(Fields!Expr1.Value / Fields!Expr2.Value) &gt;= 3600, CInt((Fields!Expr1.Value / Fields!Expr2.Value) / 3600) &amp; " hr" &amp; " " &amp; CInt(((Fields!Expr1.Value / Fields!Expr2.Value) MOD 3600) / 60) &amp; " min" &amp; " " &amp; Round((Fields!Expr1.Value / Fields!Expr2.Value) MOD 3600 MOD 60,2) &amp; " sec",
+	(Fields!Expr1.Value / Fields!Expr2.Value) &gt;= 60, 
+		CInt((Fields!Expr1.Value / Fields!Expr2.Value) / 60) &amp; " min" &amp; " " &amp; (Round((Fields!Expr1.Value / Fields!Expr2.Value) MOD 60,2) &amp; " sec"),
+	(Fields!Expr1.Value / Fields!Expr2.Value) &lt; 60, (Round((Fields!Expr1.Value / Fields!Expr2.Value),2) &amp; " seconds")
+)</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                                 <Color>#333333</Color>
@@ -294,6 +300,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -305,7 +312,13 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Expr1.Value</Value>
+                              <Value>=Switch(
+	Fields!Expr1.Value &gt;= 86400, CInt(Fields!Expr1.Value / 86400) &amp; " day",
+	Fields!Expr1.Value &gt;= 3600, CInt(Fields!Expr1.Value / 3600) &amp; " hr" &amp; " " &amp; CInt((Fields!Expr1.Value MOD 3600) / 60) &amp; " min" &amp; " " &amp; Fields!Expr1.Value MOD 3600 MOD 60 &amp; " sec",
+	Fields!Expr1.Value &gt;= 60, 
+		CInt(Fields!Expr1.Value / 60) &amp; " min" &amp; " " &amp; (Fields!Expr1.Value MOD 60 &amp; " sec"),
+	Fields!Expr1.Value &lt; 60, (Fields!Expr1.Value &amp; " seconds")
+)</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                                 <Color>#333333</Color>
@@ -329,7 +342,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
