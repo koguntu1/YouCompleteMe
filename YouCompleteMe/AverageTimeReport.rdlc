@@ -6,16 +6,16 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.23698in</Width>
+              <Width>2.44271in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.23698in</Width>
+              <Width>2.44271in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.23698in</Width>
+              <Width>2.44271in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.23698in</Width>
+              <Width>2.44271in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -33,6 +33,7 @@
                             <TextRun>
                               <Value>Task</Value>
                               <Style>
+                                <FontStyle>Italic</FontStyle>
                                 <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Color>#666666</Color>
@@ -54,7 +55,7 @@
                           <Style>Solid</Style>
                           <Width>1pt</Width>
                         </BottomBorder>
-                        <BackgroundColor>White</BackgroundColor>
+                        <BackgroundColor>GreenYellow</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -74,6 +75,7 @@
                             <TextRun>
                               <Value>Number of Sessions</Value>
                               <Style>
+                                <FontStyle>Italic</FontStyle>
                                 <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Color>#666666</Color>
@@ -95,7 +97,7 @@
                           <Style>Solid</Style>
                           <Width>1pt</Width>
                         </BottomBorder>
-                        <BackgroundColor>White</BackgroundColor>
+                        <BackgroundColor>Chartreuse</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -115,6 +117,7 @@
                             <TextRun>
                               <Value>Average Time</Value>
                               <Style>
+                                <FontStyle>Italic</FontStyle>
                                 <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Color>#666666</Color>
@@ -136,7 +139,7 @@
                           <Style>Solid</Style>
                           <Width>1pt</Width>
                         </BottomBorder>
-                        <BackgroundColor>White</BackgroundColor>
+                        <BackgroundColor>PaleGreen</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -156,6 +159,7 @@
                             <TextRun>
                               <Value>Total Time</Value>
                               <Style>
+                                <FontStyle>Italic</FontStyle>
                                 <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Color>#666666</Color>
@@ -177,7 +181,7 @@
                           <Style>Solid</Style>
                           <Width>1pt</Width>
                         </BottomBorder>
-                        <BackgroundColor>White</BackgroundColor>
+                        <BackgroundColor>LightGreen</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -217,7 +221,7 @@
                         <Border>
                           <Style>None</Style>
                         </Border>
-                        <BackgroundColor>White</BackgroundColor>
+                        <BackgroundColor>GreenYellow</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -235,7 +239,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Expr2.Value &amp; " sessions"</Value>
+                              <Value>=IIF(Fields!Expr2.Value &gt; 1, Fields!Expr2.Value &amp; " sessions", Fields!Expr2.Value &amp; " session")</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                                 <Color>#333333</Color>
@@ -252,13 +256,14 @@
                         <Border>
                           <Style>None</Style>
                         </Border>
-                        <BackgroundColor>White</BackgroundColor>
+                        <BackgroundColor>Chartreuse</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -293,14 +298,13 @@
                         <Border>
                           <Style>None</Style>
                         </Border>
-                        <BackgroundColor>White</BackgroundColor>
+                        <BackgroundColor>PaleGreen</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -335,7 +339,7 @@
                         <Border>
                           <Style>None</Style>
                         </Border>
-                        <BackgroundColor>White</BackgroundColor>
+                        <BackgroundColor>LightGreen</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -368,7 +372,7 @@
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
         <Height>0.5in</Height>
-        <Width>8.94792in</Width>
+        <Width>9.77083in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -377,10 +381,58 @@
       </Tablix>
     </ReportItems>
     <Height>2in</Height>
-    <Style />
+    <Style>
+      <BackgroundColor>WhiteSmoke</BackgroundColor>
+    </Style>
   </Body>
-  <Width>8.94792in</Width>
+  <Width>9.77083in</Width>
   <Page>
+    <PageHeader>
+      <Height>1in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox9">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Average Time Per Task Report</Value>
+                  <Style>
+                    <FontSize>20pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox9</rd:DefaultName>
+          <Top>0.2175in</Top>
+          <Left>3.03in</Left>
+          <Height>0.45833in</Height>
+          <Width>4.51042in</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+        <BackgroundColor>WhiteSmoke</BackgroundColor>
+      </Style>
+    </PageHeader>
     <LeftMargin>1in</LeftMargin>
     <RightMargin>1in</RightMargin>
     <TopMargin>1in</TopMargin>
