@@ -21,5 +21,11 @@ namespace YouCompleteMe.Views
             theUser = aUser;
             InitializeComponent();
         }
+
+        private void ViewAverageTimePerTask_Load(object sender, EventArgs e)
+        {
+            this.tasksTableAdapter.Fill(this.averageTimeDataSet.tasks, theUser.userID, parameter.getStart(), parameter.getEnd());
+            this.reportViewer1.RefreshReport();
+        }
     }
 }
