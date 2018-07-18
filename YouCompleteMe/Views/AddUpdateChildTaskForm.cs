@@ -35,7 +35,7 @@ namespace YouCompleteMe.Views
             //comboPriority.SelectedIndex = 0;
             instance = this;
             deadlinePicker.Format = DateTimePickerFormat.Custom;
-            deadlinePicker.CustomFormat = "MM/dd/yyyy hh:mm";
+            deadlinePicker.CustomFormat = "MM/dd/yyyy hh:mm tt";
             this.taskTitle = TaskController.getATask(dateForm.getSelectedNodeTaskID()).title;
         }
 

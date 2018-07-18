@@ -26,7 +26,7 @@ namespace YouCompleteMe.Views
             this.isUpdate = _isUpdate;
             this.dateForm = _dateForm;
             deadlineDateTimePicker.Format = DateTimePickerFormat.Custom;
-            deadlineDateTimePicker.CustomFormat = "MM/dd/yyyy hh:mm";
+            deadlineDateTimePicker.CustomFormat = "MM/dd/yyyy hh:mm tt";
         }
 
         private void btnExit_Click(object sender, EventArgs e)

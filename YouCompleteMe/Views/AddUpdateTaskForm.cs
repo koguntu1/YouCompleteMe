@@ -30,7 +30,7 @@ namespace YouCompleteMe.Views
             this.dateForm = dateForm;
             instance = this;
             deadlineDateTimePicker.Format = DateTimePickerFormat.Custom;
-            deadlineDateTimePicker.CustomFormat = "MM/dd/yyyy hh:mm";
+            deadlineDateTimePicker.CustomFormat = "MM/dd/yyyy hh:mm tt";
         }
 
         public static AddUpdateTaskForm Instance
