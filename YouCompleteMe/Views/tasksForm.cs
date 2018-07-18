@@ -87,6 +87,7 @@ namespace YouCompleteMe.Views
                         listTaskGridView.AutoGenerateColumns = true;
                         listTaskGridView.AutoResizeColumns();// = true;
                         listTaskGridView.DataSource = ds.Tables["tasks"];
+
                         //hide some columns
                         listTaskGridView.Columns[0].Visible = false;
                         listTaskGridView.Columns[1].Visible = false;

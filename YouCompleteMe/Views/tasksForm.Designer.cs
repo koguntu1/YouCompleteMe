@@ -134,7 +134,10 @@
             // 
             this.listTaskGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.listTaskGridView.Location = new System.Drawing.Point(16, 111);
+            this.listTaskGridView.MultiSelect = false;
             this.listTaskGridView.Name = "listTaskGridView";
+            this.listTaskGridView.ReadOnly = true;
+            this.listTaskGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.listTaskGridView.Size = new System.Drawing.Size(650, 292);
             this.listTaskGridView.TabIndex = 5;
             this.listTaskGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listTaskGridView_CellContentClick);
