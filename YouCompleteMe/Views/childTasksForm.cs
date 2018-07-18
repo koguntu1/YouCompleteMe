@@ -50,6 +50,7 @@ namespace YouCompleteMe.Views
                         listSubTaskGridView.Columns[1].Visible = false;
                         listSubTaskGridView.Columns[8].Visible = false;
                         listSubTaskGridView.Columns[6].Visible = false;
+                        
 
                 }
                     else

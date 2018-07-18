@@ -125,17 +125,31 @@ namespace YouCompleteMe.Views
             {
                 if (e.ColumnIndex == 12)
                 {
+                    
                     DataGridViewRow row = this.listTaskGridView.Rows[e.RowIndex];
                     Models.Task task = new Models.Task();
                     task.task_owner = (int)row.Cells["task_owner"].Value;
                     task.taskID = (int)row.Cells["taskID"].Value;
                     task.title = row.Cells["title"].Value.ToString();
-                    task.task_priority = (int)row.Cells["task_priority"].Value;
-                    task.taskType = (int)row.Cells["taskType"].Value;
+                    if (row.Cells["task_priority"].Value == DBNull.Value)
+                        task.task_priority = -1;
+                    else
+                        task.task_priority = Convert.ToInt32(row.Cells["task_priority"].Value);
+                    if (row.Cells["taskType"].Value == DBNull.Value)
+                        task.taskType = -1;
+                    else
+                        task.taskType = Convert.ToInt32(row.Cells["taskType"].Value);
+                    if (SubtaskController.GetSubtasksForTask(user, task.taskID).Count > 0)
+                    {
+                        childTasksForm subTaskView = new childTasksForm(user, task);
+                        subTaskView.StartPosition = FormStartPosition.CenterScreen;
+                        subTaskView.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No subtask to show. Please try your search again.");
+                    }
                     
-                    childTasksForm subTaskView = new childTasksForm(user,task);
-                    subTaskView.StartPosition = FormStartPosition.CenterScreen;
-                    subTaskView.ShowDialog();
                 }
             }
             catch (Exception ex)
