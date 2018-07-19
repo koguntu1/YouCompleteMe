@@ -224,6 +224,7 @@
             // 
             // btnStartTimer
             // 
+            this.btnStartTimer.Enabled = false;
             this.btnStartTimer.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStartTimer.Location = new System.Drawing.Point(12, 371);
             this.btnStartTimer.Name = "btnStartTimer";

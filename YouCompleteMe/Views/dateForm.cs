@@ -293,6 +293,7 @@ namespace YouCompleteMe.Views
                 Models.Task tag = (Models.Task)taskTreeView.SelectedNode.Tag;
                 this.selectedTask = tag.taskID;
                 btnAddSubtask.Enabled = true;
+                btnStartTimer.Enabled = true;
             }
         }
 
