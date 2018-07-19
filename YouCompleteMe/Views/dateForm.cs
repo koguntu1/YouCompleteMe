@@ -275,12 +275,24 @@ namespace YouCompleteMe.Views
             return this.selectedTask;
         }
 
+        private void taskTreeView_MouseDown(object sender, MouseEventArgs e)
+        {
+            var hit = taskTreeView.HitTest(e.X, e.Y);
+
+            if (hit.Node == null)
+            {
+                taskTreeView.SelectedNode = null;
+                btnAddSubtask.Enabled = false;
+            }
+        }
+
         private void taskTreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if (e.Node.Parent == null)
             {
                 Models.Task tag = (Models.Task)taskTreeView.SelectedNode.Tag;
                 this.selectedTask = tag.taskID;
+                btnAddSubtask.Enabled = true;
             }
         }
 
@@ -484,31 +496,31 @@ namespace YouCompleteMe.Views
                 {
                     // Root-level node, delete task
                     Models.Task task = (Models.Task)selectedNode.Tag;
-                    DialogResult result = MessageBox.Show("Do You Want to Delete this task and it's all subtasks out database?", "Delete task", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    DialogResult result = MessageBox.Show("Do you want to delete this task and its subtasks?", "Delete task", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                     if (result.Equals(DialogResult.OK))
                     {
                         TaskController.deleteTask(task.taskID);
                         loadData();
-                        MessageBox.Show("Delete successfully this task and all it's subtasks");
                     }
                 }
                 else
                 {
                     // Child node, delete child task only
                     Models.Subtask subtask = (Models.Subtask)selectedNode.Tag;
-                    DialogResult result = MessageBox.Show("Do You Want to Delete this subtask out database?", "Delete subtask", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    DialogResult result = MessageBox.Show("Do you want to delete this subtask?", "Delete subtask", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                     if (result.Equals(DialogResult.OK))
                     {
                         SubtaskController.deleteSubTask(subtask.subtaskID);
                         loadData();
-                        MessageBox.Show("SubTask successfully deleted");
                     }
                 }
             }
             else
             {
-                MessageBox.Show("No task or subtask selected. Please try your delete again.");
+                MessageBox.Show("Please select a task or subtask to delete.");
             }
         }
+
+        
     }
 }

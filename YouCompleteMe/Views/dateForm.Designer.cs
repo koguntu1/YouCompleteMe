@@ -177,14 +177,17 @@
             // 
             this.taskTreeView.CheckBoxes = true;
             this.taskTreeView.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.taskTreeView.HideSelection = false;
             this.taskTreeView.Location = new System.Drawing.Point(12, 106);
             this.taskTreeView.Name = "taskTreeView";
             this.taskTreeView.Size = new System.Drawing.Size(372, 259);
             this.taskTreeView.TabIndex = 7;
             this.taskTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.taskTreeView_AfterSelect);
+            this.taskTreeView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.taskTreeView_MouseDown);
             // 
             // btnAddSubtask
             // 
+            this.btnAddSubtask.Enabled = false;
             this.btnAddSubtask.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddSubtask.Location = new System.Drawing.Point(226, 410);
             this.btnAddSubtask.Name = "btnAddSubtask";
