@@ -69,7 +69,7 @@ namespace YouCompleteMe.Views
             {
                 if (fromdateTimePicker.Value > todateTimePicker.Value)
                 {
-                    MessageBox.Show("From Date must be small than To Date");
+                    MessageBox.Show("Start date must come before end date.");
                 }
                 else
                 {
@@ -106,7 +106,7 @@ namespace YouCompleteMe.Views
                     }
                     else
                     {
-                        MessageBox.Show("No task to show. Please try your search again.");
+                        MessageBox.Show("No task to show. Please try a different date range.");
                     }
                 }
 
@@ -147,7 +147,7 @@ namespace YouCompleteMe.Views
                     }
                     else
                     {
-                        MessageBox.Show("No subtask to show. Please try your search again.");
+                        MessageBox.Show("This task does not have any subtasks.");
                     }
                     
                 }
@@ -164,17 +164,16 @@ namespace YouCompleteMe.Views
             {
                 DataGridViewRow row = this.listTaskGridView.SelectedRows[0];
                 int id = Convert.ToInt32(row.Cells["taskID"].Value);
-                DialogResult result = MessageBox.Show("Do You Want to Delete this task out database?", "Delete task", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                DialogResult result = MessageBox.Show("Do you want to delete this task?", "Delete task", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                 if (result.Equals(DialogResult.OK))
                 {
                     TaskController.deleteTask(id);
                     refreshData();
-                    MessageBox.Show("Task successfully deleted");
                 }
             }
             else
             {
-                MessageBox.Show("No task selected. Please try your delete again.");
+                MessageBox.Show("No task selected. Please try again.");
             }
         }
     }

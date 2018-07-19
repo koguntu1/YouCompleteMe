@@ -37,26 +37,17 @@ namespace YouCompleteMe.Views
             listSubTaskGridView.Refresh();
             try
             {
-                    List<Subtask> listSubTask = SubtaskController.GetSubtasksForTask(user, task.taskID);
-                    if (listSubTask.Count > 0)
-                    {
+                List<Subtask> listSubTask = SubtaskController.GetSubtasksForTask(user, task.taskID);
 
-                        //begin for grid data
-                        listSubTaskGridView.AutoGenerateColumns = true;
-                        listSubTaskGridView.AutoResizeColumns();// = true;
-                        listSubTaskGridView.DataSource = listSubTask;
-                        //hide some columns
-                        listSubTaskGridView.Columns[0].Visible = false;
-                        listSubTaskGridView.Columns[1].Visible = false;
-                        listSubTaskGridView.Columns[8].Visible = false;
-                        listSubTaskGridView.Columns[6].Visible = false;
-                        
-
-                }
-                    else
-                    {
-                        MessageBox.Show("No subtask to show. Please try your search again.");
-                    }
+                //begin for grid data
+                listSubTaskGridView.AutoGenerateColumns = true;
+                listSubTaskGridView.AutoResizeColumns();// = true;
+                listSubTaskGridView.DataSource = listSubTask;
+                //hide some columns
+                listSubTaskGridView.Columns[0].Visible = false;
+                listSubTaskGridView.Columns[1].Visible = false;
+                listSubTaskGridView.Columns[8].Visible = false;
+                listSubTaskGridView.Columns[6].Visible = false;
             }
             catch (Exception ex)
             {
@@ -76,7 +67,7 @@ namespace YouCompleteMe.Views
             {
                 if (fromdateTimePicker.Value > todateTimePicker.Value)
                 {
-                    MessageBox.Show("From Date must be small than To Date");
+                    MessageBox.Show("Start date must come before the end date");
                 }
                 else
                 {
@@ -148,16 +139,19 @@ namespace YouCompleteMe.Views
             {
                 DataGridViewRow row = this.listSubTaskGridView.SelectedRows[0];
                 int id = Convert.ToInt32(row.Cells["subtaskID"].Value);
-                DialogResult result = MessageBox.Show("Do You Want to Delete this subtask out database?", "Delete subtask", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                DialogResult result = MessageBox.Show("Do you want to delete this subtask?", "Delete subtask", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                 if (result.Equals(DialogResult.OK))
                 {
                     SubtaskController.deleteSubTask(id);
-                    MessageBox.Show("SubTask successfully deleted");
+                    listSubTaskGridView.DataSource = null;
+                    listSubTaskGridView.Rows.Clear();
+                    listSubTaskGridView.Refresh();
+                    loadData();
                 }
             }
             else
             {
-                MessageBox.Show("No subtask selected. Please try your delete again.");
+                MessageBox.Show("No subtask selected. Please try again.");
             }
         }
     }
