@@ -71,14 +71,14 @@ namespace YouCompleteMe.Views
         // Open update task form
         private void btnUpdateTask_Click(object sender, EventArgs e)
         {
-            AddUpdateTaskForm addUpdateTaskForm = new AddUpdateTaskForm(user, true, this);
+            AddUpdateTaskForm addUpdateTaskForm = new AddUpdateTaskForm(user, true, this, null);
             addUpdateTaskForm.ShowDialog();
         }
 
         // Open add new task form
         private void btnAddNewTask_Click(object sender, EventArgs e)
         {
-            AddUpdateTaskForm addUpdateTaskForm = new AddUpdateTaskForm(user, false, this);
+            AddUpdateTaskForm addUpdateTaskForm = new AddUpdateTaskForm(user, false, this, null);
             addUpdateTaskForm.ShowDialog();
         }
 

@@ -20,14 +20,16 @@ namespace YouCompleteMe.Views
         bool isUpdate = false;//if we update the task, this variable should set to true when update task
                               // and set to false if we add new task
         private dateForm dateForm;
+        private tasksForm tasksForm;
         private static AddUpdateTaskForm instance;
-        public AddUpdateTaskForm(User _user, bool _isUpdate, dateForm dateForm)
+        public AddUpdateTaskForm(User _user, bool _isUpdate, dateForm dateForm, tasksForm tasksForm)
         {
             InitializeComponent();
             user = _user;
             isUpdate = _isUpdate;
             comboPriority.SelectedIndex = 0;
             this.dateForm = dateForm;
+            this.tasksForm = tasksForm;
             instance = this;
             deadlineDateTimePicker.Format = DateTimePickerFormat.Custom;
             deadlineDateTimePicker.CustomFormat = "MM/dd/yyyy hh:mm tt";
@@ -120,16 +122,19 @@ namespace YouCompleteMe.Views
                         Models.Task task = new Models.Task();
                         this.PutTask(task);
                         task.isMeeting = 0;
-                        DialogResult result = MessageBox.Show("Do you want to add this task to your to do list?", "Create New Task", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                        if (result.Equals(DialogResult.OK))
-                        {
-                            int taskID = TaskController.AddTask(task);
-                            if (taskID == 0)
-                                MessageBox.Show("Task was not added.  Please try again.");
-                            //Thread.Sleep(5000);
+                        //DialogResult result = MessageBox.Show("Do you want to add this task to your to do list?", "Create New Task", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                        //if (result.Equals(DialogResult.OK))
+                        //{
+                        int taskID = TaskController.AddTask(task);
+                        if (taskID == 0)
+                            MessageBox.Show("Task was not added.  Please try again.");
+                        //Thread.Sleep(5000);
+                        if (dateForm != null)
                             dateForm.dateForm_Load(sender, e);
-                            this.Close();
-                        }   
+                        else if (tasksForm != null)
+                            tasksForm.refreshData();
+                        this.Close();
+                        //}   
                     }
                 }
                 else //update task
@@ -140,11 +145,11 @@ namespace YouCompleteMe.Views
             catch (Exception ex)
             {
                 var st = new StackTrace(ex, true);
-                var frame = st.GetFrame(0);
-                var line = frame.GetFileLineNumber();
-                MessageBox.Show(ex.Message + "\nLine Number: " + line.ToString(), ex.GetType().ToString());
+        var frame = st.GetFrame(0);
+        var line = frame.GetFileLineNumber();
+        MessageBox.Show(ex.Message + "\nLine Number: " + line.ToString(), ex.GetType().ToString());
             }
-        }
+}
 
         private void cbDeadline_CheckedChanged(object sender, EventArgs e)
         {

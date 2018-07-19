@@ -34,13 +34,13 @@ namespace YouCompleteMe.Views
 
         private void btnAddNewTask_Click(object sender, EventArgs e)
         {
-            AddUpdateTaskForm addUpdateTaskForm = new AddUpdateTaskForm(user, false, null);
+            AddUpdateTaskForm addUpdateTaskForm = new AddUpdateTaskForm(user, false, null, this);
             addUpdateTaskForm.ShowDialog();
         }
 
         private void btnUpdateTask_Click(object sender, EventArgs e)
         {
-            AddUpdateTaskForm addUpdateTaskForm = new AddUpdateTaskForm(user, false, null);
+            AddUpdateTaskForm addUpdateTaskForm = new AddUpdateTaskForm(user, false, null, this);
             addUpdateTaskForm.ShowDialog();
         }
 
@@ -80,37 +80,33 @@ namespace YouCompleteMe.Views
                         isCompleted = true;
 
                     DataSet ds = TaskController.GetListTaskByCreatedDate(user.userID, fromDate, toDate, isCompleted);
-                    if (ds.Tables.Count > 0)
-                    {
 
-                        //begin for grid data
-                        listTaskGridView.AutoGenerateColumns = true;
-                        listTaskGridView.AutoResizeColumns();// = true;
-                        listTaskGridView.DataSource = ds.Tables["tasks"];
+                    //begin for grid data
+                    listTaskGridView.AutoGenerateColumns = true;
+                    listTaskGridView.AutoResizeColumns();// = true;
+                    listTaskGridView.DataSource = ds.Tables["tasks"];
 
-                        //hide some columns
-                        listTaskGridView.Columns[0].Visible = false;
-                        listTaskGridView.Columns[1].Visible = false;
-                        listTaskGridView.Columns[2].Visible = false;
-                        listTaskGridView.Columns[7].Visible = false;
-                        listTaskGridView.Columns[8].Visible = false;
-                        //add button to data grid
-                        DataGridViewButtonColumn SubTaskButton = new DataGridViewButtonColumn();
-                        SubTaskButton.Name = "";
-                        SubTaskButton.Text = "Detail SubTasks";
-                        SubTaskButton.UseColumnTextForButtonValue = true;
-                        if (listTaskGridView.Columns["Detail SubTasks"] == null)
-                        {
-                            listTaskGridView.Columns.Insert(12, SubTaskButton);
-                        }
-                    }
-                    else
+                    //hide some columns
+                    listTaskGridView.Columns[0].Visible = false;
+                    listTaskGridView.Columns[1].Visible = false;
+                    listTaskGridView.Columns[2].Visible = false;
+                    listTaskGridView.Columns[7].Visible = false;
+                    listTaskGridView.Columns[8].Visible = false;
+                    //add button to data grid
+                    DataGridViewButtonColumn SubTaskButton = new DataGridViewButtonColumn();
+                    SubTaskButton.Name = "";
+                    SubTaskButton.Text = "Detail SubTasks";
+                    SubTaskButton.UseColumnTextForButtonValue = true;
+                    if (listTaskGridView.Columns["Detail SubTasks"] == null)
                     {
-                        MessageBox.Show("No task to show. Please try a different date range.");
+                        listTaskGridView.Columns.Insert(12, SubTaskButton);
                     }
+
+                    //if (ds.Tables.Count > 0)
+                    //{
+                    //    MessageBox.Show("No task to show. Please try a different date range.");
+                    //}
                 }
-
-
             }
             catch (Exception ex)
             {
