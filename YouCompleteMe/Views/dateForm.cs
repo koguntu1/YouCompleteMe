@@ -252,7 +252,7 @@ namespace YouCompleteMe.Views
                 //MessageBox.Show(this.getSelectedNodeTaskID().ToString());
                 Models.Task tag = (Models.Task)taskTreeView.SelectedNode.Tag;
                 //MessageBox.Show(tag.taskID.ToString());
-                subtaskForm = new AddUpdateChildTaskForm(user, false, this);
+                subtaskForm = new AddUpdateChildTaskForm(user, false, this, null);
                 //childTask.MdiParent = this;
                 subtaskForm.StartPosition = FormStartPosition.CenterScreen;
                 subtaskForm.FormClosed += SubtaskForm_FormClosed;

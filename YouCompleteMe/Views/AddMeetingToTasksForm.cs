@@ -60,16 +60,16 @@ namespace YouCompleteMe.Views
                         }
                         task.taskType = 4;
                         task.isMeeting = 1;
-                        DialogResult result = MessageBox.Show("Do you want to add this meeting to your schedule?", "Add Meeting", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                        if (result.Equals(DialogResult.OK))
-                        {
+                        //DialogResult result = MessageBox.Show("Do you want to add this meeting to your schedule?", "Add Meeting", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                        //if (result.Equals(DialogResult.OK))
+                        //{
                             int taskID = TaskController.AddTask(task);
                             if (taskID == 0)
                                 MessageBox.Show("Meeting was not added.  Please try again.");
                             //Thread.Sleep(5000);
                             dateForm.dateForm_Load(sender, e);
                             this.Close();
-                        }
+                        //}
                     }
                 }
                 else //update task

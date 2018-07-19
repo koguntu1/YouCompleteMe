@@ -30,6 +30,11 @@ namespace YouCompleteMe.Views
             instance = this;
         }
 
+        public Models.Task getTask()
+        {
+            return this.task;
+        }
+
         public void loadData()
         {
             listSubTaskGridView.DataSource = null;
@@ -54,7 +59,7 @@ namespace YouCompleteMe.Views
                 MessageBox.Show(ex.Message, ex.GetType().ToString());
                 this.BeginInvoke(new MethodInvoker(Close));
             }
-        }
+}
 
         public void getSearchData()
         {
@@ -112,13 +117,13 @@ namespace YouCompleteMe.Views
 
         private void btnUpdateSubTask_Click(object sender, EventArgs e)
         {
-            AddUpdateChildTaskForm addUpdateChildTaskForm = new AddUpdateChildTaskForm(user, true, null);
+            AddUpdateChildTaskForm addUpdateChildTaskForm = new AddUpdateChildTaskForm(user, true, null, this);
             addUpdateChildTaskForm.ShowDialog();
         }
 
         private void btnAddNewSubTask_Click(object sender, EventArgs e)
         {
-            AddUpdateChildTaskForm addUpdateChildTaskForm = new AddUpdateChildTaskForm(user, false, null);
+            AddUpdateChildTaskForm addUpdateChildTaskForm = new AddUpdateChildTaskForm(user, false, null, this);
             addUpdateChildTaskForm.ShowDialog();
         }
 
@@ -143,16 +148,21 @@ namespace YouCompleteMe.Views
                 if (result.Equals(DialogResult.OK))
                 {
                     SubtaskController.deleteSubTask(id);
-                    listSubTaskGridView.DataSource = null;
-                    listSubTaskGridView.Rows.Clear();
-                    listSubTaskGridView.Refresh();
-                    loadData();
+                    refreshChildList();
                 }
             }
             else
             {
                 MessageBox.Show("No subtask selected. Please try again.");
             }
+        }
+
+        public void refreshChildList()
+        {
+            listSubTaskGridView.DataSource = null;
+            listSubTaskGridView.Rows.Clear();
+            listSubTaskGridView.Refresh();
+            loadData();
         }
     }
 }

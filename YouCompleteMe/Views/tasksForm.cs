@@ -121,7 +121,6 @@ namespace YouCompleteMe.Views
             {
                 if (e.ColumnIndex == 12)
                 {
-                    
                     DataGridViewRow row = this.listTaskGridView.Rows[e.RowIndex];
                     Models.Task task = new Models.Task();
                     task.task_owner = (int)row.Cells["task_owner"].Value;
@@ -135,17 +134,10 @@ namespace YouCompleteMe.Views
                         task.taskType = -1;
                     else
                         task.taskType = Convert.ToInt32(row.Cells["taskType"].Value);
-                    if (SubtaskController.GetSubtasksForTask(user, task.taskID).Count > 0)
-                    {
+                    
                         childTasksForm subTaskView = new childTasksForm(user, task);
                         subTaskView.StartPosition = FormStartPosition.CenterScreen;
                         subTaskView.ShowDialog();
-                    }
-                    else
-                    {
-                        MessageBox.Show("This task does not have any subtasks.");
-                    }
-                    
                 }
             }
             catch (Exception ex)

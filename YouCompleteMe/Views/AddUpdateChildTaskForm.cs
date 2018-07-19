@@ -20,23 +20,27 @@ namespace YouCompleteMe.Views
         string taskTitle = "";
 
         private dateForm dateForm;
+        private childTasksForm childTasksForm;
 
         private static AddUpdateChildTaskForm instance;
 
-        public AddUpdateChildTaskForm(User _user, bool _isUpdate, dateForm dateForm)
+        public AddUpdateChildTaskForm(User _user, bool _isUpdate, dateForm dateForm, childTasksForm childTasksForm)
         {
-           
             InitializeComponent();
             user = _user;
             isUpdate = _isUpdate;
             //load tasks into comboBox
             this.dateForm = dateForm;
+            this.childTasksForm = childTasksForm;
             //LoadComboBoxes();
             //comboPriority.SelectedIndex = 0;
             instance = this;
             deadlinePicker.Format = DateTimePickerFormat.Custom;
             deadlinePicker.CustomFormat = "MM/dd/yyyy hh:mm tt";
-            this.taskTitle = TaskController.getATask(dateForm.getSelectedNodeTaskID()).title;
+            if (dateForm != null)
+                this.taskTitle = TaskController.getATask(dateForm.getSelectedNodeTaskID()).title;
+            else if (childTasksForm != null)
+                this.taskTitle = childTasksForm.getTask().title;
         }
 
         public static AddUpdateChildTaskForm Instance
@@ -56,7 +60,7 @@ namespace YouCompleteMe.Views
             {
                 //taskList = TaskController.getListTasks(user.userID);
                 //MessageBox.Show(dateForm.getSelectedNodeTaskID().ToString());
-                tbTask.Text = TaskController.getATask(dateForm.getSelectedNodeTaskID()).title;
+                //tbTask.Text = TaskController.getATask(dateForm.getSelectedNodeTaskID()).title;
                 comboListTask.DataSource = taskList;
                 comboListTask.DisplayMember = "title";
                 comboListTask.ValueMember = "taskID";
@@ -72,7 +76,10 @@ namespace YouCompleteMe.Views
         private void PutSubTask(Models.Subtask _subtask)
         {
             //_subtask.taskID = (int)comboListTask.SelectedValue;
-            _subtask.taskID = dateForm.getSelectedNodeTaskID();
+            if (dateForm != null)
+                _subtask.taskID = dateForm.getSelectedNodeTaskID();
+            else if (childTasksForm != null)
+                _subtask.taskID = childTasksForm.getTask().taskID;
 
             if (completePicker.Enabled == true)
                 _subtask.st_CompleteDate = completePicker.Value;
@@ -128,15 +135,18 @@ namespace YouCompleteMe.Views
                         Models.Subtask subtask = new Models.Subtask();
                         this.PutSubTask(subtask);
                         int subtaskID = 0;
-                        DialogResult result = MessageBox.Show("Do you want to add this subtask to the following task:\n" + taskTitle, "Create new subtask", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                        if (result.Equals(DialogResult.OK))
-                        {
-                            subtaskID = SubtaskController.AddSubTask(subtask);
-                            //if (subtaskID == 0)
-                             //   MessageBox.Show("Subtask was not ablet o be added.  Please try again.");
+                        //DialogResult result = MessageBox.Show("Do you want to add this subtask to the following task:\n" + taskTitle, "Create new subtask", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                        //if (result.Equals(DialogResult.OK))
+                        //{
+                        subtaskID = SubtaskController.AddSubTask(subtask);
+                        //if (subtaskID == 0)
+                        //   MessageBox.Show("Subtask was not ablet o be added.  Please try again.");
+                        if (dateForm != null) 
                             this.dateForm.dateForm_Load(sender, e);
-                            this.Close();
-                        }  
+                        if (childTasksForm != null)
+                            this.childTasksForm.refreshChildList();
+                        this.Close();
+                        //}  
                     }
                 }
                 else //update subtask
