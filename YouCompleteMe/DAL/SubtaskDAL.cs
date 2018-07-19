@@ -202,14 +202,18 @@ namespace YouCompleteMe.DAL
                 SqlCommand selectCommand = new SqlCommand(selectStatement, connection, sqlTransaction);
                 int subtaskID = Convert.ToInt32(selectCommand.ExecuteScalar());
                 //add notes to notes table
-                string insertNoteStatement = "INSERT note " +
+                if (subtask.note != "")
+                {
+                    string insertNoteStatement = "INSERT note " +
                                              "(taskID, subtaskID, note_message) " +
                                              "VALUES (@taskID, @subtaskID, @note_message)";
-                SqlCommand insertNoteCommand = new SqlCommand(insertNoteStatement, connection, sqlTransaction);
-                insertNoteCommand.Parameters.AddWithValue("@taskID", subtask.taskID);
-                insertNoteCommand.Parameters.AddWithValue("@note_message", subtask.note);
-                insertNoteCommand.Parameters.AddWithValue("@subtaskID", subtaskID);
-                insertNoteCommand.ExecuteNonQuery();
+                
+                    SqlCommand insertNoteCommand = new SqlCommand(insertNoteStatement, connection, sqlTransaction);
+                    insertNoteCommand.Parameters.AddWithValue("@taskID", subtask.taskID);
+                    insertNoteCommand.Parameters.AddWithValue("@note_message", subtask.note);
+                    insertNoteCommand.Parameters.AddWithValue("@subtaskID", subtaskID);
+                    insertNoteCommand.ExecuteNonQuery();
+                }
                 sqlTransaction.Commit();
                 return subtaskID;
             }
