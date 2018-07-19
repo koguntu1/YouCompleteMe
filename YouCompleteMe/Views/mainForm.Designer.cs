@@ -63,6 +63,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.calendarTab.SuspendLayout();
@@ -230,6 +231,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.label10);
             this.splitContainer1.Panel1.Controls.Add(this.chart1);
             // 
             // splitContainer1.Panel2
@@ -256,7 +258,7 @@
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(0, 6);
+            this.chart1.Location = new System.Drawing.Point(0, 74);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
@@ -265,7 +267,7 @@
             series1.Name = "Series1";
             series1.SmartLabelStyle.Enabled = false;
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(398, 449);
+            this.chart1.Size = new System.Drawing.Size(398, 381);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             title1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -387,6 +389,16 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "completed";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(8, 6);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(341, 29);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "General Stats for the last 30 Days";
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -405,6 +417,7 @@
             this.calendarTab.ResumeLayout(false);
             this.scorecardTab.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -448,5 +461,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Label label10;
     }
 }

@@ -361,22 +361,8 @@ namespace YouCompleteMe.Views
                 double taskPercent = (double)timeSpent / TaskController.getTotalTime(theUser.userID);
                 chart1.Series["Tasks"].Points.AddXY(task.title, taskPercent);
             }
-            
-            //chart1.Series["Tasks"].Points.AddXY("Task 1", 20);
-            //chart1.Series["Tasks"].Points.AddXY("Task 2", 20);
-            //chart1.Series["Tasks"].Points.AddXY("Task 3", 20);
-            //chart1.Series["Tasks"].Points.AddXY("Task 4", 20);
-            //chart1.Series["Tasks"].Points.AddXY("Task 5", 20);
-
+            chart1.Series["Tasks"]["PieLabelStyle"] = "Disabled";
         }
-
-        //private void populateCompleteTasksList()
-        //{
-        //    // Not 100% sure about this being a listBox.  Could be a datagridview, list view, etc.
-        //    // TODO: Populate this list with all tasks completed this month
-        //    // Display red when completed after the deadline and green if completed before the deadline
-        //    this.listBox1.DataSource = TaskController.getUserTasks(theUser, DateTime.Now.ToShortDateString());
-        //}
 
         private void populatePercentageOnTimeLabel()
         {
