@@ -75,7 +75,6 @@ namespace YouCompleteMe.Views
                 loginForm.StartPosition = FormStartPosition.CenterScreen;
                 loginForm.FormClosed += LoginForm_FormClosed;
                 loginForm.Show();
-                task = new tasksForm(getUser());
             }
             else
                 loginForm.Activate();
