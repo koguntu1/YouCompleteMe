@@ -44,6 +44,7 @@ namespace YouCompleteMe.Views
             dataGridView1.AutoGenerateColumns = true;
             dataGridView1.AutoResizeColumns();// = true;
             dataGridView1.DataSource = ds.Tables["tasks"];
+            dataGridView1.ReadOnly = true;
 
             dataGridView1.Columns[0].Visible = false;
             dataGridView1.Columns[1].Visible = false;

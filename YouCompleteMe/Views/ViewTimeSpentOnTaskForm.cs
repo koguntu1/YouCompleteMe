@@ -33,6 +33,7 @@ namespace YouCompleteMe
             dataGridView1.AutoGenerateColumns = true;
             dataGridView1.AutoResizeColumns();// = true;
             dataGridView1.DataSource = ds.Tables["tasks"];
+            dataGridView1.ReadOnly = true;
 
             dataGridView1.Columns[4].Visible = false;
             dataGridView1.Columns[5].Visible = false;
@@ -42,6 +43,24 @@ namespace YouCompleteMe
             dataGridView1.Columns[1].HeaderText = "Created Date";
             dataGridView1.Columns[2].HeaderText = "Time Spent";
             dataGridView1.Columns[3].HeaderText = "Completed?";
+
+            dataGridView1.Columns[1].DefaultCellStyle.Format = "MM/dd/yyyy hh:mm tt";
+            dataGridView1.CellFormatting += DataGridView1_CellFormatting;
+        }
+
+        private void DataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "Expr1")
+            {
+                //decimal total = this.cartController.GetItemTotal(Convert.ToInt32(cartDataGridView.Rows[e.RowIndex].Cells[0].Value));
+                double minutes = Convert.ToDouble(e.Value) / 60.0;
+                if (minutes < 1)
+                    e.Value = "< 1 minute";
+                else if (minutes > 60)
+                    e.Value = (int)(minutes / 60) + " hour(s) and " + (int)minutes % 60 + " minutes";
+                else
+                    e.Value = (int)minutes + " minutes";
+            }
         }
     }
 }

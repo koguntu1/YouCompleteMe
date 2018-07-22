@@ -61,7 +61,7 @@ SELECT taskID, seconds FROM activities WHERE (taskID = @taskID)</CommandText>
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>/*GROUP BY  t.title, t.createdDate, t.completed*/
-SELECT        t.title, t.createdDate, SUM(a.seconds) AS Expr1, t.completed
+SELECT        t.title, t.createdDate, (SUM(a.seconds)/60.0)/60.0 AS Expr1, t.completed
 FROM            tasks AS t INNER JOIN
                          activities AS a ON t.taskID = a.taskID
 WHERE        (t.task_owner = @id) AND (a.startTime &gt;= @start) AND (a.startTime &lt;= @end)
@@ -91,7 +91,7 @@ GROUP BY t.title, t.createdDate, t.completed</CommandText>
   <xs:element name="TimeSpentDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="TimeSpentDataSet" msprop:Generator_UserDSName="TimeSpentDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="activities" msprop:Generator_TableClassName="activitiesDataTable" msprop:Generator_TableVarName="tableactivities" msprop:Generator_RowChangedName="activitiesRowChanged" msprop:Generator_TablePropName="activities" msprop:Generator_RowDeletingName="activitiesRowDeleting" msprop:Generator_RowChangingName="activitiesRowChanging" msprop:Generator_RowEvHandlerName="activitiesRowChangeEventHandler" msprop:Generator_RowDeletedName="activitiesRowDeleted" msprop:Generator_RowClassName="activitiesRow" msprop:Generator_UserTableName="activities" msprop:Generator_RowEvArgName="activitiesRowChangeEvent">
+        <xs:element name="activities" msprop:Generator_TableClassName="activitiesDataTable" msprop:Generator_TableVarName="tableactivities" msprop:Generator_TablePropName="activities" msprop:Generator_RowDeletingName="activitiesRowDeleting" msprop:Generator_RowChangingName="activitiesRowChanging" msprop:Generator_RowEvHandlerName="activitiesRowChangeEventHandler" msprop:Generator_RowDeletedName="activitiesRowDeleted" msprop:Generator_UserTableName="activities" msprop:Generator_RowChangedName="activitiesRowChanged" msprop:Generator_RowEvArgName="activitiesRowChangeEvent" msprop:Generator_RowClassName="activitiesRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="taskID" msprop:Generator_ColumnVarNameInTable="columntaskID" msprop:Generator_ColumnPropNameInRow="taskID" msprop:Generator_ColumnPropNameInTable="taskIDColumn" msprop:Generator_UserColumnName="taskID" type="xs:int" />
@@ -99,7 +99,7 @@ GROUP BY t.title, t.createdDate, t.completed</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="tasks" msprop:Generator_TableClassName="tasksDataTable" msprop:Generator_TableVarName="tabletasks" msprop:Generator_RowChangedName="tasksRowChanged" msprop:Generator_TablePropName="tasks" msprop:Generator_RowDeletingName="tasksRowDeleting" msprop:Generator_RowChangingName="tasksRowChanging" msprop:Generator_RowEvHandlerName="tasksRowChangeEventHandler" msprop:Generator_RowDeletedName="tasksRowDeleted" msprop:Generator_RowClassName="tasksRow" msprop:Generator_UserTableName="tasks" msprop:Generator_RowEvArgName="tasksRowChangeEvent">
+        <xs:element name="tasks" msprop:Generator_TableClassName="tasksDataTable" msprop:Generator_TableVarName="tabletasks" msprop:Generator_TablePropName="tasks" msprop:Generator_RowDeletingName="tasksRowDeleting" msprop:Generator_RowChangingName="tasksRowChanging" msprop:Generator_RowEvHandlerName="tasksRowChangeEventHandler" msprop:Generator_RowDeletedName="tasksRowDeleted" msprop:Generator_UserTableName="tasks" msprop:Generator_RowChangedName="tasksRowChanged" msprop:Generator_RowEvArgName="tasksRowChangeEvent" msprop:Generator_RowClassName="tasksRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="title" msprop:Generator_ColumnVarNameInTable="columntitle" msprop:Generator_ColumnPropNameInRow="title" msprop:Generator_ColumnPropNameInTable="titleColumn" msprop:Generator_UserColumnName="title">
@@ -111,7 +111,7 @@ GROUP BY t.title, t.createdDate, t.completed</CommandText>
               </xs:element>
               <xs:element name="createdDate" msprop:Generator_ColumnVarNameInTable="columncreatedDate" msprop:Generator_ColumnPropNameInRow="createdDate" msprop:Generator_ColumnPropNameInTable="createdDateColumn" msprop:Generator_UserColumnName="createdDate" type="xs:dateTime" />
               <xs:element name="completed" msprop:Generator_ColumnVarNameInTable="columncompleted" msprop:Generator_ColumnPropNameInRow="completed" msprop:Generator_ColumnPropNameInTable="completedColumn" msprop:Generator_UserColumnName="completed" type="xs:boolean" />
-              <xs:element name="Expr1" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnExpr1" msprop:Generator_ColumnPropNameInRow="Expr1" msprop:Generator_ColumnPropNameInTable="Expr1Column" msprop:Generator_UserColumnName="Expr1" type="xs:int" minOccurs="0" />
+              <xs:element name="Expr1" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnExpr1" msprop:Generator_ColumnPropNameInRow="Expr1" msprop:Generator_ColumnPropNameInTable="Expr1Column" msprop:Generator_UserColumnName="Expr1" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
