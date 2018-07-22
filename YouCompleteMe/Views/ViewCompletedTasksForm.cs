@@ -44,11 +44,12 @@ namespace YouCompleteMe.Views
             dataGridView1.AutoGenerateColumns = true;
             dataGridView1.AutoResizeColumns();// = true;
             dataGridView1.DataSource = ds.Tables["tasks"];
+            dataGridView1.ReadOnly = true;
 
             dataGridView1.Columns[0].Visible = false;
             dataGridView1.Columns[1].Visible = false;
             dataGridView1.Columns[2].Visible = false;
-            dataGridView1.Columns[7].Visible = false;
+            //dataGridView1.Columns[7].Visible = false;
             dataGridView1.Columns[8].Visible = false;
             dataGridView1.Columns[9].Visible = false;
             dataGridView1.Columns[10].Visible = false;
@@ -58,6 +59,30 @@ namespace YouCompleteMe.Views
             dataGridView1.Columns[4].HeaderText = "Created Date";
             dataGridView1.Columns[5].HeaderText = "Completed Date";
             dataGridView1.Columns[6].HeaderText = "Due Date";
+            dataGridView1.Columns[7].HeaderText = "On Time?";
+            dataGridView1.CellFormatting += DataGridView1_CellFormatting;
+        }
+
+        private void DataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "task_priority")
+            {
+                if (dataGridView1.Rows[e.RowIndex].Cells[5].Value != DBNull.Value && dataGridView1.Rows[e.RowIndex].Cells[6].Value != DBNull.Value)
+                {
+                    if (Convert.ToDateTime(dataGridView1.Rows[e.RowIndex].Cells[5].Value) > Convert.ToDateTime(dataGridView1.Rows[e.RowIndex].Cells[6].Value))
+                    {
+                        e.Value = "No";
+                    }
+                    else
+                    {
+                        e.Value = "Yes";
+                    }
+                }
+                else
+                {
+                    e.Value = "";
+                }
+            }
         }
     }
 }
