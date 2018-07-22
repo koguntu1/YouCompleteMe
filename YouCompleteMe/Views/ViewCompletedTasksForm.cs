@@ -58,6 +58,10 @@ namespace YouCompleteMe.Views
             dataGridView1.Columns[4].HeaderText = "Created Date";
             dataGridView1.Columns[5].HeaderText = "Completed Date";
             dataGridView1.Columns[6].HeaderText = "Due Date";
+
+            dataGridView1.Columns[4].DefaultCellStyle.Format = "MM/dd/yyyy hh:mm tt";
+            dataGridView1.Columns[5].DefaultCellStyle.Format = "MM/dd/yyyy hh:mm tt";
+            dataGridView1.Columns[6].DefaultCellStyle.Format = "MM/dd/yyyy hh:mm tt";
         }
     }
 }
