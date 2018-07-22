@@ -243,6 +243,46 @@ namespace YouCompleteMe.DAL
             return dataSet;
         }
 
+        public static DataSet averageTimeReport(int id, DateTime start, DateTime end)
+        {
+            SqlConnection connection = DBConnection.GetConnection();
+            string selectStatement =
+                                "SELECT t.title, COUNT(a.startTime), SUM(a.seconds) / COUNT(a.startTime), SUM(a.seconds) " +
+                                "FROM tasks t JOIN activities a ON t.taskID = a.taskID " +
+                                "WHERE t.task_owner = @id AND a.startTime >= @start AND a.startTime <= @end " +
+                                "GROUP BY t.title";
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@start", start);
+            selectCommand.Parameters.AddWithValue("@end", end);
+            selectCommand.Parameters.AddWithValue("@id", id);
+            // Create a new data adapter based on the specified query.
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(selectStatement, connection);
+            // Populate a new data table
+            DataSet dataSet = new DataSet();
+            try
+            {
+                connection.Open();
+                SqlDataReader sdr = selectCommand.ExecuteReader();
+                dataSet.Locale = System.Globalization.CultureInfo.InvariantCulture;
+                dataSet.Tables.Add("tasks");
+                dataSet.Tables.Add("activities");
+
+                //Load DataReader into the DataTable.
+                dataSet.Tables[0].Load(sdr);
+                dataSet.Tables[0].Columns.Add(new DataColumn("Task_Type", typeof(string)));
+                dataSet.Tables[0].Columns.Add(new DataColumn("TaskPriority", typeof(string)));
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return dataSet;
+        }
+
         /* This method get the list of task of a user */
         public static List<Models.Task> getListTasks(int userID)
         {

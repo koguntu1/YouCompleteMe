@@ -141,5 +141,10 @@ namespace YouCompleteMe.Controller
         {
             return TaskDAL.timeSpentReport(id, start, end);
         }
+
+        public static DataSet averageTimeReport(int id, DateTime start, DateTime end)
+        {
+            return TaskDAL.averageTimeReport(id, start, end);
+        }
     }
 }

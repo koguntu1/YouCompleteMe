@@ -101,9 +101,6 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
-    <Compile Include="TimeSpentDataSet.cs">
-      <DependentUpon>TimeSpentDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="TimeSpentDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
