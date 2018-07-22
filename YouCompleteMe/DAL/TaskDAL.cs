@@ -231,7 +231,8 @@ namespace YouCompleteMe.DAL
                 dataSet.Tables[0].Load(sdr);
                 dataSet.Tables[0].Columns.Add(new DataColumn("Task_Type", typeof(string)));
                 dataSet.Tables[0].Columns.Add(new DataColumn("TaskPriority", typeof(string)));
-            }
+                
+                }
             catch (SqlException ex)
             {
                 throw ex;
