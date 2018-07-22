@@ -131,5 +131,10 @@ namespace YouCompleteMe.Controller
         {
             return TaskDAL.getMonthlyMeetingTime(user, date);
         }
+
+        public static DataSet completedReport(int id, DateTime start, DateTime end)
+        {
+            return TaskDAL.completedReport(id, start, end);
+        }
     }
 }

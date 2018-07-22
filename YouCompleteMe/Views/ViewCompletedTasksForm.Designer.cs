@@ -29,62 +29,53 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.tasks1TableAdapter = new YouCompleteMe.CompletedTaskDataSetTableAdapters.tasks1TableAdapter();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.completedTaskDataSet = new YouCompleteMe.CompletedTaskDataSet();
-            this.tasks1BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.completedTaskDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.completedTaskDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tasks1BindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.completedTaskDataSetBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // tasks1TableAdapter
+            // dataGridView1
             // 
-            this.tasks1TableAdapter.ClearBeforeFill = true;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(509, 310);
+            this.dataGridView1.TabIndex = 0;
             // 
             // completedTaskDataSet
             // 
             this.completedTaskDataSet.DataSetName = "CompletedTaskDataSet";
             this.completedTaskDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // tasks1BindingSource
+            // completedTaskDataSetBindingSource
             // 
-            this.tasks1BindingSource.DataMember = "tasks1";
-            this.tasks1BindingSource.DataSource = this.completedTaskDataSet;
-            // 
-            // reportViewer1
-            // 
-            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource1.Name = "DataSet1";
-            reportDataSource1.Value = this.tasks1BindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "YouCompleteMe.CompletedTasksReport.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(0, 0);
-            this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(950, 623);
-            this.reportViewer1.TabIndex = 0;
+            this.completedTaskDataSetBindingSource.DataSource = this.completedTaskDataSet;
+            this.completedTaskDataSetBindingSource.Position = 0;
             // 
             // ViewCompletedTasksForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(950, 623);
-            this.Controls.Add(this.reportViewer1);
+            this.ClientSize = new System.Drawing.Size(509, 310);
+            this.Controls.Add(this.dataGridView1);
             this.Name = "ViewCompletedTasksForm";
             this.Text = "Completed Tasks";
             this.Load += new System.EventHandler(this.ViewCompletedTasksForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.completedTaskDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tasks1BindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.completedTaskDataSetBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private CompletedTaskDataSetTableAdapters.tasks1TableAdapter tasks1TableAdapter;
+        private System.Windows.Forms.DataGridView dataGridView1;
         private CompletedTaskDataSet completedTaskDataSet;
-        private System.Windows.Forms.BindingSource tasks1BindingSource;
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
+        private System.Windows.Forms.BindingSource completedTaskDataSetBindingSource;
     }
 }

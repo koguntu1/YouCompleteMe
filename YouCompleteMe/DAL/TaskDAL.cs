@@ -132,6 +132,76 @@ namespace YouCompleteMe.DAL
             return task;
         }
 
+        public static DataSet completedReport(int id, DateTime start, DateTime end)
+        {
+            SqlConnection connection = DBConnection.GetConnection();
+            string selectStatement =
+                "SELECT * FROM tasks where task_owner = @id and completed = 1 AND (createdDate >= @fromDate AND currentDate <= @toDate)";
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@fromDate", start);
+            selectCommand.Parameters.AddWithValue("@toDate", end);
+            selectCommand.Parameters.AddWithValue("@id", id);
+            // Create a new data adapter based on the specified query.
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(selectStatement, connection);
+            // Populate a new data table
+            DataSet dataSet = new DataSet();
+            try
+            {
+                connection.Open();
+                SqlDataReader sdr = selectCommand.ExecuteReader();
+                dataSet.Locale = System.Globalization.CultureInfo.InvariantCulture;
+                dataSet.Tables.Add("tasks");
+
+                //Load DataReader into the DataTable.
+                dataSet.Tables[0].Load(sdr);
+                dataSet.Tables[0].Columns.Add(new DataColumn("Task_Type", typeof(string)));
+                dataSet.Tables[0].Columns.Add(new DataColumn("TaskPriority", typeof(string)));
+                for (int i = 0; i < dataSet.Tables[0].Rows.Count; i++)
+                {
+
+                    if (dataSet.Tables[0].Rows[i]["taskType"].ToString() == "1")
+                    {
+                        dataSet.Tables[0].Rows[i]["Task_Type"] = "Professional";
+                    }
+                    else if (dataSet.Tables[0].Rows[i]["taskType"].ToString() == "2")
+                    {
+                        dataSet.Tables[0].Rows[i]["Task_Type"] = "Personal";
+                    }
+                    else if (dataSet.Tables[0].Rows[i]["taskType"].ToString() == "3")
+                    {
+                        dataSet.Tables[0].Rows[i]["Task_Type"] = "Other";
+                    }
+                    else
+                    {
+                        dataSet.Tables[0].Rows[i]["Task_Type"] = "Meeting";
+                    }
+
+                    if (dataSet.Tables[0].Rows[i]["task_priority"].ToString() == "1")
+                    {
+                        dataSet.Tables[0].Rows[i]["TaskPriority"] = "High";
+                    }
+                    else if (dataSet.Tables[0].Rows[i]["task_priority"].ToString() == "2")
+                    {
+                        dataSet.Tables[0].Rows[i]["TaskPriority"] = "Medium";
+                    }
+                    else
+                    {
+                        dataSet.Tables[0].Rows[i]["TaskPriority"] = "Low";
+                    }
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return dataSet;
+        }
+
         /* This method get the list of task of a user */
         public static List<Models.Task> getListTasks(int userID)
         {
