@@ -136,5 +136,10 @@ namespace YouCompleteMe.Controller
         {
             return TaskDAL.completedReport(id, start, end);
         }
+
+        public static DataSet timeSpentReport(int id, DateTime start, DateTime end)
+        {
+            return TaskDAL.timeSpentReport(id, start, end);
+        }
     }
 }
