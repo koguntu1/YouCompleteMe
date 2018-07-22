@@ -28,63 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.TimeSpentDataSet = new YouCompleteMe.TimeSpentDataSet();
-            this.tasksBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tasksTableAdapter = new YouCompleteMe.TimeSpentDataSetTableAdapters.tasksTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.TimeSpentDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tasksBindingSource)).BeginInit();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // reportViewer1
+            // dataGridView1
             // 
-            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource1.Name = "TimeDataSpent";
-            reportDataSource1.Value = this.tasksBindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "YouCompleteMe.TimeSpentReport.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(0, 0);
-            this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(934, 584);
-            this.reportViewer1.TabIndex = 0;
-            // 
-            // TimeSpentDataSet
-            // 
-            this.TimeSpentDataSet.DataSetName = "TimeSpentDataSet";
-            this.TimeSpentDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tasksBindingSource
-            // 
-            this.tasksBindingSource.DataMember = "tasks";
-            this.tasksBindingSource.DataSource = this.TimeSpentDataSet;
-            // 
-            // tasksTableAdapter
-            // 
-            this.tasksTableAdapter.ClearBeforeFill = true;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(934, 584);
+            this.dataGridView1.TabIndex = 0;
             // 
             // ViewTimeSpentOnTaskForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(934, 584);
-            this.Controls.Add(this.reportViewer1);
+            this.Controls.Add(this.dataGridView1);
             this.Name = "ViewTimeSpentOnTaskForm";
             this.Text = "Time Report";
             this.Load += new System.EventHandler(this.ViewTimeSpentOnTaskForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.TimeSpentDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tasksBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
-        private System.Windows.Forms.BindingSource tasksBindingSource;
-        private TimeSpentDataSet TimeSpentDataSet;
-        private TimeSpentDataSetTableAdapters.tasksTableAdapter tasksTableAdapter;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
