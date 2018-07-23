@@ -122,6 +122,7 @@
             this.fromdateTimePicker.Name = "fromdateTimePicker";
             this.fromdateTimePicker.Size = new System.Drawing.Size(200, 20);
             this.fromdateTimePicker.TabIndex = 50;
+            this.fromdateTimePicker.Value = new System.DateTime(2018, 7, 21, 0, 0, 0, 0);
             // 
             // todateTimePicker
             // 
